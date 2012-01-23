@@ -20,6 +20,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import pycha.bar
+import pycha.line
 import pycha.pie
 
 import cairo
@@ -29,7 +30,7 @@ import gobject
 CHART_IMAGE = os.path.join("/tmp", "chart.png")
 
 
-class BarChart(gobject.GObject):
+class Chart(gobject.GObject):
 
     __gsignals__ = {
                   'ready': (gobject.SIGNAL_RUN_FIRST, None, [str])}
@@ -75,11 +76,10 @@ class BarChart(gobject.GObject):
             },
         }
 
-    def set_color_scheme(self, name="gradinet", args={'initialColor': 'blue'}):
-        self.options["colorScheme"]["name"] = name
-        self.options["args"] = args
+    def set_color_scheme(self, color='blue'):
+        self.options["colorScheme"]["args"] = {'initialColor': color}
 
-    def set_chart_color(self, color='#f3f9fb'):
+    def set_bg_color(self, color='#f3f9fb'):
         self.options["background"]["chartColor"] = color
 
     def set_line_color(self, color='#d1e5ec'):
@@ -94,19 +94,28 @@ class BarChart(gobject.GObject):
     def set_type(self, type="vertical"):
         self.type = type
 
-    def set_title(self, title="Bar Chart"):
+    def set_title(self, title="SimpleGraph Chart"):
         self.options["title"] = title
 
-    def render(self):
+    def render(self, sg=None):
         self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
                                             self.width,
                                             self.height)
 
-        if self.type == "vertical":
+        if self.type == "vbar":
             chart = pycha.bar.VerticalBarChart(self.surface, self.options)
 
-        elif self.type == "horizontal":
+        elif self.type == "hbar":
             chart = pycha.bar.HorizontalBarChart(self.surface, self.options)
+
+        elif self.type == "line":
+            chart = pycha.line.LineChart(self.surface, self.options)
+
+        elif self.type == "pie":
+            self.options["legend"] = {"hide" : "False"}
+            chart = pycha.pie.PieChart(self.surface, self.options)
+            print sg.chart_data
+            self.dataSet = [(data[0], [[0, data[1]]]) for data in sg.chart_data]
 
         chart.addDataset(self.dataSet)
         chart.render()
@@ -114,22 +123,3 @@ class BarChart(gobject.GObject):
         self.surface.write_to_png(CHART_IMAGE)
         self.emit("ready", CHART_IMAGE)
 
-
-class PieChart(gobject.GObject):
-
-    __gsignals__ = {
-                  'ready': (gobject.SIGNAL_RUN_FIRST, None, [str])}
-
-    def __init__(self, type="vertical", width=550, height=310):
-        gobject.GObject.__init__(self)
-
-        self.dataSet = None
-        self.options = None
-        self.surface = None
-
-        self.type = type
-        self.width = width
-        self.height = height
-
-    def set_title(self, title="Pie Chart"):
-        self.options["title"] = title
