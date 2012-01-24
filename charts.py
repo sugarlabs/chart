@@ -35,7 +35,7 @@ class Chart(gobject.GObject):
     __gsignals__ = {
                   'ready': (gobject.SIGNAL_RUN_FIRST, None, [str])}
 
-    def __init__(self, type="vertical", width=800, height=600):
+    def __init__(self, type="vertical", width=600, height=460):
         gobject.GObject.__init__(self)
 
         self.dataSet = None
@@ -112,7 +112,7 @@ class Chart(gobject.GObject):
             chart = pycha.line.LineChart(self.surface, self.options)
 
         elif self.type == "pie":
-            self.options["legend"] = {"hide" : "False"}
+            self.options["legend"] = {"hide": "False"}
             chart = pycha.pie.PieChart(self.surface, self.options)
             print sg.chart_data
             self.dataSet = [(data[0], [[0, data[1]]]) for data in sg.chart_data]
@@ -122,4 +122,3 @@ class Chart(gobject.GObject):
 
         self.surface.write_to_png(CHART_IMAGE)
         self.emit("ready", CHART_IMAGE)
-

@@ -22,19 +22,33 @@
 import gtk
 import gobject
 
+import os
+
 from sugar.activity import activity
 from sugar.activity.widgets import ActivityToolbarButton
 from sugar.activity.widgets import StopButton
 from sugar.graphics.toolbarbox import ToolbarBox
 from sugar.graphics.toolbutton import ToolButton
 
+from sugar.datastore import datastore
+
 from pycha.color import basicColors as basic_colors
 
-from charts import Chart
+from charts import Chart, CHART_IMAGE
 
 COLOR1 = gtk.gdk.Color("#224565")
 COLOR2 = gtk.gdk.Color("#C0C0C0")
 COLOR3 = gtk.gdk.Color("#D1E5EC")
+
+ACTIVITY_DIR = os.path.join(activity.get_activity_root(), "data/")
+CHART_FILE = os.path.join(ACTIVITY_DIR, "chart-1.png")
+num = 0
+
+while os.path.exists(CHART_FILE):
+    num += 1
+    CHART_FILE = os.path.join(ACTIVITY_DIR, "chart-" + str(num) + ".png")
+
+del num
 
 
 class SimpleGraph(activity.Activity):
@@ -60,7 +74,22 @@ class SimpleGraph(activity.Activity):
         self.toolbarbox = ToolbarBox()
 
         self.activity_button = ActivityToolbarButton(self)
+        activity_btn_toolbar = self.activity_button.page
+
+        save_as_image = ToolButton("image")
+        save_as_image.connect("clicked", self.save_as_image)
+        save_as_image.set_tooltip("Save as image")
+        activity_btn_toolbar.insert(save_as_image, -1)
+
+        save_as_image.show()
+        activity_btn_toolbar.keep.hide()
+
         self.toolbarbox.toolbar.insert(self.activity_button, 0)
+
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(False)
+        separator.set_expand(False)
+        self.toolbarbox.toolbar.insert(separator, -1)
 
         self.add_v = ToolButton("gtk-add")
         self.add_v.connect("clicked", self.add_value)
@@ -72,11 +101,11 @@ class SimpleGraph(activity.Activity):
         self.remove_v.connect("clicked", self.remove_value)
         self.remove_v.set_tooltip("Remove the selected value")
 
-        #self.toolbarbox.toolbar.insert(self.remove_v, -1)
+        self.toolbarbox.toolbar.insert(self.remove_v, -1)
 
         separator = gtk.SeparatorToolItem()
-        separator.set_draw(False)
-        separator.set_expand(True)
+        separator.set_draw(True)
+        separator.set_expand(False)
         self.toolbarbox.toolbar.insert(separator, -1)
 
         self.add_vbar_chart = ToolButton("vbar")
@@ -89,20 +118,10 @@ class SimpleGraph(activity.Activity):
         self.add_hbar_chart.set_tooltip("Create a horizontal bar chart")
         self.toolbarbox.toolbar.insert(self.add_hbar_chart, -1)
 
-        separator = gtk.SeparatorToolItem()
-        separator.set_draw(True)
-        separator.set_expand(False)
-        self.toolbarbox.toolbar.insert(separator, -1)
-
         self.add_line_chart = ToolButton("line")
         self.add_line_chart.connect("clicked", self.add_chart_cb, "line")
         self.add_line_chart.set_tooltip("Create a line chart")
         self.toolbarbox.toolbar.insert(self.add_line_chart, -1)
-
-        separator = gtk.SeparatorToolItem()
-        separator.set_draw(True)
-        separator.set_expand(False)
-        self.toolbarbox.toolbar.insert(separator, -1)
 
         self.add_pie_chart = ToolButton("pie")
         self.add_pie_chart.connect("clicked", self.add_chart_cb, "pie")
@@ -159,7 +178,8 @@ class SimpleGraph(activity.Activity):
         self.chart_data.append(("Unknown", "0"))
 
     def remove_value(self, widget):
-        self.remove_selected_value()
+        path = self.labels_and_values.remove_selected_value()
+        del self.chart_data[path]
 
     def add_chart_cb(self, widget, type="vbar"):
         self.current_chart = Chart(type)
@@ -172,15 +192,20 @@ class SimpleGraph(activity.Activity):
             self.current_chart.set_title(self.chart_title)
             self.current_chart.set_x_label(self.x_label)
             self.current_chart.set_y_label(self.y_label)
-            self.current_chart.set_bg_color(self.bg_color)
+            if self.bg_color != "#C0C0C0":
+                self.current_chart.set_bg_color(self.bg_color)
+
+            else:
+                self.current_chart.set_bg_color(None)
             self.current_chart.set_color_scheme(color=self.chart_color)
             self.current_chart.set_line_color(self.chart_line_color)
             self.current_chart.connect("ready", lambda w, f:
-                                                  self.charts_area.set_from_file(f))
+                                              self.charts_area.set_from_file(f))
             if self.current_chart.type == "pie":
                 self.current_chart.render(self)
 
-            else: self.current_chart.render()
+            else:
+                self.current_chart.render()
 
     def label_changed(self, tw, path, new_label):
         path = int(path)
@@ -188,7 +213,7 @@ class SimpleGraph(activity.Activity):
 
     def value_changed(self, tw, path, new_value):
         path = int(path)
-        self.chart_data[path] = (self.chart_data[path][0], float(new_value))     
+        self.chart_data[path] = (self.chart_data[path][0], float(new_value))
 
     def set_h_label(self, options, label):
         self.x_label = label
@@ -207,6 +232,49 @@ class SimpleGraph(activity.Activity):
 
     def set_chart_line_color(self, options, color):
         self.chart_line_color = color
+
+    def save_as_image(self, widget):
+        if self.current_chart:
+            jobject = datastore.create()
+
+            jobject.metadata['title'] = self.chart_title
+            jobject.metadata['mime_type'] = "image/png"
+
+            image = open(CHART_IMAGE, "r")
+            jfile = open(CHART_FILE, "w")
+
+            jfile.write(image.read())
+
+            jfile.close()
+            image.close()
+
+            jobject.set_file_path(CHART_FILE)
+
+            datastore.write(jobject)
+
+    def write_file(self, file_path):
+        if self.current_chart:
+            jfile = open(file_path, "w")
+
+            jfile.write(self.chart_title + "\n")
+            jfile.write(self.x_label + "\n")
+            jfile.write(self.y_label + "\n")
+            jfile.write(self.bg_color + "\n")
+            jfile.write(self.chart_color + "\n")
+            jfile.write(self.chart_line_color + "\n")
+            jfile.write(self.current_chart.type + "\n")
+
+            string = ""
+            for item in self.chart_data:
+                print "Saving: %s : %s" % (item[0], str(item[-1]))
+                string += item[0] + ":" + str(item[1]) + ","
+
+            jfile.write(string)
+
+            jfile.close()
+
+    def read_file(self, file_path):
+        print file_path
 
 
 class TreeView(gtk.TreeView):
@@ -252,7 +320,13 @@ class TreeView(gtk.TreeView):
         print "Added: %s, Value: %s" % (label, value)
 
     def remove_selected_value(self):
-        self.remove(self.get_selection())
+        path, column = self.get_cursor()
+        path = path[0]
+
+        model, iter = self.get_selection().get_selected()
+        self.model.remove(iter)
+
+        return path
 
     def label_changed(self, cell, path, new_text, model):
         print "Change '%s' to '%s'" % (model[path][0], new_text)
@@ -376,6 +450,8 @@ class Options(gtk.VBox):
 
         self.pack_start(hbox, False, True, 3)
 
+        self.set_size_request(400, 300)
+
         self.show_all()
 
     def color_selector(self, widget):
@@ -384,24 +460,27 @@ class Options(gtk.VBox):
         if widget.id == 3:
 
             box = gtk.HBox()
-            
+
             for color in basic_colors.keys():
                 btn = gtk.Button()
                 btn.set_size_request(40, 40)
                 btn.set_property("has-tooltip", True)
                 btn.set_property("tooltip-text", str(color).capitalize())
                 btn.color = gtk.gdk.Color(basic_colors[color])
-                btn.connect("clicked", lambda w: selector.colorsel.set_current_color(w.color))
+                btn.connect("clicked", lambda w:
+                                   selector.colorsel.set_current_color(w.color))
                 btn.modify_bg(gtk.STATE_NORMAL, btn.color)
                 btn.modify_bg(gtk.STATE_PRELIGHT, btn.color)
                 box.pack_start(btn, False, True, 1)
-            
+
             selector.vbox.pack_end(box, False, True, 0)
             selector.colorsel.set_current_color(COLOR1)
 
-        elif widget.id == 2: selector.colorsel.set_current_color(COLOR3)
-        
-        elif widget.id == 1: selector.colorsel.set_current_color(COLOR2)
+        elif widget.id == 2:
+            selector.colorsel.set_current_color(COLOR3)
+
+        elif widget.id == 1:
+            selector.colorsel.set_current_color(COLOR2)
 
         selector.get_color_selection().connect("color-changed",
                                                      self.color_changed, widget)
