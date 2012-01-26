@@ -23,22 +23,47 @@ import gtk
 import gobject
 
 import os
+import gconf
 
 from sugar.activity import activity
 from sugar.activity.widgets import ActivityToolbarButton
 from sugar.activity.widgets import StopButton
 from sugar.graphics.toolbarbox import ToolbarBox
 from sugar.graphics.toolbutton import ToolButton
-
 from sugar.datastore import datastore
 
 from pycha.color import basicColors as basic_colors
 
 from charts import Chart, CHART_IMAGE
 
-COLOR1 = gtk.gdk.Color("#224565")
-COLOR2 = gtk.gdk.Color("#C0C0C0")
-COLOR3 = gtk.gdk.Color("#D1E5EC")
+
+def rgb_to_html(color):
+        red = "%x" % int(color.red / 65535.0 * 255)
+        if len(red) == 1:
+                red = "0%s" % red
+
+        green = "%x" % int(color.green / 65535.0 * 255)
+
+        if len(green) == 1:
+                green = "0%s" % green
+
+        blue = "%x" % int(color.blue / 65535.0 * 255)
+
+        if len(blue) == 1:
+                blue = "0%s" % blue
+
+        new_color = "#%s%s%s" % (red, green, blue)
+
+        return new_color
+
+
+def get_user_color():
+    color = gconf.client_get_default().get_string("/desktop/sugar/user/color")
+    return color.split(",")
+
+
+COLOR1 = gtk.gdk.Color(get_user_color()[0])
+COLOR2 = gtk.gdk.Color(get_user_color()[1])
 
 ACTIVITY_DIR = os.path.join(activity.get_activity_root(), "data/")
 CHART_FILE = os.path.join(ACTIVITY_DIR, "chart-1.png")
@@ -63,10 +88,8 @@ class SimpleGraph(activity.Activity):
 
         self.x_label = ""
         self.y_label = ""
-        self.chart_title = ""
-        self.bg_color = "#C0C0C0"
-        self.chart_color = '#224565'
-        self.chart_line_color = "#D1E5EC"
+        self.chart_color = get_user_color()[0]
+        self.chart_line_color = get_user_color()[1]
         self.current_chart = None
         self.chart_data = []
 
@@ -154,11 +177,9 @@ class SimpleGraph(activity.Activity):
 
         self.options = Options()
 
-        self.options.connect("title-changed", self.set_chart_title)
         self.options.connect("hlabel-changed", self.set_h_label)
         self.options.connect("vlabel-changed", self.set_v_label)
         self.options.connect("chart-color-changed", self.set_chart_color)
-        self.options.connect("bg-color-changed", self.set_bg_color)
         self.options.connect("line-color-changed", self.set_chart_line_color)
 
         self.box.pack_end(self.options, False, True, 10)
@@ -189,14 +210,9 @@ class SimpleGraph(activity.Activity):
     def update_chart(self):
         if self.current_chart:
             self.current_chart.data_set(self.chart_data)
-            self.current_chart.set_title(self.chart_title)
+            self.current_chart.set_title(self.metadata["title"])
             self.current_chart.set_x_label(self.x_label)
             self.current_chart.set_y_label(self.y_label)
-            if self.bg_color != "#C0C0C0":
-                self.current_chart.set_bg_color(self.bg_color)
-
-            else:
-                self.current_chart.set_bg_color(None)
             self.current_chart.set_color_scheme(color=self.chart_color)
             self.current_chart.set_line_color(self.chart_line_color)
             self.current_chart.connect("ready", lambda w, f:
@@ -221,14 +237,8 @@ class SimpleGraph(activity.Activity):
     def set_v_label(self, options, label):
         self.y_label = label
 
-    def set_chart_title(self, options, title):
-        self.chart_title = title
-
     def set_chart_color(self, options, color):
         self.chart_color = color
-
-    def set_bg_color(self, options, color):
-        self.bg_color = color
 
     def set_chart_line_color(self, options, color):
         self.chart_line_color = color
@@ -237,7 +247,7 @@ class SimpleGraph(activity.Activity):
         if self.current_chart:
             jobject = datastore.create()
 
-            jobject.metadata['title'] = self.chart_title
+            jobject.metadata['title'] = self.metadata["title"]
             jobject.metadata['mime_type'] = "image/png"
 
             image = open(CHART_IMAGE, "r")
@@ -256,10 +266,9 @@ class SimpleGraph(activity.Activity):
         if self.current_chart:
             jfile = open(file_path, "w")
 
-            jfile.write(self.chart_title + "\n")
+            jfile.write(self.metadata["title"] + "\n")
             jfile.write(self.x_label + "\n")
             jfile.write(self.y_label + "\n")
-            jfile.write(self.bg_color + "\n")
             jfile.write(self.chart_color + "\n")
             jfile.write(self.chart_line_color + "\n")
             jfile.write(self.current_chart.type + "\n")
@@ -362,26 +371,13 @@ class TreeView(gtk.TreeView):
 class Options(gtk.VBox):
 
     __gsignals__ = {
-             'title-changed': (gobject.SIGNAL_RUN_FIRST, None, [str]),
              'hlabel-changed': (gobject.SIGNAL_RUN_FIRST, None, [str]),
              'vlabel-changed': (gobject.SIGNAL_RUN_FIRST, None, [str]),
-             'bg-color-changed': (gobject.SIGNAL_RUN_FIRST, None, [object]),
              'chart-color-changed': (gobject.SIGNAL_RUN_FIRST, None, [object]),
              'line-color-changed': (gobject.SIGNAL_RUN_FIRST, None, [object])}
 
     def __init__(self):
         gtk.VBox.__init__(self)
-
-        hbox = gtk.HBox()
-        title = gtk.Label("Title:")
-        hbox.pack_start(title, False, True, 0)
-
-        entry = gtk.Entry(max=0)
-        entry.connect("changed", lambda w: self.emit("title-changed",
-                                                                  w.get_text()))
-        hbox.pack_end(entry, False, True, 5)
-
-        self.pack_start(hbox, False, True, 3)
 
         hbox = gtk.HBox()
         title = gtk.Label("Horizontal label:")
@@ -410,25 +406,9 @@ class Options(gtk.VBox):
         hbox.pack_start(title, False, True, 0)
 
         btn = gtk.Button("Color")
-        btn.id = 3
+        btn.id = 1
         btn.modify_bg(gtk.STATE_NORMAL, COLOR1)
         btn.modify_bg(gtk.STATE_PRELIGHT, COLOR1)
-        btn.connect("clicked", self.color_selector)
-        hbox.pack_end(btn, False, True, 5)
-
-        self.pack_start(hbox, False, True, 3)
-
-        hbox = gtk.HBox()
-        title = gtk.Label("Background color:")
-        hbox.pack_start(title, False, True, 0)
-
-        btn = gtk.Button()
-        btn.id = 1
-        label = gtk.Label("Color")
-        label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.Color("#000000"))
-        btn.add(label)
-        btn.modify_bg(gtk.STATE_NORMAL, COLOR2)
-        btn.modify_bg(gtk.STATE_PRELIGHT, COLOR2)
         btn.connect("clicked", self.color_selector)
         hbox.pack_end(btn, False, True, 5)
 
@@ -444,20 +424,18 @@ class Options(gtk.VBox):
         label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.Color("#000000"))
         btn.add(label)
         btn.connect("clicked", self.color_selector)
-        btn.modify_bg(gtk.STATE_NORMAL, COLOR3)
-        btn.modify_bg(gtk.STATE_PRELIGHT, COLOR3)
+        btn.modify_bg(gtk.STATE_NORMAL, COLOR2)
+        btn.modify_bg(gtk.STATE_PRELIGHT, COLOR2)
         hbox.pack_end(btn, False, True, 5)
 
         self.pack_start(hbox, False, True, 3)
-
-        self.set_size_request(400, 300)
 
         self.show_all()
 
     def color_selector(self, widget):
         selector = gtk.ColorSelectionDialog("Color Selector")
 
-        if widget.id == 3:
+        if widget.id == 1:
 
             box = gtk.HBox()
 
@@ -477,9 +455,6 @@ class Options(gtk.VBox):
             selector.colorsel.set_current_color(COLOR1)
 
         elif widget.id == 2:
-            selector.colorsel.set_current_color(COLOR3)
-
-        elif widget.id == 1:
             selector.colorsel.set_current_color(COLOR2)
 
         selector.get_color_selection().connect("color-changed",
@@ -494,27 +469,10 @@ class Options(gtk.VBox):
         btn.modify_bg(gtk.STATE_NORMAL, color)
         btn.modify_bg(gtk.STATE_PRELIGHT, color)
 
-        red = "%x" % int(color.red / 65535.0 * 255)
-        if len(red) == 1:
-                red = "0%s" % red
+        new_color = rgb_to_html(color)
 
-        green = "%x" % int(color.green / 65535.0 * 255)
-
-        if len(green) == 1:
-                green = "0%s" % green
-
-        blue = "%x" % int(color.blue / 65535.0 * 255)
-
-        if len(blue) == 1:
-                blue = "0%s" % blue
-
-        new_color = "#%s%s%s" % (red, green, blue)
-
-        if btn.id == 1:
-            self.emit("bg-color-changed", new_color)
-
-        elif btn.id == 2:
+        if btn.id == 2:
             self.emit("line-color-changed", new_color)
 
-        elif btn.id == 3:
+        elif btn.id == 1:
             self.emit("chart-color-changed", new_color)

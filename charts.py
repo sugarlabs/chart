@@ -65,7 +65,7 @@ class Chart(gobject.GObject):
                 }
             },
             'background': {
-                'chartColor': '#f3f9fb',
+                'chartColor': '#FFFFFF',
                 'lineColor': '#d1e5ec'
             },
             'colorScheme': {
@@ -78,9 +78,6 @@ class Chart(gobject.GObject):
 
     def set_color_scheme(self, color='blue'):
         self.options["colorScheme"]["args"] = {'initialColor': color}
-
-    def set_bg_color(self, color='#f3f9fb'):
-        self.options["background"]["chartColor"] = color
 
     def set_line_color(self, color='#d1e5ec'):
         self.options["background"]["lineColor"] = color
