@@ -175,7 +175,7 @@ class SimpleGraph(activity.Activity):
 
         self.box.pack_start(self.scroll, True, True, 0)
 
-        self.options = Options()
+        self.options = Options(self)
 
         self.options.connect("hlabel-changed", self.set_h_label)
         self.options.connect("vlabel-changed", self.set_v_label)
@@ -194,9 +194,9 @@ class SimpleGraph(activity.Activity):
 
         self.show_all()
 
-    def add_value(self, widget):
-        self.labels_and_values.add_value("Unknown", "0")
-        self.chart_data.append(("Unknown", "0"))
+    def add_value(self, widget, label="Unknown", value="0.0"):
+        self.labels_and_values.add_value(label, value)
+        self.chart_data.append((label, float(value)))
 
     def remove_value(self, widget):
         path = self.labels_and_values.remove_selected_value()
@@ -263,7 +263,9 @@ class SimpleGraph(activity.Activity):
             datastore.write(jobject)
 
     def write_file(self, file_path):
+        self.metadata['mime_type'] = "activity/x-simplegraph"
         if self.current_chart:
+
             jfile = open(file_path, "w")
 
             jfile.write(self.metadata["title"] + "\n")
@@ -271,19 +273,74 @@ class SimpleGraph(activity.Activity):
             jfile.write(self.y_label + "\n")
             jfile.write(self.chart_color + "\n")
             jfile.write(self.chart_line_color + "\n")
-            jfile.write(self.current_chart.type + "\n")
 
             string = ""
             for item in self.chart_data:
-                print "Saving: %s : %s" % (item[0], str(item[-1]))
                 string += item[0] + ":" + str(item[1]) + ","
 
             jfile.write(string)
+            jfile.write("\n" + self.current_chart.type)
 
             jfile.close()
 
     def read_file(self, file_path):
-        print file_path
+        jfile = open(file_path, "r")
+
+        num = 0
+        type = None
+
+        for line in jfile.readlines():
+            num += 1
+            
+            num2 = 0
+            l = len(line)
+            string = ""
+
+            for char in line:
+                num2 += 1
+
+                if num2 != l:
+                    string += char
+
+            line = string
+ 
+            if num == 1:
+                self.metadata["title"] = line
+
+            elif num == 2:
+                self.options.hlabel_entry.set_text(line)
+                self.x_label = line
+
+            elif num == 3:
+                self.options.vlabel_entry.set_text(line)
+                self.y_label = line
+
+            elif num == 4:
+                self.chart_color = line
+                self.options.chart_color.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(line))
+                self.options.chart_color.modify_bg(gtk.STATE_PRELIGHT, gtk.gdk.Color(line))
+            
+            elif num == 5:
+                self.chart_line_color = line
+                self.options.lines_color.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(line))
+                self.options.lines_color.modify_bg(gtk.STATE_PRELIGHT, gtk.gdk.Color(line))
+
+            elif num == 6:
+                for x in line.split(","):
+                    try:
+                        data = x.split(":")
+                        label = data[0]
+                        value = float(data[1])
+                        if data != ('',):
+                            self.add_value(None, label=label, value=value)
+                    except: pass
+
+            elif num == 7:
+                type = line
+        
+        self.add_chart_cb(None, type=type)
+
+        jfile.close()
 
 
 class TreeView(gtk.TreeView):
@@ -376,7 +433,7 @@ class Options(gtk.VBox):
              'chart-color-changed': (gobject.SIGNAL_RUN_FIRST, None, [object]),
              'line-color-changed': (gobject.SIGNAL_RUN_FIRST, None, [object])}
 
-    def __init__(self):
+    def __init__(self, activity):
         gtk.VBox.__init__(self)
 
         hbox = gtk.HBox()
@@ -387,6 +444,8 @@ class Options(gtk.VBox):
         entry.connect("changed", lambda w: self.emit("hlabel-changed",
                                                                   w.get_text()))
         hbox.pack_end(entry, False, True, 5)
+
+        self.hlabel_entry = entry
 
         self.pack_start(hbox, False, True, 3)
 
@@ -401,6 +460,8 @@ class Options(gtk.VBox):
 
         self.pack_start(hbox, False, True, 3)
 
+        self.vlabel_entry = entry
+
         hbox = gtk.HBox()
         title = gtk.Label("Chart color:")
         hbox.pack_start(title, False, True, 0)
@@ -413,6 +474,8 @@ class Options(gtk.VBox):
         hbox.pack_end(btn, False, True, 5)
 
         self.pack_start(hbox, False, True, 3)
+
+        self.chart_color = btn
 
         hbox = gtk.HBox()
         title = gtk.Label("Lines Color:")
@@ -429,6 +492,10 @@ class Options(gtk.VBox):
         hbox.pack_end(btn, False, True, 5)
 
         self.pack_start(hbox, False, True, 3)
+
+        self.lines_color = btn
+
+        self.activity = activity
 
         self.show_all()
 
@@ -452,10 +519,9 @@ class Options(gtk.VBox):
                 box.pack_start(btn, False, True, 1)
 
             selector.vbox.pack_end(box, False, True, 0)
-            selector.colorsel.set_current_color(COLOR1)
-
+            selector.colorsel.set_current_color(gtk.gdk.Color(self.activity.chart_color))
         elif widget.id == 2:
-            selector.colorsel.set_current_color(COLOR2)
+            selector.colorsel.set_current_color(gtk.gdk.Color(self.activity.chart_line_color))
 
         selector.get_color_selection().connect("color-changed",
                                                      self.color_changed, widget)

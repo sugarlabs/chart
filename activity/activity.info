@@ -5,3 +5,4 @@ bundle_id = org.sugarlabs.SimpleGraph
 exec = sugar-activity activity.SimpleGraph -s
 icon = simplegraph
 license = GPLv3+
+mime_types = activity/x-simplegraph
