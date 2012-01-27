@@ -99,7 +99,7 @@ class SimpleGraph(activity.Activity):
         self.activity_button = ActivityToolbarButton(self)
         activity_btn_toolbar = self.activity_button.page
 
-        save_as_image = ToolButton("image")
+        save_as_image = ToolButton("save-as-image")
         save_as_image.connect("clicked", self.save_as_image)
         save_as_image.set_tooltip("Save as image")
         activity_btn_toolbar.insert(save_as_image, -1)
