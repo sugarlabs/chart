@@ -292,17 +292,18 @@ class SimpleGraph(activity.Activity):
         for line in jfile.readlines():
             num += 1
             
-            num2 = 0
-            l = len(line)
-            string = ""
+            if num != 7:
+				num2 = 0
+				l = len(line)
+				string = ""
 
-            for char in line:
-                num2 += 1
+				for char in line:
+					num2 += 1
 
-                if num2 != l:
-                    string += char
+					if num2 != l:
+						string += char
 
-            line = string
+				line = string
  
             if num == 1:
                 self.metadata["title"] = line
