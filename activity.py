@@ -194,7 +194,7 @@ class SimpleGraph(activity.Activity):
 
         self.show_all()
 
-    def add_value(self, widget, label="Unknown", value="0.0"):
+    def add_value(self, widget, label="", value="0.0"):
         self.labels_and_values.add_value(label, value)
         self.chart_data.append((label, float(value)))
 
