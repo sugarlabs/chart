@@ -114,13 +114,13 @@ class SimpleGraph(activity.Activity):
         separator.set_expand(False)
         self.toolbarbox.toolbar.insert(separator, -1)
 
-        self.add_v = ToolButton("gtk-add")
+        self.add_v = ToolButton("row-insert")
         self.add_v.connect("clicked", self.add_value)
         self.add_v.set_tooltip("Add a value")
 
         self.toolbarbox.toolbar.insert(self.add_v, -1)
 
-        self.remove_v = ToolButton("gtk-remove")
+        self.remove_v = ToolButton("row-remove")
         self.remove_v.connect("clicked", self.remove_value)
         self.remove_v.set_tooltip("Remove the selected value")
 
