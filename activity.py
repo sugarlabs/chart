@@ -218,10 +218,12 @@ class SimpleGraph(activity.Activity):
     def add_value(self, widget, label="", value="0.0"):
         self.labels_and_values.add_value(label, value)
         self.chart_data.append((label, float(value)))
+        self._update_chart_data()
 
     def remove_value(self, widget):
         path = self.labels_and_values.remove_selected_value()
         del self.chart_data[path]
+        self._update_chart_data()
 
     def add_chart_cb(self, widget, type="vbar"):
         self.current_chart = Chart(type)
