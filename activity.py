@@ -176,6 +176,15 @@ class SimpleGraph(activity.Activity):
         self.paned = gtk.HPaned()
         self.box = gtk.VBox()
 
+	# Set the info box width to 1/3 of the screen:
+	def size_allocate_cb(widget, allocation):
+            self.paned.disconnect(self._setup_handle)
+	    box_width = allocation.width / 3
+            self.box.set_size_request(box_width, -1)
+
+	self._setup_handle = self.paned.connect('size_allocate',
+                    size_allocate_cb)
+
         self.scroll = gtk.ScrolledWindow()
         self.scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         self.labels_and_values = TreeView()
