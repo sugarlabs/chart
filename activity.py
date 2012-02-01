@@ -235,6 +235,8 @@ class SimpleGraph(activity.Activity):
         self.options.set_visible(is_active)
 
     def _render_chart(self):
+        if self.current_chart is None:
+            return
         self.current_chart.set_color_scheme(color=self.chart_color)
         self.current_chart.set_line_color(self.chart_line_color)
         if self.current_chart.type == "pie":
@@ -246,6 +248,13 @@ class SimpleGraph(activity.Activity):
         if self.current_chart is None:
             return
         self.current_chart.data_set(self.chart_data)
+        self._render_chart()
+
+    def _update_chart_labels(self):
+        if self.current_chart is None:
+            return
+	self.current_chart.set_x_label(self.x_label)
+	self.current_chart.set_y_label(self.y_label)
         self._render_chart()
 
     def update_chart(self):
@@ -270,15 +279,19 @@ class SimpleGraph(activity.Activity):
 
     def set_h_label(self, options, label):
         self.x_label = label
+	self._update_chart_labels()
 
     def set_v_label(self, options, label):
         self.y_label = label
+	self._update_chart_labels()
 
     def set_chart_color(self, options, color):
         self.chart_color = color
+	self._render_chart()
 
     def set_chart_line_color(self, options, color):
         self.chart_line_color = color
+	self._render_chart()
 
     def save_as_image(self, widget):
         if self.current_chart:
