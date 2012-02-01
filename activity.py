@@ -176,13 +176,13 @@ class SimpleGraph(activity.Activity):
         self.paned = gtk.HPaned()
         self.box = gtk.VBox()
 
-	# Set the info box width to 1/3 of the screen:
-	def size_allocate_cb(widget, allocation):
+        # Set the info box width to 1/3 of the screen:
+        def size_allocate_cb(widget, allocation):
             self.paned.disconnect(self._setup_handle)
-	    box_width = allocation.width / 3
+            box_width = allocation.width / 3
             self.box.set_size_request(box_width, -1)
 
-	self._setup_handle = self.paned.connect('size_allocate',
+        self._setup_handle = self.paned.connect('size_allocate',
                     size_allocate_cb)
 
         self.scroll = gtk.ScrolledWindow()
@@ -232,29 +232,39 @@ class SimpleGraph(activity.Activity):
         is_active = widget.get_active()
         self.options.set_visible(is_active)
 
+    def _render_chart(self):
+        self.current_chart.set_color_scheme(color=self.chart_color)
+        self.current_chart.set_line_color(self.chart_line_color)
+        if self.current_chart.type == "pie":
+            self.current_chart.render(self)
+        else:
+            self.current_chart.render()
+
+    def _update_chart_data(self):
+        if self.current_chart is None:
+            return
+        self.current_chart.data_set(self.chart_data)
+        self._render_chart()
+
     def update_chart(self):
         if self.current_chart:
             self.current_chart.data_set(self.chart_data)
             self.current_chart.set_title(self.metadata["title"])
             self.current_chart.set_x_label(self.x_label)
             self.current_chart.set_y_label(self.y_label)
-            self.current_chart.set_color_scheme(color=self.chart_color)
-            self.current_chart.set_line_color(self.chart_line_color)
             self.current_chart.connect("ready", lambda w, f:
                                               self.charts_area.set_from_file(f))
-            if self.current_chart.type == "pie":
-                self.current_chart.render(self)
-
-            else:
-                self.current_chart.render()
+            self._render_chart()
 
     def label_changed(self, tw, path, new_label):
         path = int(path)
         self.chart_data[path] = (new_label, self.chart_data[path][1])
+        self._update_chart_data()
 
     def value_changed(self, tw, path, new_value):
         path = int(path)
         self.chart_data[path] = (self.chart_data[path][0], float(new_value))
+        self._update_chart_data()
 
     def set_h_label(self, options, label):
         self.x_label = label
