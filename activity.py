@@ -30,6 +30,7 @@ from sugar.activity.widgets import ActivityToolbarButton
 from sugar.activity.widgets import StopButton
 from sugar.graphics.toolbarbox import ToolbarBox
 from sugar.graphics.toolbutton import ToolButton
+from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.datastore import datastore
 
 from pycha.color import basicColors as basic_colors
@@ -152,6 +153,16 @@ class SimpleGraph(activity.Activity):
         self.toolbarbox.toolbar.insert(self.add_pie_chart, -1)
 
         separator = gtk.SeparatorToolItem()
+        separator.set_draw(True)
+        separator.set_expand(False)
+        self.toolbarbox.toolbar.insert(separator, -1)
+
+        options_button = ToggleToolButton('view-source')
+        options_button.connect("clicked", self.__options_toggled_cb)
+        options_button.set_tooltip('Show or hide options')
+        self.toolbarbox.toolbar.insert(options_button, -1)
+
+        separator = gtk.SeparatorToolItem()
         separator.set_draw(False)
         separator.set_expand(True)
         self.toolbarbox.toolbar.insert(separator, -1)
@@ -193,6 +204,7 @@ class SimpleGraph(activity.Activity):
         self.set_canvas(self.paned)
 
         self.show_all()
+        self.options.set_visible(False)
 
     def add_value(self, widget, label="", value="0.0"):
         self.labels_and_values.add_value(label, value)
@@ -206,6 +218,10 @@ class SimpleGraph(activity.Activity):
         self.current_chart = Chart(type)
 
         self.update_chart()
+
+    def __options_toggled_cb(self, widget):
+        is_active = widget.get_active()
+        self.options.set_visible(is_active)
 
     def update_chart(self):
         if self.current_chart:
