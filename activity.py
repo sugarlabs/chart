@@ -465,7 +465,12 @@ class ChartData(gtk.TreeView):
         self.show_all()
 
     def add_value(self, label, value):
-        self.model.append([label, value])
+        iter = self.model.append([label, value])
+        
+        self.set_cursor(self.model.get_path(iter), 
+							  self.get_column(1), 
+							  True)
+        
         logger.info("Added: %s, Value: %s" % (label, value))
 
     def remove_selected_value(self):
@@ -492,7 +497,7 @@ class ChartData(gtk.TreeView):
             is_number = False
 
         if is_number:
-            model[path][1] = new_text
+            model[path][1] = str(float(new_text))
 
             self.emit("value-changed", str(path), new_text)
 
