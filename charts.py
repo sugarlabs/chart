@@ -4,6 +4,7 @@
 # charts.py by:
 #    Agustin Zubiaga <aguzubiaga97@gmail.com>
 #    Gonzalo Odiard <godiard@gmail.com>
+#	 Manuel Quiñones <manuq@laptop.org>
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

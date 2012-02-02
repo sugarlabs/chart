@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 
 # activity.py by:
-#    Agustin Zubiaga <aguzubiaga97@gmail.com>
+#    Agustin Zubiaga <aguz@sugarlabs.com>
 #    Gonzalo Odiard <godiard@gmail.com>
+#	 Manuel Quiñones <manuq@laptop.org>
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -95,137 +96,137 @@ class SimpleGraph(activity.Activity):
         self.chart_data = []
 
         # TOOLBARS
-        self.toolbarbox = ToolbarBox()
+        toolbarbox = ToolbarBox()
 
-        self.activity_button = ActivityToolbarButton(self)
-        activity_btn_toolbar = self.activity_button.page
+        activity_button = ActivityToolbarButton(self)
+        activity_btn_toolbar = activity_button.page
 
         save_as_image = ToolButton("save-as-image")
-        save_as_image.connect("clicked", self.save_as_image)
+        save_as_image.connect("clicked", self._save_as_image)
         save_as_image.set_tooltip("Save as image")
         activity_btn_toolbar.insert(save_as_image, -1)
 
         save_as_image.show()
         activity_btn_toolbar.keep.hide()
 
-        self.toolbarbox.toolbar.insert(self.activity_button, 0)
+        toolbarbox.toolbar.insert(activity_button, 0)
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(False)
         separator.set_expand(False)
-        self.toolbarbox.toolbar.insert(separator, -1)
+        toolbarbox.toolbar.insert(separator, -1)
 
-        self.add_v = ToolButton("row-insert")
-        self.add_v.connect("clicked", self.add_value)
-        self.add_v.set_tooltip("Add a value")
+        add_v = ToolButton("row-insert")
+        add_v.connect("clicked", self._add_value)
+        add_v.set_tooltip("Add a value")
 
-        self.toolbarbox.toolbar.insert(self.add_v, -1)
+        toolbarbox.toolbar.insert(add_v, -1)
 
-        self.remove_v = ToolButton("row-remove")
-        self.remove_v.connect("clicked", self.remove_value)
-        self.remove_v.set_tooltip("Remove the selected value")
+        remove_v = ToolButton("row-remove")
+        remove_v.connect("clicked", self._remove_value)
+        remove_v.set_tooltip("Remove the selected value")
 
-        self.toolbarbox.toolbar.insert(self.remove_v, -1)
-
-        separator = gtk.SeparatorToolItem()
-        separator.set_draw(True)
-        separator.set_expand(False)
-        self.toolbarbox.toolbar.insert(separator, -1)
-
-        self.add_vbar_chart = ToolButton("vbar")
-        self.add_vbar_chart.connect("clicked", self.add_chart_cb, "vbar")
-        self.add_vbar_chart.set_tooltip("Create a vertical bar chart")
-        self.toolbarbox.toolbar.insert(self.add_vbar_chart, -1)
-
-        self.add_hbar_chart = ToolButton("hbar")
-        self.add_hbar_chart.connect("clicked", self.add_chart_cb, "hbar")
-        self.add_hbar_chart.set_tooltip("Create a horizontal bar chart")
-        self.toolbarbox.toolbar.insert(self.add_hbar_chart, -1)
-
-        self.add_line_chart = ToolButton("line")
-        self.add_line_chart.connect("clicked", self.add_chart_cb, "line")
-        self.add_line_chart.set_tooltip("Create a line chart")
-        self.toolbarbox.toolbar.insert(self.add_line_chart, -1)
-
-        self.add_pie_chart = ToolButton("pie")
-        self.add_pie_chart.connect("clicked", self.add_chart_cb, "pie")
-        self.add_pie_chart.set_tooltip("Create a pie chart")
-        self.toolbarbox.toolbar.insert(self.add_pie_chart, -1)
+        toolbarbox.toolbar.insert(remove_v, -1)
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         separator.set_expand(False)
-        self.toolbarbox.toolbar.insert(separator, -1)
+        toolbarbox.toolbar.insert(separator, -1)
+
+        add_vbar_chart = ToolButton("vbar")
+        add_vbar_chart.connect("clicked", self._add_chart_cb, "vbar")
+        add_vbar_chart.set_tooltip("Create a vertical bar chart")
+        toolbarbox.toolbar.insert(add_vbar_chart, -1)
+
+        add_hbar_chart = ToolButton("hbar")
+        add_hbar_chart.connect("clicked", self._add_chart_cb, "hbar")
+        add_hbar_chart.set_tooltip("Create a horizontal bar chart")
+        toolbarbox.toolbar.insert(add_hbar_chart, -1)
+
+        add_line_chart = ToolButton("line")
+        add_line_chart.connect("clicked", self._add_chart_cb, "line")
+        add_line_chart.set_tooltip("Create a line chart")
+        toolbarbox.toolbar.insert(add_line_chart, -1)
+
+        add_pie_chart = ToolButton("pie")
+        add_pie_chart.connect("clicked", self._add_chart_cb, "pie")
+        add_pie_chart.set_tooltip("Create a pie chart")
+        toolbarbox.toolbar.insert(add_pie_chart, -1)
+
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(True)
+        separator.set_expand(False)
+        toolbarbox.toolbar.insert(separator, -1)
 
         options_button = ToggleToolButton('view-source')
         options_button.connect("clicked", self.__options_toggled_cb)
         options_button.set_tooltip('Show or hide options')
-        self.toolbarbox.toolbar.insert(options_button, -1)
+        toolbarbox.toolbar.insert(options_button, -1)
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(False)
         separator.set_expand(True)
-        self.toolbarbox.toolbar.insert(separator, -1)
+        toolbarbox.toolbar.insert(separator, -1)
 
-        self.stopbtn = StopButton(self)
-        self.toolbarbox.toolbar.insert(self.stopbtn, -1)
+        stopbtn = StopButton(self)
+        toolbarbox.toolbar.insert(stopbtn, -1)
 
-        self.set_toolbar_box(self.toolbarbox)
+        self.set_toolbar_box(toolbarbox)
 
         # CANVAS
-        self.paned = gtk.HPaned()
-        self.box = gtk.VBox()
+        paned = gtk.HPaned()
+        box = gtk.VBox()
 
         # Set the info box width to 1/3 of the screen:
         def size_allocate_cb(widget, allocation):
-            self.paned.disconnect(self._setup_handle)
+            paned.disconnect(self._setup_handle)
             box_width = allocation.width / 3
-            self.box.set_size_request(box_width, -1)
+            box.set_size_request(box_width, -1)
 
-        self._setup_handle = self.paned.connect('size_allocate',
+        self._setup_handle = paned.connect('size_allocate',
                     size_allocate_cb)
 
-        self.scroll = gtk.ScrolledWindow()
-        self.scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.labels_and_values = TreeView()
-        self.scroll.add(self.labels_and_values)
+        scroll = gtk.ScrolledWindow()
+        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.labels_and_values = ChartData()
+        scroll.add(self.labels_and_values)
 
-        self.labels_and_values.connect("label-changed", self.label_changed)
-        self.labels_and_values.connect("value-changed", self.value_changed)
+        self.labels_and_values.connect("label-changed", self._label_changed)
+        self.labels_and_values.connect("value-changed", self._value_changed)
 
-        self.box.pack_start(self.scroll, True, True, 0)
+        box.pack_start(scroll, True, True, 0)
 
         self.options = Options(self)
 
-        self.options.connect("hlabel-changed", self.set_h_label)
-        self.options.connect("vlabel-changed", self.set_v_label)
-        self.options.connect("chart-color-changed", self.set_chart_color)
-        self.options.connect("line-color-changed", self.set_chart_line_color)
+        self.options.connect("hlabel-changed", self._set_h_label)
+        self.options.connect("vlabel-changed", self._set_v_label)
+        self.options.connect("chart-color-changed", self._set_chart_color)
+        self.options.connect("line-color-changed", self._set_chart_line_color)
 
-        self.box.pack_end(self.options, False, True, 10)
+        box.pack_end(self.options, False, True, 10)
 
-        self.paned.add1(self.box)
+        paned.add1(box)
 
         # CHARTS AREA
         self.charts_area = gtk.Image()
-        self.paned.add2(self.charts_area)
+        paned.add2(self.charts_area)
 
-        self.set_canvas(self.paned)
+        self.set_canvas(paned)
 
         self.show_all()
         self.options.set_visible(False)
 
-    def add_value(self, widget, label="", value="0.0"):
+    def _add_value(self, widget, label="", value="0.0"):
         self.labels_and_values.add_value(label, value)
         self.chart_data.append((label, float(value)))
         self._update_chart_data()
 
-    def remove_value(self, widget):
+    def _remove_value(self, widget):
         path = self.labels_and_values.remove_selected_value()
         del self.chart_data[path]
         self._update_chart_data()
 
-    def add_chart_cb(self, widget, type="vbar"):
+    def _add_chart_cb(self, widget, type="vbar"):
         self.current_chart = Chart(type)
 
         self.update_chart()
@@ -267,33 +268,33 @@ class SimpleGraph(activity.Activity):
                                               self.charts_area.set_from_file(f))
             self._render_chart()
 
-    def label_changed(self, tw, path, new_label):
+    def _label_changed(self, tw, path, new_label):
         path = int(path)
         self.chart_data[path] = (new_label, self.chart_data[path][1])
         self._update_chart_data()
 
-    def value_changed(self, tw, path, new_value):
+    def _value_changed(self, tw, path, new_value):
         path = int(path)
         self.chart_data[path] = (self.chart_data[path][0], float(new_value))
         self._update_chart_data()
 
-    def set_h_label(self, options, label):
+    def _set_h_label(self, options, label):
         self.x_label = label
 	self._update_chart_labels()
 
-    def set_v_label(self, options, label):
+    def _set_v_label(self, options, label):
         self.y_label = label
 	self._update_chart_labels()
 
-    def set_chart_color(self, options, color):
+    def _set_chart_color(self, options, color):
         self.chart_color = color
 	self._render_chart()
 
-    def set_chart_line_color(self, options, color):
+    def _set_chart_line_color(self, options, color):
         self.chart_line_color = color
 	self._render_chart()
 
-    def save_as_image(self, widget):
+    def _save_as_image(self, widget):
         if self.current_chart:
             jobject = datastore.create()
 
@@ -383,18 +384,18 @@ class SimpleGraph(activity.Activity):
                         label = data[0]
                         value = float(data[1])
                         if data != ('',):
-                            self.add_value(None, label=label, value=value)
+                            self._add_value(None, label=label, value=value)
                     except: pass
 
             elif num == 7:
                 type = line
         
-        self.add_chart_cb(None, type=type)
+        self._add_chart_cb(None, type=type)
 
         jfile.close()
 
 
-class TreeView(gtk.TreeView):
+class ChartData(gtk.TreeView):
 
     __gsignals__ = {
              'label-changed': (gobject.SIGNAL_RUN_FIRST, None, [str, str], ),
@@ -412,7 +413,7 @@ class TreeView(gtk.TreeView):
         column = gtk.TreeViewColumn("Label")
         label = gtk.CellRendererText()
         label.set_property('editable', True)
-        label.connect("edited", self.label_changed, self.model)
+        label.connect("edited", self._label_changed, self.model)
 
         column.pack_start(label)
         column.set_attributes(label, text=0)
@@ -423,7 +424,7 @@ class TreeView(gtk.TreeView):
         column = gtk.TreeViewColumn("Value")
         value = gtk.CellRendererText()
         value.set_property('editable', True)
-        value.connect("edited", self.value_changed, self.model)
+        value.connect("edited", self._value_changed, self.model)
 
         column.pack_start(value)
         column.set_attributes(value, text=1)
@@ -445,13 +446,13 @@ class TreeView(gtk.TreeView):
 
         return path
 
-    def label_changed(self, cell, path, new_text, model):
+    def _label_changed(self, cell, path, new_text, model):
         print "Change '%s' to '%s'" % (model[path][0], new_text)
         model[path][0] = new_text
 
         self.emit("label-changed", str(path), new_text)
 
-    def value_changed(self, cell, path, new_text, model):
+    def _value_changed(self, cell, path, new_text, model):
         print "Change '%s' to '%s'" % (model[path][1], new_text)
         is_number = True
         try:
@@ -521,7 +522,7 @@ class Options(gtk.VBox):
         btn.id = 1
         btn.modify_bg(gtk.STATE_NORMAL, COLOR1)
         btn.modify_bg(gtk.STATE_PRELIGHT, COLOR1)
-        btn.connect("clicked", self.color_selector)
+        btn.connect("clicked", self._color_selector)
         hbox.pack_end(btn, False, True, 5)
 
         self.pack_start(hbox, False, True, 3)
@@ -537,7 +538,7 @@ class Options(gtk.VBox):
         label = gtk.Label("Color")
         label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.Color("#000000"))
         btn.add(label)
-        btn.connect("clicked", self.color_selector)
+        btn.connect("clicked", self._color_selector)
         btn.modify_bg(gtk.STATE_NORMAL, COLOR2)
         btn.modify_bg(gtk.STATE_PRELIGHT, COLOR2)
         hbox.pack_end(btn, False, True, 5)
@@ -550,7 +551,7 @@ class Options(gtk.VBox):
 
         self.show_all()
 
-    def color_selector(self, widget):
+    def _color_selector(self, widget):
         selector = gtk.ColorSelectionDialog("Color Selector")
 
         if widget.id == 1:
@@ -575,13 +576,13 @@ class Options(gtk.VBox):
             selector.colorsel.set_current_color(gtk.gdk.Color(self.activity.chart_line_color))
 
         selector.get_color_selection().connect("color-changed",
-                                                     self.color_changed, widget)
+                                                     self._color_changed, widget)
         selector.ok_button.connect("clicked", lambda w: selector.destroy())
         selector.cancel_button.destroy()
         selector.help_button.destroy()
         selector.show_all()
 
-    def color_changed(self, widget, btn):
+    def _color_changed(self, widget, btn):
         color = widget.get_current_color()
         btn.modify_bg(gtk.STATE_NORMAL, color)
         btn.modify_bg(gtk.STATE_PRELIGHT, color)
