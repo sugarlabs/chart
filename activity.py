@@ -26,6 +26,9 @@ import gobject
 import os
 import gconf
 
+import logging
+from gettext import gettext as _
+
 from sugar.activity import activity
 from sugar.activity.widgets import ActivityToolbarButton
 from sugar.activity.widgets import StopButton
@@ -77,6 +80,8 @@ while os.path.exists(CHART_FILE):
 
 del num
 
+logger = logging.getLogger("SimpleGraph")
+
 
 class SimpleGraph(activity.Activity):
 
@@ -103,7 +108,7 @@ class SimpleGraph(activity.Activity):
 
         save_as_image = ToolButton("save-as-image")
         save_as_image.connect("clicked", self._save_as_image)
-        save_as_image.set_tooltip("Save as image")
+        save_as_image.set_tooltip(_("Save as image"))
         activity_btn_toolbar.insert(save_as_image, -1)
 
         save_as_image.show()
@@ -118,13 +123,13 @@ class SimpleGraph(activity.Activity):
 
         add_v = ToolButton("row-insert")
         add_v.connect("clicked", self._add_value)
-        add_v.set_tooltip("Add a value")
+        add_v.set_tooltip(_("Add a value"))
 
         toolbarbox.toolbar.insert(add_v, -1)
 
         remove_v = ToolButton("row-remove")
         remove_v.connect("clicked", self._remove_value)
-        remove_v.set_tooltip("Remove the selected value")
+        remove_v.set_tooltip(_("Remove the selected value"))
 
         toolbarbox.toolbar.insert(remove_v, -1)
 
@@ -135,22 +140,22 @@ class SimpleGraph(activity.Activity):
 
         add_vbar_chart = ToolButton("vbar")
         add_vbar_chart.connect("clicked", self._add_chart_cb, "vbar")
-        add_vbar_chart.set_tooltip("Create a vertical bar chart")
+        add_vbar_chart.set_tooltip(_("Create a vertical bar chart"))
         toolbarbox.toolbar.insert(add_vbar_chart, -1)
 
         add_hbar_chart = ToolButton("hbar")
         add_hbar_chart.connect("clicked", self._add_chart_cb, "hbar")
-        add_hbar_chart.set_tooltip("Create a horizontal bar chart")
+        add_hbar_chart.set_tooltip(_("Create a horizontal bar chart"))
         toolbarbox.toolbar.insert(add_hbar_chart, -1)
 
         add_line_chart = ToolButton("line")
         add_line_chart.connect("clicked", self._add_chart_cb, "line")
-        add_line_chart.set_tooltip("Create a line chart")
+        add_line_chart.set_tooltip(_("Create a line chart"))
         toolbarbox.toolbar.insert(add_line_chart, -1)
 
         add_pie_chart = ToolButton("pie")
         add_pie_chart.connect("clicked", self._add_chart_cb, "pie")
-        add_pie_chart.set_tooltip("Create a pie chart")
+        add_pie_chart.set_tooltip(_("Create a pie chart"))
         toolbarbox.toolbar.insert(add_pie_chart, -1)
 
         separator = gtk.SeparatorToolItem()
@@ -160,7 +165,7 @@ class SimpleGraph(activity.Activity):
 
         options_button = ToggleToolButton('view-source')
         options_button.connect("clicked", self.__options_toggled_cb)
-        options_button.set_tooltip('Show or hide options')
+        options_button.set_tooltip(_('Show or hide options'))
         toolbarbox.toolbar.insert(options_button, -1)
 
         separator = gtk.SeparatorToolItem()
@@ -410,7 +415,7 @@ class ChartData(gtk.TreeView):
 
         # Label column
 
-        column = gtk.TreeViewColumn("Label")
+        column = gtk.TreeViewColumn(_("Label"))
         label = gtk.CellRendererText()
         label.set_property('editable', True)
         label.connect("edited", self._label_changed, self.model)
@@ -421,7 +426,7 @@ class ChartData(gtk.TreeView):
 
         # Value column
 
-        column = gtk.TreeViewColumn("Value")
+        column = gtk.TreeViewColumn(_("Value"))
         value = gtk.CellRendererText()
         value.set_property('editable', True)
         value.connect("edited", self._value_changed, self.model)
@@ -435,7 +440,7 @@ class ChartData(gtk.TreeView):
 
     def add_value(self, label, value):
         self.model.append([label, value])
-        print "Added: %s, Value: %s" % (label, value)
+        logger.info("Added: %s, Value: %s" % (label, value))
 
     def remove_selected_value(self):
         path, column = self.get_cursor()
@@ -447,13 +452,13 @@ class ChartData(gtk.TreeView):
         return path
 
     def _label_changed(self, cell, path, new_text, model):
-        print "Change '%s' to '%s'" % (model[path][0], new_text)
+        logger.info("Change '%s' to '%s'" % (model[path][0], new_text))
         model[path][0] = new_text
 
         self.emit("label-changed", str(path), new_text)
 
     def _value_changed(self, cell, path, new_text, model):
-        print "Change '%s' to '%s'" % (model[path][1], new_text)
+        logger.info("Change '%s' to '%s'" % (model[path][1], new_text))
         is_number = True
         try:
             float(new_text)
@@ -489,7 +494,7 @@ class Options(gtk.VBox):
         gtk.VBox.__init__(self)
 
         hbox = gtk.HBox()
-        title = gtk.Label("Horizontal label:")
+        title = gtk.Label(_("Horizontal label:"))
         hbox.pack_start(title, False, True, 0)
 
         entry = gtk.Entry(max=0)
@@ -502,7 +507,7 @@ class Options(gtk.VBox):
         self.pack_start(hbox, False, True, 3)
 
         hbox = gtk.HBox()
-        title = gtk.Label("Vertical label:")
+        title = gtk.Label(_("Vertical label:"))
         hbox.pack_start(title, False, True, 0)
 
         entry = gtk.Entry(max=0)
@@ -515,10 +520,10 @@ class Options(gtk.VBox):
         self.vlabel_entry = entry
 
         hbox = gtk.HBox()
-        title = gtk.Label("Chart color:")
+        title = gtk.Label(_("Chart color:"))
         hbox.pack_start(title, False, True, 0)
 
-        btn = gtk.Button("Color")
+        btn = gtk.Button(_("Color"))
         btn.id = 1
         btn.modify_bg(gtk.STATE_NORMAL, COLOR1)
         btn.modify_bg(gtk.STATE_PRELIGHT, COLOR1)
@@ -530,12 +535,12 @@ class Options(gtk.VBox):
         self.chart_color = btn
 
         hbox = gtk.HBox()
-        title = gtk.Label("Lines Color:")
+        title = gtk.Label(_("Lines Color:"))
         hbox.pack_start(title, False, True, 0)
 
         btn = gtk.Button()
         btn.id = 2
-        label = gtk.Label("Color")
+        label = gtk.Label(_("Color"))
         label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.Color("#000000"))
         btn.add(label)
         btn.connect("clicked", self._color_selector)
@@ -552,7 +557,7 @@ class Options(gtk.VBox):
         self.show_all()
 
     def _color_selector(self, widget):
-        selector = gtk.ColorSelectionDialog("Color Selector")
+        selector = gtk.ColorSelectionDialog(_("Color Selector"))
 
         if widget.id == 1:
 

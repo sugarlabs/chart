@@ -1,0 +1,82 @@
+# SimpleGraph Internationalization.
+# Copyright (C) 2012
+# This file is distributed under the license GPLv3+
+# Agustin Zubiaga <aguz@sugarlabs.org>, 2012.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-01 22:58-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: activity.py:111
+msgid "Save as image"
+msgstr ""
+
+#: activity.py:126
+msgid "Add a value"
+msgstr ""
+
+#: activity.py:132
+msgid "Remove the selected value"
+msgstr ""
+
+#: activity.py:143
+msgid "Create a vertical bar chart"
+msgstr ""
+
+#: activity.py:148
+msgid "Create a horizontal bar chart"
+msgstr ""
+
+#: activity.py:153
+msgid "Create a line chart"
+msgstr ""
+
+#: activity.py:158
+msgid "Create a pie chart"
+msgstr ""
+
+#: activity.py:168
+msgid "Show or hide options"
+msgstr ""
+
+#: activity.py:418
+msgid "Label"
+msgstr ""
+
+#: activity.py:429
+msgid "Value"
+msgstr ""
+
+#: activity.py:497
+msgid "Horizontal label:"
+msgstr ""
+
+#: activity.py:510
+msgid "Vertical label:"
+msgstr ""
+
+#: activity.py:523
+msgid "Chart color:"
+msgstr ""
+
+#: activity.py:526 activity.py:543
+msgid "Color"
+msgstr ""
+
+#: activity.py:538
+msgid "Lines Color:"
+msgstr ""
+
+#: activity.py:560
+msgid "Color Selector"
+msgstr ""

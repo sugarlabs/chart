@@ -1,0 +1,82 @@
+# SimpleGraph Internationalization.
+# Copyright (C) 2012
+# This file is distributed under the license GPLv3+
+# Agustin Zubiaga <aguz@sugarlabs.org>, 2012.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-01 22:58-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: activity.py:111
+msgid "Save as image"
+msgstr "Guardar como una imagen"
+
+#: activity.py:126
+msgid "Add a value"
+msgstr "Agregar un valor"
+
+#: activity.py:132
+msgid "Remove the selected value"
+msgstr "Remover el valor seleccionado"
+
+#: activity.py:143
+msgid "Create a vertical bar chart"
+msgstr "Crear un grafico de barras vertical"
+
+#: activity.py:148
+msgid "Create a horizontal bar chart"
+msgstr "Crear un grafico de barras horizontal"
+
+#: activity.py:153
+msgid "Create a line chart"
+msgstr "Crear un grafico de lineas"
+
+#: activity.py:158
+msgid "Create a pie chart"
+msgstr "Crear una grafico torta"
+
+#: activity.py:168
+msgid "Show or hide options"
+msgstr "Mostrar o ocultar las opciones"
+
+#: activity.py:418
+msgid "Label"
+msgstr "Etiqueta"
+
+#: activity.py:429
+msgid "Value"
+msgstr "Valor"
+
+#: activity.py:497
+msgid "Horizontal label:"
+msgstr "Etiqueta horizontal:"
+
+#: activity.py:510
+msgid "Vertical label:"
+msgstr "Etiqueta vertical:"
+
+#: activity.py:523
+msgid "Chart color:"
+msgstr "Color del grafico:"
+
+#: activity.py:526 activity.py:543
+msgid "Color"
+msgstr "Color"
+
+#: activity.py:538
+msgid "Lines Color:"
+msgstr "Color de las lineas"
+
+#: activity.py:560
+msgid "Color Selector"
+msgstr "Selector de colores"
