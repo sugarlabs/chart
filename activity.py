@@ -239,8 +239,8 @@ class SimpleGraph(activity.Activity):
         self.options.set_visible(False)
 
     def _add_value(self, widget, label="", value="0.0"):
-        self.labels_and_values.add_value(label, value)
-        self.chart_data.append((label, float(value)))
+        pos = self.labels_and_values.add_value(label, value)
+        self.chart_data.insert(pos, (label, float(value)))
         self._update_chart_data()
 
     def _remove_value(self, widget):
@@ -475,13 +475,22 @@ class ChartData(gtk.TreeView):
         self.show_all()
 
     def add_value(self, label, value):
-        iter = self.model.append([label, value])
+        selected = self.get_selection().get_selected()[1]
+        if not selected:
+            path = 0
+
+        elif selected:
+            path = self.model.get_path(selected)[0]
+
+        iter = self.model.insert(path, [label, value])
 
         self.set_cursor(self.model.get_path(iter),
                         self.get_column(1),
                         True)
 
         logger.info("Added: %s, Value: %s" % (label, value))
+
+        return path
 
     def remove_selected_value(self):
         path, column = self.get_cursor()
