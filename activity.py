@@ -4,7 +4,7 @@
 # activity.py by:
 #    Agustin Zubiaga <aguz@sugarlabs.com>
 #    Gonzalo Odiard <godiard@gmail.com>
-#	 Manuel Quiñones <manuq@laptop.org>
+#    Manuel Quiñones <manuq@laptop.org>
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,13 +27,8 @@ import os
 import gconf
 
 import logging
-import gettext
 
-gettext.textdomain("SimpleGraph")
-gettext.bindtextdomain("SimpleGraph", "./locale")
-
-_ = gettext.gettext
-
+from gettext import gettext as _
 
 from sugar.activity import activity
 from sugar.activity.widgets import ActivityToolbarButton
@@ -150,7 +145,7 @@ class SimpleGraph(activity.Activity):
         add_vbar_chart.set_tooltip(_("Create a vertical bar chart"))
         add_vbar_chart.props.icon_name = "vbar"
         charts_group = add_vbar_chart
-        
+
         toolbarbox.toolbar.insert(add_vbar_chart, -1)
 
         add_hbar_chart = RadioToolButton()
@@ -172,12 +167,13 @@ class SimpleGraph(activity.Activity):
         add_pie_chart.set_tooltip(_("Create a pie chart"))
         add_pie_chart.props.icon_name = "pie"
         add_pie_chart.props.group = charts_group
+        add_pie_chart.set_active(True)
         toolbarbox.toolbar.insert(add_pie_chart, -1)
-        
-        self.chart_type_buttons = [add_vbar_chart, 
-								   add_hbar_chart, 
-								   add_line_chart, 
-								   add_pie_chart]
+
+        self.chart_type_buttons = [add_vbar_chart,
+                                   add_hbar_chart,
+                                   add_line_chart,
+                                   add_pie_chart]
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
@@ -280,8 +276,8 @@ class SimpleGraph(activity.Activity):
     def _update_chart_labels(self):
         if self.current_chart is None:
             return
-	self.current_chart.set_x_label(self.x_label)
-	self.current_chart.set_y_label(self.y_label)
+        self.current_chart.set_x_label(self.x_label)
+        self.current_chart.set_y_label(self.y_label)
         self._render_chart()
 
     def update_chart(self):
@@ -291,7 +287,7 @@ class SimpleGraph(activity.Activity):
             self.current_chart.set_x_label(self.x_label)
             self.current_chart.set_y_label(self.y_label)
             self.current_chart.connect("ready", lambda w, f:
-                                              self.charts_area.set_from_file(f))
+                                          self.charts_area.set_from_file(f))
             self._render_chart()
 
     def _label_changed(self, tw, path, new_label):
@@ -306,19 +302,19 @@ class SimpleGraph(activity.Activity):
 
     def _set_h_label(self, options, label):
         self.x_label = label
-	self._update_chart_labels()
+        self._update_chart_labels()
 
     def _set_v_label(self, options, label):
         self.y_label = label
-	self._update_chart_labels()
+        self._update_chart_labels()
 
     def _set_chart_color(self, options, color):
         self.chart_color = color
-	self._render_chart()
+        self._render_chart()
 
     def _set_chart_line_color(self, options, color):
         self.chart_line_color = color
-	self._render_chart()
+        self._render_chart()
 
     def _save_as_image(self, widget):
         if self.current_chart:
@@ -368,7 +364,7 @@ class SimpleGraph(activity.Activity):
 
         for line in jfile.readlines():
             num += 1
-            
+
             if num != 7:
                                 num2 = 0
                                 l = len(line)
@@ -381,7 +377,7 @@ class SimpleGraph(activity.Activity):
                                                 string += char
 
                                 line = string
- 
+
             if num == 1:
                 self.metadata["title"] = line
 
@@ -395,13 +391,19 @@ class SimpleGraph(activity.Activity):
 
             elif num == 4:
                 self.chart_color = line
-                self.options.chart_color.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(line))
-                self.options.chart_color.modify_bg(gtk.STATE_PRELIGHT, gtk.gdk.Color(line))
-            
+                self.options.chart_color.modify_bg(gtk.STATE_NORMAL,
+                                                   gtk.gdk.Color(line))
+
+                self.options.chart_color.modify_bg(gtk.STATE_PRELIGHT,
+                                                   gtk.gdk.Color(line))
+
             elif num == 5:
                 self.chart_line_color = line
-                self.options.lines_color.modify_bg(gtk.STATE_NORMAL, gtk.gdk.Color(line))
-                self.options.lines_color.modify_bg(gtk.STATE_PRELIGHT, gtk.gdk.Color(line))
+                self.options.lines_color.modify_bg(gtk.STATE_NORMAL,
+                                                   gtk.gdk.Color(line))
+
+                self.options.lines_color.modify_bg(gtk.STATE_PRELIGHT,
+                                                   gtk.gdk.Color(line))
 
             elif num == 6:
                 for x in line.split(","):
@@ -411,16 +413,24 @@ class SimpleGraph(activity.Activity):
                         value = float(data[1])
                         if data != ('',):
                             self._add_value(None, label=label, value=value)
-                    except: pass
+                    except:
+                        pass
 
             elif num == 7:
                 type = line
-                
-        if type == "vbar": self.chart_type_buttons[0].set_active(True)
-        elif type == "hbar":  self.chart_type_buttons[1].set_active(True)
-        elif type == "line":  self.chart_type_buttons[2].set_active(True)
-        elif type == "pie":  self.chart_type_buttons[3].set_active(True)
-        
+
+        if type == "vbar":
+            self.chart_type_buttons[0].set_active(True)
+
+        elif type == "hbar":
+            self.chart_type_buttons[1].set_active(True)
+
+        elif type == "line":
+            self.chart_type_buttons[2].set_active(True)
+
+        elif type == "pie":
+            self.chart_type_buttons[3].set_active(True)
+
         self._add_chart_cb(None, type=type)
 
         jfile.close()
@@ -466,11 +476,11 @@ class ChartData(gtk.TreeView):
 
     def add_value(self, label, value):
         iter = self.model.append([label, value])
-        
-        self.set_cursor(self.model.get_path(iter), 
-							  self.get_column(1), 
-							  True)
-        
+
+        self.set_cursor(self.model.get_path(iter),
+                        self.get_column(1),
+                        True)
+
         logger.info("Added: %s, Value: %s" % (label, value))
 
     def remove_selected_value(self):
@@ -530,7 +540,7 @@ class Options(gtk.VBox):
 
         entry = gtk.Entry(max=0)
         entry.connect("changed", lambda w: self.emit("hlabel-changed",
-                                                                  w.get_text()))
+                                                              w.get_text()))
         hbox.pack_end(entry, False, True, 5)
 
         self.hlabel_entry = entry
@@ -543,7 +553,7 @@ class Options(gtk.VBox):
 
         entry = gtk.Entry(max=0)
         entry.connect("changed", lambda w: self.emit("vlabel-changed",
-                                                                  w.get_text()))
+                                                              w.get_text()))
         hbox.pack_end(entry, False, True, 5)
 
         self.pack_start(hbox, False, True, 3)
@@ -601,18 +611,22 @@ class Options(gtk.VBox):
                 btn.set_property("tooltip-text", str(color).capitalize())
                 btn.color = gtk.gdk.Color(basic_colors[color])
                 btn.connect("clicked", lambda w:
-                                   selector.colorsel.set_current_color(w.color))
+                               selector.colorsel.set_current_color(w.color))
                 btn.modify_bg(gtk.STATE_NORMAL, btn.color)
                 btn.modify_bg(gtk.STATE_PRELIGHT, btn.color)
                 box.pack_start(btn, False, True, 1)
 
             selector.vbox.pack_end(box, False, True, 0)
-            selector.colorsel.set_current_color(gtk.gdk.Color(self.activity.chart_color))
+            selector.colorsel.set_current_color(
+                                   gtk.gdk.Color(self.activity.chart_color))
+
         elif widget.id == 2:
-            selector.colorsel.set_current_color(gtk.gdk.Color(self.activity.chart_line_color))
+            selector.colorsel.set_current_color(
+                              gtk.gdk.Color(self.activity.chart_line_color))
 
         selector.get_color_selection().connect("color-changed",
-                                                     self._color_changed, widget)
+                                                 self._color_changed, widget)
+
         selector.ok_button.connect("clicked", lambda w: selector.destroy())
         selector.cancel_button.destroy()
         selector.help_button.destroy()

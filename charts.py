@@ -4,7 +4,7 @@
 # charts.py by:
 #    Agustin Zubiaga <aguzubiaga97@gmail.com>
 #    Gonzalo Odiard <godiard@gmail.com>
-#	 Manuel Quiñones <manuq@laptop.org>
+#    Manuel Quiñones <manuq@laptop.org>
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -113,7 +113,8 @@ class Chart(gobject.GObject):
             self.options["legend"] = {"hide": "False"}
             chart = pycha.pie.PieChart(self.surface, self.options)
             print sg.chart_data
-            self.dataSet = [(data[0], [[0, data[1]]]) for data in sg.chart_data]
+            self.dataSet = [(data[0],
+                            [[0, data[1]]]) for data in sg.chart_data]
 
         chart.addDataset(self.dataSet)
         chart.render()
