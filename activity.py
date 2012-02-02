@@ -35,6 +35,7 @@ from sugar.activity.widgets import StopButton
 from sugar.graphics.toolbarbox import ToolbarBox
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.toggletoolbutton import ToggleToolButton
+from sugar.graphics.radiotoolbutton import RadioToolButton
 from sugar.datastore import datastore
 
 from pycha.color import basicColors as basic_colors
@@ -138,25 +139,39 @@ class SimpleGraph(activity.Activity):
         separator.set_expand(False)
         toolbarbox.toolbar.insert(separator, -1)
 
-        add_vbar_chart = ToolButton("vbar")
+        add_vbar_chart = RadioToolButton()
         add_vbar_chart.connect("clicked", self._add_chart_cb, "vbar")
         add_vbar_chart.set_tooltip(_("Create a vertical bar chart"))
+        add_vbar_chart.props.icon_name = "vbar"
+        charts_group = add_vbar_chart
+        
         toolbarbox.toolbar.insert(add_vbar_chart, -1)
 
-        add_hbar_chart = ToolButton("hbar")
+        add_hbar_chart = RadioToolButton()
         add_hbar_chart.connect("clicked", self._add_chart_cb, "hbar")
         add_hbar_chart.set_tooltip(_("Create a horizontal bar chart"))
+        add_hbar_chart.props.icon_name = "hbar"
+        add_hbar_chart.props.group = charts_group
         toolbarbox.toolbar.insert(add_hbar_chart, -1)
 
-        add_line_chart = ToolButton("line")
+        add_line_chart = RadioToolButton()
         add_line_chart.connect("clicked", self._add_chart_cb, "line")
         add_line_chart.set_tooltip(_("Create a line chart"))
+        add_line_chart.props.icon_name = "line"
+        add_line_chart.props.group = charts_group
         toolbarbox.toolbar.insert(add_line_chart, -1)
 
-        add_pie_chart = ToolButton("pie")
+        add_pie_chart = RadioToolButton()
         add_pie_chart.connect("clicked", self._add_chart_cb, "pie")
         add_pie_chart.set_tooltip(_("Create a pie chart"))
+        add_pie_chart.props.icon_name = "pie"
+        add_pie_chart.props.group = charts_group
         toolbarbox.toolbar.insert(add_pie_chart, -1)
+        
+        self.chart_type_buttons = [add_vbar_chart, 
+								   add_hbar_chart, 
+								   add_line_chart, 
+								   add_pie_chart]
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
@@ -394,6 +409,11 @@ class SimpleGraph(activity.Activity):
 
             elif num == 7:
                 type = line
+                
+        if type == "vbar": self.chart_type_buttons[0].set_active(True)
+        elif type == "hbar":  self.chart_type_buttons[1].set_active(True)
+        elif type == "line":  self.chart_type_buttons[2].set_active(True)
+        elif type == "pie":  self.chart_type_buttons[3].set_active(True)
         
         self._add_chart_cb(None, type=type)
 
