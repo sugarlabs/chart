@@ -1,14 +1,14 @@
-# SimpleGraph Internationalization.
-# Copyright (C) 2012
-# This file is distributed under the license GPLv3+
-# Agustin Zubiaga <aguz@sugarlabs.org>, 2012.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-01 22:58-0200\n"
+"POT-Creation-Date: 2012-02-02 00:07-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,66 +17,66 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: activity.py:111
+#: activity.py:112
 msgid "Save as image"
 msgstr ""
 
-#: activity.py:126
+#: activity.py:127
 msgid "Add a value"
 msgstr ""
 
-#: activity.py:132
+#: activity.py:133
 msgid "Remove the selected value"
 msgstr ""
 
-#: activity.py:143
+#: activity.py:144
 msgid "Create a vertical bar chart"
 msgstr ""
 
-#: activity.py:148
+#: activity.py:152
 msgid "Create a horizontal bar chart"
 msgstr ""
 
-#: activity.py:153
+#: activity.py:159
 msgid "Create a line chart"
 msgstr ""
 
-#: activity.py:158
+#: activity.py:166
 msgid "Create a pie chart"
 msgstr ""
 
-#: activity.py:168
+#: activity.py:183
 msgid "Show or hide options"
 msgstr ""
 
-#: activity.py:418
+#: activity.py:438
 msgid "Label"
 msgstr ""
 
-#: activity.py:429
+#: activity.py:449
 msgid "Value"
 msgstr ""
 
-#: activity.py:497
+#: activity.py:517
 msgid "Horizontal label:"
 msgstr ""
 
-#: activity.py:510
+#: activity.py:530
 msgid "Vertical label:"
 msgstr ""
 
-#: activity.py:523
+#: activity.py:543
 msgid "Chart color:"
 msgstr ""
 
-#: activity.py:526 activity.py:543
+#: activity.py:546 activity.py:563
 msgid "Color"
 msgstr ""
 
-#: activity.py:538
+#: activity.py:558
 msgid "Lines Color:"
 msgstr ""
 
-#: activity.py:560
+#: activity.py:580
 msgid "Color Selector"
 msgstr ""

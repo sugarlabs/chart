@@ -27,7 +27,13 @@ import os
 import gconf
 
 import logging
-from gettext import gettext as _
+import gettext
+
+gettext.textdomain("SimpleGraph")
+gettext.bindtextdomain("SimpleGraph", "./locale")
+
+_ = gettext.gettext
+
 
 from sugar.activity import activity
 from sugar.activity.widgets import ActivityToolbarButton
