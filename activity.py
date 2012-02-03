@@ -198,6 +198,7 @@ class SimpleGraph(activity.Activity):
         # CANVAS
         paned = gtk.HPaned()
         box = gtk.VBox()
+        self.box = box
 
         # Set the info box width to 1/3 of the screen:
         def size_allocate_cb(widget, allocation):
@@ -260,6 +261,21 @@ class SimpleGraph(activity.Activity):
     def _render_chart(self):
         if self.current_chart is None:
             return
+
+        # Resize the chart for all the screen sizes
+        x, y, w, h = self.get_allocation()
+        bx, by, bw, bh = self.box.get_allocation()
+
+        surface_max_height = self.charts_area.get_allocation().height
+        print surface_max_height
+
+        new_width = w - bw - 40
+        new_height = surface_max_height - 40
+
+        self.current_chart.width = new_width
+        self.current_chart.height = new_height
+
+        # Set options
         self.current_chart.set_color_scheme(color=self.chart_color)
         self.current_chart.set_line_color(self.chart_line_color)
         if self.current_chart.type == "pie":
