@@ -184,6 +184,17 @@ class SimpleGraph(activity.Activity):
         options_button.connect("clicked", self.__options_toggled_cb)
         options_button.set_tooltip(_('Show or hide options'))
         toolbarbox.toolbar.insert(options_button, -1)
+        
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(True)
+        separator.set_expand(False)
+        toolbarbox.toolbar.insert(separator, -1)
+
+        fullscreen_btn = ToolButton('view-fullscreen')
+        fullscreen_btn.set_tooltip(_('Fullscreen'))
+        fullscreen_btn.connect("clicked", self.__fullscreen_cb)
+
+        toolbarbox.toolbar.insert(fullscreen_btn, -1)
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(False)
@@ -253,24 +264,40 @@ class SimpleGraph(activity.Activity):
         self.current_chart = Chart(type)
 
         self.update_chart()
+        
+    def unfullscreen(self):
+		self.box.show()
+		self._render_chart(fullscreen=False)
+		activity.Activity.unfullscreen(self)
+        
+    def __fullscreen_cb(self, button):
+		self.box.hide()
+		self._render_chart(fullscreen=True)
+		activity.Activity.fullscreen(self)
 
     def __options_toggled_cb(self, widget):
         is_active = widget.get_active()
         self.options.set_visible(is_active)
 
-    def _render_chart(self):
+    def _render_chart(self, fullscreen=False):
         if self.current_chart is None:
             return
 
         # Resize the chart for all the screen sizes
         x, y, w, h = self.get_allocation()
-        bx, by, bw, bh = self.box.get_allocation()
+        
+        if fullscreen:
+			new_width = w
+			new_height = h
+        
+        if not fullscreen:
+			bx, by, bw, bh = self.box.get_allocation()
 
-        surface_max_height = self.charts_area.get_allocation().height
-        print surface_max_height
+			surface_max_height = self.charts_area.get_allocation().height
+			print surface_max_height
 
-        new_width = w - bw - 40
-        new_height = surface_max_height - 40
+			new_width = w - bw - 40
+			new_height = surface_max_height - 40
 
         self.current_chart.width = new_width
         self.current_chart.height = new_height
