@@ -180,7 +180,7 @@ class SimpleGraph(activity.Activity):
         separator.set_expand(False)
         toolbarbox.toolbar.insert(separator, -1)
 
-        options_button = ToggleToolButton('view-source')
+        options_button = ToggleToolButton('preferences-system')
         options_button.connect("clicked", self.__options_toggled_cb)
         options_button.set_tooltip(_('Show or hide options'))
         toolbarbox.toolbar.insert(options_button, -1)
