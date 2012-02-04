@@ -39,6 +39,7 @@ from sugar.graphics.toolbarbox import ToolbarBox
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.radiotoolbutton import RadioToolButton
 from sugar.graphics.colorbutton import ColorToolButton
+from sugar.graphics.icon import Icon
 from sugar.datastore import datastore
 
 from charts import Chart, CHART_IMAGE
@@ -200,6 +201,11 @@ class SimpleGraph(activity.Activity):
         separator.set_expand(False)
         options_toolbar.insert(separator, -1)
 
+	h_label_icon = Icon(icon_name="hlabel")
+	h_label_tool_item = gtk.ToolItem()
+	h_label_tool_item.add(h_label_icon)
+        options_toolbar.insert(h_label_tool_item, -1)
+
         h_label = Entry(_("Horizontal label..."))
         h_label.entry.connect("changed", self._set_h_label)
         options_toolbar.insert(h_label, -1)
@@ -208,6 +214,11 @@ class SimpleGraph(activity.Activity):
         separator.set_draw(False)
         separator.set_expand(False)
         options_toolbar.insert(separator, -1)
+
+	v_label_icon = Icon(icon_name="vlabel")
+	v_label_tool_item = gtk.ToolItem()
+	v_label_tool_item.add(v_label_icon)
+        options_toolbar.insert(v_label_tool_item, -1)
 
         v_label = Entry(_("Vertical label..."))
         v_label.entry.connect("changed", self._set_v_label)
