@@ -75,6 +75,8 @@ def get_user_color():
 COLOR1 = gtk.gdk.Color(get_user_color()[0])
 COLOR2 = gtk.gdk.Color(get_user_color()[1])
 
+WHITE = gtk.gdk.color_parse("white")
+
 ACTIVITY_DIR = os.path.join(activity.get_activity_root(), "data/")
 CHART_FILE = os.path.join(ACTIVITY_DIR, "chart-1.png")
 num = 0
@@ -283,8 +285,13 @@ class SimpleGraph(activity.Activity):
         paned.add1(box)
 
         # CHARTS AREA
+        eventbox = gtk.EventBox()
         self.charts_area = gtk.Image()
-        paned.add2(self.charts_area)
+
+        eventbox.modify_bg(gtk.STATE_NORMAL, WHITE)
+
+        eventbox.add(self.charts_area)
+        paned.add2(eventbox)
 
         self.set_canvas(paned)
 
