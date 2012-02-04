@@ -26,6 +26,7 @@ import pango
 
 import os
 import gconf
+import simplejson
 
 import logging
 
@@ -184,25 +185,21 @@ class SimpleGraph(activity.Activity):
         options_button = ToolbarButton(icon_name='preferences-system')
         options_toolbar = gtk.Toolbar()
 
-        chart_color = ColorToolButton()
-        chart_color.set_color(COLOR1)
-        chart_color.set_title(_("Chart Color"))
-        chart_color.connect('notify::color', self._set_chart_color)
-        options_toolbar.insert(chart_color, -1)
+        self.chart_color_btn = ColorToolButton()
+        self.chart_color_btn.set_color(COLOR1)
+        self.chart_color_btn.set_title(_("Chart Color"))
+        self.chart_color_btn.connect('notify::color', self._set_chart_color)
+        options_toolbar.insert(self.chart_color_btn, -1)
 
-        line_color = ColorToolButton()
-        line_color.set_color(COLOR2)
-        line_color.set_title(_("Line Color"))
-        line_color.connect('notify::color', self._set_chart_line_color)
-        options_toolbar.insert(line_color, -1)
+        self.line_color_btn = ColorToolButton()
+        self.line_color_btn.set_color(COLOR2)
+        self.line_color_btn.set_title(_("Line Color"))
+        self.line_color_btn.connect('notify::color',
+                self._set_chart_line_color)
+        options_toolbar.insert(self.line_color_btn, -1)
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
-        separator.set_expand(False)
-        options_toolbar.insert(separator, -1)
-
-        separator = gtk.SeparatorToolItem()
-        separator.set_draw(False)
         separator.set_expand(False)
         options_toolbar.insert(separator, -1)
 
@@ -211,9 +208,9 @@ class SimpleGraph(activity.Activity):
         h_label_tool_item.add(h_label_icon)
         options_toolbar.insert(h_label_tool_item, -1)
 
-        h_label = Entry(_("Horizontal label..."))
-        h_label.entry.connect("changed", self._set_h_label)
-        options_toolbar.insert(h_label, -1)
+        self.h_label = Entry(_("Horizontal label..."))
+        self.h_label.entry.connect("changed", self._set_h_label)
+        options_toolbar.insert(self.h_label, -1)
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(False)
@@ -225,16 +222,17 @@ class SimpleGraph(activity.Activity):
         v_label_tool_item.add(v_label_icon)
         options_toolbar.insert(v_label_tool_item, -1)
 
-        v_label = Entry(_("Vertical label..."))
-        v_label.entry.connect("changed", self._set_v_label)
-        options_toolbar.insert(v_label, -1)
+        self.v_label = Entry(_("Vertical label..."))
+        self.v_label.entry.connect("changed", self._set_v_label)
+        options_toolbar.insert(self.v_label, -1)
 
         options_button.props.page = options_toolbar
         options_toolbar.show_all()
 
         toolbarbox.toolbar.insert(options_button, -1)
 
-        self.options = [chart_color, line_color, h_label, v_label]
+        self.options = [self.chart_color_btn, self.line_color_btn,
+                self.h_label, self.v_label]
 
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
@@ -422,95 +420,47 @@ class SimpleGraph(activity.Activity):
         self.metadata['mime_type'] = "activity/x-simplegraph"
         if self.current_chart:
 
-            jfile = open(file_path, "w")
+            data = {}
+            data['title'] = self.metadata["title"]
+            data['x_label'] = self.x_label
+            data['y_label'] = self.y_label
+            data['chart_color'] = self.chart_color
+            data['chart_line_color'] = self.chart_line_color
+            data['current_chart.type'] = self.current_chart.type
+            data['chart_data'] = self.chart_data
 
-            jfile.write(self.metadata["title"] + "\n")
-            jfile.write(self.x_label + "\n")
-            jfile.write(self.y_label + "\n")
-            jfile.write(self.chart_color + "\n")
-            jfile.write(self.chart_line_color + "\n")
-
-            string = ""
-            for item in self.chart_data:
-                string += item[0] + ":" + str(item[1]) + ","
-
-            jfile.write(string)
-            jfile.write("\n" + self.current_chart.type)
-
-            jfile.close()
+            f = open(file_path, 'w')
+            try:
+                simplejson.dump(data, f)
+            finally:
+                f.close()
 
     def read_file(self, file_path):
-        jfile = open(file_path, "r")
+        f = open(file_path, 'r')
+        try:
+            data = simplejson.load(f)
+        finally:
+            f.close()
 
-        num = 0
-        type = None
+        self.metadata["title"] = data['title']
+        self.x_label = data['x_label']
+        self.y_label = data['y_label']
+        self.chart_color = data['chart_color']
+        self.chart_line_color = data['chart_line_color']
+        self.current_chart.type = data['current_chart.type']
+        chart_data = data['chart_data']
 
-        for line in jfile.readlines():
-            num += 1
+        # Update the controls in the config subtoolbar
+        self.chart_color_btn.set_color(gtk.gdk.Color(self.chart_color))
+        self.line_color_btn.set_color(gtk.gdk.Color(self.chart_line_color))
+        self.h_label.entry.set_text(self.x_label)
+        self.v_label.entry.set_text(self.y_label)
 
-            if num != 7:
-                                num2 = 0
-                                l = len(line)
-                                string = ""
+        #load the data
+        for row  in chart_data:
+            self._add_value(None, label=row[0], value=float(row[1]))
 
-                                for char in line:
-                                        num2 += 1
-
-                                        if num2 != l:
-                                                string += char
-
-                                line = string
-
-            if num == 1:
-                self.metadata["title"] = line
-
-            elif num == 2:
-                if line != "":
-                    self.options[2].entry.set_text(line)
-                self.x_label = line
-
-            elif num == 3:
-                if line != "":
-                    self.options[3].entry.set_text(line)
-                self.y_label = line
-
-            elif num == 4:
-                self.chart_color = line
-                self.options[0].set_color(gtk.gdk.Color(line))
-
-            elif num == 5:
-                self.chart_line_color = line
-                self.options[1].set_color(gtk.gdk.Color(line))
-
-            elif num == 6:
-                for x in line.split(","):
-                    try:
-                        data = x.split(":")
-                        label = data[0]
-                        value = float(data[1])
-                        if data != ('',):
-                            self._add_value(None, label=label, value=value)
-                    except:
-                        pass
-
-            elif num == 7:
-                type = line
-
-        if type == "vbar":
-            self.chart_type_buttons[0].set_active(True)
-
-        elif type == "hbar":
-            self.chart_type_buttons[1].set_active(True)
-
-        elif type == "line":
-            self.chart_type_buttons[2].set_active(True)
-
-        elif type == "pie":
-            self.chart_type_buttons[3].set_active(True)
-
-        self._add_chart_cb(None, type=type)
-
-        jfile.close()
+        self.update_chart()
 
 
 class ChartData(gtk.TreeView):
