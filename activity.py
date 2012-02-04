@@ -92,7 +92,7 @@ class SimpleGraph(activity.Activity):
 
         activity.Activity.__init__(self, handle, True)
 
-        self.max_participiants = 1
+        self.max_participants = 1
 
         # CHART_OPTIONS
 
