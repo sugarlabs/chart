@@ -22,6 +22,7 @@
 
 import gtk
 import gobject
+import pango
 
 import os
 import gconf
@@ -33,13 +34,12 @@ from gettext import gettext as _
 from sugar.activity import activity
 from sugar.activity.widgets import ActivityToolbarButton
 from sugar.activity.widgets import StopButton
+from sugar.activity.widgets import ToolbarButton
 from sugar.graphics.toolbarbox import ToolbarBox
 from sugar.graphics.toolbutton import ToolButton
-from sugar.graphics.toggletoolbutton import ToggleToolButton
 from sugar.graphics.radiotoolbutton import RadioToolButton
+from sugar.graphics.colorbutton import ColorToolButton
 from sugar.datastore import datastore
-
-from pycha.color import basicColors as basic_colors
 
 from charts import Chart, CHART_IMAGE
 
@@ -180,11 +180,46 @@ class SimpleGraph(activity.Activity):
         separator.set_expand(False)
         toolbarbox.toolbar.insert(separator, -1)
 
-        options_button = ToggleToolButton('preferences-system')
-        options_button.connect("clicked", self.__options_toggled_cb)
-        options_button.set_tooltip(_('Show or hide options'))
+        options_button = ToolbarButton(icon_name='preferences-system')
+        options_toolbar = gtk.Toolbar()
+
+        chart_color = ColorToolButton()
+        chart_color.set_color(COLOR1)
+        chart_color.set_title(_("Chart Color"))
+        chart_color.connect('notify::color', self._set_chart_color)
+        options_toolbar.insert(chart_color, -1)
+
+        line_color = ColorToolButton()
+        line_color.set_color(COLOR2)
+        line_color.set_title(_("Line Color"))
+        line_color.connect('notify::color', self._set_chart_line_color)
+        options_toolbar.insert(line_color, -1)
+
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(True)
+        separator.set_expand(False)
+        options_toolbar.insert(separator, -1)
+
+        h_label = Entry(_("Horizontal label..."))
+        h_label.entry.connect("changed", self._set_h_label)
+        options_toolbar.insert(h_label, -1)
+
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(False)
+        separator.set_expand(False)
+        options_toolbar.insert(separator, -1)
+
+        v_label = Entry(_("Vertical label..."))
+        v_label.entry.connect("changed", self._set_v_label)
+        options_toolbar.insert(v_label, -1)
+
+        options_button.props.page = options_toolbar
+        options_toolbar.show_all()
+
         toolbarbox.toolbar.insert(options_button, -1)
-        
+
+        self.options = [chart_color, line_color, h_label, v_label]
+
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         separator.set_expand(False)
@@ -230,15 +265,6 @@ class SimpleGraph(activity.Activity):
 
         box.pack_start(scroll, True, True, 0)
 
-        self.options = Options(self)
-
-        self.options.connect("hlabel-changed", self._set_h_label)
-        self.options.connect("vlabel-changed", self._set_v_label)
-        self.options.connect("chart-color-changed", self._set_chart_color)
-        self.options.connect("line-color-changed", self._set_chart_line_color)
-
-        box.pack_end(self.options, False, True, 10)
-
         paned.add1(box)
 
         # CHARTS AREA
@@ -248,7 +274,6 @@ class SimpleGraph(activity.Activity):
         self.set_canvas(paned)
 
         self.show_all()
-        self.options.set_visible(False)
 
     def _add_value(self, widget, label="", value="0.0"):
         pos = self.labels_and_values.add_value(label, value)
@@ -264,16 +289,16 @@ class SimpleGraph(activity.Activity):
         self.current_chart = Chart(type)
 
         self.update_chart()
-        
+
     def unfullscreen(self):
-		self.box.show()
-		self._render_chart(fullscreen=False)
-		activity.Activity.unfullscreen(self)
-        
+        self.box.show()
+        self._render_chart(fullscreen=False)
+        activity.Activity.unfullscreen(self)
+
     def __fullscreen_cb(self, button):
-		self.box.hide()
-		self._render_chart(fullscreen=True)
-		activity.Activity.fullscreen(self)
+        self.box.hide()
+        self._render_chart(fullscreen=True)
+        activity.Activity.fullscreen(self)
 
     def __options_toggled_cb(self, widget):
         is_active = widget.get_active()
@@ -285,19 +310,18 @@ class SimpleGraph(activity.Activity):
 
         # Resize the chart for all the screen sizes
         x, y, w, h = self.get_allocation()
-        
+
         if fullscreen:
-			new_width = w
-			new_height = h
-        
+            new_width = w
+            new_height = h
+
         if not fullscreen:
-			bx, by, bw, bh = self.box.get_allocation()
+            bx, by, bw, bh = self.box.get_allocation()
 
-			surface_max_height = self.charts_area.get_allocation().height
-			print surface_max_height
+            surface_max_height = self.charts_area.get_allocation().height
 
-			new_width = w - bw - 40
-			new_height = surface_max_height - 40
+            new_width = w - bw - 40
+            new_height = surface_max_height - 40
 
         self.current_chart.width = new_width
         self.current_chart.height = new_height
@@ -343,20 +367,20 @@ class SimpleGraph(activity.Activity):
         self.chart_data[path] = (self.chart_data[path][0], float(new_value))
         self._update_chart_data()
 
-    def _set_h_label(self, options, label):
-        self.x_label = label
+    def _set_h_label(self, widget):
+        self.x_label = widget.get_text()
         self._update_chart_labels()
 
-    def _set_v_label(self, options, label):
-        self.y_label = label
+    def _set_v_label(self, widget):
+        self.y_label = widget.get_text()
         self._update_chart_labels()
 
-    def _set_chart_color(self, options, color):
-        self.chart_color = color
+    def _set_chart_color(self, widget, pspec):
+        self.chart_color = rgb_to_html(widget.get_color())
         self._render_chart()
 
-    def _set_chart_line_color(self, options, color):
-        self.chart_line_color = color
+    def _set_chart_line_color(self, widget, pspec):
+        self.chart_line_color = rgb_to_html(widget.get_color())
         self._render_chart()
 
     def _save_as_image(self, widget):
@@ -425,28 +449,20 @@ class SimpleGraph(activity.Activity):
                 self.metadata["title"] = line
 
             elif num == 2:
-                self.options.hlabel_entry.set_text(line)
+                self.options[2].set_text(line)
                 self.x_label = line
 
             elif num == 3:
-                self.options.vlabel_entry.set_text(line)
+                self.options[3].set_text(line)
                 self.y_label = line
 
             elif num == 4:
                 self.chart_color = line
-                self.options.chart_color.modify_bg(gtk.STATE_NORMAL,
-                                                   gtk.gdk.Color(line))
-
-                self.options.chart_color.modify_bg(gtk.STATE_PRELIGHT,
-                                                   gtk.gdk.Color(line))
+                self.options[0].set_color(gtk.gdk.Color(line))
 
             elif num == 5:
                 self.chart_line_color = line
-                self.options.lines_color.modify_bg(gtk.STATE_NORMAL,
-                                                   gtk.gdk.Color(line))
-
-                self.options.lines_color.modify_bg(gtk.STATE_PRELIGHT,
-                                                   gtk.gdk.Color(line))
+                self.options[1].set_color(gtk.gdk.Color(line))
 
             elif num == 6:
                 for x in line.split(","):
@@ -575,124 +591,29 @@ class ChartData(gtk.TreeView):
                 error.destroy()
 
 
-class Options(gtk.VBox):
+class Entry(gtk.ToolItem):
 
-    __gsignals__ = {
-             'hlabel-changed': (gobject.SIGNAL_RUN_FIRST, None, [str]),
-             'vlabel-changed': (gobject.SIGNAL_RUN_FIRST, None, [str]),
-             'chart-color-changed': (gobject.SIGNAL_RUN_FIRST, None, [object]),
-             'line-color-changed': (gobject.SIGNAL_RUN_FIRST, None, [object])}
+    def __init__(self, text):
+        gtk.ToolItem.__init__(self)
 
-    def __init__(self, activity):
-        gtk.VBox.__init__(self)
+        self.entry = gtk.Entry()
+        self.entry.set_text(text)
+        self.entry.connect("focus-in-event", self._focus_in)
+        self.entry.connect("focus-out-event", self._focus_out)
+        self.entry.modify_font(pango.FontDescription("italic"))
 
-        hbox = gtk.HBox()
-        title = gtk.Label(_("Horizontal label:"))
-        hbox.pack_start(title, False, True, 0)
+        self.text = text
 
-        entry = gtk.Entry(max=0)
-        entry.connect("changed", lambda w: self.emit("hlabel-changed",
-                                                              w.get_text()))
-        hbox.pack_end(entry, False, True, 5)
-
-        self.hlabel_entry = entry
-
-        self.pack_start(hbox, False, True, 3)
-
-        hbox = gtk.HBox()
-        title = gtk.Label(_("Vertical label:"))
-        hbox.pack_start(title, False, True, 0)
-
-        entry = gtk.Entry(max=0)
-        entry.connect("changed", lambda w: self.emit("vlabel-changed",
-                                                              w.get_text()))
-        hbox.pack_end(entry, False, True, 5)
-
-        self.pack_start(hbox, False, True, 3)
-
-        self.vlabel_entry = entry
-
-        hbox = gtk.HBox()
-        title = gtk.Label(_("Chart color:"))
-        hbox.pack_start(title, False, True, 0)
-
-        btn = gtk.Button(_("Color"))
-        btn.id = 1
-        btn.modify_bg(gtk.STATE_NORMAL, COLOR1)
-        btn.modify_bg(gtk.STATE_PRELIGHT, COLOR1)
-        btn.connect("clicked", self._color_selector)
-        hbox.pack_end(btn, False, True, 5)
-
-        self.pack_start(hbox, False, True, 3)
-
-        self.chart_color = btn
-
-        hbox = gtk.HBox()
-        title = gtk.Label(_("Lines Color:"))
-        hbox.pack_start(title, False, True, 0)
-
-        btn = gtk.Button()
-        btn.id = 2
-        label = gtk.Label(_("Color"))
-        label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.Color("#000000"))
-        btn.add(label)
-        btn.connect("clicked", self._color_selector)
-        btn.modify_bg(gtk.STATE_NORMAL, COLOR2)
-        btn.modify_bg(gtk.STATE_PRELIGHT, COLOR2)
-        hbox.pack_end(btn, False, True, 5)
-
-        self.pack_start(hbox, False, True, 3)
-
-        self.lines_color = btn
-
-        self.activity = activity
+        self.add(self.entry)
 
         self.show_all()
 
-    def _color_selector(self, widget):
-        selector = gtk.ColorSelectionDialog(_("Color Selector"))
+    def _focus_in(self, widget, event):
+        if widget.get_text() == self.text:
+            widget.set_text("")
+            widget.modify_font(pango.FontDescription(""))
 
-        if widget.id == 1:
-
-            box = gtk.HBox()
-
-            for color in basic_colors.keys():
-                btn = gtk.Button()
-                btn.set_size_request(40, 40)
-                btn.set_property("has-tooltip", True)
-                btn.set_property("tooltip-text", str(color).capitalize())
-                btn.color = gtk.gdk.Color(basic_colors[color])
-                btn.connect("clicked", lambda w:
-                               selector.colorsel.set_current_color(w.color))
-                btn.modify_bg(gtk.STATE_NORMAL, btn.color)
-                btn.modify_bg(gtk.STATE_PRELIGHT, btn.color)
-                box.pack_start(btn, False, True, 1)
-
-            selector.vbox.pack_end(box, False, True, 0)
-            selector.colorsel.set_current_color(
-                                   gtk.gdk.Color(self.activity.chart_color))
-
-        elif widget.id == 2:
-            selector.colorsel.set_current_color(
-                              gtk.gdk.Color(self.activity.chart_line_color))
-
-        selector.get_color_selection().connect("color-changed",
-                                                 self._color_changed, widget)
-
-        selector.ok_button.connect("clicked", lambda w: selector.destroy())
-        selector.cancel_button.destroy()
-        selector.help_button.destroy()
-        selector.show_all()
-
-    def _color_changed(self, widget, btn):
-        color = widget.get_current_color()
-        btn.modify_bg(gtk.STATE_NORMAL, color)
-        btn.modify_bg(gtk.STATE_PRELIGHT, color)
-
-        new_color = rgb_to_html(color)
-
-        if btn.id == 2:
-            self.emit("line-color-changed", new_color)
-
-        elif btn.id == 1:
-            self.emit("chart-color-changed", new_color)
+    def _focus_out(self, widget, event):
+        if widget.get_text() == "":
+            widget.set_text(self.text)
+            widget.modify_font(pango.FontDescription("italic"))
