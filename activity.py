@@ -206,9 +206,9 @@ class SimpleGraph(activity.Activity):
         separator.set_expand(False)
         options_toolbar.insert(separator, -1)
 
-	h_label_icon = Icon(icon_name="hlabel")
-	h_label_tool_item = gtk.ToolItem()
-	h_label_tool_item.add(h_label_icon)
+        h_label_icon = Icon(icon_name="hlabel")
+        h_label_tool_item = gtk.ToolItem()
+        h_label_tool_item.add(h_label_icon)
         options_toolbar.insert(h_label_tool_item, -1)
 
         h_label = Entry(_("Horizontal label..."))
@@ -220,9 +220,9 @@ class SimpleGraph(activity.Activity):
         separator.set_expand(False)
         options_toolbar.insert(separator, -1)
 
-	v_label_icon = Icon(icon_name="vlabel")
-	v_label_tool_item = gtk.ToolItem()
-	v_label_tool_item.add(v_label_icon)
+        v_label_icon = Icon(icon_name="vlabel")
+        v_label_tool_item = gtk.ToolItem()
+        v_label_tool_item.add(v_label_icon)
         options_toolbar.insert(v_label_tool_item, -1)
 
         v_label = Entry(_("Vertical label..."))
@@ -465,14 +465,14 @@ class SimpleGraph(activity.Activity):
                 self.metadata["title"] = line
 
             elif num == 2:
-				if line != "":
-					self.options[2].entry.set_text(line)
-				self.x_label = line
+                if line != "":
+                    self.options[2].entry.set_text(line)
+                self.x_label = line
 
             elif num == 3:
-				if line != "":
-					self.options[3].entry.set_text(line)
-				self.y_label = line
+                if line != "":
+                    self.options[3].entry.set_text(line)
+                self.y_label = line
 
             elif num == 4:
                 self.chart_color = line
