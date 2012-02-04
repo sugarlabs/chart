@@ -465,12 +465,14 @@ class SimpleGraph(activity.Activity):
                 self.metadata["title"] = line
 
             elif num == 2:
-                self.options[2].set_text(line)
-                self.x_label = line
+				if line != "":
+					self.options[2].entry.set_text(line)
+				self.x_label = line
 
             elif num == 3:
-                self.options[3].set_text(line)
-                self.y_label = line
+				if line != "":
+					self.options[3].entry.set_text(line)
+				self.y_label = line
 
             elif num == 4:
                 self.chart_color = line
