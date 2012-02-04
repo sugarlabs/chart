@@ -201,6 +201,11 @@ class SimpleGraph(activity.Activity):
         separator.set_expand(False)
         options_toolbar.insert(separator, -1)
 
+        separator = gtk.SeparatorToolItem()
+        separator.set_draw(False)
+        separator.set_expand(False)
+        options_toolbar.insert(separator, -1)
+
 	h_label_icon = Icon(icon_name="hlabel")
 	h_label_tool_item = gtk.ToolItem()
 	h_label_tool_item.add(h_label_icon)
