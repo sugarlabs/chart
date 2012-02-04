@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-02 17:19-0200\n"
+"POT-Creation-Date: 2012-02-03 23:21-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,67 +21,58 @@ msgstr ""
 msgid "SimpleGraph"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:113
+#: activity.py:113
 msgid "Save as image"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:128
+#: activity.py:128
 msgid "Add a value"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:134
+#: activity.py:134
 msgid "Remove the selected value"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:145
+#: activity.py:145
 msgid "Create a vertical bar chart"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:153
+#: activity.py:153
 msgid "Create a horizontal bar chart"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:160
+#: activity.py:160
 msgid "Create a line chart"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:167
+#: activity.py:167
 msgid "Create a pie chart"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:185
-msgid "Show or hide options"
+#: activity.py:188
+msgid "Chart Color"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:454
+#: activity.py:194
+msgid "Line Color"
+msgstr ""
+
+#: activity.py:203
+msgid "Horizontal label..."
+msgstr ""
+
+#: activity.py:212
+msgid "Vertical label..."
+msgstr ""
+
+#: activity.py:229
+msgid "Fullscreen"
+msgstr ""
+
+#: activity.py:513
 msgid "Label"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:465
+#: activity.py:524
 msgid "Value"
-msgstr ""
-
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:538
-msgid "Horizontal label:"
-msgstr ""
-
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:551
-msgid "Vertical label:"
-msgstr ""
-
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:564
-msgid "Chart color:"
-msgstr ""
-
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:567
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:584
-msgid "Color"
-msgstr ""
-
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:579
-msgid "Lines Color:"
-msgstr ""
-
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:601
-msgid "Color Selector"
 msgstr ""

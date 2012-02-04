@@ -1,15 +1,15 @@
 # Spanish translations for SimpleGraph.
-# This file is distributed under the GPLv3+ license 
+# This file is distributed under the license GPLv3+
 # Agustin Zubiaga <aguz@sugarlabs.org>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-02 17:19-0200\n"
-"PO-Revision-Date: 2012-02-02 17:19-0200\n"
+"POT-Creation-Date: 2012-02-03 23:21-0200\n"
+"PO-Revision-Date: 2012-02-03 23:23-0200\n"
 "Last-Translator: Agustin Zubiaga <aguz@sugarlabs.org>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ASCII\n"
@@ -22,7 +22,7 @@ msgstr "SimpleGraph"
 
 #: activity.py:113
 msgid "Save as image"
-msgstr "Guardar como una imagen"
+msgstr "Guardar como imagen"
 
 #: activity.py:128
 msgid "Add a value"
@@ -48,39 +48,30 @@ msgstr "Crear un grafico de lineas"
 msgid "Create a pie chart"
 msgstr "Crear un grafico torta"
 
-#: activity.py:185
-msgid "Show or hide options"
-msgstr "Mostrar o ocultar las opciones"
+#: activity.py:188
+msgid "Chart Color"
+msgstr "Color del grafico"
 
-#: activity.py:454
+#: activity.py:194
+msgid "Line Color"
+msgstr "Color de las lineas"
+
+#: activity.py:203
+msgid "Horizontal label..."
+msgstr "Etiqueta horizontal..."
+
+#: activity.py:212
+msgid "Vertical label..."
+msgstr "Etiqueta vertical..."
+
+#: activity.py:229
+msgid "Fullscreen"
+msgstr "Pantalla Completa"
+
+#: activity.py:513
 msgid "Label"
 msgstr "Etiqueta"
 
-#: activity.py:465
+#: activity.py:524
 msgid "Value"
 msgstr "Valor"
-
-#: activity.py:538
-msgid "Horizontal label:"
-msgstr "Etiqueta horizontal:"
-
-#: activity.py:551
-msgid "Vertical label:"
-msgstr "Etiqueta vertical:"
-
-#: activity.py:564
-msgid "Chart color:"
-msgstr "Color del grafico:"
-
-#: activity.py:567
-#: activity.py:584
-msgid "Color"
-msgstr "Color"
-
-#: activity.py:579
-msgid "Lines Color:"
-msgstr "Color de las lineas:"
-
-#: activity.py:601
-msgid "Color Selector"
-msgstr "Selector de colores"
