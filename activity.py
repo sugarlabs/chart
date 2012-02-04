@@ -548,6 +548,7 @@ class ChartData(gtk.TreeView):
         column.set_attributes(value, text=1)
 
         self.append_column(column)
+        self.set_enable_search(False)
 
         self.show_all()
 
