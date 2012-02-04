@@ -40,6 +40,7 @@ from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.radiotoolbutton import RadioToolButton
 from sugar.graphics.colorbutton import ColorToolButton
 from sugar.graphics.icon import Icon
+from sugar.graphics.alert import Alert
 from sugar.datastore import datastore
 
 from charts import Chart, CHART_IMAGE
@@ -273,7 +274,7 @@ class SimpleGraph(activity.Activity):
 
         scroll = gtk.ScrolledWindow()
         scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.labels_and_values = ChartData()
+        self.labels_and_values = ChartData(self)
         scroll.add(self.labels_and_values)
 
         self.labels_and_values.connect("label-changed", self._label_changed)
@@ -519,7 +520,7 @@ class ChartData(gtk.TreeView):
              'label-changed': (gobject.SIGNAL_RUN_FIRST, None, [str, str], ),
              'value-changed': (gobject.SIGNAL_RUN_FIRST, None, [str, str], ), }
 
-    def __init__(self):
+    def __init__(self, activity):
 
         gtk.TreeView.__init__(self)
 
@@ -542,7 +543,7 @@ class ChartData(gtk.TreeView):
         column = gtk.TreeViewColumn(_("Value"))
         value = gtk.CellRendererText()
         value.set_property('editable', True)
-        value.connect("edited", self._value_changed, self.model)
+        value.connect("edited", self._value_changed, self.model, activity)
 
         column.pack_start(value)
         column.set_attributes(value, text=1)
@@ -585,7 +586,7 @@ class ChartData(gtk.TreeView):
 
         self.emit("label-changed", str(path), new_text)
 
-    def _value_changed(self, cell, path, new_text, model):
+    def _value_changed(self, cell, path, new_text, model, activity):
         logger.info("Change '%s' to '%s'" % (model[path][1], new_text))
         is_number = True
         try:
@@ -599,15 +600,21 @@ class ChartData(gtk.TreeView):
             self.emit("value-changed", str(path), new_text)
 
         elif not is_number:
-            error = gtk.MessageDialog(None,
-                              gtk.DIALOG_MODAL,
-                              gtk.MESSAGE_ERROR,
-                              gtk.BUTTONS_OK, \
-                              'The value must be a number (integer or float)')
+            alert = Alert()
 
-            response = error.run()
-            if response == gtk.RESPONSE_OK:
-                error.destroy()
+            alert.props.title = _('Invalid Value')
+            alert.props.msg = \
+					_('The value must be a number (integer or decimal)')
+
+            ok_icon = Icon(icon_name='dialog-ok')
+            alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon)
+            ok_icon.show()
+
+            alert.connect('response', lambda a, r: activity.remove_alert(a))
+
+            activity.add_alert(alert)
+
+            alert.show()
 
 
 class Entry(gtk.ToolItem):
