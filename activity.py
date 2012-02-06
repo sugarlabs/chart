@@ -388,12 +388,18 @@ class SimpleGraph(activity.Activity):
         self._update_chart_data()
 
     def _set_h_label(self, widget):
-        self.x_label = widget.get_text()
-        self._update_chart_labels()
+        new_text = widget.get_text()
+
+        if new_text != self.h_label.text:
+            self.x_label = new_text
+            self._update_chart_labels()
 
     def _set_v_label(self, widget):
-        self.y_label = widget.get_text()
-        self._update_chart_labels()
+        new_text = widget.get_text()
+
+        if new_text != self.v_label.text:
+            self.y_label = new_text
+            self._update_chart_labels()
 
     def _set_chart_color(self, widget, pspec):
         self.chart_color = rgb_to_html(widget.get_color())
@@ -425,6 +431,12 @@ class SimpleGraph(activity.Activity):
     def write_file(self, file_path):
         self.metadata['mime_type'] = "activity/x-simplegraph"
         if self.current_chart:
+
+            if self.x_label == "":
+                self.x_label = _("Horizontal label...")
+
+            elif self.y_label == "":
+                self.y_label = _("Vertical label...")
 
             data = {}
             data['title'] = self.metadata["title"]

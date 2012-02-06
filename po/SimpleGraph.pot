@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-06 12:57-0200\n"
+"POT-Creation-Date: 2012-02-06 13:45-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,10 +58,12 @@ msgid "Line Color"
 msgstr ""
 
 #: /home/agustin/Activities/SimpleGraph.activity/activity.py:214
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:436
 msgid "Horizontal label..."
 msgstr ""
 
 #: /home/agustin/Activities/SimpleGraph.activity/activity.py:228
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:439
 msgid "Vertical label..."
 msgstr ""
 
@@ -69,22 +71,22 @@ msgstr ""
 msgid "Fullscreen"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:487
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:499
 msgid "Label"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:498
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:510
 msgid "Value"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:560
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:572
 msgid "Invalid Value"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:562
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:574
 msgid "The value must be a number (integer or decimal)"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:565
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:577
 msgid "Ok"
 msgstr ""
