@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-06 02:15-0200\n"
+"POT-Creation-Date: 2012-02-06 12:57-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,74 +21,70 @@ msgstr ""
 msgid "SimpleGraph"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:118
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:118
 msgid "Save as image"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:133
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:133
 msgid "Add a value"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:139
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:139
 msgid "Remove the selected value"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:150
-msgid "Create a vertical bar chart"
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:150
+msgid "Vertical Bar Chart"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:158
-msgid "Create a horizontal bar chart"
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:158
+msgid "Horizontal Bar Chart"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:165
-msgid "Create a line chart"
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:165
+msgid "Line Chart"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:172
-msgid "Create a pie chart"
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:172
+msgid "Pie Chart"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:193
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:193
 msgid "Chart Color"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:199
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:199
 msgid "Line Color"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:214
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:214
 msgid "Horizontal label..."
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:228
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:228
 msgid "Vertical label..."
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:246
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:246
 msgid "Fullscreen"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:290
-msgid "icons/simplegraph.svg"
-msgstr ""
-
-#: /home/agustin/Activities/SG.activity/activity.py:488
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:487
 msgid "Label"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:499
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:498
 msgid "Value"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:561
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:560
 msgid "Invalid Value"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:563
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:562
 msgid "The value must be a number (integer or decimal)"
 msgstr ""
 
-#: /home/agustin/Activities/SG.activity/activity.py:566
+#: /home/agustin/Activities/SimpleGraph.activity/activity.py:565
 msgid "Ok"
 msgstr ""
