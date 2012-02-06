@@ -234,9 +234,6 @@ class SimpleGraph(activity.Activity):
 
         toolbarbox.toolbar.insert(options_button, -1)
 
-        self.options = [self.chart_color_btn, self.line_color_btn,
-                self.h_label, self.v_label]
-
         separator = gtk.SeparatorToolItem()
         separator.set_draw(True)
         separator.set_expand(False)
@@ -322,10 +319,6 @@ class SimpleGraph(activity.Activity):
         self._render_chart(fullscreen=True)
         activity.Activity.fullscreen(self)
 
-    def __options_toggled_cb(self, widget):
-        is_active = widget.get_active()
-        self.options.set_visible(is_active)
-
     def _render_chart(self, fullscreen=False):
         if self.current_chart is None:
             return
@@ -349,6 +342,7 @@ class SimpleGraph(activity.Activity):
         # Set options
         self.current_chart.set_color_scheme(color=self.chart_color)
         self.current_chart.set_line_color(self.chart_line_color)
+
         if self.current_chart.type == "pie":
             self.current_chart.render(self)
         else:
