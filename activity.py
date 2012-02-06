@@ -570,7 +570,7 @@ class ChartData(gtk.TreeView):
 
             alert.props.title = _('Invalid Value')
             alert.props.msg = \
-					_('The value must be a number (integer or decimal)')
+                            ('The value must be a number (integer or decimal)')
 
             ok_icon = Icon(icon_name='dialog-ok')
             alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon)
