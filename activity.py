@@ -462,6 +462,20 @@ class SimpleGraph(activity.Activity):
         self.current_chart.type = data['current_chart.type']
         chart_data = data['chart_data']
 
+        # Update charts buttons
+        type = data["current_chart.type"]
+        if type == "vbar":
+            self.chart_type_buttons[0].set_active(True)
+
+        elif type == "hbar":
+            self.chart_type_buttons[1].set_active(True)
+
+        elif type == "line":
+            self.chart_type_buttons[2].set_active(True)
+
+        elif type == "pie":
+            self.chart_type_buttons[3].set_active(True)
+
         # Update the controls in the config subtoolbar
         self.chart_color_btn.set_color(gtk.gdk.Color(self.chart_color))
         self.line_color_btn.set_color(gtk.gdk.Color(self.chart_line_color))
