@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-03 23:21-0200\n"
+"POT-Creation-Date: 2012-02-06 02:15-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,58 +21,74 @@ msgstr ""
 msgid "SimpleGraph"
 msgstr ""
 
-#: activity.py:113
+#: /home/agustin/Activities/SG.activity/activity.py:118
 msgid "Save as image"
 msgstr ""
 
-#: activity.py:128
+#: /home/agustin/Activities/SG.activity/activity.py:133
 msgid "Add a value"
 msgstr ""
 
-#: activity.py:134
+#: /home/agustin/Activities/SG.activity/activity.py:139
 msgid "Remove the selected value"
 msgstr ""
 
-#: activity.py:145
+#: /home/agustin/Activities/SG.activity/activity.py:150
 msgid "Create a vertical bar chart"
 msgstr ""
 
-#: activity.py:153
+#: /home/agustin/Activities/SG.activity/activity.py:158
 msgid "Create a horizontal bar chart"
 msgstr ""
 
-#: activity.py:160
+#: /home/agustin/Activities/SG.activity/activity.py:165
 msgid "Create a line chart"
 msgstr ""
 
-#: activity.py:167
+#: /home/agustin/Activities/SG.activity/activity.py:172
 msgid "Create a pie chart"
 msgstr ""
 
-#: activity.py:188
+#: /home/agustin/Activities/SG.activity/activity.py:193
 msgid "Chart Color"
 msgstr ""
 
-#: activity.py:194
+#: /home/agustin/Activities/SG.activity/activity.py:199
 msgid "Line Color"
 msgstr ""
 
-#: activity.py:203
+#: /home/agustin/Activities/SG.activity/activity.py:214
 msgid "Horizontal label..."
 msgstr ""
 
-#: activity.py:212
+#: /home/agustin/Activities/SG.activity/activity.py:228
 msgid "Vertical label..."
 msgstr ""
 
-#: activity.py:229
+#: /home/agustin/Activities/SG.activity/activity.py:246
 msgid "Fullscreen"
 msgstr ""
 
-#: activity.py:513
+#: /home/agustin/Activities/SG.activity/activity.py:290
+msgid "icons/simplegraph.svg"
+msgstr ""
+
+#: /home/agustin/Activities/SG.activity/activity.py:488
 msgid "Label"
 msgstr ""
 
-#: activity.py:524
+#: /home/agustin/Activities/SG.activity/activity.py:499
 msgid "Value"
+msgstr ""
+
+#: /home/agustin/Activities/SG.activity/activity.py:561
+msgid "Invalid Value"
+msgstr ""
+
+#: /home/agustin/Activities/SG.activity/activity.py:563
+msgid "The value must be a number (integer or decimal)"
+msgstr ""
+
+#: /home/agustin/Activities/SG.activity/activity.py:566
+msgid "Ok"
 msgstr ""

@@ -287,6 +287,7 @@ class SimpleGraph(activity.Activity):
         # CHARTS AREA
         eventbox = gtk.EventBox()
         self.charts_area = gtk.Image()
+        self.charts_area.set_from_file(_("icons/simplegraph.svg"))
 
         eventbox.modify_bg(gtk.STATE_NORMAL, WHITE)
 
