@@ -20,74 +20,74 @@ msgstr ""
 msgid "SimpleGraph"
 msgstr "SimpleGraph"
 
-#: /home/agustin/Activities/SG.activity/activity.py:118
+#: activity.py:118
 msgid "Save as image"
 msgstr "Guardar como imagen"
 
-#: /home/agustin/Activities/SG.activity/activity.py:133
+#: activity.py:133
 msgid "Add a value"
 msgstr "Agregar un valor"
 
-#: /home/agustin/Activities/SG.activity/activity.py:139
+#: activity.py:139
 msgid "Remove the selected value"
 msgstr "Eliminar el valor seleccionado"
 
-#: /home/agustin/Activities/SG.activity/activity.py:150
+#: activity.py:150
 msgid "Create a vertical bar chart"
 msgstr "Crear un grafico de barras verticales"
 
-#: /home/agustin/Activities/SG.activity/activity.py:158
+#: activity.py:158
 msgid "Create a horizontal bar chart"
 msgstr "Crear un grafico de barras horizontales"
 
-#: /home/agustin/Activities/SG.activity/activity.py:165
+#: activity.py:165
 msgid "Create a line chart"
 msgstr "Crear un grafico de lineas"
 
-#: /home/agustin/Activities/SG.activity/activity.py:172
+#: activity.py:172
 msgid "Create a pie chart"
 msgstr "Crear un grafico torta"
 
-#: /home/agustin/Activities/SG.activity/activity.py:193
+#: activity.py:193
 msgid "Chart Color"
 msgstr "Color del grafico"
 
-#: /home/agustin/Activities/SG.activity/activity.py:199
+#: activity.py:199
 msgid "Line Color"
 msgstr "Color de las lineas"
 
-#: /home/agustin/Activities/SG.activity/activity.py:214
+#: activity.py:214
 msgid "Horizontal label..."
 msgstr "Etiqueta horizontal..."
 
-#: /home/agustin/Activities/SG.activity/activity.py:228
+#: activity.py:228
 msgid "Vertical label..."
 msgstr "Etiqueta vertical..."
 
-#: /home/agustin/Activities/SG.activity/activity.py:246
+#: activity.py:246
 msgid "Fullscreen"
 msgstr "Pantalla Completa"
 
-#: /home/agustin/Activities/SG.activity/activity.py:290
+#: activity.py:290
 msgid "icons/simplegraph.svg"
-msgstr ""
+msgstr "icons/simplegraph_es.svg"
 
-#: /home/agustin/Activities/SG.activity/activity.py:488
+#: activity.py:488
 msgid "Label"
 msgstr "Etiqueta"
 
-#: /home/agustin/Activities/SG.activity/activity.py:499
+#: activity.py:499
 msgid "Value"
 msgstr "Valor"
 
-#: /home/agustin/Activities/SG.activity/activity.py:561
+#: activity.py:561
 msgid "Invalid Value"
-msgstr ""
+msgstr "Valor invalido"
 
-#: /home/agustin/Activities/SG.activity/activity.py:563
+#: activity.py:563
 msgid "The value must be a number (integer or decimal)"
-msgstr ""
+msgstr "El valor debe ser un numero (entero o decimal)"
 
-#: /home/agustin/Activities/SG.activity/activity.py:566
+#: activity.py:566
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
