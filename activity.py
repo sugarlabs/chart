@@ -147,7 +147,7 @@ class SimpleGraph(activity.Activity):
 
         add_vbar_chart = RadioToolButton()
         add_vbar_chart.connect("clicked", self._add_chart_cb, "vbar")
-        add_vbar_chart.set_tooltip(_("Create a vertical bar chart"))
+        add_vbar_chart.set_tooltip(_("Vertical Bar Chart"))
         add_vbar_chart.props.icon_name = "vbar"
         charts_group = add_vbar_chart
 
@@ -155,21 +155,21 @@ class SimpleGraph(activity.Activity):
 
         add_hbar_chart = RadioToolButton()
         add_hbar_chart.connect("clicked", self._add_chart_cb, "hbar")
-        add_hbar_chart.set_tooltip(_("Create a horizontal bar chart"))
+        add_hbar_chart.set_tooltip(_("Horizontal Bar Chart"))
         add_hbar_chart.props.icon_name = "hbar"
         add_hbar_chart.props.group = charts_group
         toolbarbox.toolbar.insert(add_hbar_chart, -1)
 
         add_line_chart = RadioToolButton()
         add_line_chart.connect("clicked", self._add_chart_cb, "line")
-        add_line_chart.set_tooltip(_("Create a line chart"))
+        add_line_chart.set_tooltip(_("Line Chart"))
         add_line_chart.props.icon_name = "line"
         add_line_chart.props.group = charts_group
         toolbarbox.toolbar.insert(add_line_chart, -1)
 
         add_pie_chart = RadioToolButton()
         add_pie_chart.connect("clicked", self._add_chart_cb, "pie")
-        add_pie_chart.set_tooltip(_("Create a pie chart"))
+        add_pie_chart.set_tooltip(_("Pie Chart"))
         add_pie_chart.props.icon_name = "pie"
         add_pie_chart.props.group = charts_group
         add_pie_chart.set_active(True)
