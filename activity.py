@@ -432,12 +432,6 @@ class SimpleGraph(activity.Activity):
         self.metadata['mime_type'] = "activity/x-simplegraph"
         if self.current_chart:
 
-            if self.x_label == "":
-                self.x_label = _("Horizontal label...")
-
-            elif self.y_label == "":
-                self.y_label = _("Vertical label...")
-
             data = {}
             data['title'] = self.metadata["title"]
             data['x_label'] = self.x_label
@@ -471,8 +465,13 @@ class SimpleGraph(activity.Activity):
         # Update the controls in the config subtoolbar
         self.chart_color_btn.set_color(gtk.gdk.Color(self.chart_color))
         self.line_color_btn.set_color(gtk.gdk.Color(self.chart_line_color))
-        self.h_label.entry.set_text(self.x_label)
-        self.v_label.entry.set_text(self.y_label)
+
+        # If the saved label is not '', set the text entry with the saved label
+        if self.x_label != '':
+            self.h_label.entry.set_text(self.x_label)
+
+        if self.y_label != '':
+            self.v_label.entry.set_text(self.y_label)
 
         #load the data
         for row  in chart_data:
