@@ -514,7 +514,7 @@ class ChartData(gtk.TreeView):
             path = 0
 
         elif selected:
-            path = self.model.get_path(selected)[0]
+            path = self.model.get_path(selected)[0] + 1
 
         iter = self.model.insert(path, [label, value])
 
