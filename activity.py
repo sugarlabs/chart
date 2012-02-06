@@ -311,8 +311,10 @@ class SimpleGraph(activity.Activity):
 
     def unfullscreen(self):
         self.box.show()
-        self._render_chart(fullscreen=False)
         activity.Activity.unfullscreen(self)
+
+        # A reasonable time for the system
+        gobject.timeout_add(50, self._render_chart, False)
 
     def __fullscreen_cb(self, button):
         self.box.hide()
@@ -347,6 +349,8 @@ class SimpleGraph(activity.Activity):
             self.current_chart.render(self)
         else:
             self.current_chart.render()
+
+        return False
 
     def _update_chart_data(self):
         if self.current_chart is None:
