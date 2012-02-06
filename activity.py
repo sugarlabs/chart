@@ -338,12 +338,10 @@ class SimpleGraph(activity.Activity):
             new_height = h
 
         if not fullscreen:
-            bx, by, bw, bh = self.box.get_allocation()
+            sx, sy, width, height = self.charts_area.get_allocation()
 
-            surface_max_height = self.charts_area.get_allocation().height
-
-            new_width = w - bw - 40
-            new_height = surface_max_height - 40
+            new_width = width - 40
+            new_height = height - 40
 
         self.current_chart.width = new_width
         self.current_chart.height = new_height
