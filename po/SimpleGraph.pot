@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-06 13:45-0200\n"
+"POT-Creation-Date: 2012-02-06 22:07-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,72 +21,70 @@ msgstr ""
 msgid "SimpleGraph"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:118
+#: activity.py:118
 msgid "Save as image"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:133
+#: activity.py:133
 msgid "Add a value"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:139
+#: activity.py:139
 msgid "Remove the selected value"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:150
+#: activity.py:150
 msgid "Vertical Bar Chart"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:158
+#: activity.py:158
 msgid "Horizontal Bar Chart"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:165
+#: activity.py:165
 msgid "Line Chart"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:172
+#: activity.py:172
 msgid "Pie Chart"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:193
+#: activity.py:193
 msgid "Chart Color"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:199
+#: activity.py:199
 msgid "Line Color"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:214
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:436
+#: activity.py:214
 msgid "Horizontal label..."
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:228
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:439
+#: activity.py:228
 msgid "Vertical label..."
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:246
+#: activity.py:243
 msgid "Fullscreen"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:499
+#: activity.py:510
 msgid "Label"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:510
+#: activity.py:521
 msgid "Value"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:572
+#: activity.py:583
 msgid "Invalid Value"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:574
+#: activity.py:585
 msgid "The value must be a number (integer or decimal)"
 msgstr ""
 
-#: /home/agustin/Activities/SimpleGraph.activity/activity.py:577
+#: activity.py:588
 msgid "Ok"
 msgstr ""

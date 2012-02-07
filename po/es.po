@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-06 13:45-0200\n"
+"POT-Creation-Date: 2012-02-06 22:07-0200\n"
 "PO-Revision-Date: 2012-02-03 23:23-0200\n"
 "Last-Translator: Agustin Zubiaga <aguz@sugarlabs.org>\n"
 "Language-Team: Spanish\n"
@@ -57,35 +57,33 @@ msgid "Line Color"
 msgstr "Color de las lineas"
 
 #: activity.py:214
-#: activity.py:436
 msgid "Horizontal label..."
 msgstr "Etiqueta horizontal..."
 
 #: activity.py:228
-#: activity.py:439
 msgid "Vertical label..."
 msgstr "Etiqueta vertical..."
 
-#: activity.py:246
+#: activity.py:243
 msgid "Fullscreen"
 msgstr "Pantalla Completa"
 
-#: activity.py:499
+#: activity.py:510
 msgid "Label"
 msgstr "Etiqueta"
 
-#: activity.py:510
+#: activity.py:521
 msgid "Value"
 msgstr "Valor"
 
-#: activity.py:572
+#: activity.py:583
 msgid "Invalid Value"
 msgstr "Valor invalido"
 
-#: activity.py:574
+#: activity.py:585
 msgid "The value must be a number (integer or decimal)"
 msgstr "El valor debe ser un numero (entero o decimal)"
 
-#: activity.py:577
+#: activity.py:588
 msgid "Ok"
 msgstr "Ok"
