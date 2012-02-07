@@ -99,6 +99,13 @@ class ChartArea(gtk.DrawingArea):
 
     def _expose_cb(self, widget, event):
         context = self.window.cairo_create()
+        
+        x, y, w, h = self.get_allocation()
+        
+        # White Background:
+        context.rectangle(0, 0, w, h)
+        context.set_source_rgb(255, 255, 255)
+        context.fill()
 
         # Paint the chart:
         context.set_source_surface(self._parent.current_chart.surface)
