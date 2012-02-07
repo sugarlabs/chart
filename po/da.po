@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-06 22:07-0200\n"
+"PO-Revision-Date: 2012-02-08 01:58+0200\n"
+"Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#: activity/activity.info:2
+msgid "SimpleGraph"
+msgstr "SimpelGraf"
+
+#: activity.py:118
+msgid "Save as image"
+msgstr "Gem som billede"
+
+#: activity.py:133
+msgid "Add a value"
+msgstr "Tilføj en værdi"
+
+#: activity.py:139
+msgid "Remove the selected value"
+msgstr "Fjern den valgte værdi"
+
+#: activity.py:150
+msgid "Vertical Bar Chart"
+msgstr "Lodret søjleoversigt"
+
+#: activity.py:158
+msgid "Horizontal Bar Chart"
+msgstr "Vandret søjleoversigt"
+
+#: activity.py:165
+msgid "Line Chart"
+msgstr "Linjeoversigt"
+
+#: activity.py:172
+msgid "Pie Chart"
+msgstr "Cirkeldiagram"
+
+#: activity.py:193
+msgid "Chart Color"
+msgstr "Farve på oversigt"
+
+#: activity.py:199
+msgid "Line Color"
+msgstr "Farve på linje"
+
+#: activity.py:214
+msgid "Horizontal label..."
+msgstr "Vandret etikette..."
+
+#: activity.py:228
+msgid "Vertical label..."
+msgstr "Lodret etikette..."
+
+#: activity.py:243
+msgid "Fullscreen"
+msgstr "Fuldskærm"
+
+#: activity.py:510
+msgid "Label"
+msgstr "Etikette"
+
+#: activity.py:521
+msgid "Value"
+msgstr "Værdi"
+
+#: activity.py:583
+msgid "Invalid Value"
+msgstr "Ugyldig værdi"
+
+#: activity.py:585
+msgid "The value must be a number (integer or decimal)"
+msgstr "Værdien skal angives som et tal (heltal eller decimaltal)"
+
+#: activity.py:588
+msgid "Ok"
+msgstr "Ok"
