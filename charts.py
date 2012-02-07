@@ -32,10 +32,6 @@ CHART_IMAGE = os.path.join("/tmp", "chart.png")
 
 
 class Chart(gobject.GObject):
-
-    __gsignals__ = {
-                  'ready': (gobject.SIGNAL_RUN_FIRST, None, [str])}
-
     def __init__(self, type="vertical", width=600, height=460):
         gobject.GObject.__init__(self)
 
@@ -119,5 +115,7 @@ class Chart(gobject.GObject):
         chart.addDataset(self.dataSet)
         chart.render()
 
+    def as_png(self):
+        # FIXME, don't use a temporal file
         self.surface.write_to_png(CHART_IMAGE)
-        self.emit("ready", CHART_IMAGE)
+        return CHART_IMAGE

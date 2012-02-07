@@ -44,7 +44,7 @@ from sugar.graphics.icon import Icon
 from sugar.graphics.alert import Alert
 from sugar.datastore import datastore
 
-from charts import Chart, CHART_IMAGE
+from charts import Chart
 
 
 def rgb_to_html(color):
@@ -88,6 +88,21 @@ while os.path.exists(CHART_FILE):
 del num
 
 logger = logging.getLogger("SimpleGraph")
+
+
+class ChartArea(gtk.DrawingArea):
+    def __init__(self, parent):
+        super(ChartArea, self).__init__()
+        self._parent = parent
+        self.add_events(gtk.gdk.EXPOSURE_MASK | gtk.gdk.VISIBILITY_NOTIFY_MASK)
+        self.connect("expose-event", self._expose_cb)
+
+    def _expose_cb(self, widget, event):
+        context = self.window.cairo_create()
+
+        # Paint the chart:
+        context.set_source_surface(self._parent.current_chart.surface)
+        context.paint()
 
 
 class SimpleGraph(activity.Activity):
@@ -282,8 +297,9 @@ class SimpleGraph(activity.Activity):
         paned.add1(box)
 
         # CHARTS AREA
+
         eventbox = gtk.EventBox()
-        self.charts_area = gtk.Image()
+        self.charts_area = ChartArea(self)
 
         eventbox.modify_bg(gtk.STATE_NORMAL, WHITE)
 
@@ -349,6 +365,7 @@ class SimpleGraph(activity.Activity):
             self.current_chart.render(self)
         else:
             self.current_chart.render()
+	self.charts_area.queue_draw()
 
         return False
 
@@ -371,8 +388,6 @@ class SimpleGraph(activity.Activity):
             self.current_chart.set_title(self.metadata["title"])
             self.current_chart.set_x_label(self.x_label)
             self.current_chart.set_y_label(self.y_label)
-            self.current_chart.connect("ready", lambda w, f:
-                                          self.charts_area.set_from_file(f))
             self._render_chart()
 
     def _label_changed(self, tw, path, new_label):
@@ -414,7 +429,9 @@ class SimpleGraph(activity.Activity):
             jobject.metadata['title'] = self.metadata["title"]
             jobject.metadata['mime_type'] = "image/png"
 
-            image = open(CHART_IMAGE, "r")
+	    temp_path = self.current_chart.as_png()
+
+            image = open(temp_path, "r")
             jfile = open(CHART_FILE, "w")
 
             jfile.write(image.read())
