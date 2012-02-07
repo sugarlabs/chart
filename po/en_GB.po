@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-06 22:07-0200\n"
+"PO-Revision-Date: 2012-02-07 22:16+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#: activity/activity.info:2
+msgid "SimpleGraph"
+msgstr "SimpleGraph"
+
+#: activity.py:118
+msgid "Save as image"
+msgstr "Save as image"
+
+#: activity.py:133
+msgid "Add a value"
+msgstr "Add a value"
+
+#: activity.py:139
+msgid "Remove the selected value"
+msgstr "Remove the selected value"
+
+#: activity.py:150
+msgid "Vertical Bar Chart"
+msgstr "Vertical Bar Chart"
+
+#: activity.py:158
+msgid "Horizontal Bar Chart"
+msgstr "Horizontal Bar Chart"
+
+#: activity.py:165
+msgid "Line Chart"
+msgstr "Line Chart"
+
+#: activity.py:172
+msgid "Pie Chart"
+msgstr "Pie Chart"
+
+#: activity.py:193
+msgid "Chart Color"
+msgstr "Chart Colour"
+
+#: activity.py:199
+msgid "Line Color"
+msgstr "Line Colour"
+
+#: activity.py:214
+msgid "Horizontal label..."
+msgstr "Horizontal label..."
+
+#: activity.py:228
+msgid "Vertical label..."
+msgstr "Vertical label..."
+
+#: activity.py:243
+msgid "Fullscreen"
+msgstr "Fullscreen"
+
+#: activity.py:510
+msgid "Label"
+msgstr "Label"
+
+#: activity.py:521
+msgid "Value"
+msgstr "Value"
+
+#: activity.py:583
+msgid "Invalid Value"
+msgstr "Invalid Value"
+
+#: activity.py:585
+msgid "The value must be a number (integer or decimal)"
+msgstr "The value must be a number (integer or decimal)"
+
+#: activity.py:588
+msgid "Ok"
+msgstr "Ok"
