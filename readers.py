@@ -22,27 +22,30 @@
 
 import cPickle
 
+
 class StopWatch():
-    
+
     def set_data(self, data):
         self.data = cPickle.load(data)
-    
-    def get_stopwatchs_with_marks_count(self):
+
+    def get_stopwatchs_with_marks(self):
         count = 0
+        list = []
         for i in self.data[-1]:
-            if i: count += 1
-        
-        return count
-        
-    def marks_to_chart_data(self, num=0):
-        chart_data = []
+            if i:
+                count += 1
+                list.append([count, self.data[1][count - 1]])
+
+        return list, count
+
+    def get_stopwatch_name(self, num=0):
+        return self.data[1][num]
+
+    def marks_to_chart_data(self, num=0, chart_data=[]):
         marks_count = 0
-        
+
         for i in self.data[-1][num]:
             marks_count += 1
             chart_data.append((str(marks_count), i))
-            
+
         return chart_data
-
-
-

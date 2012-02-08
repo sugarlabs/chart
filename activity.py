@@ -91,7 +91,7 @@ logger = logging.getLogger("SimpleGraph")
 
 
 class ChartArea(gtk.DrawingArea):
-	
+
     def __init__(self, parent):
         super(ChartArea, self).__init__()
         self._parent = parent
@@ -100,9 +100,9 @@ class ChartArea(gtk.DrawingArea):
 
     def _expose_cb(self, widget, event):
         context = self.window.cairo_create()
-        
+
         x, y, w, h = self.get_allocation()
-        
+
         # White Background:
         context.rectangle(0, 0, w, h)
         context.set_source_rgb(255, 255, 255)
@@ -373,7 +373,7 @@ class SimpleGraph(activity.Activity):
             self.current_chart.render(self)
         else:
             self.current_chart.render()
-	self.charts_area.queue_draw()
+        self.charts_area.queue_draw()
 
         return False
 
@@ -437,7 +437,7 @@ class SimpleGraph(activity.Activity):
             jobject.metadata['title'] = self.metadata["title"]
             jobject.metadata['mime_type'] = "image/png"
 
-	    temp_path = self.current_chart.as_png()
+            temp_path = self.current_chart.as_png()
 
             image = open(temp_path, "r")
             jfile = open(CHART_FILE, "w")
@@ -515,6 +515,7 @@ class SimpleGraph(activity.Activity):
             self._add_value(None, label=row[0], value=float(row[1]))
 
         self.update_chart()
+
 
 class ChartData(gtk.TreeView):
 
