@@ -91,6 +91,7 @@ logger = logging.getLogger("SimpleGraph")
 
 
 class ChartArea(gtk.DrawingArea):
+	
     def __init__(self, parent):
         super(ChartArea, self).__init__()
         self._parent = parent
@@ -514,7 +515,6 @@ class SimpleGraph(activity.Activity):
             self._add_value(None, label=row[0], value=float(row[1]))
 
         self.update_chart()
-
 
 class ChartData(gtk.TreeView):
 
