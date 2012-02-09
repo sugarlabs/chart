@@ -40,11 +40,13 @@ from sugar.graphics.toolbarbox import ToolbarBox
 from sugar.graphics.toolbutton import ToolButton
 from sugar.graphics.radiotoolbutton import RadioToolButton
 from sugar.graphics.colorbutton import ColorToolButton
+from sugar.graphics.objectchooser import ObjectChooser
 from sugar.graphics.icon import Icon
 from sugar.graphics.alert import Alert
 from sugar.datastore import datastore
 
 from charts import Chart
+from readers import StopWatch
 
 
 def rgb_to_html(color):
@@ -142,6 +144,12 @@ class SimpleGraph(activity.Activity):
         activity_btn_toolbar.insert(save_as_image, -1)
 
         save_as_image.show()
+
+        import_stopwatch = ToolButton("import-stopwatch")
+        import_stopwatch.connect("clicked", self.__import_stopwatch_cb)
+        activity_btn_toolbar.insert(import_stopwatch, -1)
+
+        import_stopwatch.show()
         activity_btn_toolbar.keep.hide()
 
         toolbarbox.toolbar.insert(activity_button, 0)
@@ -429,6 +437,62 @@ class SimpleGraph(activity.Activity):
     def _set_chart_line_color(self, widget, pspec):
         self.chart_line_color = rgb_to_html(widget.get_color())
         self._render_chart()
+
+    def __import_stopwatch_cb(self, widget):
+
+        chooser = ObjectChooser()
+
+        response = chooser.run()
+        if response == gtk.RESPONSE_ACCEPT:
+            object = chooser.get_selected_object()
+            metadata = object.metadata
+            file_path = object.file_path
+
+            if metadata['mime_type'] == "activity/x-stopwatch":
+				reader = StopWatch()
+
+				print "Desde StopWatch"
+				f = open(file_path)
+				reader.set_data(f)
+                
+				list, count = reader.get_stopwatchs_with_marks()
+				
+				if count == 1:
+					num, name = list[0]
+					
+					self.labels_and_values.model.clear()
+					self.chart_data = []
+					
+					self.h_label.entry.set_text("Number")
+					self.v_label.entry.set_text("Time")
+					
+					self.set_title(name)
+					chart_data = reader.marks_to_chart_data(num - 1)
+					
+					# Load the data
+					for row  in chart_data:
+						self._add_value(None, label=row[0], value=float(row[1]))
+						
+					self.update_chart()
+                
+				f.close()
+
+            else:
+                alert = Alert()
+
+                alert.props.title = _('Invalid object')
+                alert.props.msg = \
+                       _('The selected object must be a StopWatch file')
+
+                ok_icon = Icon(icon_name='dialog-ok')
+                alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon)
+                ok_icon.show()
+
+                alert.connect('response', lambda a, r: self.remove_alert(a))
+
+                self.add_alert(alert)
+
+                alert.show()
 
     def _save_as_image(self, widget):
         if self.current_chart:
