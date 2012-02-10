@@ -450,7 +450,7 @@ class SimpleGraph(activity.Activity):
             metadata = jobject.metadata
             file_path = jobject.file_path
 
-            if metadata['mime_type'] == "activity/x-stopwatch":
+            if metadata['mime_type'] == "application/x-stopwatch-activity":
 				reader = StopWatch()
 
 				f = open(file_path)
