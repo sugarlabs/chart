@@ -3,8 +3,6 @@
 
 # readers.py by:
 #    Agustin Zubiaga <aguz@sugarlabs.com>
-#    Gonzalo Odiard <godiard@gmail.com>
-#    Manuel Quiñones <manuq@laptop.org>
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,13 +28,13 @@ class StopWatch():
 
     def get_stopwatchs_with_marks(self):
         count = 0
-        list = []
+        stopwatchs_list = []
         for i in self.data[-1]:
             if i:
                 count += 1
-                list.append([count, self.data[1][count - 1]])
+                stopwatchs_list.append([count, self.data[1][count - 1]])
 
-        return list, count
+        return stopwatchs_list, count
 
     def get_stopwatch_name(self, num=0):
         return self.data[1][num]

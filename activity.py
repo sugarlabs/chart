@@ -446,21 +446,20 @@ class SimpleGraph(activity.Activity):
 
         response = chooser.run()
         if response == gtk.RESPONSE_ACCEPT:
-            object = chooser.get_selected_object()
-            metadata = object.metadata
-            file_path = object.file_path
+            jobject = chooser.get_selected_object()
+            metadata = jobject.metadata
+            file_path = jobject.file_path
 
             if metadata['mime_type'] == "activity/x-stopwatch":
 				reader = StopWatch()
 
-				print "Desde StopWatch"
 				f = open(file_path)
 				reader.set_data(f)
                 
-				list, count = reader.get_stopwatchs_with_marks()
+				stopwatchs_list, count = reader.get_stopwatchs_with_marks()
 				
 				if count == 1:
-					num, name = list[0]
+					num, name = stopwatchs_list[0]
 					
 					self.labels_and_values.model.clear()
 					self.chart_data = []
