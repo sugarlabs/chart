@@ -89,7 +89,9 @@ while os.path.exists(CHART_FILE):
 
 del num
 
-logger = logging.getLogger("SimpleGraph")
+log = logging.getLogger('simplegraph-activity')
+log.setLevel(logging.DEBUG)
+logging.basicConfig()
 
 
 class ChartArea(gtk.DrawingArea):
@@ -634,7 +636,7 @@ class ChartData(gtk.TreeView):
                         self.get_column(1),
                         True)
 
-        logger.info("Added: %s, Value: %s" % (label, value))
+        log.info("Added: %s, Value: %s" % (label, value))
 
         return path
 
@@ -648,13 +650,13 @@ class ChartData(gtk.TreeView):
         return path
 
     def _label_changed(self, cell, path, new_text, model):
-        logger.info("Change '%s' to '%s'" % (model[path][0], new_text))
+        log.info("Change '%s' to '%s'" % (model[path][0], new_text))
         model[path][0] = new_text
 
         self.emit("label-changed", str(path), new_text)
 
     def _value_changed(self, cell, path, new_text, model, activity):
-        logger.info("Change '%s' to '%s'" % (model[path][1], new_text))
+        log.info("Change '%s' to '%s'" % (model[path][1], new_text))
         is_number = True
         try:
             float(new_text)
