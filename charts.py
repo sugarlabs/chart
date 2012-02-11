@@ -28,7 +28,9 @@ import cairo
 import os
 import gobject
 
-CHART_IMAGE = os.path.join("/tmp", "chart.png")
+from sugar.activity import activity
+
+CHART_IMAGE = os.path.join(activity.get_activity_root(), "tmp", "chart.png")
 
 
 class Chart(gobject.GObject):
