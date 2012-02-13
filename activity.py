@@ -451,32 +451,32 @@ class SimpleGraph(activity.Activity):
             file_path = jobject.file_path
 
             if metadata['mime_type'] == "application/x-stopwatch-activity":
-				reader = StopWatch()
+                reader = StopWatch()
 
-				f = open(file_path)
-				reader.set_data(f)
-                
-				stopwatchs_list, count = reader.get_stopwatchs_with_marks()
-				
-				if count == 1:
-					num, name = stopwatchs_list[0]
-					
-					self.labels_and_values.model.clear()
-					self.chart_data = []
-					
-					self.h_label.entry.set_text("Number")
-					self.v_label.entry.set_text("Time")
-					
-					self.set_title(name)
-					chart_data = reader.marks_to_chart_data(num - 1)
-					
-					# Load the data
-					for row  in chart_data:
-						self._add_value(None, label=row[0], value=float(row[1]))
-						
-					self.update_chart()
-                
-				f.close()
+                f = open(file_path)
+                reader.set_data(f)
+
+                stopwatchs_list, count = reader.get_stopwatchs_with_marks()
+
+                if count == 1:
+                    num, name = stopwatchs_list[0]
+
+                    self.labels_and_values.model.clear()
+                    self.chart_data = []
+                    self.h_label.entry.set_text("Number")
+                    self.v_label.entry.set_text("Time")
+
+                    self.set_title(name)
+                    chart_data = reader.marks_to_chart_data(num - 1)
+
+                    # Load the data
+                    for row  in chart_data:
+                        self._add_value(None,
+                                        label=row[0], value=float(row[1]))
+
+                        self.update_chart()
+
+                f.close()
 
             else:
                 alert = Alert()
