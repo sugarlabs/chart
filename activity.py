@@ -74,6 +74,8 @@ def get_user_color():
     return color.split(",")
 
 
+STOPWATCH_MIME_TYPE = "application/x-stopwatch-activity"
+
 COLOR1 = gtk.gdk.Color(get_user_color()[0])
 COLOR2 = gtk.gdk.Color(get_user_color()[1])
 
@@ -440,9 +442,9 @@ class SimpleGraph(activity.Activity):
         self.chart_line_color = rgb_to_html(widget.get_color())
         self._render_chart()
 
-    def __import_stopwatch_cb(self, widget):
-
+    def _object_chooser(self, mime_type, type_name):
         chooser = ObjectChooser()
+        boolean = False
 
         response = chooser.run()
         if response == gtk.RESPONSE_ACCEPT:
@@ -450,40 +452,15 @@ class SimpleGraph(activity.Activity):
             metadata = jobject.metadata
             file_path = jobject.file_path
 
-            if metadata['mime_type'] == "application/x-stopwatch-activity":
-                reader = StopWatch()
-
-                f = open(file_path)
-                reader.set_data(f)
-
-                stopwatchs_list, count = reader.get_stopwatchs_with_marks()
-
-                if count == 1:
-                    num, name = stopwatchs_list[0]
-
-                    self.labels_and_values.model.clear()
-                    self.chart_data = []
-                    self.h_label.entry.set_text("Number")
-                    self.v_label.entry.set_text("Time")
-
-                    self.set_title(name)
-                    chart_data = reader.marks_to_chart_data(num - 1)
-
-                    # Load the data
-                    for row  in chart_data:
-                        self._add_value(None,
-                                        label=row[0], value=float(row[1]))
-
-                        self.update_chart()
-
-                f.close()
+            if metadata['mime_type'] == mime_type:
+                boolean = True
 
             else:
                 alert = Alert()
 
                 alert.props.title = _('Invalid object')
                 alert.props.msg = \
-                       _('The selected object must be a StopWatch file')
+                       _('The selected object must be a %s file' % (type_name))
 
                 ok_icon = Icon(icon_name='dialog-ok')
                 alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon)
@@ -494,6 +471,49 @@ class SimpleGraph(activity.Activity):
                 self.add_alert(alert)
 
                 alert.show()
+
+        return boolean, file_path, metadata['title']
+
+    def __import_stopwatch_cb(self, widget):
+            boolean, file_path, title = self._object_chooser(
+                                                      STOPWATCH_MIME_TYPE,
+                                                      "StopWatch")
+
+            if boolean:
+                reader = StopWatch()
+
+                f = open(file_path)
+                reader.set_data(f)
+
+                stopwatchs_list, count = reader.get_stopwatchs_with_marks()
+
+                self.labels_and_values.model.clear()
+                self.chart_data = []
+
+                self.v_label.entry.set_text("Time")
+
+                if count == 1:
+                    num, name = stopwatchs_list[0]
+
+                    self.h_label.entry.set_text("Number")
+
+                    self.set_title(name)
+                    chart_data = reader.marks_to_chart_data(num - 1)
+
+                elif count == 0 or count > 1:
+                    self.set_title(title)
+                    self.h_label.entry.set_text("Names")
+
+                    chart_data = reader.times_to_chart_data()
+
+                # Load the data
+                for row  in chart_data:
+                    self._add_value(None,
+                                    label=row[0], value=float(row[1]))
+
+                    self.update_chart()
+
+                f.close()
 
     def _save_as_image(self, widget):
         if self.current_chart:

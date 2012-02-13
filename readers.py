@@ -47,3 +47,16 @@ class StopWatch():
             chart_data.append((str(marks_count), i))
 
         return chart_data
+
+    def times_to_chart_data(self):
+        times = [i[0][0] for i in self.data[2]]
+
+        times_count = 0
+        chart_data = []
+
+        for i in times:
+            times_count += 1
+            chart_data.append((self.get_stopwatch_name(times_count - 1),
+                              round(i, 2)))
+
+        return chart_data
