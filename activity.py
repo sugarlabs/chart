@@ -27,6 +27,7 @@ import pango
 import os
 import gconf
 import simplejson
+import locale
 
 import logging
 
@@ -677,15 +678,18 @@ class ChartData(gtk.TreeView):
     def _value_changed(self, cell, path, new_text, model, activity):
         log.info("Change '%s' to '%s'" % (model[path][1], new_text))
         is_number = True
+        number = new_text.replace(",", ".")
         try:
-            float(new_text)
+            float(number)
         except:
             is_number = False
 
         if is_number:
-            model[path][1] = str(float(new_text))
+            decimals = self._get_decimals(str(float(number)))
+            new_text = locale.format('%.' + decimals + 'f', float(number))
+            model[path][1] = str(new_text)
 
-            self.emit("value-changed", str(path), new_text)
+            self.emit("value-changed", str(path), number)
 
         elif not is_number:
             alert = Alert()
@@ -703,6 +707,9 @@ class ChartData(gtk.TreeView):
             activity.add_alert(alert)
 
             alert.show()
+
+    def _get_decimals(self, number):
+        return str(len(number.split('.')[1]))
 
 
 class Entry(gtk.ToolItem):

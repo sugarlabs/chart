@@ -44,7 +44,7 @@ class StopWatch():
 
         for i in self.data[-1][num]:
             marks_count += 1
-            chart_data.append((str(marks_count), i))
+            chart_data.append((str(marks_count), round(i, 2)))
 
         return chart_data
 
