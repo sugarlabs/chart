@@ -487,7 +487,7 @@ class SimpleGraph(activity.Activity):
     def __import_stopwatch_cb(self, widget):
             boolean, file_path, title = self._object_chooser(
                                                       STOPWATCH_MIME_TYPE,
-                                                      "StopWatch")
+                                                      _('StopWatch'))
 
             if boolean:
                 f = open(file_path)
@@ -498,19 +498,19 @@ class SimpleGraph(activity.Activity):
                 self.labels_and_values.model.clear()
                 self.chart_data = []
 
-                self.v_label.entry.set_text("Time")
+                self.v_label.entry.set_text(_('Time'))
 
                 if count == 1:
                     num, name = stopwatchs_list[0]
 
-                    self.h_label.entry.set_text(_("Number"))
+                    self.h_label.entry.set_text(_('Mark'))
 
                     self.set_title(name)
                     chart_data = reader.marks_to_chart_data(num - 1)
 
                 elif count == 0 or count > 1:
                     self.set_title(title)
-                    self.h_label.entry.set_text(_("Names"))
+                    self.h_label.entry.set_text(_('StopWatch'))
 
                     chart_data = reader.times_to_chart_data()
 
@@ -525,7 +525,7 @@ class SimpleGraph(activity.Activity):
 
     def __import_measure_cb(self, widget):
         boolean, file_path, title = self._object_chooser(CSV_MIME_TYPE,
-                                                         'Measure')
+                                                         _('Measure'))
 
         if boolean:
             f = open(file_path)
