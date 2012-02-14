@@ -505,14 +505,14 @@ class SimpleGraph(activity.Activity):
                 if count == 1:
                     num, name = stopwatchs_list[0]
 
-                    self.h_label.entry.set_text("Number")
+                    self.h_label.entry.set_text(_("Number"))
 
                     self.set_title(name)
                     chart_data = reader.marks_to_chart_data(num - 1)
 
                 elif count == 0 or count > 1:
                     self.set_title(title)
-                    self.h_label.entry.set_text("Names")
+                    self.h_label.entry.set_text(_("Names"))
 
                     chart_data = reader.times_to_chart_data()
 
@@ -535,8 +535,8 @@ class SimpleGraph(activity.Activity):
 
             reader.set_data(f)
 
-            self.v_label.entry.set_text('Values')
-            self.h_label.entry.set_text('Samples')
+            self.v_label.entry.set_text(_('Values'))
+            self.h_label.entry.set_text(_('Samples')
 
             self.chart_data = []
             self.labels_and_values.model.clear()
