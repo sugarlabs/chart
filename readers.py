@@ -19,6 +19,7 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import cPickle
+import csv
 
 
 class StopWatch():
@@ -58,5 +59,24 @@ class StopWatch():
             times_count += 1
             chart_data.append((self.get_stopwatch_name(times_count - 1),
                               round(i, 2)))
+
+        return chart_data
+
+
+class Measure():
+
+    def set_data(self, data):
+        self.reader = csv.reader(data)
+
+    def get_chart_data(self):
+        count = 0
+        chart_data = []
+
+        for row in self.reader:
+            count += 1
+
+            if count > 6:
+                label, value = row[0].split(": ")
+                chart_data.append((label, float(value)))
 
         return chart_data

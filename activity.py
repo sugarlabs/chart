@@ -48,6 +48,7 @@ from sugar.datastore import datastore
 
 from charts import Chart
 from readers import StopWatch
+from readers import Measure
 
 
 def rgb_to_html(color):
@@ -76,6 +77,7 @@ def get_user_color():
 
 
 STOPWATCH_MIME_TYPE = "application/x-stopwatch-activity"
+CSV_MIME_TYPE = "text/csv"
 
 COLOR1 = gtk.gdk.Color(get_user_color()[0])
 COLOR2 = gtk.gdk.Color(get_user_color()[1])
@@ -155,6 +157,13 @@ class SimpleGraph(activity.Activity):
         activity_btn_toolbar.insert(import_stopwatch, -1)
 
         import_stopwatch.show()
+
+        import_measure = ToolButton("import-measure")
+        import_measure.connect("clicked", self.__import_measure_cb)
+        activity_btn_toolbar.insert(import_measure, -1)
+
+        import_measure.show()
+
         activity_btn_toolbar.keep.hide()
 
         toolbarbox.toolbar.insert(activity_button, 0)
@@ -515,6 +524,33 @@ class SimpleGraph(activity.Activity):
                     self.update_chart()
 
                 f.close()
+
+    def __import_measure_cb(self, widget):
+        boolean, file_path, title = self._object_chooser(CSV_MIME_TYPE,
+                                                         'Measure')
+
+        if boolean:
+            reader = Measure()
+            f = open(file_path)
+
+            reader.set_data(f)
+
+            self.v_label.entry.set_text('Values')
+            self.h_label.entry.set_text('Samples')
+
+            self.chart_data = []
+            self.labels_and_values.model.clear()
+
+            chart_data = reader.get_chart_data()
+
+            # Load the data
+            for row  in chart_data:
+                self._add_value(None,
+                                label=row[0], value=float(row[1]))
+
+                self.update_chart()
+
+            f.close()
 
     def _save_as_image(self, widget):
         if self.current_chart:
