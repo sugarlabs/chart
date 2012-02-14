@@ -536,7 +536,7 @@ class SimpleGraph(activity.Activity):
             reader.set_data(f)
 
             self.v_label.entry.set_text(_('Values'))
-            self.h_label.entry.set_text(_('Samples')
+            self.h_label.entry.set_text(_('Samples'))
 
             self.chart_data = []
             self.labels_and_values.model.clear()

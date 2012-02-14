@@ -43,7 +43,10 @@ class StopWatch():
     def marks_to_chart_data(self, num=0, chart_data=[]):
         marks_count = 0
 
-        for i in self.data[-1][num]:
+        marks = self.data[-1][num]
+        marks.sort()
+
+        for i in marks:
             marks_count += 1
             chart_data.append((str(marks_count), round(i, 2)))
 
