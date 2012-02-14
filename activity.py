@@ -490,10 +490,8 @@ class SimpleGraph(activity.Activity):
                                                       "StopWatch")
 
             if boolean:
-                reader = StopWatch()
-
                 f = open(file_path)
-                reader.set_data(f)
+                reader = StopWatch(f)
 
                 stopwatchs_list, count = reader.get_stopwatchs_with_marks()
 
@@ -530,10 +528,8 @@ class SimpleGraph(activity.Activity):
                                                          'Measure')
 
         if boolean:
-            reader = Measure()
             f = open(file_path)
-
-            reader.set_data(f)
+            reader = Measure(f)
 
             self.v_label.entry.set_text(_('Values'))
             self.h_label.entry.set_text(_('Samples'))

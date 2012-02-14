@@ -24,26 +24,26 @@ import csv
 
 class StopWatch():
 
-    def set_data(self, data):
-        self.data = cPickle.load(data)
+    def __init__(self, data):
+        self._data = cPickle.load(data)
 
     def get_stopwatchs_with_marks(self):
         count = 0
         stopwatchs_list = []
-        for i in self.data[-1]:
+        for i in self._data[-1]:
             if i:
                 count += 1
-                stopwatchs_list.append([count, self.data[1][count - 1]])
+                stopwatchs_list.append([count, self._data[1][count - 1]])
 
         return stopwatchs_list, count
 
     def get_stopwatch_name(self, num=0):
-        return self.data[1][num]
+        return self._data[1][num]
 
     def marks_to_chart_data(self, num=0, chart_data=[]):
         marks_count = 0
 
-        marks = self.data[-1][num]
+        marks = self._data[-1][num]
         marks.sort()
 
         for i in marks:
@@ -53,7 +53,7 @@ class StopWatch():
         return chart_data
 
     def times_to_chart_data(self):
-        times = [i[0][0] for i in self.data[2]]
+        times = [i[0][0] for i in self._data[2]]
 
         times_count = 0
         chart_data = []
@@ -68,14 +68,14 @@ class StopWatch():
 
 class Measure():
 
-    def set_data(self, data):
-        self.reader = csv.reader(data)
+    def __init__(self, data):
+        self._reader = csv.reader(data)
 
     def get_chart_data(self):
         count = 0
         chart_data = []
 
-        for row in self.reader:
+        for row in self._reader:
             count += 1
 
             if count > 6:
