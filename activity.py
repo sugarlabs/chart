@@ -341,9 +341,11 @@ class SimpleGraph(activity.Activity):
         self.show_all()
 
     def _add_value(self, widget, label="", value="0.0"):
-        pos = self.labels_and_values.add_value(label, value)
-        self.chart_data.insert(pos, (label, float(value)))
-        self._update_chart_data()
+        data = (label, float(value))
+        if not data in self.chart_data:
+            pos = self.labels_and_values.add_value(label, value)
+            self.chart_data.insert(pos, data)
+            self._update_chart_data()
 
     def _remove_value(self, widget):
         path = self.labels_and_values.remove_selected_value()
