@@ -486,6 +486,24 @@ class SimpleGraph(activity.Activity):
 
         return matches_mime_type, file_path, metadata['title']
 
+    def _graph_from_reader(self, reader):
+        self.labels_and_values.model.clear()
+        self.chart_data = []
+
+        chart_data = reader.get_chart_data()
+
+        h, v = reader.get_labels_name()
+
+        self.v_label.entry.set_text(h)
+        self.h_label.entry.set_text(v)
+
+        # Load the data
+        for row  in chart_data:
+            self._add_value(None,
+                            label=row[0], value=float(row[1]))
+
+            self.update_chart()
+
     def __import_stopwatch_cb(self, widget):
         matches_mime_type, file_path, title = self._object_chooser(
                                                       STOPWATCH_MIME_TYPE,
@@ -494,23 +512,7 @@ class SimpleGraph(activity.Activity):
         if matches_mime_type:
             f = open(file_path)
             reader = StopWatchReader(f)
-
-            self.labels_and_values.model.clear()
-            self.chart_data = []
-
-            chart_data = reader.get_chart_data()
-
-            h, v = reader.get_labels_name()
-
-            self.v_label.entry.set_text(h)
-            self.h_label.entry.set_text(v)
-
-            # Load the data
-            for row  in chart_data:
-                self._add_value(None,
-                                label=row[0], value=float(row[1]))
-
-                self.update_chart()
+            self._graph_from_reader(reader)
 
             f.close()
 
@@ -522,23 +524,7 @@ class SimpleGraph(activity.Activity):
         if matches_mime_type:
             f = open(file_path)
             reader = MeasureReader(f)
-
-            h, v = reader.get_labels_name()
-
-            self.v_label.entry.set_text(h)
-            self.h_label.entry.set_text(v)
-
-            self.chart_data = []
-            self.labels_and_values.model.clear()
-
-            chart_data = reader.get_chart_data()
-
-            # Load the data
-            for row  in chart_data:
-                self._add_value(None,
-                                label=row[0], value=float(row[1]))
-
-                self.update_chart()
+            self._graph_from_reader(reader)
 
             f.close()
 
