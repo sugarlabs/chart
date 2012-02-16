@@ -341,9 +341,11 @@ class SimpleGraph(activity.Activity):
         self.show_all()
 
     def _add_value(self, widget, label="", value="0.0"):
-        pos = self.labels_and_values.add_value(label, value)
-        self.chart_data.insert(pos, (label, float(value)))
-        self._update_chart_data()
+        data = (label, float(value))
+        if not data in self.chart_data:
+            pos = self.labels_and_values.add_value(label, value)
+            self.chart_data.insert(pos, data)
+            self._update_chart_data()
 
     def _remove_value(self, widget):
         path = self.labels_and_values.remove_selected_value()
@@ -485,47 +487,46 @@ class SimpleGraph(activity.Activity):
         return boolean, file_path, metadata['title']
 
     def __import_stopwatch_cb(self, widget):
-            boolean, file_path, title = self._object_chooser(
+        boolean, file_path, title = self._object_chooser(
                                                       STOPWATCH_MIME_TYPE,
-                                                      "StopWatch")
+                                                      _('StopWatch'))
 
-            if boolean:
-                f = open(file_path)
-                reader = StopWatch(f)
+        if boolean:
+            f = open(file_path)
+            reader = StopWatch(f)
 
-                stopwatchs_list, count = reader.get_stopwatchs_with_marks()
+            stopwatchs_list, count = reader.get_stopwatchs_with_marks()
 
-                self.labels_and_values.model.clear()
-                self.chart_data = []
+            self.labels_and_values.model.clear()
+            self.chart_data = []
 
-                self.v_label.entry.set_text("Time")
+            self.v_label.entry.set_text(_('Time'))
 
-                if count == 1:
-                    num, name = stopwatchs_list[0]
+            if count == 1:
+                num, name = stopwatchs_list[0]
+                self.h_label.entry.set_text(_('Mark'))
 
-                    self.h_label.entry.set_text(_("Number"))
+                self.set_title(name)
+                chart_data = reader.marks_to_chart_data(num - 1)
 
-                    self.set_title(name)
-                    chart_data = reader.marks_to_chart_data(num - 1)
+            elif count == 0 or count > 1:
+                self.set_title(title)
+                self.h_label.entry.set_text(_('StopWatch'))
 
-                elif count == 0 or count > 1:
-                    self.set_title(title)
-                    self.h_label.entry.set_text(_("Names"))
+                chart_data = reader.times_to_chart_data()
 
-                    chart_data = reader.times_to_chart_data()
+            # Load the data
+            for row  in chart_data:
+                self._add_value(None,
+                                label=row[0], value=float(row[1]))
 
-                # Load the data
-                for row  in chart_data:
-                    self._add_value(None,
-                                    label=row[0], value=float(row[1]))
+                self.update_chart()
 
-                    self.update_chart()
-
-                f.close()
+            f.close()
 
     def __import_measure_cb(self, widget):
         boolean, file_path, title = self._object_chooser(CSV_MIME_TYPE,
-                                                         'Measure')
+                                                         _('Measure'))
 
         if boolean:
             f = open(file_path)
