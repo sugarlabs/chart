@@ -8,11 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-06 22:07-0200\n"
+"POT-Creation-Date: 2012-02-17 00:31-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,70 +20,103 @@ msgstr ""
 msgid "SimpleGraph"
 msgstr ""
 
-#: activity.py:118
+#: activity.py:150
 msgid "Save as image"
 msgstr ""
 
-#: activity.py:133
+#: activity.py:178
 msgid "Add a value"
 msgstr ""
 
-#: activity.py:139
+#: activity.py:184
 msgid "Remove the selected value"
 msgstr ""
 
-#: activity.py:150
+#: activity.py:195
 msgid "Vertical Bar Chart"
 msgstr ""
 
-#: activity.py:158
+#: activity.py:203
 msgid "Horizontal Bar Chart"
 msgstr ""
 
-#: activity.py:165
+#: activity.py:210
 msgid "Line Chart"
 msgstr ""
 
-#: activity.py:172
+#: activity.py:217
 msgid "Pie Chart"
 msgstr ""
 
-#: activity.py:193
+#: activity.py:238
 msgid "Chart Color"
 msgstr ""
 
-#: activity.py:199
+#: activity.py:244
 msgid "Line Color"
 msgstr ""
 
-#: activity.py:214
+#: activity.py:259
 msgid "Horizontal label..."
 msgstr ""
 
-#: activity.py:228
+#: activity.py:273
 msgid "Vertical label..."
 msgstr ""
 
-#: activity.py:243
+#: activity.py:288
 msgid "Fullscreen"
 msgstr ""
 
-#: activity.py:510
+#: activity.py:473
+msgid "Invalid object"
+msgstr ""
+
+#: activity.py:475
+#, python-format
+msgid "The selected object must be a %s file"
+msgstr ""
+
+#: activity.py:478 activity.py:714
+msgid "Ok"
+msgstr ""
+
+#: activity.py:510 readers.py:55
+msgid "StopWatch"
+msgstr ""
+
+#: activity.py:522
+msgid "Measure"
+msgstr ""
+
+#: activity.py:633
 msgid "Label"
 msgstr ""
 
-#: activity.py:521
+#: activity.py:644
 msgid "Value"
 msgstr ""
 
-#: activity.py:583
+#: activity.py:709
 msgid "Invalid Value"
 msgstr ""
 
-#: activity.py:585
+#: activity.py:711
 msgid "The value must be a number (integer or decimal)"
 msgstr ""
 
-#: activity.py:588
-msgid "Ok"
+#: readers.py:34
+msgid "Time"
+msgstr ""
+
+#: readers.py:44
+msgid "Mark"
+msgstr ""
+
+#: readers.py:111
+msgid "Values"
+msgstr ""
+
+#: readers.py:112
+msgid "Samples"
 msgstr ""
