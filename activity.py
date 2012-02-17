@@ -47,8 +47,8 @@ from sugar.graphics.alert import Alert
 from sugar.datastore import datastore
 
 from charts import Chart
-from readers import StopWatch
-from readers import Measure
+from readers import StopWatchReader
+from readers import MeasureReader
 
 
 def rgb_to_html(color):
@@ -456,7 +456,7 @@ class SimpleGraph(activity.Activity):
 
     def _object_chooser(self, mime_type, type_name):
         chooser = ObjectChooser()
-        boolean = False
+        matches_mime_type = False
 
         response = chooser.run()
         if response == gtk.RESPONSE_ACCEPT:
@@ -465,7 +465,7 @@ class SimpleGraph(activity.Activity):
             file_path = jobject.file_path
 
             if metadata['mime_type'] == mime_type:
-                boolean = True
+                matches_mime_type = True
 
             else:
                 alert = Alert()
@@ -484,68 +484,47 @@ class SimpleGraph(activity.Activity):
 
                 alert.show()
 
-        return boolean, file_path, metadata['title']
+        return matches_mime_type, file_path, metadata['title']
+
+    def _graph_from_reader(self, reader):
+        self.labels_and_values.model.clear()
+        self.chart_data = []
+
+        chart_data = reader.get_chart_data()
+
+        h, v = reader.get_labels_name()
+
+        self.v_label.entry.set_text(h)
+        self.h_label.entry.set_text(v)
+
+        # Load the data
+        for row  in chart_data:
+            self._add_value(None,
+                            label=row[0], value=float(row[1]))
+
+            self.update_chart()
 
     def __import_stopwatch_cb(self, widget):
-        boolean, file_path, title = self._object_chooser(
+        matches_mime_type, file_path, title = self._object_chooser(
                                                       STOPWATCH_MIME_TYPE,
                                                       _('StopWatch'))
 
-        if boolean:
+        if matches_mime_type:
             f = open(file_path)
-            reader = StopWatch(f)
-
-            stopwatchs_list, count = reader.get_stopwatchs_with_marks()
-
-            self.labels_and_values.model.clear()
-            self.chart_data = []
-
-            self.v_label.entry.set_text(_('Time'))
-
-            if count == 1:
-                num, name = stopwatchs_list[0]
-                self.h_label.entry.set_text(_('Mark'))
-
-                self.set_title(name)
-                chart_data = reader.marks_to_chart_data(num - 1)
-
-            elif count == 0 or count > 1:
-                self.set_title(title)
-                self.h_label.entry.set_text(_('StopWatch'))
-
-                chart_data = reader.times_to_chart_data()
-
-            # Load the data
-            for row  in chart_data:
-                self._add_value(None,
-                                label=row[0], value=float(row[1]))
-
-                self.update_chart()
+            reader = StopWatchReader(f)
+            self._graph_from_reader(reader)
 
             f.close()
 
     def __import_measure_cb(self, widget):
-        boolean, file_path, title = self._object_chooser(CSV_MIME_TYPE,
+        matches_mime_type, file_path, title = self._object_chooser(
+                                                         CSV_MIME_TYPE,
                                                          _('Measure'))
 
-        if boolean:
+        if matches_mime_type:
             f = open(file_path)
-            reader = Measure(f)
-
-            self.v_label.entry.set_text(_('Values'))
-            self.h_label.entry.set_text(_('Samples'))
-
-            self.chart_data = []
-            self.labels_and_values.model.clear()
-
-            chart_data = reader.get_chart_data()
-
-            # Load the data
-            for row  in chart_data:
-                self._add_value(None,
-                                label=row[0], value=float(row[1]))
-
-                self.update_chart()
+            reader = MeasureReader(f)
+            self._graph_from_reader(reader)
 
             f.close()
 

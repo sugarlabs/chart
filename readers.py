@@ -21,57 +21,78 @@
 import cPickle
 import csv
 
+from gettext import gettext as _
 
-class StopWatch():
+
+class StopWatchReader():
 
     def __init__(self, data):
+        """Import chart data from file."""
+
         self._data = cPickle.load(data)
 
-    def get_stopwatchs_with_marks(self):
+        self._v_label = _('Time')
+        self._h_label = ''
+
+    def get_chart_data(self):
+        """Return data suitable for pyCHA."""
+
+        count = self._get_stopwatchs_with_marks()
+        chart_data = []
+
+        if count == 1:
+            self._h_label = _('Mark')
+
+            marks_count = 0
+
+            for x in self._data[-1]:
+                x.sort()
+                for y in x:
+                    marks_count += 1
+                    chart_data.append((str(marks_count), round(y, 2)))
+
+        elif count == 0 or count > 1:
+            self._h_label = _('StopWatch')
+
+            times = [i[0][0] for i in self._data[2]]
+
+            times_count = 0
+            chart_data = []
+
+            for i in times:
+                times_count += 1
+                chart_data.append((self._get_stopwatch_name(times_count - 1),
+                                  round(i, 2)))
+
+        return chart_data
+
+    def get_labels_name(self):
+        """Return the h_label and y_label names."""
+
+        return self._v_label, self._h_label
+
+    def _get_stopwatchs_with_marks(self):
         count = 0
-        stopwatchs_list = []
         for i in self._data[-1]:
             if i:
                 count += 1
-                stopwatchs_list.append([count, self._data[1][count - 1]])
 
-        return stopwatchs_list, count
+        return count
 
-    def get_stopwatch_name(self, num=0):
+    def _get_stopwatch_name(self, num=0):
         return self._data[1][num]
 
-    def marks_to_chart_data(self, num=0, chart_data=[]):
-        marks_count = 0
 
-        marks = self._data[-1][num]
-        marks.sort()
+class MeasureReader():
 
-        for i in marks:
-            marks_count += 1
-            chart_data.append((str(marks_count), round(i, 2)))
+    def __init__(self, file):
+        """Import chart data from file."""
 
-        return chart_data
-
-    def times_to_chart_data(self):
-        times = [i[0][0] for i in self._data[2]]
-
-        times_count = 0
-        chart_data = []
-
-        for i in times:
-            times_count += 1
-            chart_data.append((self.get_stopwatch_name(times_count - 1),
-                              round(i, 2)))
-
-        return chart_data
-
-
-class Measure():
-
-    def __init__(self, data):
-        self._reader = csv.reader(data)
+        self._reader = csv.reader(file)
 
     def get_chart_data(self):
+        """Return data suitable for pyCHA."""
+
         count = 0
         chart_data = []
 
@@ -83,3 +104,11 @@ class Measure():
                 chart_data.append((label, float(value)))
 
         return chart_data
+
+    def get_labels_name(self):
+        """Return the h_label and y_label names."""
+
+        v_label = _('Values')
+        h_label = _('Samples')
+
+        return v_label, h_label
