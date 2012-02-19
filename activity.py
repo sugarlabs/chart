@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # activity.py by:
-#    Agustin Zubiaga <aguz@sugarlabs.com>
+#    Agustin Zubiaga <aguz@sugarlabs.org>
 #    Gonzalo Odiard <godiard@gmail.com>
 #    Manuel Quiñones <manuq@laptop.org>
 
