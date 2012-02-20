@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-06 22:07-0200\n"
-"PO-Revision-Date: 2012-02-07 22:15+0200\n"
+"POT-Creation-Date: 2012-02-17 00:31-0500\n"
+"PO-Revision-Date: 2012-02-20 11:00+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,74 +21,103 @@ msgstr ""
 msgid "SimpleGraph"
 msgstr "SimpleGraph"
 
-#: activity.py:118
+#: activity.py:150
 msgid "Save as image"
 msgstr "Save as image"
 
-#: activity.py:133
+#: activity.py:178
 msgid "Add a value"
 msgstr "Add a value"
 
-#: activity.py:139
+#: activity.py:184
 msgid "Remove the selected value"
 msgstr "Remove the selected value"
 
-#: activity.py:150
+#: activity.py:195
 msgid "Vertical Bar Chart"
 msgstr "Vertical Bar Chart"
 
-#: activity.py:158
+#: activity.py:203
 msgid "Horizontal Bar Chart"
 msgstr "Horizontal Bar Chart"
 
-#: activity.py:165
+#: activity.py:210
 msgid "Line Chart"
 msgstr "Line Chart"
 
-#: activity.py:172
+#: activity.py:217
 msgid "Pie Chart"
 msgstr "Pie Chart"
 
-#: activity.py:193
+#: activity.py:238
 msgid "Chart Color"
 msgstr "Chart Color"
 
-#: activity.py:199
+#: activity.py:244
 msgid "Line Color"
 msgstr "Line Color"
 
-#: activity.py:214
+#: activity.py:259
 msgid "Horizontal label..."
 msgstr "Horizontal label..."
 
-#: activity.py:228
+#: activity.py:273
 msgid "Vertical label..."
 msgstr "Vertical label..."
 
-#: activity.py:243
+#: activity.py:288
 msgid "Fullscreen"
 msgstr "Fullscreen"
 
-#: activity.py:510
-msgid "Label"
-msgstr "Label"
+#: activity.py:473
+msgid "Invalid object"
+msgstr "Invalid object"
 
-#: activity.py:521
-msgid "Value"
-msgstr "Value"
+#: activity.py:475
+#, python-format
+msgid "The selected object must be a %s file"
+msgstr "The selected object must be a %s file"
 
-#: activity.py:583
-msgid "Invalid Value"
-msgstr "Invalid Value"
-
-#: activity.py:585
-msgid "The value must be a number (integer or decimal)"
-msgstr "The value must be a number (integer or decimal)"
-
-#: activity.py:588
+#: activity.py:478 activity.py:714
 msgid "Ok"
 msgstr "Ok"
 
-#, fuzzy
-#~ msgid "Values"
-#~ msgstr "Value"
+#: activity.py:510 readers.py:55
+msgid "StopWatch"
+msgstr "StopWatch"
+
+#: activity.py:522
+msgid "Measure"
+msgstr "Measure"
+
+#: activity.py:633
+msgid "Label"
+msgstr "Label"
+
+#: activity.py:644
+msgid "Value"
+msgstr "Value"
+
+#: activity.py:709
+msgid "Invalid Value"
+msgstr "Invalid Value"
+
+#: activity.py:711
+msgid "The value must be a number (integer or decimal)"
+msgstr "The value must be a number (integer or decimal)"
+
+#: readers.py:34
+msgid "Time"
+msgstr "Time"
+
+#: readers.py:44
+msgid "Mark"
+msgstr "Mark"
+
+#: readers.py:111
+msgid "Values"
+msgstr "Values"
+
+#: readers.py:112
+msgid "Samples"
+msgstr "Samples"
