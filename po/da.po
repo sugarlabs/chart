@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-06 22:07-0200\n"
-"PO-Revision-Date: 2012-02-08 01:58+0200\n"
+"POT-Creation-Date: 2012-02-17 00:31-0500\n"
+"PO-Revision-Date: 2012-02-21 21:40+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,70 +21,103 @@ msgstr ""
 msgid "SimpleGraph"
 msgstr "SimpelGraf"
 
-#: activity.py:118
+#: activity.py:150
 msgid "Save as image"
 msgstr "Gem som billede"
 
-#: activity.py:133
+#: activity.py:178
 msgid "Add a value"
 msgstr "Tilføj en værdi"
 
-#: activity.py:139
+#: activity.py:184
 msgid "Remove the selected value"
 msgstr "Fjern den valgte værdi"
 
-#: activity.py:150
+#: activity.py:195
 msgid "Vertical Bar Chart"
 msgstr "Lodret søjleoversigt"
 
-#: activity.py:158
+#: activity.py:203
 msgid "Horizontal Bar Chart"
 msgstr "Vandret søjleoversigt"
 
-#: activity.py:165
+#: activity.py:210
 msgid "Line Chart"
 msgstr "Linjeoversigt"
 
-#: activity.py:172
+#: activity.py:217
 msgid "Pie Chart"
 msgstr "Cirkeldiagram"
 
-#: activity.py:193
+#: activity.py:238
 msgid "Chart Color"
 msgstr "Farve på oversigt"
 
-#: activity.py:199
+#: activity.py:244
 msgid "Line Color"
 msgstr "Farve på linje"
 
-#: activity.py:214
+#: activity.py:259
 msgid "Horizontal label..."
 msgstr "Vandret etikette..."
 
-#: activity.py:228
+#: activity.py:273
 msgid "Vertical label..."
 msgstr "Lodret etikette..."
 
-#: activity.py:243
+#: activity.py:288
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
-#: activity.py:510
+#: activity.py:473
+msgid "Invalid object"
+msgstr "Ugyldigt objekt"
+
+#: activity.py:475
+#, python-format
+msgid "The selected object must be a %s file"
+msgstr "Det valgte objekt skal være en %s-fil"
+
+#: activity.py:478 activity.py:714
+msgid "Ok"
+msgstr "Ok"
+
+#: activity.py:510 readers.py:55
+msgid "StopWatch"
+msgstr "Stopur"
+
+#: activity.py:522
+msgid "Measure"
+msgstr "Mål"
+
+#: activity.py:633
 msgid "Label"
 msgstr "Etikette"
 
-#: activity.py:521
+#: activity.py:644
 msgid "Value"
 msgstr "Værdi"
 
-#: activity.py:583
+#: activity.py:709
 msgid "Invalid Value"
 msgstr "Ugyldig værdi"
 
-#: activity.py:585
+#: activity.py:711
 msgid "The value must be a number (integer or decimal)"
 msgstr "Værdien skal angives som et tal (heltal eller decimaltal)"
 
-#: activity.py:588
-msgid "Ok"
-msgstr "Ok"
+#: readers.py:34
+msgid "Time"
+msgstr "Tid"
+
+#: readers.py:44
+msgid "Mark"
+msgstr "Markering"
+
+#: readers.py:111
+msgid "Values"
+msgstr "Værdier"
+
+#: readers.py:112
+msgid "Samples"
+msgstr "Stikprøver"
