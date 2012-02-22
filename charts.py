@@ -46,6 +46,8 @@ class Chart(gobject.GObject):
         self.height = height
 
     def data_set(self, data):
+        '''Set chart data (dataSet)'''
+
         self.dataSet = (
             ('Puntos', [(i, l[1]) for i, l in enumerate(data)]),
             )
@@ -76,24 +78,32 @@ class Chart(gobject.GObject):
         }
 
     def set_color_scheme(self, color='blue'):
+        '''Set the chart color scheme'''
         self.options["colorScheme"]["args"] = {'initialColor': color}
 
     def set_line_color(self, color='#d1e5ec'):
+        '''Set the chart line color'''
         self.options["background"]["lineColor"] = color
 
     def set_x_label(self, text="X"):
+        '''Set the X Label'''
         self.options["axis"]["x"]["label"] = str(text)
 
     def set_y_label(self, text="Y"):
+        '''Set the Y Label'''
         self.options["axis"]["y"]["label"] = str(text)
 
     def set_type(self, type="vertical"):
+        '''Set chart type (vertical, horizontal, line, pie)'''
         self.type = type
 
     def set_title(self, title="SimpleGraph Chart"):
+        '''Set the chart title'''
         self.options["title"] = title
 
     def render(self, sg=None):
+        '''Draw the chart
+           Use the self.surface variable for show the chart'''
         self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
                                             self.width,
                                             self.height)
@@ -118,6 +128,6 @@ class Chart(gobject.GObject):
         chart.render()
 
     def as_png(self):
-        # FIXME, don't use a temporal file
+        '''Save the chart as png image'''
         self.surface.write_to_png(CHART_IMAGE)
         return CHART_IMAGE
