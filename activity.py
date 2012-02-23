@@ -118,7 +118,15 @@ class ChartArea(gtk.DrawingArea):
         context.fill()
 
         # Paint the chart:
-        context.set_source_surface(self._parent.current_chart.surface)
+        cw = self._parent.current_chart.width
+        ch = self._parent.current_chart.height
+
+        x, y, w, h = self.get_allocation()
+
+        cx = x + w / 2 - cw / 2
+        cy = y + h / 2 - ch / 2
+
+        context.set_source_surface(self._parent.current_chart.surface, cx, cy)
         context.paint()
 
 
