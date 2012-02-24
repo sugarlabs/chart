@@ -26,6 +26,13 @@ from gettext import gettext as _
 
 class StopWatchReader():
 
+    """Reader for StopWatch activity.
+
+    If the data has only one stopwatch with marks, graphic the marks.
+    Else, graphic the final time of the stopwatches.
+
+    """
+
     def __init__(self, data):
         """Import chart data from file."""
 
