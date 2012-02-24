@@ -31,6 +31,16 @@ import locale
 
 import logging
 
+import telepathy
+import dbus
+
+from dbus.service import signal
+from dbus.gobject_service import ExportedGObject
+from sugar.presence import presenceservice
+from sugar.presence.tubeconn import TubeConnection
+
+from StringIO import StringIO
+
 from gettext import gettext as _
 
 from sugar.activity import activity
@@ -98,6 +108,10 @@ log = logging.getLogger('simplegraph-activity')
 log.setLevel(logging.DEBUG)
 logging.basicConfig()
 
+SERVICE = 'org.sugarlabs.SimpleGraph'
+IFACE = SERVICE
+PATH = '/org/sugarlabs/SimpleGraph'
+
 
 class ChartArea(gtk.DrawingArea):
 
@@ -136,7 +150,7 @@ class SimpleGraph(activity.Activity):
 
         activity.Activity.__init__(self, handle, True)
 
-        self.max_participants = 1
+        #self.max_participants = 1
 
         # CHART_OPTIONS
 
@@ -346,6 +360,10 @@ class SimpleGraph(activity.Activity):
 
         self.set_canvas(paned)
 
+        # Sharing
+        self._setup_presence_service()
+        self._sharing = False
+
         self.show_all()
 
     def _add_value(self, widget, label="", value="0.0"):
@@ -415,6 +433,9 @@ class SimpleGraph(activity.Activity):
         self.current_chart.data_set(self.chart_data)
         self._render_chart()
 
+        # Send data
+        self._send_chart_data(self.chart_data)
+
     def _update_chart_labels(self):
         if self.current_chart is None:
             return
@@ -461,6 +482,102 @@ class SimpleGraph(activity.Activity):
     def _set_chart_line_color(self, widget, pspec):
         self.chart_line_color = rgb_to_html(widget.get_color())
         self._render_chart()
+
+    # Sharing activity
+    def _setup_presence_service(self):
+        """Setup the Presence Service."""
+        self.pservice = presenceservice.get_instance()
+        self.initiating = None  # sharing (True) or joining (False)
+
+        owner = self.pservice.get_owner()
+        self.owner = owner
+        self._share = ""
+        self.connect('shared', self._shared_cb)
+        self.connect('joined', self._joined_cb)
+
+    def _shared_cb(self, activity):
+        """Either set up initial share..."""
+        self._new_tube_common(True)
+        self._sharing = True
+
+    def _joined_cb(self, activity):
+        """...or join an exisiting share."""
+        self._new_tube_common(False)
+        #self._sharing = True: FIXME, Mysterious bugs
+
+    def _new_tube_common(self, sharer):
+        """Joining and sharing are mostly the same..."""
+        if self._shared_activity is None:
+            log.debug("Error: Failed to share or join activity ... \
+                _shared_activity is null in _shared_cb()")
+            return
+
+        self.initiating = sharer
+        self.waiting_for_hand = not sharer
+
+        self.conn = self._shared_activity.telepathy_conn
+        self.tubes_chan = self._shared_activity.telepathy_tubes_chan
+        self.text_chan = self._shared_activity.telepathy_text_chan
+
+        self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].connect_to_signal(
+            'NewTube', self._new_tube_cb)
+
+        if sharer:
+            log.debug('This is my activity: making a tube...')
+            id = self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].OfferDBusTube(
+                SERVICE, {})
+        else:
+            log.debug('I am joining an activity: waiting for a tube...')
+            self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].ListTubes(
+                reply_handler=self._list_tubes_reply_cb,
+                error_handler=self._list_tubes_error_cb)
+
+    def _list_tubes_reply_cb(self, tubes):
+        """Reply to a list request."""
+        for tube_info in tubes:
+            self._new_tube_cb(*tube_info)
+
+    def _list_tubes_error_cb(self, e):
+        """Log errors."""
+        log.debug('Error: ListTubes() failed: %s' % (e))
+
+    def _new_tube_cb(self, id, initiator, type, service, params, state):
+        """Create a new tube."""
+        log.debug('New tube: ID=%d initator=%d type=%d service=%s \
+params=%r state=%d' % (id, initiator, type, service, params, state))
+
+        if (type == telepathy.TUBE_TYPE_DBUS and service == SERVICE):
+            if state == telepathy.TUBE_STATE_LOCAL_PENDING:
+                self.tubes_chan[ \
+                              telepathy.CHANNEL_TYPE_TUBES].AcceptDBusTube(id)
+
+            tube_conn = TubeConnection(self.conn,
+                self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES], id, \
+                group_iface=self.text_chan[telepathy.CHANNEL_INTERFACE_GROUP])
+
+            self.chattube = ChatTube(tube_conn, self.initiating, \
+               self.chart_data_received_cb)
+
+    def chart_data_received_cb(self, data):
+        _io_str = StringIO(data)
+        chart_data = list(simplejson.load(_io_str))
+
+        self.labels_and_values.model.clear()
+        self.chart_data = []
+
+        # Load the data
+        for row  in chart_data:
+            self._add_value(None, label=row[0], value=float(row[1]))
+
+        self.update_chart()
+
+    def _send_chart_data(self, data):
+        if self._sharing:
+            _io_str = StringIO()
+            simplejson.dump(tuple(data), _io_str)
+            log.info('Sending chart data...')
+
+            self.chattube.SendText(_io_str.getvalue())
 
     def _object_chooser(self, mime_type, type_name):
         chooser = ObjectChooser()
@@ -621,6 +738,30 @@ class SimpleGraph(activity.Activity):
             self._add_value(None, label=row[0], value=float(row[1]))
 
         self.update_chart()
+
+
+class ChatTube(ExportedGObject):
+    """ Class for setting up tube for sharing """
+
+    def __init__(self, tube, is_initiator, stack_received_cb):
+        super(ChatTube, self).__init__(tube, PATH)
+        self.tube = tube
+        self.is_initiator = is_initiator  # Are we sharing or joining activity?
+        self.stack_received_cb = stack_received_cb
+        self.stack = ''
+
+        self.tube.add_signal_receiver(self.send_stack_cb, 'SendText', IFACE,
+                                      path=PATH, sender_keyword='sender')
+
+    def send_stack_cb(self, text, sender=None):
+        if sender == self.tube.get_unique_name():
+            return
+        self.stack = text
+        self.stack_received_cb(text)
+
+    @signal(dbus_interface=IFACE, signature='s')
+    def SendText(self, text):
+        self.stack = text
 
 
 class ChartData(gtk.TreeView):
