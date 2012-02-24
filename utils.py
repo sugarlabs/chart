@@ -23,7 +23,7 @@ import gconf
 
 
 def rgb_to_html(color):
-    '''Returns a html string from a Gdk color'''
+    """Returns a html string from a Gdk color"""
     red = "%x" % int(color.red / 65535.0 * 255)
     if len(red) == 1:
             red = "0%s" % red
@@ -44,13 +44,13 @@ def rgb_to_html(color):
 
 
 def get_user_color():
-    '''Returns the user colors'''
+    """Returns the user colors"""
     color = gconf.client_get_default().get_string("/desktop/sugar/user/color")
     return color.split(",")
 
 
 def get_chart_file(activity_dir):
-    '''Returns a path for write the chart in a png image'''
+    """Returns a path for write the chart in a png image"""
     chart_file = os.path.join(activity_dir, "chart-1.png")
     num = 0
 
@@ -62,5 +62,5 @@ def get_chart_file(activity_dir):
 
 
 def get_decimals(number):
-    '''Returns the decimals count of a number'''
+    """Returns the decimals count of a number"""
     return str(len(number.split('.')[1]))

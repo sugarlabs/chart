@@ -70,8 +70,8 @@ CHART_FILE = utils.get_chart_file(ACTIVITY_DIR)
 print CHART_FILE
 
 # Logging
-log = logging.getLogger('simplegraph-activity')
-log.setLevel(logging.DEBUG)
+_logger = logging.getLogger('simplegraph-activity')
+_logger.setLevel(logging.DEBUG)
 logging.basicConfig()
 
 # Tube
@@ -83,6 +83,7 @@ PATH = '/org/sugarlabs/SimpleGraph'
 class ChartArea(gtk.DrawingArea):
 
     def __init__(self, parent):
+        """A class for Draw the chart"""
         super(ChartArea, self).__init__()
         self._parent = parent
         self.add_events(gtk.gdk.EXPOSURE_MASK | gtk.gdk.VISIBILITY_NOTIFY_MASK)
@@ -475,7 +476,7 @@ class SimpleGraph(activity.Activity):
     def _new_tube_common(self, sharer):
         """Joining and sharing are mostly the same..."""
         if self._shared_activity is None:
-            log.debug("Error: Failed to share or join activity ... \
+            _logger.debug("Error: Failed to share or join activity ... \
                 _shared_activity is null in _shared_cb()")
             return
 
@@ -490,11 +491,11 @@ class SimpleGraph(activity.Activity):
             'NewTube', self._new_tube_cb)
 
         if sharer:
-            log.debug('This is my activity: making a tube...')
+            _logger.debug('This is my activity: making a tube...')
             id = self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].OfferDBusTube(
                 SERVICE, {})
         else:
-            log.debug('I am joining an activity: waiting for a tube...')
+            _logger.debug('I am joining an activity: waiting for a tube...')
             self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].ListTubes(
                 reply_handler=self._list_tubes_reply_cb,
                 error_handler=self._list_tubes_error_cb)
@@ -506,11 +507,11 @@ class SimpleGraph(activity.Activity):
 
     def _list_tubes_error_cb(self, e):
         """Log errors."""
-        log.debug('Error: ListTubes() failed: %s' % (e))
+        _logger.debug('Error: ListTubes() failed: %s' % (e))
 
     def _new_tube_cb(self, id, initiator, type, service, params, state):
         """Create a new tube."""
-        log.debug('New tube: ID=%d initator=%d type=%d service=%s \
+        _logger.debug('New tube: ID=%d initator=%d type=%d service=%s \
 params=%r state=%d' % (id, initiator, type, service, params, state))
 
         if (type == telepathy.TUBE_TYPE_DBUS and service == SERVICE):
@@ -542,7 +543,7 @@ params=%r state=%d' % (id, initiator, type, service, params, state))
         if self._sharing:
             _io_str = StringIO()
             simplejson.dump(tuple(data), _io_str)
-            log.info('Sending chart data...')
+            _logger.info('Sending chart data...')
 
             self.chattube.SendText(_io_str.getvalue())
 
@@ -775,7 +776,7 @@ class ChartData(gtk.TreeView):
                         self.get_column(1),
                         True)
 
-        log.info("Added: %s, Value: %s" % (label, value))
+        _logger.info("Added: %s, Value: %s" % (label, value))
 
         return path
 
@@ -789,13 +790,13 @@ class ChartData(gtk.TreeView):
         return path
 
     def _label_changed(self, cell, path, new_text, model):
-        log.info("Change '%s' to '%s'" % (model[path][0], new_text))
+        _logger.info("Change '%s' to '%s'" % (model[path][0], new_text))
         model[path][0] = new_text
 
         self.emit("label-changed", str(path), new_text)
 
     def _value_changed(self, cell, path, new_text, model, activity):
-        log.info("Change '%s' to '%s'" % (model[path][1], new_text))
+        _logger.info("Change '%s' to '%s'" % (model[path][1], new_text))
         is_number = True
         number = new_text.replace(",", ".")
         try:
