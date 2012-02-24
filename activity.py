@@ -660,16 +660,7 @@ params=%r state=%d' % (id, initiator, type, service, params, state))
             jobject.metadata['title'] = self.metadata["title"]
             jobject.metadata['mime_type'] = "image/png"
 
-            temp_path = self.current_chart.as_png()
-
-            image = open(temp_path, "r")
-            jfile = open(CHART_FILE, "w")
-
-            jfile.write(image.read())
-
-            jfile.close()
-            image.close()
-
+            self.current_chart.as_png(CHART_FILE)
             jobject.set_file_path(CHART_FILE)
 
             datastore.write(jobject)

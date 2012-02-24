@@ -30,8 +30,6 @@ import gobject
 
 from sugar.activity import activity
 
-CHART_IMAGE = os.path.join(activity.get_activity_root(), "tmp", "chart.png")
-
 
 class Chart(gobject.GObject):
     def __init__(self, type="vertical", width=600, height=460):
@@ -127,7 +125,6 @@ class Chart(gobject.GObject):
         chart.addDataset(self.dataSet)
         chart.render()
 
-    def as_png(self):
+    def as_png(self, file):
         '''Save the chart as png image'''
-        self.surface.write_to_png(CHART_IMAGE)
-        return CHART_IMAGE
+        self.surface.write_to_png(file)
