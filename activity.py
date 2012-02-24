@@ -23,26 +23,21 @@
 import gtk
 import gobject
 import pango
-
 import os
-import gconf
 import simplejson
 import locale
-
 import logging
-
 import telepathy
-import dbus
-
-from dbus.service import signal
-from dbus.gobject_service import ExportedGObject
-from sugar.presence import presenceservice
-from sugar.presence.tubeconn import TubeConnection
-
-from StringIO import StringIO
+import utils
 
 from gettext import gettext as _
 
+from dbus.service import signal
+from dbus.gobject_service import ExportedGObject
+from StringIO import StringIO
+
+from sugar.presence import presenceservice
+from sugar.presence.tubeconn import TubeConnection
 from sugar.activity import activity
 from sugar.activity.widgets import ActivityToolbarButton
 from sugar.activity.widgets import StopButton
@@ -60,54 +55,26 @@ from charts import Chart
 from readers import StopWatchReader
 from readers import MeasureReader
 
-
-def rgb_to_html(color):
-        red = "%x" % int(color.red / 65535.0 * 255)
-        if len(red) == 1:
-                red = "0%s" % red
-
-        green = "%x" % int(color.green / 65535.0 * 255)
-
-        if len(green) == 1:
-                green = "0%s" % green
-
-        blue = "%x" % int(color.blue / 65535.0 * 255)
-
-        if len(blue) == 1:
-                blue = "0%s" % blue
-
-        new_color = "#%s%s%s" % (red, green, blue)
-
-        return new_color
-
-
-def get_user_color():
-    color = gconf.client_get_default().get_string("/desktop/sugar/user/color")
-    return color.split(",")
-
-
+# Mime types
 STOPWATCH_MIME_TYPE = "application/x-stopwatch-activity"
 CSV_MIME_TYPE = "text/csv"
 
-COLOR1 = gtk.gdk.Color(get_user_color()[0])
-COLOR2 = gtk.gdk.Color(get_user_color()[1])
-
+# GUI Colors
+COLOR1 = gtk.gdk.Color(utils.get_user_color()[0])
+COLOR2 = gtk.gdk.Color(utils.get_user_color()[1])
 WHITE = gtk.gdk.color_parse("white")
 
+# Paths
 ACTIVITY_DIR = os.path.join(activity.get_activity_root(), "data/")
-CHART_FILE = os.path.join(ACTIVITY_DIR, "chart-1.png")
-num = 0
+CHART_FILE = utils.get_chart_file(ACTIVITY_DIR)
+print CHART_FILE
 
-while os.path.exists(CHART_FILE):
-    num += 1
-    CHART_FILE = os.path.join(ACTIVITY_DIR, "chart-" + str(num) + ".png")
-
-del num
-
+# Logging
 log = logging.getLogger('simplegraph-activity')
 log.setLevel(logging.DEBUG)
 logging.basicConfig()
 
+# Tube
 SERVICE = 'org.sugarlabs.SimpleGraph'
 IFACE = SERVICE
 PATH = '/org/sugarlabs/SimpleGraph'
@@ -156,8 +123,8 @@ class SimpleGraph(activity.Activity):
 
         self.x_label = ""
         self.y_label = ""
-        self.chart_color = get_user_color()[0]
-        self.chart_line_color = get_user_color()[1]
+        self.chart_color = utils.get_user_color()[0]
+        self.chart_line_color = utils.get_user_color()[1]
         self.current_chart = None
         self.chart_data = []
 
@@ -476,11 +443,11 @@ class SimpleGraph(activity.Activity):
             self._update_chart_labels()
 
     def _set_chart_color(self, widget, pspec):
-        self.chart_color = rgb_to_html(widget.get_color())
+        self.chart_color = utils.rgb_to_html(widget.get_color())
         self._render_chart()
 
     def _set_chart_line_color(self, widget, pspec):
-        self.chart_line_color = rgb_to_html(widget.get_color())
+        self.chart_line_color = utils.rgb_to_html(widget.get_color())
         self._render_chart()
 
     # Sharing activity
@@ -837,7 +804,7 @@ class ChartData(gtk.TreeView):
             is_number = False
 
         if is_number:
-            decimals = self._get_decimals(str(float(number)))
+            decimals = utils.get_decimals(str(float(number)))
             new_text = locale.format('%.' + decimals + 'f', float(number))
             model[path][1] = str(new_text)
 
@@ -859,9 +826,6 @@ class ChartData(gtk.TreeView):
             activity.add_alert(alert)
 
             alert.show()
-
-    def _get_decimals(self, number):
-        return str(len(number.split('.')[1]))
 
 
 class Entry(gtk.ToolItem):

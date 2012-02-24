@@ -25,10 +25,7 @@ import pycha.line
 import pycha.pie
 
 import cairo
-import os
 import gobject
-
-from sugar.activity import activity
 
 
 class Chart(gobject.GObject):
