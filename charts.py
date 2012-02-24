@@ -115,7 +115,6 @@ class Chart(gobject.GObject):
         elif self.type == "pie":
             self.options["legend"] = {"hide": "False"}
             chart = pycha.pie.PieChart(self.surface, self.options)
-            print sg.chart_data
             self.dataSet = [(data[0],
                             [[0, data[1]]]) for data in sg.chart_data]
 

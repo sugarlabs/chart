@@ -67,7 +67,6 @@ WHITE = gtk.gdk.color_parse("white")
 # Paths
 ACTIVITY_DIR = os.path.join(activity.get_activity_root(), "data/")
 CHART_FILE = utils.get_chart_file(ACTIVITY_DIR)
-print CHART_FILE
 
 # Logging
 _logger = logging.getLogger('simplegraph-activity')
@@ -127,6 +126,7 @@ class SimpleGraph(activity.Activity):
         self.chart_color = utils.get_user_color()[0]
         self.chart_line_color = utils.get_user_color()[1]
         self.current_chart = None
+        self.charts_area = None
         self.chart_data = []
 
         # TOOLBARS
@@ -364,34 +364,38 @@ class SimpleGraph(activity.Activity):
         activity.Activity.fullscreen(self)
 
     def _render_chart(self, fullscreen=False):
-        if self.current_chart is None:
+        if self.current_chart is None or self.charts_area is None:
             return
 
-        # Resize the chart for all the screen sizes
-        x, y, w, h = self.get_allocation()
+        try:
+            # Resize the chart for all the screen sizes
+            x, y, w, h = self.get_allocation()
 
-        if fullscreen:
-            new_width = w
-            new_height = h
+            if fullscreen:
+                new_width = w
+                new_height = h
 
-        if not fullscreen:
-            sx, sy, width, height = self.charts_area.get_allocation()
+            if not fullscreen:
+                sx, sy, width, height = self.charts_area.get_allocation()
 
-            new_width = width - 40
-            new_height = height - 40
+                new_width = width - 40
+                new_height = height - 40
 
-        self.current_chart.width = new_width
-        self.current_chart.height = new_height
+            self.current_chart.width = new_width
+            self.current_chart.height = new_height
 
-        # Set options
-        self.current_chart.set_color_scheme(color=self.chart_color)
-        self.current_chart.set_line_color(self.chart_line_color)
+            # Set options
+            self.current_chart.set_color_scheme(color=self.chart_color)
+            self.current_chart.set_line_color(self.chart_line_color)
 
-        if self.current_chart.type == "pie":
-            self.current_chart.render(self)
-        else:
-            self.current_chart.render()
-        self.charts_area.queue_draw()
+            if self.current_chart.type == "pie":
+                self.current_chart.render(self)
+            else:
+                self.current_chart.render()
+            self.charts_area.queue_draw()
+
+        except (ZeroDivisionError, ValueError):
+            pass
 
         return False
 
