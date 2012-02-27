@@ -32,10 +32,6 @@ import utils
 
 from gettext import gettext as _
 
-from dbus.service import signal
-from dbus.gobject_service import ExportedGObject
-from StringIO import StringIO
-
 from sugar.presence import presenceservice
 from sugar.presence.tubeconn import TubeConnection
 from sugar.activity import activity
@@ -54,6 +50,9 @@ from sugar.datastore import datastore
 from charts import Chart
 from readers import StopWatchReader
 from readers import MeasureReader
+from sharing import Receive
+from sharing import Send
+from sharing import ChatTube
 
 # Mime types
 STOPWATCH_MIME_TYPE = "application/x-stopwatch-activity"
@@ -107,8 +106,13 @@ class ChartArea(gtk.DrawingArea):
         cx = x + w / 2 - cw / 2
         cy = y + h / 2 - ch / 2
 
-        context.set_source_surface(self._parent.current_chart.surface, cx, cy)
-        context.paint()
+        try:
+            context.set_source_surface(self._parent.current_chart.surface,
+                                       cx, cy)
+            context.paint()
+
+        except TypeError:
+            pass
 
 
 class SimpleGraph(activity.Activity):
@@ -334,17 +338,27 @@ class SimpleGraph(activity.Activity):
 
         self.show_all()
 
-    def _add_value(self, widget, label="", value="0.0"):
+    def _add_value(self, widget, label="", value="0.0", path='auto'):
         data = (label, float(value))
         if not data in self.chart_data:
-            pos = self.labels_and_values.add_value(label, value)
+            pos = self.labels_and_values.add_value(label, value, path)
             self.chart_data.insert(pos, data)
             self._update_chart_data()
+
+            # For sharing
+            if self._sharing:
+                data = (label, value, path)
+                self.send.add_value(data)
 
     def _remove_value(self, widget):
         path = self.labels_and_values.remove_selected_value()
         del self.chart_data[path]
         self._update_chart_data()
+
+        # For sharing
+        if self._sharing:
+            data = (path)
+            self.send.remove_value(data)
 
     def _add_chart_cb(self, widget, type="vbar"):
         self.current_chart = Chart(type)
@@ -403,16 +417,17 @@ class SimpleGraph(activity.Activity):
         if self.current_chart is None:
             return
         self.current_chart.data_set(self.chart_data)
+        self._update_chart_labels()
         self._render_chart()
-
-        # Send data
-        self._send_chart_data(self.chart_data)
 
     def _update_chart_labels(self):
         if self.current_chart is None:
             return
+        self.current_chart.set_title(self.metadata["title"])
         self.current_chart.set_x_label(self.x_label)
         self.current_chart.set_y_label(self.y_label)
+        self.h_label.entry.set_text(self.x_label)
+        self.v_label.entry.set_text(self.y_label)
         self._render_chart()
 
     def update_chart(self):
@@ -428,10 +443,20 @@ class SimpleGraph(activity.Activity):
         self.chart_data[path] = (new_label, self.chart_data[path][1])
         self._update_chart_data()
 
+        # For sharing
+        if self._sharing:
+            data = (path, new_label)
+            self.send.label_changed(data)
+
     def _value_changed(self, tw, path, new_value):
         path = int(path)
         self.chart_data[path] = (self.chart_data[path][0], float(new_value))
         self._update_chart_data()
+
+        # For sharing
+        if self._sharing:
+            data = (path, new_value)
+            self.send.value_changed(data)
 
     def _set_h_label(self, widget):
         new_text = widget.get_text()
@@ -440,6 +465,11 @@ class SimpleGraph(activity.Activity):
             self.x_label = new_text
             self._update_chart_labels()
 
+            # For sharing
+            if self._sharing:
+                data = (new_text)
+                self.send.set_x_label(data)
+
     def _set_v_label(self, widget):
         new_text = widget.get_text()
 
@@ -447,13 +477,28 @@ class SimpleGraph(activity.Activity):
             self.y_label = new_text
             self._update_chart_labels()
 
+            # For sharing
+            if self._sharing:
+                data = (new_text)
+                self.send.set_y_label(data)
+
     def _set_chart_color(self, widget, pspec):
         self.chart_color = utils.rgb_to_html(widget.get_color())
         self._render_chart()
 
+        # For sharing
+        if self._sharing:
+            data = (self.chart_color)
+            self.send.set_chart_color(data)
+
     def _set_chart_line_color(self, widget, pspec):
         self.chart_line_color = utils.rgb_to_html(widget.get_color())
         self._render_chart()
+
+        # For sharing
+        if self._sharing:
+            data = (self.chart_line_color)
+            self.send.set_line_color(data)
 
     # Sharing activity
     def _setup_presence_service(self):
@@ -475,7 +520,7 @@ class SimpleGraph(activity.Activity):
     def _joined_cb(self, activity):
         """...or join an exisiting share."""
         self._new_tube_common(False)
-        #self._sharing = True: FIXME, Mysterious bugs
+        self._sharing = True
 
     def _new_tube_common(self, sharer):
         """Joining and sharing are mostly the same..."""
@@ -490,6 +535,9 @@ class SimpleGraph(activity.Activity):
         self.conn = self._shared_activity.telepathy_conn
         self.tubes_chan = self._shared_activity.telepathy_tubes_chan
         self.text_chan = self._shared_activity.telepathy_text_chan
+
+        self.receive = Receive(self, _logger)
+        self.send = Send(self)
 
         self.tubes_chan[telepathy.CHANNEL_TYPE_TUBES].connect_to_signal(
             'NewTube', self._new_tube_cb)
@@ -528,28 +576,7 @@ params=%r state=%d' % (id, initiator, type, service, params, state))
                 group_iface=self.text_chan[telepathy.CHANNEL_INTERFACE_GROUP])
 
             self.chattube = ChatTube(tube_conn, self.initiating, \
-               self.chart_data_received_cb)
-
-    def chart_data_received_cb(self, data):
-        _io_str = StringIO(data)
-        chart_data = list(simplejson.load(_io_str))
-
-        self.labels_and_values.model.clear()
-        self.chart_data = []
-
-        # Load the data
-        for row  in chart_data:
-            self._add_value(None, label=row[0], value=float(row[1]))
-
-        self.update_chart()
-
-    def _send_chart_data(self, data):
-        if self._sharing:
-            _io_str = StringIO()
-            simplejson.dump(tuple(data), _io_str)
-            _logger.info('Sending chart data...')
-
-            self.chattube.SendText(_io_str.getvalue())
+               self.receive.event_received_cb)
 
     def _object_chooser(self, mime_type, type_name):
         chooser = ObjectChooser()
@@ -703,30 +730,6 @@ params=%r state=%d' % (id, initiator, type, service, params, state))
         self.update_chart()
 
 
-class ChatTube(ExportedGObject):
-    """ Class for setting up tube for sharing """
-
-    def __init__(self, tube, is_initiator, stack_received_cb):
-        super(ChatTube, self).__init__(tube, PATH)
-        self.tube = tube
-        self.is_initiator = is_initiator  # Are we sharing or joining activity?
-        self.stack_received_cb = stack_received_cb
-        self.stack = ''
-
-        self.tube.add_signal_receiver(self.send_stack_cb, 'SendText', IFACE,
-                                      path=PATH, sender_keyword='sender')
-
-    def send_stack_cb(self, text, sender=None):
-        if sender == self.tube.get_unique_name():
-            return
-        self.stack = text
-        self.stack_received_cb(text)
-
-    @signal(dbus_interface=IFACE, signature='s')
-    def SendText(self, text):
-        self.stack = text
-
-
 class ChartData(gtk.TreeView):
 
     __gsignals__ = {
@@ -764,9 +767,11 @@ class ChartData(gtk.TreeView):
         self.append_column(column)
         self.set_enable_search(False)
 
+        self.activity = activity
+
         self.show_all()
 
-    def add_value(self, label, value):
+    def add_value(self, label, value, pos='auto'):
         selected = self.get_selection().get_selected()[1]
         if not selected:
             path = 0
@@ -774,11 +779,15 @@ class ChartData(gtk.TreeView):
         elif selected:
             path = self.model.get_path(selected)[0] + 1
 
+        if pos != 'auto':
+            path = pos
+
         iter = self.model.insert(path, [label, value])
 
-        self.set_cursor(self.model.get_path(iter),
-                        self.get_column(1),
-                        True)
+        if not self.activity._sharing:
+            self.set_cursor(self.model.get_path(iter),
+                            self.get_column(1),
+                            True)
 
         _logger.info("Added: %s, Value: %s" % (label, value))
 

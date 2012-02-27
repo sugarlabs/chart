@@ -20,6 +20,9 @@
 
 import os
 import gconf
+import json
+
+from StringIO import StringIO
 
 
 def rgb_to_html(color):
@@ -64,3 +67,17 @@ def get_chart_file(activity_dir):
 def get_decimals(number):
     """Returns the decimals count of a number"""
     return str(len(number.split('.')[1]))
+
+
+def json_load(data):
+    _io_str = StringIO(data)
+    data = json.load(_io_str)
+
+    return data
+
+
+def json_dump(data):
+    _io_str = StringIO()
+    json.dump(data, _io_str)
+
+    return _io_str.getvalue()
