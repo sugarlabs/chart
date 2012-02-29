@@ -387,6 +387,7 @@ class SimpleGraph(activity.Activity):
         if self.current_chart is None:
             return
         self.current_chart.data_set(self.chart_data)
+        self._update_chart_labels()
         self._render_chart()
 
     def _update_chart_labels(self):
@@ -394,6 +395,7 @@ class SimpleGraph(activity.Activity):
             return
         self.current_chart.set_x_label(self.x_label)
         self.current_chart.set_y_label(self.y_label)
+        self.current_chart.set_title(self.metadata['title'])
         self._render_chart()
 
     def update_chart(self):
@@ -586,6 +588,7 @@ class SimpleGraph(activity.Activity):
             self._add_value(None, label=row[0], value=float(row[1]))
 
         self.update_chart()
+
 
 class ChartData(gtk.TreeView):
 

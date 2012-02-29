@@ -48,7 +48,7 @@ msgstr "Grafico de barras horizontales"
 #: activity.py:210
 #: activity.py:165
 msgid "Line Chart"
-msgstr "Color de las lineas"
+msgstr "Grafico de lineas"
 
 #: activity.py:217
 #: activity.py:172
