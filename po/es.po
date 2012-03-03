@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-17 00:31-0500\n"
-"PO-Revision-Date: 2012-02-17 18:10+0200\n"
-"Last-Translator: manuq <manuel.por.aca@gmail.com>\n"
+"PO-Revision-Date: 2012-02-26 00:17+0200\n"
+"Last-Translator: aguz <aguz@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -26,106 +26,98 @@ msgid "Save as image"
 msgstr "Guardar como imagen"
 
 #: activity.py:178
-#: activity.py:133
 msgid "Add a value"
 msgstr "Agregar un valor"
 
 #: activity.py:184
-#: activity.py:139
 msgid "Remove the selected value"
 msgstr "Eliminar el valor seleccionado"
 
 #: activity.py:195
-#: activity.py:150
 msgid "Vertical Bar Chart"
 msgstr "Grafico de barras verticales"
 
 #: activity.py:203
-#: activity.py:158
 msgid "Horizontal Bar Chart"
 msgstr "Grafico de barras horizontales"
 
 #: activity.py:210
-#: activity.py:165
 msgid "Line Chart"
-msgstr "Color de las lineas"
+msgstr "Grafico de lineas"
 
 #: activity.py:217
-#: activity.py:172
 msgid "Pie Chart"
 msgstr "Grafico torta"
 
 #: activity.py:238
-#: activity.py:193
 msgid "Chart Color"
 msgstr "Color del grafico"
 
 #: activity.py:244
-#: activity.py:199
 msgid "Line Color"
 msgstr "Color de las lineas"
 
 #: activity.py:259
-#: activity.py:214
 msgid "Horizontal label..."
 msgstr "Etiqueta horizontal..."
 
 #: activity.py:273
-#: activity.py:228
 msgid "Vertical label..."
 msgstr "Etiqueta vertical..."
 
 #: activity.py:288
-#: activity.py:243
 msgid "Fullscreen"
 msgstr "Pantalla Completa"
 
-#~ msgid "Invalid object"
-#~ msgstr ""
+#: activity.py:473
+msgid "Invalid object"
+msgstr "Objeto inválido"
 
+#: activity.py:475
 #, python-format
-#~ msgid "The selected object must be a %s file"
-#~ msgstr ""
+msgid "The selected object must be a %s file"
+msgstr "El objeto seleccionado debe ser un archivo %s"
 
 #: activity.py:478 activity.py:714
-#: activity.py:588
 msgid "Ok"
 msgstr "Ok"
 
-#~ msgid "StopWatch"
-#~ msgstr ""
+#: activity.py:510 readers.py:55
+msgid "StopWatch"
+msgstr "Cronometro"
 
-#~ msgid "Measure"
-#~ msgstr ""
+#: activity.py:522
+msgid "Measure"
+msgstr "Medir"
 
 #: activity.py:633
-#: activity.py:510
 msgid "Label"
 msgstr "Etiqueta"
 
 #: activity.py:644
-#: activity.py:521
 msgid "Value"
 msgstr "Valor"
 
 #: activity.py:709
-#: activity.py:583
 msgid "Invalid Value"
 msgstr "Valor invalido"
 
 #: activity.py:711
-#: activity.py:585
 msgid "The value must be a number (integer or decimal)"
 msgstr "El valor debe ser un numero (entero o decimal)"
 
-#~ msgid "Time"
-#~ msgstr ""
+#: readers.py:34
+msgid "Time"
+msgstr "Tiempo"
 
-#~ msgid "Mark"
-#~ msgstr ""
+#: readers.py:44
+msgid "Mark"
+msgstr "Marca"
 
-#~ msgid "Values"
-#~ msgstr ""
+#: readers.py:111
+msgid "Values"
+msgstr "Valores"
 
-#~ msgid "Samples"
-#~ msgstr ""
+#: readers.py:112
+msgid "Samples"
+msgstr "Muestras"
