@@ -308,6 +308,7 @@ class SimpleGraph(activity.Activity):
 
         eventbox = gtk.EventBox()
         self.charts_area = ChartArea(self)
+        self.charts_area.connect('size_allocate', self._chart_size_allocate)
 
         eventbox.modify_bg(gtk.STATE_NORMAL, WHITE)
 
@@ -335,12 +336,12 @@ class SimpleGraph(activity.Activity):
 
         self.update_chart()
 
+    def _chart_size_allocate(self, widget, allocation):
+        self._render_chart()
+
     def unfullscreen(self):
         self.box.show()
         activity.Activity.unfullscreen(self)
-
-        # A reasonable time for the system
-        gobject.timeout_add(50, self._render_chart, False)
 
     def __fullscreen_cb(self, button):
         self.box.hide()
