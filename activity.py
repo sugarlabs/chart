@@ -588,6 +588,7 @@ class SimpleGraph(activity.Activity):
 
         self.update_chart()
 
+
 class ChartData(gtk.TreeView):
 
     __gsignals__ = {
