@@ -524,7 +524,7 @@ class SimpleGraph(activity.Activity):
             datastore.write(jobject)
 
     def write_file(self, file_path):
-        self.metadata['mime_type'] = "activity/x-simplegraph"
+        self.metadata['mime_type'] = "application/x-simplegraph-activity"
         if self.current_chart:
 
             data = {}
