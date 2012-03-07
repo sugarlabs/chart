@@ -47,6 +47,7 @@ from sugar.datastore import datastore
 from charts import Chart
 from readers import StopWatchReader
 from readers import MeasureReader
+import simplegraphhelp
 
 # Mime types
 STOPWATCH_MIME_TYPE = "application/x-stopwatch-activity"
@@ -272,6 +273,8 @@ class SimpleGraph(activity.Activity):
         separator.set_draw(False)
         separator.set_expand(True)
         toolbarbox.toolbar.insert(separator, -1)
+
+        simplegraphhelp.create_help(toolbarbox.toolbar)
 
         stopbtn = StopButton(self)
         toolbarbox.toolbar.insert(stopbtn, -1)
