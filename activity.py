@@ -124,6 +124,8 @@ class SimpleGraph(activity.Activity):
         activity_button = ActivityToolbarButton(self)
         activity_btn_toolbar = activity_button.page
 
+        activity_btn_toolbar.title.connect('changed', self._set_chart_title)
+
         save_as_image = ToolButton("save-as-image")
         save_as_image.connect("clicked", self._save_as_image)
         save_as_image.set_tooltip(_("Save as image"))
@@ -391,11 +393,19 @@ class SimpleGraph(activity.Activity):
         if self.current_chart is None:
             return
         self.current_chart.data_set(self.chart_data)
-        self._render_chart()
+        self._update_chart_labels()
 
-    def _update_chart_labels(self):
+    def _set_chart_title(self, widget):
+        self._update_chart_labels(title=widget.get_text())
+
+    def _update_chart_labels(self, title=""):
         if self.current_chart is None:
             return
+
+        if not title and self.metadata["title"]:
+            title = self.metadata["title"]
+
+        self.current_chart.set_title(title)
         self.current_chart.set_x_label(self.x_label)
         self.current_chart.set_y_label(self.y_label)
         self._render_chart()
