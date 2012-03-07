@@ -149,11 +149,6 @@ class SimpleGraph(activity.Activity):
 
         toolbarbox.toolbar.insert(activity_button, 0)
 
-        separator = gtk.SeparatorToolItem()
-        separator.set_draw(False)
-        separator.set_expand(False)
-        toolbarbox.toolbar.insert(separator, -1)
-
         add_v = ToolButton("row-insert")
         add_v.connect("clicked", self._add_value)
         add_v.set_tooltip(_("Add a value"))
