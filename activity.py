@@ -80,23 +80,23 @@ class ChartArea(gtk.DrawingArea):
     def _expose_cb(self, widget, event):
         context = self.window.cairo_create()
 
-        x, y, w, h = self.get_allocation()
+        xpos, ypos, width, height = self.get_allocation()
 
         # White Background:
-        context.rectangle(0, 0, w, h)
+        context.rectangle(0, 0, width, height)
         context.set_source_rgb(255, 255, 255)
         context.fill()
 
         # Paint the chart:
-        cw = self._parent.current_chart.width
-        ch = self._parent.current_chart.height
+        chart_width = self._parent.current_chart.width
+        chart_height = self._parent.current_chart.height
 
-        x, y, w, h = self.get_allocation()
+        cxpos = xpos + width / 2 - chart_width / 2
+        cypos = ypos + height / 2 - chart_height / 2
 
-        cx = x + w / 2 - cw / 2
-        cy = y + h / 2 - ch / 2
-
-        context.set_source_surface(self._parent.current_chart.surface, cx, cy)
+        context.set_source_surface(self._parent.current_chart.surface,
+                                   cxpos,
+                                   cypos)
         context.paint()
 
 
@@ -354,14 +354,14 @@ class SimpleGraph(activity.Activity):
 
         try:
             # Resize the chart for all the screen sizes
-            x, y, w, h = self.get_allocation()
+            xpos, ypos, width, height = self.get_allocation()
 
             if fullscreen:
-                new_width = w
-                new_height = h
+                new_width = width
+                new_height = height
 
             if not fullscreen:
-                sx, sy, width, height = self.charts_area.get_allocation()
+                sxpos, sypos, width, height = self.charts_area.get_allocation()
 
                 new_width = width - 40
                 new_height = height - 40
@@ -413,12 +413,12 @@ class SimpleGraph(activity.Activity):
             self.current_chart.set_y_label(self.y_label)
             self._render_chart()
 
-    def _label_changed(self, tw, path, new_label):
+    def _label_changed(self, treeview, path, new_label):
         path = int(path)
         self.chart_data[path] = (new_label, self.chart_data[path][1])
         self._update_chart_data()
 
-    def _value_changed(self, tw, path, new_value):
+    def _value_changed(self, treeview, path, new_value):
         path = int(path)
         self.chart_data[path] = (self.chart_data[path][0], float(new_value))
         self._update_chart_data()
@@ -675,7 +675,7 @@ class ChartData(gtk.TreeView):
         number = new_text.replace(",", ".")
         try:
             float(number)
-        except:
+        except ValueError:
             is_number = False
 
         if is_number:
@@ -714,14 +714,14 @@ class Entry(gtk.ToolItem):
         self.entry.connect("focus-out-event", self._focus_out)
         self.entry.modify_font(pango.FontDescription("italic"))
 
-        self.text = text
+        self._text = text
 
         self.add(self.entry)
 
         self.show_all()
 
     def _focus_in(self, widget, event):
-        if widget.get_text() == self.text:
+        if widget.get_text() == self._text:
             widget.set_text("")
             widget.modify_font(pango.FontDescription(""))
 
