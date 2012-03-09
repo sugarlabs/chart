@@ -86,3 +86,19 @@ def get_chart_file(activity_dir):
 def get_decimals(number):
     """Returns the decimals count of a number"""
     return str(len(number.split('.')[1]))
+
+
+def get_channels():
+    path = os.path.join('/sys/class/dmi/id', 'product_version')
+    try:
+        product = open(path).readline().strip()
+
+    except:
+        product = None
+
+    if product == '1' or product == '1.0':
+        return 1
+
+    else:
+        return 2
+

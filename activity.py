@@ -142,8 +142,13 @@ class SimpleGraph(activity.Activity):
 
         import_measure = ToolButton("import-measure")
         import_measure.set_tooltip(_("Read Measure data"))
-        import_measure.connect("clicked", self._measure_btn_clicked)
-        self._create_measure_palette(import_measure)
+
+        if utils.get_channels() > 1:
+            import_measure.connect("clicked", self._measure_btn_clicked)
+            self._create_measure_palette(import_measure)
+
+        elif utils.get_channels() == 1:
+            import_measure.connect("clicked", self.__import_measure_cb, 1)
 
         activity_btn_toolbar.insert(import_measure, -1)
 
