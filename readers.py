@@ -92,10 +92,11 @@ class StopWatchReader():
 
 class MeasureReader():
 
-    def __init__(self, file):
+    def __init__(self, file, channel):
         """Import chart data from file."""
 
         self._reader = csv.reader(file)
+        self._channel = str(channel - 1)
 
     def get_chart_data(self):
         """Return data suitable for pyCHA."""
@@ -108,7 +109,14 @@ class MeasureReader():
 
             if count > 6:
                 label, value = row[0].split(": ")
-                chart_data.append((label, float(value)))
+                split = label.split(".")
+
+                if len(split) > 1:
+                    if split[1] == self._channel:
+                        chart_data.append((split[0], float(value)))
+
+                elif len(split) < 1:
+                    chart_data.append((split[0], float(value)))
 
         return chart_data
 

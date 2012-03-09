@@ -135,12 +135,16 @@ class SimpleGraph(activity.Activity):
 
         import_stopwatch = ToolButton("import-stopwatch")
         import_stopwatch.connect("clicked", self.__import_stopwatch_cb)
+        import_stopwatch.set_tooltip(_("Read StopWatch data"))
         activity_btn_toolbar.insert(import_stopwatch, -1)
 
         import_stopwatch.show()
 
         import_measure = ToolButton("import-measure")
-        import_measure.connect("clicked", self.__import_measure_cb)
+        import_measure.set_tooltip(_("Read Measure data"))
+        import_measure.connect("clicked", self._measure_btn_clicked)
+        self._create_measure_palette(import_measure)
+
         activity_btn_toolbar.insert(import_measure, -1)
 
         import_measure.show()
@@ -318,6 +322,27 @@ class SimpleGraph(activity.Activity):
         self.set_canvas(paned)
 
         self.show_all()
+
+    def _create_measure_palette(self, button):
+        palette = button.get_palette()
+        hbox = gtk.HBox()
+
+        channel1 = ToolButton("measure-channel-1")
+        channel1.connect("clicked", self.__import_measure_cb, 1)
+
+        channel2 = ToolButton("measure-channel-2")
+        channel2.connect("clicked", self.__import_measure_cb, 2)
+
+        hbox.pack_start(channel1, False, True, 0)
+        hbox.pack_end(channel2, False, True, 0)
+
+        hbox.show_all()
+
+        palette.set_content(hbox)
+
+    def _measure_btn_clicked(self, button):
+        palette = button.get_palette()
+        palette.popup()
 
     def _add_value(self, widget, label="", value="0.0"):
         data = (label, float(value))
@@ -507,14 +532,14 @@ class SimpleGraph(activity.Activity):
 
             f.close()
 
-    def __import_measure_cb(self, widget):
+    def __import_measure_cb(self, widget, channel=1):
         matches_mime_type, file_path, title = self._object_chooser(
                                                          _CSV_MIME_TYPE,
                                                          _('Measure'))
 
         if matches_mime_type:
             f = open(file_path)
-            reader = MeasureReader(f)
+            reader = MeasureReader(f, channel)
             self._graph_from_reader(reader)
 
             f.close()
