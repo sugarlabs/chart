@@ -50,17 +50,17 @@ from readers import MeasureReader
 import simplegraphhelp
 
 # Mime types
-STOPWATCH_MIME_TYPE = "application/x-stopwatch-activity"
-CSV_MIME_TYPE = "text/csv"
+_STOPWATCH_MIME_TYPE = "application/x-stopwatch-activity"
+_CSV_MIME_TYPE = "text/csv"
 
 # GUI Colors
-COLOR1 = gtk.gdk.Color(utils.get_user_color()[0])
-COLOR2 = gtk.gdk.Color(utils.get_user_color()[1])
-WHITE = gtk.gdk.color_parse("white")
+_COLOR1 = gtk.gdk.Color(utils.get_user_color()[0])
+_COLOR2 = gtk.gdk.Color(utils.get_user_color()[1])
+_WHITE = gtk.gdk.color_parse("white")
 
 # Paths
-ACTIVITY_DIR = os.path.join(activity.get_activity_root(), "data/")
-CHART_FILE = utils.get_chart_file(ACTIVITY_DIR)
+_ACTIVITY_DIR = os.path.join(activity.get_activity_root(), "data/")
+_CHART_FILE = utils.get_chart_file(_ACTIVITY_DIR)
 
 # Logging
 _logger = logging.getLogger('simplegraph-activity')
@@ -210,13 +210,13 @@ class SimpleGraph(activity.Activity):
         options_toolbar = gtk.Toolbar()
 
         self.chart_color_btn = ColorToolButton()
-        self.chart_color_btn.set_color(COLOR1)
+        self.chart_color_btn.set_color(_COLOR1)
         self.chart_color_btn.set_title(_("Chart Color"))
         self.chart_color_btn.connect('notify::color', self._set_chart_color)
         options_toolbar.insert(self.chart_color_btn, -1)
 
         self.line_color_btn = ColorToolButton()
-        self.line_color_btn.set_color(COLOR2)
+        self.line_color_btn.set_color(_COLOR2)
         self.line_color_btn.set_title(_("Line Color"))
         self.line_color_btn.connect('notify::color',
                 self._set_chart_line_color)
@@ -310,7 +310,7 @@ class SimpleGraph(activity.Activity):
         self.charts_area = ChartArea(self)
         self.charts_area.connect('size_allocate', self._chart_size_allocate)
 
-        eventbox.modify_bg(gtk.STATE_NORMAL, WHITE)
+        eventbox.modify_bg(gtk.STATE_NORMAL, _WHITE)
 
         eventbox.add(self.charts_area)
         paned.add2(eventbox)
@@ -497,7 +497,7 @@ class SimpleGraph(activity.Activity):
 
     def __import_stopwatch_cb(self, widget):
         matches_mime_type, file_path, title = self._object_chooser(
-                                                      STOPWATCH_MIME_TYPE,
+                                                      _STOPWATCH_MIME_TYPE,
                                                       _('StopWatch'))
 
         if matches_mime_type:
@@ -509,7 +509,7 @@ class SimpleGraph(activity.Activity):
 
     def __import_measure_cb(self, widget):
         matches_mime_type, file_path, title = self._object_chooser(
-                                                         CSV_MIME_TYPE,
+                                                         _CSV_MIME_TYPE,
                                                          _('Measure'))
 
         if matches_mime_type:
@@ -526,8 +526,8 @@ class SimpleGraph(activity.Activity):
             jobject.metadata['title'] = self.metadata["title"]
             jobject.metadata['mime_type'] = "image/png"
 
-            self.current_chart.as_png(CHART_FILE)
-            jobject.set_file_path(CHART_FILE)
+            self.current_chart.as_png(_CHART_FILE)
+            jobject.set_file_path(_CHART_FILE)
 
             datastore.write(jobject)
 
