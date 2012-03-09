@@ -426,14 +426,14 @@ class SimpleGraph(activity.Activity):
     def _set_h_label(self, widget):
         new_text = widget.get_text()
 
-        if new_text != self.h_label.text:
+        if new_text != self.h_label._text:
             self.x_label = new_text
             self._update_chart_labels()
 
     def _set_v_label(self, widget):
         new_text = widget.get_text()
 
-        if new_text != self.v_label.text:
+        if new_text != self.v_label._text:
             self.y_label = new_text
             self._update_chart_labels()
 
