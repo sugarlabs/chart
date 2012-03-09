@@ -19,10 +19,12 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import os
-import gconf
+import gtk
+
+from sugar import profile
 
 
-def rgb_to_html(color):
+def rgb2html(color):
     """Returns a html string from a Gdk color"""
     red = "%x" % int(color.red / 65535.0 * 255)
     if len(red) == 1:
@@ -43,10 +45,30 @@ def rgb_to_html(color):
     return new_color
 
 
-def get_user_color():
-    """Returns the user colors"""
-    color = gconf.client_get_default().get_string("/desktop/sugar/user/color")
-    return color.split(",")
+def get_user_fill_color(type='gdk'):
+    """Returns the user fill color"""
+    color = profile.get_color()
+
+    if type == 'gdk':
+        rcolor = gtk.gdk.Color(color.get_fill_color())
+
+    elif type == 'str':
+        rcolor = color.get_fill_color()
+
+    return rcolor
+
+
+def get_user_stroke_color(type='gdk'):
+    """Returns the user stroke color"""
+    color = profile.get_color()
+
+    if type == 'gdk':
+        rcolor = gtk.gdk.Color(color.get_stroke_color())
+
+    elif type == 'str':
+        rcolor = color.get_stroke_color()
+
+    return rcolor
 
 
 def get_chart_file(activity_dir):

@@ -54,8 +54,8 @@ _STOPWATCH_MIME_TYPE = "application/x-stopwatch-activity"
 _CSV_MIME_TYPE = "text/csv"
 
 # GUI Colors
-_COLOR1 = gtk.gdk.Color(utils.get_user_color()[0])
-_COLOR2 = gtk.gdk.Color(utils.get_user_color()[1])
+_COLOR1 = utils.get_user_fill_color()
+_COLOR2 = utils.get_user_stroke_color()
 _WHITE = gtk.gdk.color_parse("white")
 
 # Paths
@@ -112,8 +112,8 @@ class SimpleGraph(activity.Activity):
 
         self.x_label = ""
         self.y_label = ""
-        self.chart_color = utils.get_user_color()[0]
-        self.chart_line_color = utils.get_user_color()[1]
+        self.chart_color = utils.get_user_fill_color('str')
+        self.chart_line_color = utils.get_user_stroke_color('str')
         self.current_chart = None
         self.charts_area = None
         self.chart_data = []
@@ -438,11 +438,11 @@ class SimpleGraph(activity.Activity):
             self._update_chart_labels()
 
     def _set_chart_color(self, widget, pspec):
-        self.chart_color = utils.rgb_to_html(widget.get_color())
+        self.chart_color = utils.rgb2html(widget.get_color())
         self._render_chart()
 
     def _set_chart_line_color(self, widget, pspec):
-        self.chart_line_color = utils.rgb_to_html(widget.get_color())
+        self.chart_line_color = utils.rgb2html(widget.get_color())
         self._render_chart()
 
     def _object_chooser(self, mime_type, type_name):
