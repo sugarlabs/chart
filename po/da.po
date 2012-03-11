@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-17 00:31-0500\n"
-"PO-Revision-Date: 2012-02-21 21:40+0200\n"
+"POT-Creation-Date: 2012-03-10 00:31-0500\n"
+"PO-Revision-Date: 2012-03-11 21:36+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -21,103 +21,196 @@ msgstr ""
 msgid "SimpleGraph"
 msgstr "SimpelGraf"
 
-#: activity.py:150
+#: activity.py:131
 msgid "Save as image"
 msgstr "Gem som billede"
 
-#: activity.py:178
+#: activity.py:138
+msgid "Read StopWatch data"
+msgstr "Læs data fra StopUr"
+
+#: activity.py:144
+msgid "Read Measure data"
+msgstr "Aflæs måledata"
+
+#: activity.py:163
 msgid "Add a value"
 msgstr "Tilføj en værdi"
 
-#: activity.py:184
+#: activity.py:169
 msgid "Remove the selected value"
 msgstr "Fjern den valgte værdi"
 
-#: activity.py:195
+#: activity.py:180
 msgid "Vertical Bar Chart"
 msgstr "Lodret søjleoversigt"
 
-#: activity.py:203
+#: activity.py:188
 msgid "Horizontal Bar Chart"
 msgstr "Vandret søjleoversigt"
 
-#: activity.py:210
+#: activity.py:195
 msgid "Line Chart"
 msgstr "Linjeoversigt"
 
-#: activity.py:217
+#: activity.py:202
 msgid "Pie Chart"
 msgstr "Cirkeldiagram"
 
-#: activity.py:238
+#: activity.py:223
 msgid "Chart Color"
 msgstr "Farve på oversigt"
 
-#: activity.py:244
+#: activity.py:229
 msgid "Line Color"
 msgstr "Farve på linje"
 
-#: activity.py:259
+#: activity.py:244
 msgid "Horizontal label..."
 msgstr "Vandret etikette..."
 
-#: activity.py:273
+#: activity.py:258
 msgid "Vertical label..."
 msgstr "Lodret etikette..."
 
-#: activity.py:288
+#: activity.py:273
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
-#: activity.py:473
+#: activity.py:494
 msgid "Invalid object"
 msgstr "Ugyldigt objekt"
 
-#: activity.py:475
+#: activity.py:496
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "Det valgte objekt skal være en %s-fil"
 
-#: activity.py:478 activity.py:714
+#: activity.py:499 activity.py:726
 msgid "Ok"
 msgstr "Ok"
 
-#: activity.py:510 readers.py:55
+#: activity.py:531 readers.py:62
 msgid "StopWatch"
 msgstr "Stopur"
 
-#: activity.py:522
+#: activity.py:543
 msgid "Measure"
 msgstr "Mål"
 
-#: activity.py:633
+#: activity.py:645
 msgid "Label"
 msgstr "Etikette"
 
-#: activity.py:644
+#: activity.py:656
 msgid "Value"
 msgstr "Værdi"
 
-#: activity.py:709
+#: activity.py:721
 msgid "Invalid Value"
 msgstr "Ugyldig værdi"
 
-#: activity.py:711
+#: activity.py:723
 msgid "The value must be a number (integer or decimal)"
 msgstr "Værdien skal angives som et tal (heltal eller decimaltal)"
 
-#: readers.py:34
+#: helpbutton.py:36
+msgid "Help"
+msgstr "Hjælp"
+
+#: readers.py:41
 msgid "Time"
 msgstr "Tid"
 
-#: readers.py:44
+#: readers.py:51
 msgid "Mark"
 msgstr "Markering"
 
-#: readers.py:111
+#: readers.py:126
 msgid "Values"
 msgstr "Værdier"
 
-#: readers.py:112
+#: readers.py:127
 msgid "Samples"
 msgstr "Stikprøver"
+
+#: simplegraphhelp.py:12
+msgid "Basic usage"
+msgstr "Grundlæggende brug"
+
+#: simplegraphhelp.py:13
+msgid "First you need add data to create the graph"
+msgstr "Først skal du tilføje data for at oprettte grafen"
+
+#: simplegraphhelp.py:14
+msgid "You can add data with this button"
+msgstr "Du kan tilføje data med denne knap"
+
+#: simplegraphhelp.py:16
+msgid "...or remove data with this button"
+msgstr "... eller fjerne data med denne knap"
+
+#: simplegraphhelp.py:18
+msgid "To change the graph title, just change the activity title"
+msgstr "Grafens titel ændres ved blot at ændre aktivitetens titel"
+
+#: simplegraphhelp.py:20
+msgid "Next you can change the type of graph"
+msgstr "Dernæst kan du ændre graftypen"
+
+#: simplegraphhelp.py:21
+msgid "Vertical bars"
+msgstr "Lodrette søjler"
+
+#: simplegraphhelp.py:22
+msgid "Horizontal bars"
+msgstr "Vandrette søjler"
+
+#: simplegraphhelp.py:23
+msgid "Lines"
+msgstr "Linjer"
+
+#: simplegraphhelp.py:24
+msgid "Pie"
+msgstr "Cirkeldiagram"
+
+#: simplegraphhelp.py:26
+msgid "Configs"
+msgstr "Konfigurationer"
+
+#: simplegraphhelp.py:27
+msgid ""
+"You can change the colors or the horizontal and vertical labels in the "
+"configs toolbar"
+msgstr ""
+"Du kan ændre farverne eller de vandrette og lodrette etiketter i "
+"værktøjslinjen konfigurationer."
+
+#: simplegraphhelp.py:30
+msgid "Saving as an image"
+msgstr "Gemmer som et billede"
+
+#: simplegraphhelp.py:31
+msgid "In the activity toolbar you have button to save the graph as an image"
+msgstr ""
+"I værktøjslinjen for aktiviteter er der en knap til at gemme grafen som et "
+"billede"
+
+#: simplegraphhelp.py:34
+msgid "Reading data from other activities"
+msgstr "Læser data fra andre aktiviteter"
+
+#: simplegraphhelp.py:35
+msgid ""
+"In the activity toolbar you have buttons to read data from other activities"
+msgstr ""
+"I værktøjslinjen for aktiviteter er der knapper til aflæsning af data fra "
+"andre aktiviteter"
+
+#: simplegraphhelp.py:36
+msgid "You can use times measured in the StopWatch activity"
+msgstr "Du kan anvende tider som er målt i aktiviteten StopUr"
+
+#: simplegraphhelp.py:37
+msgid "...or data from the Measure activity"
+msgstr "... eller data fra aktiviteten Måling"
