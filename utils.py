@@ -101,4 +101,3 @@ def get_channels():
 
     else:
         return 2
-

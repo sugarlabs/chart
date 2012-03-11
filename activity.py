@@ -513,10 +513,10 @@ class SimpleGraph(activity.Activity):
 
         chart_data = reader.get_chart_data()
 
-        h, v = reader.get_labels_name()
+        horizontal, vertical = reader.get_labels_name()
 
-        self.v_label.entry.set_text(h)
-        self.h_label.entry.set_text(v)
+        self.v_label.entry.set_text(horizontal)
+        self.h_label.entry.set_text(vertical)
 
         # Load the data
         for row  in chart_data:
