@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-08 00:30-0500\n"
-"PO-Revision-Date: 2012-03-09 11:53+0200\n"
+"POT-Creation-Date: 2012-03-10 00:31-0500\n"
+"PO-Revision-Date: 2012-03-13 11:49+0200\n"
 "Last-Translator: Meechai <malaku38@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -25,90 +25,98 @@ msgstr "SimpleGraph"
 msgid "Save as image"
 msgstr "บันทึกเป็นรูปภาพ"
 
-#: activity.py:154
+#: activity.py:138
+msgid "Read StopWatch data"
+msgstr "อ่านข้อมูลนาฬิกาจับเวลา"
+
+#: activity.py:144
+msgid "Read Measure data"
+msgstr "อ่านข้อมูลการวัด"
+
+#: activity.py:163
 msgid "Add a value"
 msgstr "ใส่ค่า"
 
-#: activity.py:160
+#: activity.py:169
 msgid "Remove the selected value"
 msgstr "ลบค่าที่เลือก"
 
-#: activity.py:171
+#: activity.py:180
 msgid "Vertical Bar Chart"
 msgstr "แผนภูมิแท่งในแนวตั้ง"
 
-#: activity.py:179
+#: activity.py:188
 msgid "Horizontal Bar Chart"
 msgstr "แผนภูมิแท่งในแนวนอน"
 
-#: activity.py:186
+#: activity.py:195
 msgid "Line Chart"
 msgstr "แผนภูมิแบบเส้น"
 
-#: activity.py:193
+#: activity.py:202
 msgid "Pie Chart"
 msgstr "แผนภูมิวงกลม"
 
-#: activity.py:214
+#: activity.py:223
 msgid "Chart Color"
 msgstr "สีตาราง"
 
-#: activity.py:220
+#: activity.py:229
 msgid "Line Color"
 msgstr "สีเส้น"
 
-#: activity.py:235
+#: activity.py:244
 msgid "Horizontal label..."
 msgstr "ป้ายในแนวนอน..."
 
-#: activity.py:249
+#: activity.py:258
 msgid "Vertical label..."
 msgstr "ป้ายในแนวตั้ง..."
 
-#: activity.py:264
+#: activity.py:273
 msgid "Fullscreen"
 msgstr "เต็มจอ"
 
-#: activity.py:464
+#: activity.py:494
 msgid "Invalid object"
 msgstr "วัตถุที่ไม่ถูกต้อง"
 
-#: activity.py:466
+#: activity.py:496
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "วัตถุที่ถูกเลือกต้องเป็นไฟล์ %s"
 
-#: activity.py:469 activity.py:696
+#: activity.py:499 activity.py:726
 msgid "Ok"
 msgstr "ตกลง"
 
-#: activity.py:501 readers.py:62
+#: activity.py:531 readers.py:62
 msgid "StopWatch"
 msgstr "นาฬิกาจับเวลา"
 
-#: activity.py:513
+#: activity.py:543
 msgid "Measure"
 msgstr "วัดค่า"
 
-#: activity.py:615
+#: activity.py:645
 msgid "Label"
 msgstr "ป้าย"
 
-#: activity.py:626
+#: activity.py:656
 msgid "Value"
 msgstr "ค่า"
 
-#: activity.py:691
+#: activity.py:721
 msgid "Invalid Value"
 msgstr "ค่าไม่ถูกต้อง"
 
-#: activity.py:693
+#: activity.py:723
 msgid "The value must be a number (integer or decimal)"
 msgstr "ค่าที่ใส่ต้องเป็นตัวเลข (จำนวนเต็มหรือทศนิยม)"
 
 #: helpbutton.py:36
 msgid "Help"
-msgstr ""
+msgstr "ช่วยเหลือ"
 
 #: readers.py:41
 msgid "Time"
@@ -118,85 +126,85 @@ msgstr "เวลา"
 msgid "Mark"
 msgstr "ทำเครื่องหมาย"
 
-#: readers.py:118
+#: readers.py:126
 msgid "Values"
 msgstr "ค่า"
 
-#: readers.py:119
+#: readers.py:127
 msgid "Samples"
 msgstr "ตัวอย่าง"
 
 #: simplegraphhelp.py:12
 msgid "Basic usage"
-msgstr ""
+msgstr "การใช้พื้นฐาน"
 
 #: simplegraphhelp.py:13
 msgid "First you need add data to create the graph"
-msgstr ""
+msgstr "คุณต้องเพิ่มข้อมูลที่จะสร้างกราฟก่อน"
 
 #: simplegraphhelp.py:14
 msgid "You can add data with this button"
-msgstr ""
+msgstr "คุณสามารถเพิ่มข้อมูลด้วยปุ่มนี้"
 
 #: simplegraphhelp.py:16
 msgid "...or remove data with this button"
-msgstr ""
+msgstr "...หรือลบข้อมูลด้วยปุ่มนี้"
 
 #: simplegraphhelp.py:18
 msgid "To change the graph title, just change the activity title"
-msgstr ""
+msgstr "เปลี่ยนชื่อกราฟจะต้องเปลี่ยนชื่อกิจกรรม"
 
 #: simplegraphhelp.py:20
 msgid "Next you can change the type of graph"
-msgstr ""
+msgstr "ถ้ดไปคุณสามารถเปลี่ยนชนิดของกราฟ"
 
 #: simplegraphhelp.py:21
 msgid "Vertical bars"
-msgstr ""
+msgstr "แถบแนวตั้ง"
 
 #: simplegraphhelp.py:22
 msgid "Horizontal bars"
-msgstr ""
+msgstr "แถบแนวนอน"
 
 #: simplegraphhelp.py:23
 msgid "Lines"
-msgstr ""
+msgstr "เส้น"
 
 #: simplegraphhelp.py:24
 msgid "Pie"
-msgstr ""
+msgstr "พาย"
 
 #: simplegraphhelp.py:26
 msgid "Configs"
-msgstr ""
+msgstr "ปรับแต่ง"
 
 #: simplegraphhelp.py:27
 msgid ""
 "You can change the colors or the horizontal and vertical labels in the "
 "configs toolbar"
-msgstr ""
+msgstr "คุณสามารถเปลี่ยนสีหรือป้ายชื่อแนวนอนและแนวตั้งในแถบเครื่องมือปรับแต่ง"
 
 #: simplegraphhelp.py:30
 msgid "Saving as an image"
-msgstr ""
+msgstr "บันทึกเป็นรูปภาพ"
 
 #: simplegraphhelp.py:31
 msgid "In the activity toolbar you have button to save the graph as an image"
-msgstr ""
+msgstr "ในแถบเครื่องมือกิจกรรม คุณมีปุ่มที่จะบันทึกกราฟเป็นรูปภาพ"
 
 #: simplegraphhelp.py:34
 msgid "Reading data from other activities"
-msgstr ""
+msgstr "อ่านข้อมูลจากกิจกรรมอื่น ๆ"
 
 #: simplegraphhelp.py:35
 msgid ""
 "In the activity toolbar you have buttons to read data from other activities"
-msgstr ""
+msgstr "ในแถบเครื่องมือกิจกรรม คุณมีปุ่มที่จะอ่านข้อมูลจากกิจกรรมอื่น ๆ"
 
 #: simplegraphhelp.py:36
 msgid "You can use times measured in the StopWatch activity"
-msgstr ""
+msgstr "คุณสามารถใช้เวลาซึ่งได้จากการวัดในกิจกรรมนาฬิกาจับเวลา"
 
 #: simplegraphhelp.py:37
 msgid "...or data from the Measure activity"
-msgstr ""
+msgstr "...หรือข้อมูลจากกิจกรรมวัดค่า"
