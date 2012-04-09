@@ -29,6 +29,7 @@ import locale
 import logging
 import utils
 
+from StringIO import StringIO
 from gettext import gettext as _
 
 from sugar.activity import activity
@@ -77,6 +78,11 @@ class ChartArea(gtk.DrawingArea):
         self.add_events(gtk.gdk.EXPOSURE_MASK | gtk.gdk.VISIBILITY_NOTIFY_MASK)
         self.connect("expose-event", self._expose_cb)
 
+        target = [("text/plain", 0, 0)]
+        self.drag_dest_set(gtk.DEST_DEFAULT_ALL, target,
+                gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
+        self.connect('drag_data_received', self._drag_data_received)
+
     def _expose_cb(self, widget, event):
         context = self.window.cairo_create()
 
@@ -98,6 +104,14 @@ class ChartArea(gtk.DrawingArea):
                                    cxpos,
                                    cypos)
         context.paint()
+
+    def _drag_data_received(self, w, context, x, y, data, info, time):
+        if data and data.format == 8:
+            io_file = StringIO(data.data)
+            self._parent.load_from_file(io_file)
+            context.finish(True, False, time)
+        else:
+            context.finish(False, False, time)
 
 
 class SimpleGraph(activity.Activity):
@@ -561,27 +575,7 @@ class SimpleGraph(activity.Activity):
 
             datastore.write(jobject)
 
-    def write_file(self, file_path):
-        self.metadata['mime_type'] = "application/x-simplegraph-activity"
-        if self.current_chart:
-
-            data = {}
-            data['title'] = self.metadata["title"]
-            data['x_label'] = self.x_label
-            data['y_label'] = self.y_label
-            data['chart_color'] = self.chart_color
-            data['chart_line_color'] = self.chart_line_color
-            data['current_chart.type'] = self.current_chart.type
-            data['chart_data'] = self.chart_data
-
-            f = open(file_path, 'w')
-            try:
-                simplejson.dump(data, f)
-            finally:
-                f.close()
-
-    def read_file(self, file_path):
-        f = open(file_path, 'r')
+    def load_from_file(self, f):
         try:
             data = simplejson.load(f)
         finally:
@@ -625,6 +619,29 @@ class SimpleGraph(activity.Activity):
             self._add_value(None, label=row[0], value=float(row[1]))
 
         self.update_chart()
+
+    def write_file(self, file_path):
+        self.metadata['mime_type'] = "application/x-simplegraph-activity"
+        if self.current_chart:
+
+            data = {}
+            data['title'] = self.metadata["title"]
+            data['x_label'] = self.x_label
+            data['y_label'] = self.y_label
+            data['chart_color'] = self.chart_color
+            data['chart_line_color'] = self.chart_line_color
+            data['current_chart.type'] = self.current_chart.type
+            data['chart_data'] = self.chart_data
+
+            f = open(file_path, 'w')
+            try:
+                simplejson.dump(data, f)
+            finally:
+                f.close()
+
+    def read_file(self, file_path):
+        f = open(file_path, 'r')
+        self.load_from_file(f)
 
 
 class ChartData(gtk.TreeView):
