@@ -48,6 +48,7 @@ from sugar.datastore import datastore
 from charts import Chart
 from readers import StopWatchReader
 from readers import MeasureReader
+from readers import ClipboardReader
 import simplegraphhelp
 
 # Mime types
@@ -108,7 +109,8 @@ class ChartArea(gtk.DrawingArea):
     def _drag_data_received(self, w, context, x, y, data, info, time):
         if data and data.format == 8:
             io_file = StringIO(data.data)
-            self._parent.load_from_file(io_file)
+            reader = ClipboardReader(io_file)
+            self._parent._graph_from_reader(reader)
             context.finish(True, False, time)
         else:
             context.finish(False, False, time)

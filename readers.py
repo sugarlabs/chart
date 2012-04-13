@@ -127,3 +127,37 @@ class MeasureReader():
         h_label = _('Samples')
 
         return v_label, h_label
+
+
+class ClipboardReader():
+
+    def __init__(self, file):
+        """Import chart data from file."""
+
+        self._reader = csv.reader(file)
+        self.xlabel = ""
+        self.ylabel = ""
+
+    def get_chart_data(self):
+        """Return data suitable for pyCHA."""
+
+        chart_data = []
+
+        for row in self._reader:
+            label, value = row[0].split(": ")
+
+            if label == "XLabel":
+                self.xlabel = value
+
+            elif label == "YLabel":
+                self.ylabel = value
+
+            else:
+                chart_data.append((label, float(value)))
+
+        return chart_data
+
+    def get_labels_name(self):
+        """Return the h_label and y_label names."""
+
+        return self.xlabel, self.ylabel
