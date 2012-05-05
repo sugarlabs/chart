@@ -174,13 +174,13 @@ class ChartActivity(activity.Activity):
 
         toolbarbox.toolbar.insert(activity_button, 0)
 
-        add_v = ToolButton("row-insert")
+        add_v = ToolButton("gtk-add")
         add_v.connect("clicked", self._add_value)
         add_v.set_tooltip(_("Add a value"))
 
         toolbarbox.toolbar.insert(add_v, -1)
 
-        remove_v = ToolButton("row-remove")
+        remove_v = ToolButton("gtk-remove")
         remove_v.connect("clicked", self._remove_value)
         remove_v.set_tooltip(_("Remove the selected value"))
 
