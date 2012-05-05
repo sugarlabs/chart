@@ -1,4 +1,4 @@
-# Help for SimpleGraphActivity
+# Help for ChartActivity
 
 from gettext import gettext as _
 

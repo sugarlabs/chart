@@ -92,7 +92,7 @@ class Chart(gobject.GObject):
         """Set chart type (vertical, horizontal, line, pie)"""
         self.type = type
 
-    def set_title(self, title="SimpleGraph Chart"):
+    def set_title(self, title="Chart"):
         """Set the chart title"""
         self.options["title"] = title
 

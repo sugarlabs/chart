@@ -49,7 +49,7 @@ from charts import Chart
 from readers import StopWatchReader
 from readers import MeasureReader
 from readers import ClipboardReader
-import simplegraphhelp
+import charthelp
 
 # Mime types
 _STOPWATCH_MIME_TYPE = "application/x-stopwatch-activity"
@@ -65,7 +65,7 @@ _ACTIVITY_DIR = os.path.join(activity.get_activity_root(), "data/")
 _CHART_FILE = utils.get_chart_file(_ACTIVITY_DIR)
 
 # Logging
-_logger = logging.getLogger('simplegraph-activity')
+_logger = logging.getLogger('chart-activity')
 _logger.setLevel(logging.DEBUG)
 logging.basicConfig()
 
@@ -116,7 +116,7 @@ class ChartArea(gtk.DrawingArea):
             context.finish(False, False, time)
 
 
-class SimpleGraph(activity.Activity):
+class ChartActivity(activity.Activity):
 
     def __init__(self, handle):
 
@@ -296,7 +296,7 @@ class SimpleGraph(activity.Activity):
         separator.set_expand(True)
         toolbarbox.toolbar.insert(separator, -1)
 
-        simplegraphhelp.create_help(toolbarbox.toolbar)
+        charthelp.create_help(toolbarbox.toolbar)
 
         stopbtn = StopButton(self)
         toolbarbox.toolbar.insert(stopbtn, -1)
@@ -623,7 +623,7 @@ class SimpleGraph(activity.Activity):
         self.update_chart()
 
     def write_file(self, file_path):
-        self.metadata['mime_type'] = "application/x-simplegraph-activity"
+        self.metadata['mime_type'] = "application/x-chart-activity"
         if self.current_chart:
 
             data = {}

@@ -1,8 +1,8 @@
 [Activity]
-name = SimpleGraph
+name = Chart
 activity_version = 3
-bundle_id = org.sugarlabs.SimpleGraph
-exec = sugar-activity activity.SimpleGraph -s
-icon = simplegraph
+bundle_id = org.sugarlabs.ChartActivity
+exec = sugar-activity activity.ChartActivity -s
+icon = chart-activity
 license = GPLv3+
-mime_types = application/x-simplegraph-activity;
+mime_types = application/x-chart-activity;
