@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-10 00:31-0500\n"
-"PO-Revision-Date: 2012-03-21 03:43+0200\n"
-"Last-Translator: lite <litekok@gmail.com>\n"
+"POT-Creation-Date: 2012-05-05 00:33-0400\n"
+"PO-Revision-Date: 2012-05-05 09:34+0200\n"
+"Last-Translator: Xin <dram.wang@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -18,101 +18,176 @@ msgstr ""
 "X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
-msgid "SimpleGraph"
+msgid "Chart"
 msgstr "图表"
 
-#: activity.py:131
+#: activity.py:147
 msgid "Save as image"
 msgstr "另存为图像"
 
-#: activity.py:138
+#: activity.py:154
 msgid "Read StopWatch data"
 msgstr "读取秒表数据"
 
-#: activity.py:144
+#: activity.py:160
 msgid "Read Measure data"
 msgstr "读取测量数据"
 
-#: activity.py:163
+#: activity.py:179
 msgid "Add a value"
 msgstr "添加数值"
 
-#: activity.py:169
+#: activity.py:185
 msgid "Remove the selected value"
 msgstr "删除选中的数值"
 
-#: activity.py:180
+#: activity.py:196
 msgid "Vertical Bar Chart"
 msgstr "垂直柱图"
 
-#: activity.py:188
+#: activity.py:204
 msgid "Horizontal Bar Chart"
 msgstr "水平柱图"
 
-#: activity.py:195
+#: activity.py:211
 msgid "Line Chart"
 msgstr "线图"
 
-#: activity.py:202
+#: activity.py:218
 msgid "Pie Chart"
 msgstr "饼图"
 
-#: activity.py:223
+#: activity.py:239
 msgid "Chart Color"
 msgstr "图表颜色"
 
-#: activity.py:229
+#: activity.py:245
 msgid "Line Color"
 msgstr "线条颜色"
 
-#: activity.py:244
+#: activity.py:260
 msgid "Horizontal label..."
 msgstr "水平标签..."
 
-#: activity.py:258
+#: activity.py:274
 msgid "Vertical label..."
 msgstr "垂直标签..."
 
-#: activity.py:273
+#: activity.py:289
 msgid "Fullscreen"
 msgstr "全屏显示"
 
-#: activity.py:494
+#: activity.py:510
 msgid "Invalid object"
 msgstr "无效的对象"
 
-#: activity.py:496
+#: activity.py:512
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "选定的对象必须是一个%s文件"
 
-#: activity.py:499 activity.py:726
+#: activity.py:515 activity.py:745
 msgid "Ok"
 msgstr "确定"
 
-#: activity.py:531 readers.py:62
+#: activity.py:547 readers.py:62
 msgid "StopWatch"
 msgstr "秒表"
 
-#: activity.py:543
+#: activity.py:559
 msgid "Measure"
 msgstr "测量"
 
-#: activity.py:645
+#: activity.py:664
 msgid "Label"
 msgstr "标签"
 
-#: activity.py:656
+#: activity.py:675
 msgid "Value"
 msgstr "数值"
 
-#: activity.py:721
+#: activity.py:740
 msgid "Invalid Value"
 msgstr "无效数值"
 
-#: activity.py:723
+#: activity.py:742
 msgid "The value must be a number (integer or decimal)"
 msgstr "该值必须是一个数字（整数或小数）"
+
+#: charthelp.py:12
+msgid "Basic usage"
+msgstr "基本用法"
+
+#: charthelp.py:13
+msgid "First you need add data to create the graph"
+msgstr "请先添加数据，创建该图表"
+
+#: charthelp.py:14
+msgid "You can add data with this button"
+msgstr "你可以用该按钮添加数据"
+
+#: charthelp.py:16
+msgid "...or remove data with this button"
+msgstr "...或用该按钮删除数据"
+
+#: charthelp.py:18
+msgid "To change the graph title, just change the activity title"
+msgstr "要更改图表标题，只需更改活动标题"
+
+#: charthelp.py:20
+msgid "Next you can change the type of graph"
+msgstr "接下来，你可以改变图表类型"
+
+#: charthelp.py:21
+msgid "Vertical bars"
+msgstr "垂直条"
+
+#: charthelp.py:22
+msgid "Horizontal bars"
+msgstr "水平条"
+
+#: charthelp.py:23
+msgid "Lines"
+msgstr "线条"
+
+#: charthelp.py:24
+msgid "Pie"
+msgstr "饼"
+
+#: charthelp.py:26
+msgid "Configs"
+msgstr "配置"
+
+#: charthelp.py:27
+msgid ""
+"You can change the colors or the horizontal and vertical labels in the "
+"configs toolbar"
+msgstr "您可以更改配置工具栏中颜色或水平和垂直的标签"
+
+#: charthelp.py:30
+msgid "Saving as an image"
+msgstr "另存为一个图像"
+
+#: charthelp.py:31
+msgid "In the activity toolbar you have button to save the graph as an image"
+msgstr "活动工具栏中有把图表保存为图像的按钮"
+
+#: charthelp.py:34
+msgid "Reading data from other activities"
+msgstr "从其他活动中读取数据"
+
+#: charthelp.py:35
+msgid ""
+"In the activity toolbar you have buttons to read data from other activities"
+msgstr "活动工具栏中有从其他活动读取数据的按钮"
+
+#: charthelp.py:36
+msgid "You can use times measured in the StopWatch activity"
+msgstr "您可以使用秒表活动测量时间"
+
+#: charthelp.py:37
+msgid "...or data from the Measure activity"
+msgstr "...或测量活动中的数据"
 
 #: helpbutton.py:36
 msgid "Help"
@@ -134,77 +209,5 @@ msgstr "数值"
 msgid "Samples"
 msgstr "示例"
 
-#: simplegraphhelp.py:12
-msgid "Basic usage"
-msgstr "基本用法"
-
-#: simplegraphhelp.py:13
-msgid "First you need add data to create the graph"
-msgstr "请先添加数据，创建该图表"
-
-#: simplegraphhelp.py:14
-msgid "You can add data with this button"
-msgstr "你可以用该按钮添加数据"
-
-#: simplegraphhelp.py:16
-msgid "...or remove data with this button"
-msgstr "...或用该按钮删除数据"
-
-#: simplegraphhelp.py:18
-msgid "To change the graph title, just change the activity title"
-msgstr "要更改图表标题，只需更改活动标题"
-
-#: simplegraphhelp.py:20
-msgid "Next you can change the type of graph"
-msgstr "接下来，你可以改变图表类型"
-
-#: simplegraphhelp.py:21
-msgid "Vertical bars"
-msgstr "垂直条"
-
-#: simplegraphhelp.py:22
-msgid "Horizontal bars"
-msgstr "水平条"
-
-#: simplegraphhelp.py:23
-msgid "Lines"
-msgstr "线条"
-
-#: simplegraphhelp.py:24
-msgid "Pie"
-msgstr "饼"
-
-#: simplegraphhelp.py:26
-msgid "Configs"
-msgstr "配置"
-
-#: simplegraphhelp.py:27
-msgid ""
-"You can change the colors or the horizontal and vertical labels in the "
-"configs toolbar"
-msgstr "您可以更改配置工具栏中颜色或水平和垂直的标签"
-
-#: simplegraphhelp.py:30
-msgid "Saving as an image"
-msgstr "另存为一个图像"
-
-#: simplegraphhelp.py:31
-msgid "In the activity toolbar you have button to save the graph as an image"
-msgstr "活动工具栏中有把图表保存为图像的按钮"
-
-#: simplegraphhelp.py:34
-msgid "Reading data from other activities"
-msgstr "从其他活动中读取数据"
-
-#: simplegraphhelp.py:35
-msgid ""
-"In the activity toolbar you have buttons to read data from other activities"
-msgstr "活动工具栏中有从其他活动读取数据的按钮"
-
-#: simplegraphhelp.py:36
-msgid "You can use times measured in the StopWatch activity"
-msgstr "您可以使用秒表活动测量时间"
-
-#: simplegraphhelp.py:37
-msgid "...or data from the Measure activity"
-msgstr "...或测量活动中的数据"
+#~ msgid "SimpleGraph"
+#~ msgstr "图表"
