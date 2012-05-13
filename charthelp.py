@@ -12,9 +12,9 @@ def create_help(toolbar):
     helpitem.add_section(_('Basic usage'))
     helpitem.add_paragraph(_('First you need add data to create the graph'))
     helpitem.add_paragraph(_('You can add data with this button'),
-            'row-insert')
+            'gtk-add')
     helpitem.add_paragraph(_('...or remove data with this button'),
-            'row-remove')
+            'gtk-remove')
     helpitem.add_paragraph(_('To change the graph title, just change the activity title'))
 
     helpitem.add_paragraph(_('Next you can change the type of graph'))
