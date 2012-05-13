@@ -39,14 +39,18 @@ class HelpButton(gtk.ToolItem):
         self._palette = help_button.get_palette()
 
         sw = gtk.ScrolledWindow()
-        sw.set_size_request(int(gtk.gdk.screen_width() / 3),
+        sw.set_size_request(int(gtk.gdk.screen_width() / 2.8),
             gtk.gdk.screen_height() - style.GRID_CELL_SIZE * 3)
         sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
 
         self._max_text_width = int(gtk.gdk.screen_width() / 3) - 20
         self._vbox = gtk.VBox()
         self._vbox.set_homogeneous(False)
-        sw.add_with_viewport(self._vbox)
+
+        hbox = gtk.HBox()
+        hbox.pack_start(self._vbox, False, True, 0)
+
+        sw.add_with_viewport(hbox)
 
         self._palette.set_content(sw)
         sw.show_all()
