@@ -1,0 +1,217 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-05 00:33-0400\n"
+"PO-Revision-Date: 2012-05-28 15:27+0200\n"
+"Last-Translator: Marcin <ulinski.marcin@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#: activity/activity.info:2
+msgid "Chart"
+msgstr "Wykres"
+
+#: activity.py:147
+msgid "Save as image"
+msgstr "Zapisz jako obraz"
+
+#: activity.py:154
+msgid "Read StopWatch data"
+msgstr "Wczytaj dane Stopera"
+
+#: activity.py:160
+msgid "Read Measure data"
+msgstr "Wczytaj dane Pomiaru"
+
+#: activity.py:179
+msgid "Add a value"
+msgstr "Dodaj wartość"
+
+#: activity.py:185
+msgid "Remove the selected value"
+msgstr "Usuń wybraną wartość"
+
+#: activity.py:196
+msgid "Vertical Bar Chart"
+msgstr "Wykres słupków pionowych"
+
+#: activity.py:204
+msgid "Horizontal Bar Chart"
+msgstr "Wykres słupków poziomych"
+
+#: activity.py:211
+msgid "Line Chart"
+msgstr "Wykres liniowy"
+
+#: activity.py:218
+msgid "Pie Chart"
+msgstr "Wykres kołowy"
+
+#: activity.py:239
+msgid "Chart Color"
+msgstr "Kolor wykresu"
+
+#: activity.py:245
+msgid "Line Color"
+msgstr "Kolor linii"
+
+#: activity.py:260
+msgid "Horizontal label..."
+msgstr "Etykieta Pozioma..."
+
+#: activity.py:274
+msgid "Vertical label..."
+msgstr "Etykieta pionowa..."
+
+#: activity.py:289
+msgid "Fullscreen"
+msgstr "Pełen ekran"
+
+#: activity.py:510
+msgid "Invalid object"
+msgstr "Niepoprawny obiekt"
+
+#: activity.py:512
+#, python-format
+msgid "The selected object must be a %s file"
+msgstr "Wybrany obiekt musi być plikiem %s"
+
+#: activity.py:515 activity.py:745
+msgid "Ok"
+msgstr "Ok"
+
+#: activity.py:547 readers.py:62
+msgid "StopWatch"
+msgstr "Stoper"
+
+#: activity.py:559
+msgid "Measure"
+msgstr "Pomiar"
+
+#: activity.py:664
+msgid "Label"
+msgstr "Etykieta"
+
+#: activity.py:675
+msgid "Value"
+msgstr "Wartość"
+
+#: activity.py:740
+msgid "Invalid Value"
+msgstr "Niepoprawna Wartość"
+
+#: activity.py:742
+msgid "The value must be a number (integer or decimal)"
+msgstr "Wartość musi być liczbą (całkowitą lub ułamkową)"
+
+#: charthelp.py:12
+msgid "Basic usage"
+msgstr "Podstawowe użycie"
+
+#: charthelp.py:13
+msgid "First you need add data to create the graph"
+msgstr "Najpierw musisz dodać dane, aby stworzyć wykres"
+
+#: charthelp.py:14
+msgid "You can add data with this button"
+msgstr "Możesz dodać dane tym przyciskiem"
+
+#: charthelp.py:16
+msgid "...or remove data with this button"
+msgstr "...albo usunąć dane tym przyciskiem"
+
+#: charthelp.py:18
+msgid "To change the graph title, just change the activity title"
+msgstr "Aby zmienić tytuł wykresu, zmień płytkę aktywności"
+
+#: charthelp.py:20
+msgid "Next you can change the type of graph"
+msgstr "Następnie możesz zmienić typ wykresu"
+
+#: charthelp.py:21
+msgid "Vertical bars"
+msgstr "Pionowe paski"
+
+#: charthelp.py:22
+msgid "Horizontal bars"
+msgstr "Poziome paski"
+
+#: charthelp.py:23
+msgid "Lines"
+msgstr "Linie"
+
+#: charthelp.py:24
+msgid "Pie"
+msgstr "Koło"
+
+#: charthelp.py:26
+msgid "Configs"
+msgstr "Ustawienia"
+
+#: charthelp.py:27
+msgid ""
+"You can change the colors or the horizontal and vertical labels in the "
+"configs toolbar"
+msgstr "Możesz zmienić kolory lub poziome i pionowe etykiety w pasku ustawień"
+
+#: charthelp.py:30
+msgid "Saving as an image"
+msgstr "Zaspisywanie jako obrazek"
+
+#: charthelp.py:31
+msgid "In the activity toolbar you have button to save the graph as an image"
+msgstr ""
+"A pasku narzędzi aktywności masz przycisk do zapisania wykresu jako obrazek"
+
+#: charthelp.py:34
+msgid "Reading data from other activities"
+msgstr "Wczytywanie danych z innych aktywności"
+
+#: charthelp.py:35
+msgid ""
+"In the activity toolbar you have buttons to read data from other activities"
+msgstr ""
+"W pasku narzędzi aktywności masz przyciski do wczytania danych z innych "
+"aktywności"
+
+#: charthelp.py:36
+msgid "You can use times measured in the StopWatch activity"
+msgstr "Możesz użyć czasów zmierzonych w aktywności Stoper"
+
+#: charthelp.py:37
+msgid "...or data from the Measure activity"
+msgstr "...albo danych z aktywności Pomiar"
+
+#: helpbutton.py:36
+msgid "Help"
+msgstr "Pomoc"
+
+#: readers.py:41
+msgid "Time"
+msgstr "Czas"
+
+#: readers.py:51
+msgid "Mark"
+msgstr "Oznacz"
+
+#: readers.py:126
+msgid "Values"
+msgstr "Wartości"
+
+#: readers.py:127
+msgid "Samples"
+msgstr "Przykłady"
+
+#~ msgid "SimpleGraph"
+#~ msgstr "Prosty Wykres"
