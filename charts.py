@@ -49,7 +49,10 @@ class Chart(gobject.GObject):
 
         self.options = {
             'legend': {'hide': True},
+            'titleFontSize': 16,
             'axis': {
+                'tickFontSize' : 12,
+                'labelFontSize': 14,
                 'x': {
                     'ticks': [dict(v=i, label=l[0]) for i,
                                                         l in enumerate(data)],
