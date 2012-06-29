@@ -35,3 +35,7 @@ def create_help(toolbar):
     helpitem.add_paragraph(_('In the activity toolbar you have buttons to read data from other activities'))
     helpitem.add_paragraph(_('You can use times measured in the StopWatch activity'), 'import-stopwatch')
     helpitem.add_paragraph(_('...or data from the Measure activity'), 'import-measure')
+
+    helpitem.add_section(_('Reading data from the clipboard'))
+    helpitem.add_paragraph(_('Some activities (such as VisualMatch) has the ability to copy data to the clipboard'))
+    helpitem.add_paragraph(_('Drop the clipboard data into the chart area and it will be charted'))
