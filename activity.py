@@ -592,17 +592,17 @@ class ChartActivity(activity.Activity):
         chart_data = data['chart_data']
 
         # Update charts buttons
-        type = data["current_chart.type"]
-        if type == "vbar":
+        _type = data["current_chart.type"]
+        if _type == "vbar":
             self.chart_type_buttons[0].set_active(True)
 
-        elif type == "hbar":
+        elif _type == "hbar":
             self.chart_type_buttons[1].set_active(True)
 
-        elif type == "line":
+        elif _type == "line":
             self.chart_type_buttons[2].set_active(True)
 
-        elif type == "pie":
+        elif _type == "pie":
             self.chart_type_buttons[3].set_active(True)
 
         # Update the controls in the config subtoolbar
@@ -693,9 +693,9 @@ class ChartData(gtk.TreeView):
         elif selected:
             path = self.model.get_path(selected)[0] + 1
 
-        iter = self.model.insert(path, [label, value])
+        _iter = self.model.insert(path, [label, value])
 
-        self.set_cursor(self.model.get_path(iter),
+        self.set_cursor(self.model.get_path(_iter),
                         self.get_column(1),
                         True)
 
