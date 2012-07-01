@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 00:33-0400\n"
-"PO-Revision-Date: 2012-05-05 09:03+0200\n"
+"POT-Creation-Date: 2012-06-30 00:32-0400\n"
+"PO-Revision-Date: 2012-07-01 22:58+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -191,6 +191,22 @@ msgstr "You can use times measured in the StopWatch activity"
 #: charthelp.py:37
 msgid "...or data from the Measure activity"
 msgstr "...or data from the Measure activity"
+
+#: charthelp.py:39
+msgid "Reading data from the clipboard"
+msgstr "Reading data from the clipboard"
+
+#: charthelp.py:40
+msgid ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+msgstr ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+
+#: charthelp.py:41
+msgid "Drop the clipboard data into the chart area and it will be charted"
+msgstr "Drop the clipboard data into the chart area and it will be charted"
 
 #: helpbutton.py:36
 msgid "Help"
