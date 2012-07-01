@@ -76,16 +76,13 @@ class ChartArea(gtk.DrawingArea):
         """A class for Draw the chart"""
         super(ChartArea, self).__init__()
         self._parent = parent
-        self.add_events(gtk.gdk.EXPOSURE_MASK |
-                        gtk.gdk.VISIBILITY_NOTIFY_MASK |
-                        gtk.gdk.POINTER_MOTION_MASK)
+        self.add_events(gtk.gdk.EXPOSURE_MASK | gtk.gdk.VISIBILITY_NOTIFY_MASK)
         self.connect("expose-event", self._expose_cb)
 
         target = [("text/plain", 0, 0)]
         self.drag_dest_set(gtk.DEST_DEFAULT_ALL, target,
                 gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
         self.connect('drag_data_received', self._drag_data_received)
-        self.connect('motion-notify-event', self._motion_notify_cb)
 
     def _expose_cb(self, widget, event):
         context = self.window.cairo_create()
@@ -117,9 +114,6 @@ class ChartArea(gtk.DrawingArea):
             context.finish(True, False, time)
         else:
             context.finish(False, False, time)
-
-    def _motion_notify_cb(self, widget, event):
-        self._parent.pos_label.set_text('%s, %s' % (event.x, event.y))
 
 
 class ChartActivity(activity.Activity):
@@ -338,21 +332,12 @@ class ChartActivity(activity.Activity):
         # CHARTS AREA
 
         eventbox = gtk.EventBox()
-        eventbox.modify_bg(gtk.STATE_NORMAL, _WHITE)
         self.charts_area = ChartArea(self)
         self.charts_area.connect('size_allocate', self._chart_size_allocate)
 
-        pos_box = gtk.HBox()
-        self.pos_label = gtk.Label('0.0, 0.0')
-        self.pos_label.modify_font(pango.FontDescription('italic 12'))
-        pos_box.pack_end(self.pos_label, False, False, 5)
+        eventbox.modify_bg(gtk.STATE_NORMAL, _WHITE)
 
-        vbox = gtk.VBox()
-        vbox.pack_start(self.charts_area, True, True, 0)
-        vbox.pack_end(pos_box, False, False, 0)
-
-        eventbox.add(vbox)
-
+        eventbox.add(self.charts_area)
         paned.add2(eventbox)
 
         self.set_canvas(paned)
