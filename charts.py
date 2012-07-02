@@ -20,9 +20,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import pycha.bar
-import pycha.line
-import pycha.pie
+import sugarpycha.bar
+import sugarpycha.line
+import sugarpycha.pie
 
 import cairo
 import gobject
@@ -107,17 +107,18 @@ class Chart(gobject.GObject):
                                             self.height)
 
         if self.type == "vbar":
-            chart = pycha.bar.VerticalBarChart(self.surface, self.options)
+            chart = sugarpycha.bar.VerticalBarChart(self.surface, self.options)
 
         elif self.type == "hbar":
-            chart = pycha.bar.HorizontalBarChart(self.surface, self.options)
+            chart = sugarpycha.bar.HorizontalBarChart(self.surface,
+                                                      self.options)
 
         elif self.type == "line":
-            chart = pycha.line.LineChart(self.surface, self.options)
+            chart = sugarpycha.line.LineChart(self.surface, self.options)
 
         elif self.type == "pie":
             self.options["legend"] = {"hide": "False"}
-            chart = pycha.pie.PieChart(self.surface, self.options)
+            chart = sugarpycha.pie.PieChart(self.surface, self.options)
             self.dataSet = [(data[0],
                             [[0, data[1]]]) for data in sg.chart_data]
 
