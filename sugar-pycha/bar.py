@@ -43,7 +43,7 @@ class BarChart(Chart):
         if len(uniqx) == 1:
             self.minxdelta = 1.0
         else:
-            self.minxdelta = min([abs(uniqx[j] - uniqx[j-1])
+            self.minxdelta = min([abs(uniqx[j] - uniqx[j - 1])
                                   for j in range(1, len(uniqx))])
 
         k = self.minxdelta * self.xscale
@@ -70,7 +70,7 @@ class BarChart(Chart):
             h = self.layout.chart.h * bar.h
 
             if (w < 1 or h < 1) and self.options.yvals.skipSmallValues:
-                return # don't draw when the bar is too small
+                return  # don't draw when the bar is too small
 
             if self.options.stroke.shadow:
                 cx.set_source_rgba(0, 0, 0, 0.15)
@@ -132,7 +132,6 @@ class VerticalBarChart(BarChart):
                     xval, yval, yerr = item
                 else:
                     xval, yval = item
-                    yerr = 0.0
 
                 x = (((xval - self.minxval) * self.xscale)
                     + self.barMargin + (i * self.barWidthForSet))
@@ -154,7 +153,7 @@ class VerticalBarChart(BarChart):
         self.xticks = [(tick[0] + offset, tick[1]) for tick in self.xticks]
 
     def _getShadowRectangle(self, x, y, w, h):
-        return (x-2, y-2, w+4, h+2)
+        return (x - 2, y - 2, w + 4, h + 2)
 
     def _renderYVal(self, cx, label, labelW, labelH, barX, barY, barW, barH):
         x = barX + (barW / 2.0) - (labelW / 2.0)
@@ -238,7 +237,7 @@ class HorizontalBarChart(BarChart):
                 self._renderLine(cx, tick, False)
 
     def _getShadowRectangle(self, x, y, w, h):
-        return (x, y-2, w+2, h+4)
+        return (x, y - 2, w + 2, h + 4)
 
     def _renderXAxisLabel(self, cx, labelText):
         labelText = self.options.axis.x.label

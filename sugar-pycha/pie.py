@@ -55,19 +55,19 @@ class PieChart(Chart):
         """Evaluates pie ticks"""
         self.xticks = []
         if self.options.axis.x.ticks:
-            lookup = dict([(slice.xval, slice) for slice in self.slices])
+            lookup = dict([(_slice.xval, _slice) for _slice in self.slices])
             for tick in self.options.axis.x.ticks:
                 if not isinstance(tick, Option):
                     tick = Option(tick)
-                slice = lookup.get(tick.v, None)
+                _slice = lookup.get(tick.v, None)
                 label = tick.label or str(tick.v)
-                if slice is not None:
-                    label += ' (%.1f%%)' % (slice.fraction * 100)
+                if _slice is not None:
+                    label += ' (%.1f%%)' % (_slice.fraction * 100)
                     self.xticks.append((tick.v, label))
         else:
-            for slice in self.slices:
-                label = '%s (%.1f%%)' % (slice.name, slice.fraction * 100)
-                self.xticks.append((slice.xval, label))
+            for _slice in self.slices:
+                label = '%s (%.1f%%)' % (_slice.name, _slice.fraction * 100)
+                self.xticks.append((_slice.xval, label))
 
     def _renderLines(self, cx):
         """Aux function for _renderBackground"""
@@ -235,12 +235,12 @@ class PieLayout(Layout):
 
         self.radius = min(self.chart.w / 2.0, self.chart.h / 2.0)
         for tick in xticks:
-            slice = lookup.get(tick[0], None)
+            _slice = lookup.get(tick[0], None)
             width, height = get_text_extents(cx, tick[1],
                                              options.axis.tickFont,
                                              options.axis.tickFontSize,
                                              options.encoding)
-            angle = slice.getNormalisedAngle()
+            angle = _slice.getNormalisedAngle()
             radius = self._get_min_radius(angle, centerx, centery,
                                           width, height)
             self.radius = min(self.radius, radius)
@@ -248,8 +248,8 @@ class PieLayout(Layout):
         # Now that we now the radius we move the ticks as close as we can
         # to the circle
         for i, tick in enumerate(xticks):
-            slice = lookup.get(tick[0], None)
-            angle = slice.getNormalisedAngle()
+            _slice = lookup.get(tick[0], None)
+            angle = _slice.getNormalisedAngle()
             self.ticks[i] = self._get_tick_position(self.radius, angle,
                                                     self.ticks[i],
                                                     centerx, centery)

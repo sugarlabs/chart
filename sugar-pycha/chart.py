@@ -169,7 +169,7 @@ class Chart(object):
         if x_range_is_defined:
             self.minxval, self.maxxval = self.options.axis.x.range
         else:
-            xdata = [pair[0] for pair in reduce(lambda a, b: a+b, stores)]
+            xdata = [pair[0] for pair in reduce(lambda a, b: a + b, stores)]
             self.minxval = float(min(xdata))
             self.maxxval = float(max(xdata))
             if self.minxval * self.maxxval > 0 and self.minxval > 0:
@@ -185,7 +185,7 @@ class Chart(object):
         if y_range_is_defined:
             self.minyval, self.maxyval = self.options.axis.y.range
         else:
-            ydata = [pair[1] for pair in reduce(lambda a, b: a+b, stores)]
+            ydata = [pair[1] for pair in reduce(lambda a, b: a + b, stores)]
             self.minyval = float(min(ydata))
             self.maxyval = float(max(ydata))
             if self.minyval * self.maxyval > 0 and self.minyval > 0:
@@ -197,7 +197,7 @@ class Chart(object):
         else:
             self.yscale = 1.0 / self.yrange
 
-        if self.minyval * self.maxyval < 0: # different signs
+        if self.minyval * self.maxyval < 0:  # different signs
             self.origin = abs(self.minyval) * self.yscale
         else:
             self.origin = 0.0
@@ -651,14 +651,14 @@ class Layout(object):
         self.chart = Area()
 
         self._areas = (
-            (self.title, (1, 126/255.0, 0)), # orange
-            (self.y_label, (41/255.0, 91/255.0, 41/255.0)), # grey
-            (self.x_label, (41/255.0, 91/255.0, 41/255.0)), # grey
-            (self.y_tick_labels, (0, 115/255.0, 0)), # green
-            (self.x_tick_labels, (0, 115/255.0, 0)), # green
-            (self.y_ticks, (229/255.0, 241/255.0, 18/255.0)), # yellow
-            (self.x_ticks, (229/255.0, 241/255.0, 18/255.0)), # yellow
-            (self.chart, (75/255.0, 75/255.0, 1.0)), # blue
+            (self.title, (1, 126 / 255.0, 0)),  # orange
+            (self.y_label, (41 / 255.0, 91 / 255.0, 41 / 255.0)),  # grey
+            (self.x_label, (41 / 255.0, 91 / 255.0, 41 / 255.0)),  # grey
+            (self.y_tick_labels, (0, 115 / 255.0, 0)),  # green
+            (self.x_tick_labels, (0, 115 / 255.0, 0)),  # green
+            (self.y_ticks, (229 / 255.0, 241 / 255.0, 18 / 255.0)),  # yellow
+            (self.x_ticks, (229 / 255.0, 241 / 255.0, 18 / 255.0)),  # yellow
+            (self.chart, (75 / 255.0, 75 / 255.0, 1.0)),  # blue
             )
 
     def update(self, cx, options, width, height, xticks, yticks):
@@ -758,7 +758,7 @@ class Layout(object):
         if not axis.hide:
             extents = [cx.text_extents(safe_unicode(
                         tick[1], options.encoding,
-                        ))[2:4] # get width and height as a tuple
+                        ))[2:4]  # get width and height as a tuple
                        for tick in ticks]
             if extents:
                 widths, heights = zip(*extents)

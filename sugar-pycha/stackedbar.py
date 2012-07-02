@@ -35,7 +35,7 @@ class StackedBarChart(BarChart):
             # Fix the yscale as we accumulate the y values
             stores = self._getDatasetsValues()
             n_stores = len(stores)
-            flat_y = [pair[1] for pair in reduce(lambda a, b: a+b, stores)]
+            flat_y = [pair[1] for pair in reduce(lambda a, b: a + b, stores)]
             store_size = len(flat_y) / n_stores
             accum = [sum(flat_y[j]for j in xrange(i,
                                                   i + store_size * n_stores,
@@ -55,7 +55,7 @@ class StackedBarChart(BarChart):
         if len(uniqx) == 1:
             self.minxdelta = 1.0
         else:
-            self.minxdelta = min([abs(uniqx[j] - uniqx[j-1])
+            self.minxdelta = min([abs(uniqx[j] - uniqx[j - 1])
                                   for j in range(1, len(uniqx))])
 
         k = self.minxdelta * self.xscale

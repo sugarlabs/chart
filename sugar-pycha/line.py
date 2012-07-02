@@ -83,7 +83,6 @@ class LineChart(Chart):
                 cx.set_source_rgb(*self.colorScheme[storeName])
                 cx.stroke()
 
-
         cx.save()
         cx.set_line_width(self.options.stroke.width)
         if self.options.shouldFill:
