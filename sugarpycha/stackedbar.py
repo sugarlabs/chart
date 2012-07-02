@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with PyCha.  If not, see <http://www.gnu.org/licenses/>.
 
-from pycha.bar import BarChart, VerticalBarChart, HorizontalBarChart, Rect
-from pycha.chart import uniqueIndices
+from sugarpycha.bar import BarChart, VerticalBarChart, HorizontalBarChart, Rect
+from sugarpycha.chart import uniqueIndices
 
 
 class StackedBarChart(BarChart):

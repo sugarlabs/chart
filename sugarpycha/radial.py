@@ -19,10 +19,10 @@ import math
 
 import cairo
 
-from pycha.chart import Chart
-from pycha.line import Point
-from pycha.color import hex2rgb
-from pycha.utils import safe_unicode
+from sugarpycha.chart import Chart
+from sugarpycha.line import Point
+from sugarpycha.color import hex2rgb
+from sugarpycha.utils import safe_unicode
 
 
 class RadialChart(Chart):

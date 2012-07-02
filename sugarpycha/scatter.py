@@ -17,7 +17,7 @@
 
 import math
 
-from pycha.line import LineChart
+from sugarpycha.line import LineChart
 
 
 class ScatterplotChart(LineChart):

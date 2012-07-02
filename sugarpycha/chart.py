@@ -21,8 +21,8 @@ import math
 
 import cairo
 
-from pycha.color import ColorScheme, hex2rgb, DEFAULT_COLOR
-from pycha.utils import safe_unicode
+from sugarpycha.color import ColorScheme, hex2rgb, DEFAULT_COLOR
+from sugarpycha.utils import safe_unicode
 
 
 class Chart(object):

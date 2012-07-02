@@ -18,7 +18,7 @@
 
 import math
 
-from pycha.utils import clamp
+from sugarpycha.utils import clamp
 
 
 DEFAULT_COLOR = '#3c581a'
