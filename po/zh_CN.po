@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 00:33-0400\n"
-"PO-Revision-Date: 2012-05-05 09:34+0200\n"
-"Last-Translator: Xin <dram.wang@gmail.com>\n"
+"POT-Creation-Date: 2012-06-30 00:32-0400\n"
+"PO-Revision-Date: 2012-07-03 13:09+0200\n"
+"Last-Translator: athurg <feng@jianbo.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -188,6 +188,20 @@ msgstr "您可以使用秒表活动测量时间"
 #: charthelp.py:37
 msgid "...or data from the Measure activity"
 msgstr "...或测量活动中的数据"
+
+#: charthelp.py:39
+msgid "Reading data from the clipboard"
+msgstr "从剪贴板读取数据"
+
+#: charthelp.py:40
+msgid ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+msgstr "部分活动（例如VisualMatch）可以从剪贴板直接复制数据"
+
+#: charthelp.py:41
+msgid "Drop the clipboard data into the chart area and it will be charted"
+msgstr "将剪贴板里的数据拖到画图区，即可自动生成图像。"
 
 #: helpbutton.py:36
 msgid "Help"
