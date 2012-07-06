@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 00:33-0400\n"
-"PO-Revision-Date: 2012-05-05 23:32+0200\n"
+"POT-Creation-Date: 2012-06-30 00:32-0400\n"
+"PO-Revision-Date: 2012-07-06 06:28+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -194,6 +194,23 @@ msgstr "Du kan anvende tider som er målt i aktiviteten StopUr"
 #: charthelp.py:37
 msgid "...or data from the Measure activity"
 msgstr "... eller data fra aktiviteten Måling"
+
+#: charthelp.py:39
+msgid "Reading data from the clipboard"
+msgstr "Indlæser data fra udklipsholderen"
+
+#: charthelp.py:40
+msgid ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+msgstr ""
+"Nogle aktiviteter (såsom VisualMatch) kan kopiere data til udklipsholderen"
+
+#: charthelp.py:41
+msgid "Drop the clipboard data into the chart area and it will be charted"
+msgstr ""
+"Læg data fra udklipsholderen i diagram-området, og det vil blive gjort til "
+"et diagram"
 
 #: helpbutton.py:36
 msgid "Help"
