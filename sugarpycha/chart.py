@@ -405,7 +405,7 @@ class Chart(object):
         y = self.layout.y_ticks.y + tick[0] * self.layout.y_ticks.h
 
         text_position = ((self.layout.y_tick_labels.x
-                          + self.layout.y_tick_labels.w / 2.0), y)
+                          + self.layout.y_tick_labels.w / 2.0 - 5), y)
 
         return self._renderTick(cx, tick,
                                 x, y,
@@ -419,7 +419,7 @@ class Chart(object):
         x = self.layout.x_ticks.x + tick[0] * self.layout.x_ticks.w
         y = self.layout.x_ticks.y
 
-        text_position = (x, (self.layout.x_tick_labels.y
+        text_position = (x, (self.layout.x_tick_labels.y + 5
                              + self.layout.x_tick_labels.h / 2.0))
 
         return self._renderTick(cx, tick,
@@ -534,7 +534,7 @@ class Chart(object):
             x = (self.layout.title.x
                  + self.layout.title.w / 2.0
                  - title_width / 2.0)
-            y = self.layout.title.y - extents[1]
+            y = self.layout.title.y - extents[1] - 10
 
             cx.move_to(x, y)
             cx.show_text(title)
@@ -850,10 +850,10 @@ DEFAULT_OPTIONS = Option(
         bottom=10,
     ),
     stroke=Option(
-        color='#ffffff',
+        color='#000000',
         hide=False,
         shadow=True,
-        width=2
+        width=1
     ),
     yvals=Option(
         show=False,
