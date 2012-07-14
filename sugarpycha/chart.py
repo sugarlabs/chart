@@ -365,7 +365,7 @@ class Chart(object):
         cx.line_to(x2, y2)
         cx.close_path()
         cx.stroke()
-
+        cx.set_source_rgb(*hex2rgb('#000000'))
         cx.select_font_face(self.options.axis.tickFont,
                             cairo.FONT_SLANT_NORMAL,
                             cairo.FONT_WEIGHT_NORMAL)
@@ -384,6 +384,7 @@ class Chart(object):
             y = -height / 2.0
             cx.move_to(x - xb, y - yb)
             cx.show_text(label)
+            cx.set_source_rgb(*hex2rgb(self.options.axis.lineColor))
             if self.debug:
                 cx.rectangle(x, y, width, height)
                 cx.stroke()
@@ -393,6 +394,7 @@ class Chart(object):
             y -= height / 2.0
             cx.move_to(x - xb, y - yb)
             cx.show_text(label)
+            cx.set_source_rgb(*hex2rgb(self.options.axis.lineColor))
             if self.debug:
                 cx.rectangle(x, y, width, height)
                 cx.stroke()
@@ -493,7 +495,6 @@ class Chart(object):
             return
 
         cx.save()
-        cx.set_source_rgb(*hex2rgb(self.options.axis.lineColor))
         cx.set_line_width(self.options.axis.lineWidth)
 
         if not self.options.axis.y.hide:
@@ -504,6 +505,7 @@ class Chart(object):
             if self.options.axis.y.label:
                 self._renderYAxisLabel(cx, self.options.axis.y.label)
 
+            cx.set_source_rgb(*hex2rgb(self.options.axis.lineColor))
             self._renderYAxis(cx)
 
         if not self.options.axis.x.hide:
@@ -514,6 +516,7 @@ class Chart(object):
             if self.options.axis.x.label:
                 self._renderXAxisLabel(cx, self.options.axis.x.label)
 
+            cx.set_source_rgb(*hex2rgb(self.options.axis.lineColor))
             self._renderXAxis(cx)
 
         cx.restore()

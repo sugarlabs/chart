@@ -53,6 +53,7 @@ class Chart(gobject.GObject):
             'axis': {
                 'tickFontSize': 12,
                 'labelFontSize': 14,
+                'lineColor': '#b3b3b3',
                 'x': {
                     'ticks': [dict(v=i, label=l[0]) for i,
                                                         l in enumerate(data)],
@@ -63,9 +64,12 @@ class Chart(gobject.GObject):
                     'label': 'Y',
                 }
             },
+            'stroke': {
+                'width': 3
+            },
             'background': {
                 'chartColor': '#FFFFFF',
-                'lineColor': '#d1e5ec'
+                'lineColor': '#CCCCCC'
             },
             'colorScheme': {
                 'name': 'gradient',
@@ -79,9 +83,9 @@ class Chart(gobject.GObject):
         """Set the chart color scheme"""
         self.options["colorScheme"]["args"] = {'initialColor': color}
 
-    def set_line_color(self, color='#d1e5ec'):
+    def set_line_color(self, color='#000000'):
         """Set the chart line color"""
-        self.options["background"]["lineColor"] = color
+        self.options["stroke"]["color"] = color
 
     def set_x_label(self, text="X"):
         """Set the X Label"""
