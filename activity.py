@@ -291,12 +291,12 @@ class ChartActivity(activity.Activity):
 
         toolbarbox.toolbar.insert(fullscreen_btn, -1)
 
+        charthelp.create_help(toolbarbox.toolbar)
+
         separator = gtk.SeparatorToolItem()
         separator.set_draw(False)
         separator.set_expand(True)
         toolbarbox.toolbar.insert(separator, -1)
-
-        charthelp.create_help(toolbarbox.toolbar)
 
         stopbtn = StopButton(self)
         toolbarbox.toolbar.insert(stopbtn, -1)
