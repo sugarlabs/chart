@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 00:33-0400\n"
-"PO-Revision-Date: 2012-05-09 08:41+0200\n"
+"POT-Creation-Date: 2012-06-30 00:32-0400\n"
+"PO-Revision-Date: 2012-08-06 22:19+0200\n"
 "Last-Translator: AlanJAS <alanjas@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -196,6 +196,23 @@ msgstr "Puedes usar tiempos medidos con la actividad StopWatch"
 #: charthelp.py:37
 msgid "...or data from the Measure activity"
 msgstr "... o datos de la actividad Medir"
+
+#: charthelp.py:39
+msgid "Reading data from the clipboard"
+msgstr "Leyendo datos desde el portapapeles"
+
+#: charthelp.py:40
+msgid ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+msgstr ""
+"Varias actividades (como Dimensiones) tienen la habilidad de copiar datos al "
+"portapapeles"
+
+#: charthelp.py:41
+msgid "Drop the clipboard data into the chart area and it will be charted"
+msgstr ""
+"Arrastra los datos desde el portapapeles al área del gráfico y se graficarán"
 
 #: helpbutton.py:36
 msgid "Help"
