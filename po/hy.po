@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 00:33-0400\n"
-"PO-Revision-Date: 2012-05-14 09:16+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"POT-Creation-Date: 2012-06-30 00:32-0400\n"
+"PO-Revision-Date: 2012-08-06 17:45+0200\n"
+"Last-Translator: anush.mkrtchyan <anush.mkrtchyan@ca1492.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,6 @@ msgid "Chart"
 msgstr ""
 
 #: activity.py:147
-#, fuzzy
 msgid "Save as image"
 msgstr "Պահել որպես պատկեր"
 
@@ -32,15 +31,15 @@ msgstr ""
 
 #: activity.py:160
 msgid "Read Measure data"
-msgstr ""
+msgstr "Ընթերցել Չափման տվյալները"
 
 #: activity.py:179
 msgid "Add a value"
-msgstr ""
+msgstr "Ավելացնել արժեք"
 
 #: activity.py:185
 msgid "Remove the selected value"
-msgstr ""
+msgstr "Հեռացնել ընտրված արժեքը"
 
 #: activity.py:196
 msgid "Vertical Bar Chart"
@@ -80,12 +79,12 @@ msgstr "Էկրանի չափով"
 
 #: activity.py:510
 msgid "Invalid object"
-msgstr ""
+msgstr "Անվավեր առարկա"
 
 #: activity.py:512
 #, python-format
 msgid "The selected object must be a %s file"
-msgstr ""
+msgstr "Ընտրված առարկան պետք է լինի  %s ֆայլ"
 
 #: activity.py:515 activity.py:745
 msgid "Ok"
@@ -97,29 +96,27 @@ msgstr ""
 
 #: activity.py:559
 msgid "Measure"
-msgstr ""
+msgstr "Չափ"
 
 #: activity.py:664
-#, fuzzy
 msgid "Label"
-msgstr "պիտակ"
+msgstr "Պիտակ"
 
 #: activity.py:675
-#, fuzzy
 msgid "Value"
-msgstr "արժեքը"
+msgstr "Արժեք"
 
 #: activity.py:740
 msgid "Invalid Value"
-msgstr ""
+msgstr "Անվավեր արժեք"
 
 #: activity.py:742
 msgid "The value must be a number (integer or decimal)"
-msgstr ""
+msgstr "Արժեքը պետք է լինի թվի տեսքով (ամբողջ թիվ կամ տասնորդական)"
 
 #: charthelp.py:12
 msgid "Basic usage"
-msgstr ""
+msgstr "Հիմնական օգտագործում"
 
 #: charthelp.py:13
 msgid "First you need add data to create the graph"
@@ -127,11 +124,11 @@ msgstr ""
 
 #: charthelp.py:14
 msgid "You can add data with this button"
-msgstr ""
+msgstr "Կարող եք ավելացնել տվյալներ այս կոճակի օգնությամբ"
 
 #: charthelp.py:16
 msgid "...or remove data with this button"
-msgstr ""
+msgstr "...կամ հեռացնել տվյալները այդ կոճակի օգնությամբ"
 
 #: charthelp.py:18
 msgid "To change the graph title, just change the activity title"
@@ -190,6 +187,20 @@ msgstr ""
 
 #: charthelp.py:37
 msgid "...or data from the Measure activity"
+msgstr ""
+
+#: charthelp.py:39
+msgid "Reading data from the clipboard"
+msgstr ""
+
+#: charthelp.py:40
+msgid ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+msgstr ""
+
+#: charthelp.py:41
+msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr ""
 
 #: helpbutton.py:36
