@@ -20,17 +20,19 @@
 
 from gettext import gettext as _
 
-import gtk
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GObject
 
-from sugar.graphics.toolbutton import ToolButton
-from sugar.graphics.icon import Icon
-from sugar.graphics import style
+from sugar3.graphics.toolbutton import ToolButton
+from sugar3.graphics.icon import Icon
+from sugar3.graphics import style
 
 
-class HelpButton(gtk.ToolItem):
+class HelpButton(Gtk.ToolItem):
 
     def __init__(self, **kwargs):
-        gtk.ToolItem.__init__(self)
+        GObject.GObject.__init__(self)
 
         help_button = ToolButton('help-icon')
         help_button.set_tooltip(_('Help'))
@@ -38,16 +40,17 @@ class HelpButton(gtk.ToolItem):
 
         self._palette = help_button.get_palette()
 
-        sw = gtk.ScrolledWindow()
-        sw.set_size_request(int(gtk.gdk.screen_width() / 2.8),
-            gtk.gdk.screen_height() - style.GRID_CELL_SIZE * 3)
-        sw.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        sw = Gtk.ScrolledWindow()
+        sw.set_size_request(int(Gdk.Screen.width() / 2.8),
+            Gdk.Screen.height() - style.GRID_CELL_SIZE * 3)
+        sw.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
 
-        self._max_text_width = int(gtk.gdk.screen_width() / 3) - 20
-        self._vbox = gtk.VBox()
+        self._max_text_width = int(Gdk.Screen.width() / 3) - 600
+        self._vbox = Gtk.Box()
+        self._vbox.set_orientation(Gtk.Orientation.VERTICAL)
         self._vbox.set_homogeneous(False)
 
-        hbox = gtk.HBox()
+        hbox = Gtk.Box()
         hbox.pack_start(self._vbox, False, True, 0)
 
         sw.add_with_viewport(hbox)
@@ -61,28 +64,23 @@ class HelpButton(gtk.ToolItem):
         self._palette.popup(immediate=True, state=1)
 
     def add_section(self, section_text):
-        hbox = gtk.HBox()
-        label = gtk.Label()
+        hbox = Gtk.Box()
+        label = Gtk.Label()
         label.set_use_markup(True)
         label.set_markup('<b>%s</b>' % section_text)
         label.set_line_wrap(True)
-        label.set_size_request(self._max_text_width, -1)
-        hbox.add(label)
+        hbox.pack_start(label, False, False, 0)
         hbox.show_all()
         self._vbox.pack_start(hbox, False, False, padding=5)
 
     def add_paragraph(self, text, icon=None):
-        hbox = gtk.HBox()
-        label = gtk.Label(text)
-        label.set_justify(gtk.JUSTIFY_LEFT)
+        hbox = Gtk.Box()
+        label = Gtk.Label(label=text)
+        label.set_justify(Gtk.Justification.LEFT)
         label.set_line_wrap(True)
-        hbox.add(label)
+        hbox.pack_start(label, False, False, 0)
         if icon is not None:
             _icon = Icon(icon_name=icon)
             hbox.add(_icon)
-            label.set_size_request(self._max_text_width - 20, -1)
-        else:
-            label.set_size_request(self._max_text_width, -1)
-
         hbox.show_all()
         self._vbox.pack_start(hbox, False, False, padding=5)

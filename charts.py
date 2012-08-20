@@ -25,12 +25,12 @@ import sugarpycha.line
 import sugarpycha.pie
 
 import cairo
-import gobject
+from gi.repository import GObject
 
 
-class Chart(gobject.GObject):
+class Chart(GObject.GObject):
     def __init__(self, type="vertical", width=600, height=460):
-        gobject.GObject.__init__(self)
+        GObject.GObject.__init__(self)
 
         self.dataSet = None
         self.options = None

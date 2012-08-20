@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # activity.py by:
-#    Agustin Zubiaga <aguz@sugarlabs.org>
+#    Agustin Zubiaga <aguz@sugar3labs.org>
 #    Gonzalo Odiard <godiard@gmail.com>
 #    Manuel Quiñones <manuq@laptop.org>
 
@@ -20,9 +20,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import gtk
-import gobject
-import pango
+from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GObject
+from gi.repository import Pango
 import os
 import simplejson
 import locale
@@ -32,18 +33,19 @@ import utils
 from StringIO import StringIO
 from gettext import gettext as _
 
-from sugar.activity import activity
-from sugar.activity.widgets import ActivityToolbarButton
-from sugar.activity.widgets import StopButton
-from sugar.activity.widgets import ToolbarButton
-from sugar.graphics.toolbarbox import ToolbarBox
-from sugar.graphics.toolbutton import ToolButton
-from sugar.graphics.radiotoolbutton import RadioToolButton
-from sugar.graphics.colorbutton import ColorToolButton
-from sugar.graphics.objectchooser import ObjectChooser
-from sugar.graphics.icon import Icon
-from sugar.graphics.alert import Alert
-from sugar.datastore import datastore
+from sugar3.activity import activity
+from sugar3.activity.widgets import ActivityToolbarButton
+from sugar3.activity.widgets import StopButton
+from sugar3.activity.widgets import ToolbarButton
+from sugar3.graphics.toolbarbox import ToolbarBox
+from sugar3.graphics.toolbutton import ToolButton
+from sugar3.graphics.radiotoolbutton import RadioToolButton
+from sugar3.graphics.colorbutton import ColorToolButton
+from sugar3.graphics.objectchooser import ObjectChooser
+from sugar3.graphics.style import Color
+from sugar3.graphics.icon import Icon
+from sugar3.graphics.alert import Alert
+from sugar3.datastore import datastore
 
 from charts import Chart
 from readers import StopWatchReader
@@ -58,7 +60,7 @@ _CSV_MIME_TYPE = "text/csv"
 # GUI Colors
 _COLOR1 = utils.get_user_fill_color()
 _COLOR2 = utils.get_user_stroke_color()
-_WHITE = gtk.gdk.color_parse("white")
+_WHITE = Gdk.color_parse("white")
 
 # Paths
 _ACTIVITY_DIR = os.path.join(activity.get_activity_root(), "data/")
@@ -70,27 +72,26 @@ _logger.setLevel(logging.DEBUG)
 logging.basicConfig()
 
 
-class ChartArea(gtk.DrawingArea):
+class ChartArea(Gtk.DrawingArea):
 
     def __init__(self, parent):
         """A class for Draw the chart"""
         super(ChartArea, self).__init__()
         self._parent = parent
-        self.add_events(gtk.gdk.EXPOSURE_MASK | gtk.gdk.VISIBILITY_NOTIFY_MASK)
-        self.connect("expose-event", self._expose_cb)
+        self.add_events(Gdk.EventMask.EXPOSURE_MASK | 
+                        Gdk.EventMask.VISIBILITY_NOTIFY_MASK)
+        self.connect("draw", self._draw_cb)
 
-        target = [("text/plain", 0, 0)]
-        self.drag_dest_set(gtk.DEST_DEFAULT_ALL, target,
-                gtk.gdk.ACTION_COPY | gtk.gdk.ACTION_MOVE)
+        #target = Gtk.TargetEntry.new("text/plain", 0, 0)
+        #self.drag_dest_set(Gtk.DestDefaults.ALL, target,
+        #        (Gdk.DragAction.COPY | Gdk.DragAction.MOVE))
         self.connect('drag_data_received', self._drag_data_received)
 
-    def _expose_cb(self, widget, event):
-        context = self.window.cairo_create()
-
-        xpos, ypos, width, height = self.get_allocation()
+    def _draw_cb(self, widget, context):
+        alloc = self.get_allocation()
 
         # White Background:
-        context.rectangle(0, 0, width, height)
+        context.rectangle(0, 0, alloc.width, alloc.height)
         context.set_source_rgb(255, 255, 255)
         context.fill()
 
@@ -98,8 +99,8 @@ class ChartArea(gtk.DrawingArea):
         chart_width = self._parent.current_chart.width
         chart_height = self._parent.current_chart.height
 
-        cxpos = xpos + width / 2 - chart_width / 2
-        cypos = ypos + height / 2 - chart_height / 2
+        cxpos = alloc.width / 2 - chart_width / 2
+        cypos = alloc.height / 2 - chart_height / 2
 
         context.set_source_surface(self._parent.current_chart.surface,
                                    cxpos,
@@ -167,10 +168,7 @@ class ChartActivity(activity.Activity):
             self._create_measure_palette(import_measure)
 
         activity_btn_toolbar.insert(import_measure, -1)
-
         import_measure.show()
-
-        activity_btn_toolbar.keep.hide()
 
         toolbarbox.toolbar.insert(activity_button, 0)
 
@@ -186,7 +184,7 @@ class ChartActivity(activity.Activity):
 
         toolbarbox.toolbar.insert(remove_v, -1)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         separator.set_expand(False)
         toolbarbox.toolbar.insert(separator, -1)
@@ -226,13 +224,13 @@ class ChartActivity(activity.Activity):
                                    add_line_chart,
                                    add_pie_chart]
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         separator.set_expand(False)
         toolbarbox.toolbar.insert(separator, -1)
 
         options_button = ToolbarButton(icon_name='preferences-system')
-        options_toolbar = gtk.Toolbar()
+        options_toolbar = Gtk.Toolbar()
 
         self.chart_color_btn = ColorToolButton()
         self.chart_color_btn.set_color(_COLOR1)
@@ -247,13 +245,13 @@ class ChartActivity(activity.Activity):
                 self._set_chart_line_color)
         options_toolbar.insert(self.line_color_btn, -1)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         separator.set_expand(False)
         options_toolbar.insert(separator, -1)
 
         h_label_icon = Icon(icon_name="hlabel")
-        h_label_tool_item = gtk.ToolItem()
+        h_label_tool_item = Gtk.ToolItem()
         h_label_tool_item.add(h_label_icon)
         options_toolbar.insert(h_label_tool_item, -1)
 
@@ -261,13 +259,13 @@ class ChartActivity(activity.Activity):
         self.h_label.entry.connect("changed", self._set_h_label)
         options_toolbar.insert(self.h_label, -1)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(False)
         separator.set_expand(False)
         options_toolbar.insert(separator, -1)
 
         v_label_icon = Icon(icon_name="vlabel")
-        v_label_tool_item = gtk.ToolItem()
+        v_label_tool_item = Gtk.ToolItem()
         v_label_tool_item.add(v_label_icon)
         options_toolbar.insert(v_label_tool_item, -1)
 
@@ -280,7 +278,7 @@ class ChartActivity(activity.Activity):
 
         toolbarbox.toolbar.insert(options_button, -1)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         separator.set_expand(False)
         toolbarbox.toolbar.insert(separator, -1)
@@ -293,7 +291,7 @@ class ChartActivity(activity.Activity):
 
         charthelp.create_help(toolbarbox.toolbar)
 
-        separator = gtk.SeparatorToolItem()
+        separator = Gtk.SeparatorToolItem()
         separator.set_draw(False)
         separator.set_expand(True)
         toolbarbox.toolbar.insert(separator, -1)
@@ -304,8 +302,8 @@ class ChartActivity(activity.Activity):
         self.set_toolbar_box(toolbarbox)
 
         # CANVAS
-        paned = gtk.HPaned()
-        box = gtk.VBox()
+        paned = Gtk.HPaned()
+        box = Gtk.VBox()
         self.box = box
 
         # Set the info box width to 1/3 of the screen:
@@ -317,8 +315,8 @@ class ChartActivity(activity.Activity):
         self._setup_handle = paned.connect('size_allocate',
                     size_allocate_cb)
 
-        scroll = gtk.ScrolledWindow()
-        scroll.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scroll = Gtk.ScrolledWindow()
+        scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.labels_and_values = ChartData(self)
         scroll.add(self.labels_and_values)
 
@@ -331,11 +329,11 @@ class ChartActivity(activity.Activity):
 
         # CHARTS AREA
 
-        eventbox = gtk.EventBox()
+        eventbox = Gtk.EventBox()
         self.charts_area = ChartArea(self)
         self.charts_area.connect('size_allocate', self._chart_size_allocate)
 
-        eventbox.modify_bg(gtk.STATE_NORMAL, _WHITE)
+        eventbox.modify_bg(Gtk.StateType.NORMAL, _WHITE)
 
         eventbox.add(self.charts_area)
         paned.add2(eventbox)
@@ -346,7 +344,7 @@ class ChartActivity(activity.Activity):
 
     def _create_measure_palette(self, button):
         palette = button.get_palette()
-        hbox = gtk.HBox()
+        hbox = Gtk.HBox()
 
         channel1 = ToolButton("measure-channel-1")
         channel1.connect("clicked", self.__import_measure_cb, 1)
@@ -400,17 +398,17 @@ class ChartActivity(activity.Activity):
 
         try:
             # Resize the chart for all the screen sizes
-            xpos, ypos, width, height = self.get_allocation()
+            alloc = self.get_allocation()
 
             if fullscreen:
-                new_width = width
-                new_height = height
+                new_width = alloc.width
+                new_height = alloc.height
 
             if not fullscreen:
-                sxpos, sypos, width, height = self.charts_area.get_allocation()
+                alloc = self.charts_area.get_allocation()
 
-                new_width = width - 40
-                new_height = height - 40
+                new_width = alloc.width - 40
+                new_height = alloc.height - 40
 
             self.current_chart.width = new_width
             self.current_chart.height = new_height
@@ -496,7 +494,7 @@ class ChartActivity(activity.Activity):
         matches_mime_type = False
 
         response = chooser.run()
-        if response == gtk.RESPONSE_ACCEPT:
+        if response == Gtk.ResponseType.ACCEPT:
             jobject = chooser.get_selected_object()
             metadata = jobject.metadata
             file_path = jobject.file_path
@@ -512,7 +510,7 @@ class ChartActivity(activity.Activity):
                        _('The selected object must be a %s file' % (type_name))
 
                 ok_icon = Icon(icon_name='dialog-ok')
-                alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon)
+                alert.add_button(Gtk.ResponseType.OK, _('Ok'), ok_icon)
                 ok_icon.show()
 
                 alert.connect('response', lambda a, r: self.remove_alert(a))
@@ -606,8 +604,8 @@ class ChartActivity(activity.Activity):
             self.chart_type_buttons[3].set_active(True)
 
         # Update the controls in the config subtoolbar
-        self.chart_color_btn.set_color(gtk.gdk.Color(self.chart_color))
-        self.line_color_btn.set_color(gtk.gdk.Color(self.chart_line_color))
+        self.chart_color_btn.set_color(Color(self.chart_color).get_gdk_color())
+        self.line_color_btn.set_color(Color(self.chart_line_color).get_gdk_color())
 
         # If the saved label is not '', set the text entry with the saved label
         if self.x_label != '':
@@ -646,39 +644,39 @@ class ChartActivity(activity.Activity):
         self.load_from_file(f)
 
 
-class ChartData(gtk.TreeView):
+class ChartData(Gtk.TreeView):
 
     __gsignals__ = {
-             'label-changed': (gobject.SIGNAL_RUN_FIRST, None, [str, str], ),
-             'value-changed': (gobject.SIGNAL_RUN_FIRST, None, [str, str], ), }
+             'label-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str], ),
+             'value-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str], ), }
 
     def __init__(self, activity):
 
-        gtk.TreeView.__init__(self)
+        GObject.GObject.__init__(self)
 
-        self.model = gtk.ListStore(str, str)
+        self.model = Gtk.ListStore(str, str)
         self.set_model(self.model)
 
         # Label column
 
-        column = gtk.TreeViewColumn(_("Label"))
-        label = gtk.CellRendererText()
+        column = Gtk.TreeViewColumn(_("Label"))
+        label = Gtk.CellRendererText()
         label.set_property('editable', True)
         label.connect("edited", self._label_changed, self.model)
 
-        column.pack_start(label)
-        column.set_attributes(label, text=0)
+        column.pack_start(label, True)
+        column.add_attribute(label, 'text', 0)
         self.append_column(column)
 
         # Value column
 
-        column = gtk.TreeViewColumn(_("Value"))
-        value = gtk.CellRendererText()
+        column = Gtk.TreeViewColumn(_("Value"))
+        value = Gtk.CellRendererText()
         value.set_property('editable', True)
         value.connect("edited", self._value_changed, self.model, activity)
 
-        column.pack_start(value)
-        column.set_attributes(value, text=1)
+        column.pack_start(value, True)
+        column.add_attribute(value, 'text', 1)
 
         self.append_column(column)
         self.set_enable_search(False)
@@ -742,7 +740,7 @@ class ChartData(gtk.TreeView):
                            _('The value must be a number (integer or decimal)')
 
             ok_icon = Icon(icon_name='dialog-ok')
-            alert.add_button(gtk.RESPONSE_OK, _('Ok'), ok_icon)
+            alert.add_button(Gtk.ResponseType.OK, _('Ok'), ok_icon)
             ok_icon.show()
 
             alert.connect('response', lambda a, r: activity.remove_alert(a))
@@ -752,16 +750,16 @@ class ChartData(gtk.TreeView):
             alert.show()
 
 
-class Entry(gtk.ToolItem):
+class Entry(Gtk.ToolItem):
 
     def __init__(self, text):
-        gtk.ToolItem.__init__(self)
+        GObject.GObject.__init__(self)
 
-        self.entry = gtk.Entry()
+        self.entry = Gtk.Entry()
         self.entry.set_text(text)
         self.entry.connect("focus-in-event", self._focus_in)
         self.entry.connect("focus-out-event", self._focus_out)
-        self.entry.modify_font(pango.FontDescription("italic"))
+        self.entry.modify_font(Pango.FontDescription("italic"))
 
         self._text = text
 
@@ -772,9 +770,9 @@ class Entry(gtk.ToolItem):
     def _focus_in(self, widget, event):
         if widget.get_text() == self._text:
             widget.set_text("")
-            widget.modify_font(pango.FontDescription(""))
+            widget.modify_font(Pango.FontDescription(""))
 
     def _focus_out(self, widget, event):
         if widget.get_text() == "":
             widget.set_text(self.text)
-            widget.modify_font(pango.FontDescription("italic"))
+            widget.modify_font(Pango.FontDescription("italic"))
