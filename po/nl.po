@@ -1,0 +1,234 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 00:32-0400\n"
+"PO-Revision-Date: 2012-08-20 20:46+0200\n"
+"Last-Translator: whe <heppew@yahoo.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#: activity/activity.info:2
+msgid "Chart"
+msgstr "Kaart"
+
+#: activity.py:147
+msgid "Save as image"
+msgstr "Bewaar als afbeelding"
+
+#: activity.py:154
+msgid "Read StopWatch data"
+msgstr "Lees StopWatch data"
+
+#: activity.py:160
+msgid "Read Measure data"
+msgstr "Lees Meetdata"
+
+#: activity.py:179
+msgid "Add a value"
+msgstr "Voeg een waarde toe"
+
+#: activity.py:185
+msgid "Remove the selected value"
+msgstr "Verwijder de geselecteerde waarde"
+
+#: activity.py:196
+msgid "Vertical Bar Chart"
+msgstr "Verticale Balk Grafiek"
+
+#: activity.py:204
+msgid "Horizontal Bar Chart"
+msgstr "Horizontale Balk Grafiek"
+
+#: activity.py:211
+msgid "Line Chart"
+msgstr "Lijn Grafiek"
+
+#: activity.py:218
+msgid "Pie Chart"
+msgstr "Taart Grafiek"
+
+#: activity.py:239
+msgid "Chart Color"
+msgstr "Grafiek Kleur"
+
+#: activity.py:245
+msgid "Line Color"
+msgstr "Lijn Kleur"
+
+#: activity.py:260
+msgid "Horizontal label..."
+msgstr "Horizontaal label..."
+
+#: activity.py:274
+msgid "Vertical label..."
+msgstr "Verticaal label..."
+
+#: activity.py:289
+msgid "Fullscreen"
+msgstr "Volledig scherm"
+
+#: activity.py:510
+msgid "Invalid object"
+msgstr "Ongeldig voorwerp"
+
+#: activity.py:512
+#, python-format
+msgid "The selected object must be a %s file"
+msgstr "Het geselecteerde voorwerp moet een %s bestand zijn"
+
+#: activity.py:515 activity.py:745
+msgid "Ok"
+msgstr "Ok"
+
+#: activity.py:547 readers.py:62
+msgid "StopWatch"
+msgstr "StopWatch"
+
+#: activity.py:559
+msgid "Measure"
+msgstr "Meten"
+
+#: activity.py:664
+msgid "Label"
+msgstr "Label"
+
+#: activity.py:675
+msgid "Value"
+msgstr "Waarde"
+
+#: activity.py:740
+msgid "Invalid Value"
+msgstr "Ongeldige waarde"
+
+#: activity.py:742
+msgid "The value must be a number (integer or decimal)"
+msgstr "De waarde moet zijn een nummer (geheel getal of decimaal)"
+
+#: charthelp.py:12
+msgid "Basic usage"
+msgstr "Eenvoudig gebruik"
+
+#: charthelp.py:13
+msgid "First you need add data to create the graph"
+msgstr "Je moet eerst data toevoegen om een grafiek te maken"
+
+#: charthelp.py:14
+msgid "You can add data with this button"
+msgstr "Je kunt data toevoegen met deze knop"
+
+#: charthelp.py:16
+msgid "...or remove data with this button"
+msgstr "...of data verwijderen met deze knop"
+
+#: charthelp.py:18
+msgid "To change the graph title, just change the activity title"
+msgstr "Om de grafiektitel te wijzigen, wijzig de activiteit titel"
+
+#: charthelp.py:20
+msgid "Next you can change the type of graph"
+msgstr "Vervolgens kun je het type grafiek wijzigen"
+
+#: charthelp.py:21
+msgid "Vertical bars"
+msgstr "Verticale balken"
+
+#: charthelp.py:22
+msgid "Horizontal bars"
+msgstr "Horizontale balken"
+
+#: charthelp.py:23
+msgid "Lines"
+msgstr "Lijnen"
+
+#: charthelp.py:24
+msgid "Pie"
+msgstr "Taart"
+
+#: charthelp.py:26
+msgid "Configs"
+msgstr "Instellingen"
+
+#: charthelp.py:27
+msgid ""
+"You can change the colors or the horizontal and vertical labels in the "
+"configs toolbar"
+msgstr ""
+"Je kunt de kleuren of de horizontale en verticale labels wijzigen in de "
+"instellingen werktuigbalk"
+
+#: charthelp.py:30
+msgid "Saving as an image"
+msgstr "Bewaar als een afbeelding"
+
+#: charthelp.py:31
+msgid "In the activity toolbar you have button to save the graph as an image"
+msgstr ""
+"In de activiteitenbalk is een knop om de grafiek als een afbeelding te "
+"bewaren"
+
+#: charthelp.py:34
+msgid "Reading data from other activities"
+msgstr "Lees data van andere activiteiten"
+
+#: charthelp.py:35
+msgid ""
+"In the activity toolbar you have buttons to read data from other activities"
+msgstr ""
+"In de activiteitenbalk zijn knoppen om data van andere activiteiten te lezen"
+
+#: charthelp.py:36
+msgid "You can use times measured in the StopWatch activity"
+msgstr "Je kunt gemeten tijden in de StopWatdh activiteit gebruiken"
+
+#: charthelp.py:37
+msgid "...or data from the Measure activity"
+msgstr "...or data van de Meetactiviteit"
+
+#: charthelp.py:39
+msgid "Reading data from the clipboard"
+msgstr "Data lezen van klembord"
+
+#: charthelp.py:40
+msgid ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+msgstr ""
+"Enkele activiteiten (zoals VisualMatch) heeft de mogelijkheid data te "
+"kopiëren naar het klembord"
+
+#: charthelp.py:41
+msgid "Drop the clipboard data into the chart area and it will be charted"
+msgstr "Plaats klemborddata in de grafiek en het zal in kaart worden gebracht"
+
+#: helpbutton.py:36
+msgid "Help"
+msgstr "Help"
+
+#: readers.py:41
+msgid "Time"
+msgstr "Tijd"
+
+#: readers.py:51
+msgid "Mark"
+msgstr "Merkteken"
+
+#: readers.py:126
+msgid "Values"
+msgstr "Waarden"
+
+#: readers.py:127
+msgid "Samples"
+msgstr "Monsters"
+
+#~ msgid "SimpleGraph"
+#~ msgstr "EenvoudigeGrafiek"
