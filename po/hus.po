@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-05 00:33-0400\n"
+"POT-Creation-Date: 2012-06-30 00:32-0400\n"
 "PO-Revision-Date: 2012-03-01 21:44+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -188,6 +188,20 @@ msgstr ""
 
 #: charthelp.py:37
 msgid "...or data from the Measure activity"
+msgstr ""
+
+#: charthelp.py:39
+msgid "Reading data from the clipboard"
+msgstr ""
+
+#: charthelp.py:40
+msgid ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+msgstr ""
+
+#: charthelp.py:41
+msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr ""
 
 #: helpbutton.py:36

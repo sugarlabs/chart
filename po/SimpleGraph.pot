@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-10 00:31-0500\n"
+"POT-Creation-Date: 2012-06-30 00:32-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,100 +17,189 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: activity/activity.info:2
-msgid "SimpleGraph"
+msgid "Chart"
 msgstr ""
 
-#: activity.py:131
+#: activity.py:147
 msgid "Save as image"
 msgstr ""
 
-#: activity.py:138
+#: activity.py:154
 msgid "Read StopWatch data"
 msgstr ""
 
-#: activity.py:144
+#: activity.py:160
 msgid "Read Measure data"
 msgstr ""
 
-#: activity.py:163
+#: activity.py:179
 msgid "Add a value"
 msgstr ""
 
-#: activity.py:169
+#: activity.py:185
 msgid "Remove the selected value"
 msgstr ""
 
-#: activity.py:180
+#: activity.py:196
 msgid "Vertical Bar Chart"
 msgstr ""
 
-#: activity.py:188
+#: activity.py:204
 msgid "Horizontal Bar Chart"
 msgstr ""
 
-#: activity.py:195
+#: activity.py:211
 msgid "Line Chart"
 msgstr ""
 
-#: activity.py:202
+#: activity.py:218
 msgid "Pie Chart"
 msgstr ""
 
-#: activity.py:223
+#: activity.py:239
 msgid "Chart Color"
 msgstr ""
 
-#: activity.py:229
+#: activity.py:245
 msgid "Line Color"
 msgstr ""
 
-#: activity.py:244
+#: activity.py:260
 msgid "Horizontal label..."
 msgstr ""
 
-#: activity.py:258
+#: activity.py:274
 msgid "Vertical label..."
 msgstr ""
 
-#: activity.py:273
+#: activity.py:289
 msgid "Fullscreen"
 msgstr ""
 
-#: activity.py:494
+#: activity.py:510
 msgid "Invalid object"
 msgstr ""
 
-#: activity.py:496
+#: activity.py:512
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr ""
 
-#: activity.py:499 activity.py:726
+#: activity.py:515 activity.py:745
 msgid "Ok"
 msgstr ""
 
-#: activity.py:531 readers.py:62
+#: activity.py:547 readers.py:62
 msgid "StopWatch"
 msgstr ""
 
-#: activity.py:543
+#: activity.py:559
 msgid "Measure"
 msgstr ""
 
-#: activity.py:645
+#: activity.py:664
 msgid "Label"
 msgstr ""
 
-#: activity.py:656
+#: activity.py:675
 msgid "Value"
 msgstr ""
 
-#: activity.py:721
+#: activity.py:740
 msgid "Invalid Value"
 msgstr ""
 
-#: activity.py:723
+#: activity.py:742
 msgid "The value must be a number (integer or decimal)"
+msgstr ""
+
+#: charthelp.py:12
+msgid "Basic usage"
+msgstr ""
+
+#: charthelp.py:13
+msgid "First you need add data to create the graph"
+msgstr ""
+
+#: charthelp.py:14
+msgid "You can add data with this button"
+msgstr ""
+
+#: charthelp.py:16
+msgid "...or remove data with this button"
+msgstr ""
+
+#: charthelp.py:18
+msgid "To change the graph title, just change the activity title"
+msgstr ""
+
+#: charthelp.py:20
+msgid "Next you can change the type of graph"
+msgstr ""
+
+#: charthelp.py:21
+msgid "Vertical bars"
+msgstr ""
+
+#: charthelp.py:22
+msgid "Horizontal bars"
+msgstr ""
+
+#: charthelp.py:23
+msgid "Lines"
+msgstr ""
+
+#: charthelp.py:24
+msgid "Pie"
+msgstr ""
+
+#: charthelp.py:26
+msgid "Configs"
+msgstr ""
+
+#: charthelp.py:27
+msgid ""
+"You can change the colors or the horizontal and vertical labels in the "
+"configs toolbar"
+msgstr ""
+
+#: charthelp.py:30
+msgid "Saving as an image"
+msgstr ""
+
+#: charthelp.py:31
+msgid "In the activity toolbar you have button to save the graph as an image"
+msgstr ""
+
+#: charthelp.py:34
+msgid "Reading data from other activities"
+msgstr ""
+
+#: charthelp.py:35
+msgid ""
+"In the activity toolbar you have buttons to read data from other activities"
+msgstr ""
+
+#: charthelp.py:36
+msgid "You can use times measured in the StopWatch activity"
+msgstr ""
+
+#: charthelp.py:37
+msgid "...or data from the Measure activity"
+msgstr ""
+
+#: charthelp.py:39
+msgid "Reading data from the clipboard"
+msgstr ""
+
+#: charthelp.py:40
+msgid ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+msgstr ""
+
+#: charthelp.py:41
+msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr ""
 
 #: helpbutton.py:36
@@ -131,79 +220,4 @@ msgstr ""
 
 #: readers.py:127
 msgid "Samples"
-msgstr ""
-
-#: simplegraphhelp.py:12
-msgid "Basic usage"
-msgstr ""
-
-#: simplegraphhelp.py:13
-msgid "First you need add data to create the graph"
-msgstr ""
-
-#: simplegraphhelp.py:14
-msgid "You can add data with this button"
-msgstr ""
-
-#: simplegraphhelp.py:16
-msgid "...or remove data with this button"
-msgstr ""
-
-#: simplegraphhelp.py:18
-msgid "To change the graph title, just change the activity title"
-msgstr ""
-
-#: simplegraphhelp.py:20
-msgid "Next you can change the type of graph"
-msgstr ""
-
-#: simplegraphhelp.py:21
-msgid "Vertical bars"
-msgstr ""
-
-#: simplegraphhelp.py:22
-msgid "Horizontal bars"
-msgstr ""
-
-#: simplegraphhelp.py:23
-msgid "Lines"
-msgstr ""
-
-#: simplegraphhelp.py:24
-msgid "Pie"
-msgstr ""
-
-#: simplegraphhelp.py:26
-msgid "Configs"
-msgstr ""
-
-#: simplegraphhelp.py:27
-msgid ""
-"You can change the colors or the horizontal and vertical labels in the "
-"configs toolbar"
-msgstr ""
-
-#: simplegraphhelp.py:30
-msgid "Saving as an image"
-msgstr ""
-
-#: simplegraphhelp.py:31
-msgid "In the activity toolbar you have button to save the graph as an image"
-msgstr ""
-
-#: simplegraphhelp.py:34
-msgid "Reading data from other activities"
-msgstr ""
-
-#: simplegraphhelp.py:35
-msgid ""
-"In the activity toolbar you have buttons to read data from other activities"
-msgstr ""
-
-#: simplegraphhelp.py:36
-msgid "You can use times measured in the StopWatch activity"
-msgstr ""
-
-#: simplegraphhelp.py:37
-msgid "...or data from the Measure activity"
 msgstr ""

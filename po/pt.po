@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-10 00:31-0500\n"
+"POT-Creation-Date: 2012-06-30 00:32-0400\n"
 "PO-Revision-Date: 2012-04-13 07:05+0200\n"
 "Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,101 +18,196 @@ msgstr ""
 "X-Generator: Pootle 2.0.5\n"
 
 #: activity/activity.info:2
-msgid "SimpleGraph"
-msgstr "Gráfico Simples"
+msgid "Chart"
+msgstr ""
 
-#: activity.py:131
+#: activity.py:147
 msgid "Save as image"
 msgstr "Guardar como Imagem"
 
-#: activity.py:138
+#: activity.py:154
 msgid "Read StopWatch data"
 msgstr "Ler dados de Cronómetro"
 
-#: activity.py:144
+#: activity.py:160
 msgid "Read Measure data"
 msgstr "Ler dados de Medir"
 
-#: activity.py:163
+#: activity.py:179
 msgid "Add a value"
 msgstr "Adicionar um valor"
 
-#: activity.py:169
+#: activity.py:185
 msgid "Remove the selected value"
 msgstr "Remover o valor selecionado"
 
-#: activity.py:180
+#: activity.py:196
 msgid "Vertical Bar Chart"
 msgstr "Gráfico de Barras Vertical"
 
-#: activity.py:188
+#: activity.py:204
 msgid "Horizontal Bar Chart"
 msgstr "Gráfico de Barras Horizontal"
 
-#: activity.py:195
+#: activity.py:211
 msgid "Line Chart"
 msgstr "Gráfico de Linhas"
 
-#: activity.py:202
+#: activity.py:218
 msgid "Pie Chart"
 msgstr "Gráfico Circular"
 
-#: activity.py:223
+#: activity.py:239
 msgid "Chart Color"
 msgstr "Cor do Gráfico"
 
-#: activity.py:229
+#: activity.py:245
 msgid "Line Color"
 msgstr "Cor da Linha"
 
-#: activity.py:244
+#: activity.py:260
 msgid "Horizontal label..."
 msgstr "Legenda horizontal..."
 
-#: activity.py:258
+#: activity.py:274
 msgid "Vertical label..."
 msgstr "Legenda vertical..."
 
-#: activity.py:273
+#: activity.py:289
 msgid "Fullscreen"
 msgstr "Ecrã Inteiro"
 
-#: activity.py:494
+#: activity.py:510
 msgid "Invalid object"
 msgstr "Objeto inválido"
 
-#: activity.py:496
+#: activity.py:512
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "O objeto escolhido deve ser um ficheiro %s"
 
-#: activity.py:499 activity.py:726
+#: activity.py:515 activity.py:745
 msgid "Ok"
 msgstr "Ok"
 
-#: activity.py:531 readers.py:62
+#: activity.py:547 readers.py:62
 msgid "StopWatch"
 msgstr "Cronómetro"
 
-#: activity.py:543
+#: activity.py:559
 msgid "Measure"
 msgstr "Medir"
 
-#: activity.py:645
+#: activity.py:664
 msgid "Label"
 msgstr "Legenda"
 
-#: activity.py:656
+#: activity.py:675
 msgid "Value"
 msgstr "Valor"
 
-#: activity.py:721
+#: activity.py:740
 msgid "Invalid Value"
 msgstr "Valor Inválido"
 
-#: activity.py:723
+#: activity.py:742
 msgid "The value must be a number (integer or decimal)"
 msgstr "O valor deve ser um número (inteiro ou decimal)"
+
+#: charthelp.py:12
+msgid "Basic usage"
+msgstr "Utilização básica"
+
+#: charthelp.py:13
+msgid "First you need add data to create the graph"
+msgstr "Primeiro precisas adicionar dados para criar o gráfico"
+
+#: charthelp.py:14
+msgid "You can add data with this button"
+msgstr "Podes adicionar dados com este botão"
+
+#: charthelp.py:16
+msgid "...or remove data with this button"
+msgstr "...ou remover dados com este botão"
+
+#: charthelp.py:18
+msgid "To change the graph title, just change the activity title"
+msgstr "Para alterar o título do gráfico, basta alterar o título da atividade"
+
+#: charthelp.py:20
+msgid "Next you can change the type of graph"
+msgstr "A seguir podes alterar o tipo de gráfico"
+
+#: charthelp.py:21
+msgid "Vertical bars"
+msgstr "Barras verticais"
+
+#: charthelp.py:22
+msgid "Horizontal bars"
+msgstr "Barras horizontais"
+
+#: charthelp.py:23
+msgid "Lines"
+msgstr "Linhas"
+
+#: charthelp.py:24
+msgid "Pie"
+msgstr "Circular"
+
+#: charthelp.py:26
+msgid "Configs"
+msgstr "Configurar"
+
+#: charthelp.py:27
+msgid ""
+"You can change the colors or the horizontal and vertical labels in the "
+"configs toolbar"
+msgstr ""
+"Podes mudar as cores ou as legendas horizontais e verticais na barra de "
+"ferramentas configurar"
+
+#: charthelp.py:30
+msgid "Saving as an image"
+msgstr "A guardar como uma imagem"
+
+#: charthelp.py:31
+msgid "In the activity toolbar you have button to save the graph as an image"
+msgstr ""
+"Na barra de ferramentas da atividade, tens um botão para guardar o gráfico "
+"como uma imagem"
+
+#: charthelp.py:34
+msgid "Reading data from other activities"
+msgstr "A ler dados de outras atividades"
+
+#: charthelp.py:35
+msgid ""
+"In the activity toolbar you have buttons to read data from other activities"
+msgstr ""
+"Na barra de ferramentas da atividade, tens botões para ler os dados de "
+"outras atividades"
+
+#: charthelp.py:36
+msgid "You can use times measured in the StopWatch activity"
+msgstr "Podes utilizar os tempos medidos na atividade Cronómetro"
+
+#: charthelp.py:37
+msgid "...or data from the Measure activity"
+msgstr "...ou dados da atividade Medir"
+
+#: charthelp.py:39
+msgid "Reading data from the clipboard"
+msgstr ""
+
+#: charthelp.py:40
+msgid ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+msgstr ""
+
+#: charthelp.py:41
+msgid "Drop the clipboard data into the chart area and it will be charted"
+msgstr ""
 
 #: helpbutton.py:36
 msgid "Help"
@@ -134,83 +229,5 @@ msgstr "Valores"
 msgid "Samples"
 msgstr "Amostras"
 
-#: simplegraphhelp.py:12
-msgid "Basic usage"
-msgstr "Utilização básica"
-
-#: simplegraphhelp.py:13
-msgid "First you need add data to create the graph"
-msgstr "Primeiro precisas adicionar dados para criar o gráfico"
-
-#: simplegraphhelp.py:14
-msgid "You can add data with this button"
-msgstr "Podes adicionar dados com este botão"
-
-#: simplegraphhelp.py:16
-msgid "...or remove data with this button"
-msgstr "...ou remover dados com este botão"
-
-#: simplegraphhelp.py:18
-msgid "To change the graph title, just change the activity title"
-msgstr "Para alterar o título do gráfico, basta alterar o título da atividade"
-
-#: simplegraphhelp.py:20
-msgid "Next you can change the type of graph"
-msgstr "A seguir podes alterar o tipo de gráfico"
-
-#: simplegraphhelp.py:21
-msgid "Vertical bars"
-msgstr "Barras verticais"
-
-#: simplegraphhelp.py:22
-msgid "Horizontal bars"
-msgstr "Barras horizontais"
-
-#: simplegraphhelp.py:23
-msgid "Lines"
-msgstr "Linhas"
-
-#: simplegraphhelp.py:24
-msgid "Pie"
-msgstr "Circular"
-
-#: simplegraphhelp.py:26
-msgid "Configs"
-msgstr "Configurar"
-
-#: simplegraphhelp.py:27
-msgid ""
-"You can change the colors or the horizontal and vertical labels in the "
-"configs toolbar"
-msgstr ""
-"Podes mudar as cores ou as legendas horizontais e verticais na barra de "
-"ferramentas configurar"
-
-#: simplegraphhelp.py:30
-msgid "Saving as an image"
-msgstr "A guardar como uma imagem"
-
-#: simplegraphhelp.py:31
-msgid "In the activity toolbar you have button to save the graph as an image"
-msgstr ""
-"Na barra de ferramentas da atividade, tens um botão para guardar o gráfico "
-"como uma imagem"
-
-#: simplegraphhelp.py:34
-msgid "Reading data from other activities"
-msgstr "A ler dados de outras atividades"
-
-#: simplegraphhelp.py:35
-msgid ""
-"In the activity toolbar you have buttons to read data from other activities"
-msgstr ""
-"Na barra de ferramentas da atividade, tens botões para ler os dados de "
-"outras atividades"
-
-#: simplegraphhelp.py:36
-msgid "You can use times measured in the StopWatch activity"
-msgstr "Podes utilizar os tempos medidos na atividade Cronómetro"
-
-#: simplegraphhelp.py:37
-msgid "...or data from the Measure activity"
-msgstr "...ou dados da atividade Medir"
+#~ msgid "SimpleGraph"
+#~ msgstr "Gráfico Simples"
