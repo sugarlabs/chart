@@ -1,0 +1,237 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 00:32-0400\n"
+"PO-Revision-Date: 2012-07-15 12:07+0200\n"
+"Last-Translator: Bastien Guerry <bzg@laptop.org>\n"
+"Language-Team: OLPC France <contact@olpc-france.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.7.0\n"
+
+#: activity/activity.info:2
+msgid "Chart"
+msgstr "Graphique"
+
+#: activity.py:147
+msgid "Save as image"
+msgstr "Enregistrer comme image"
+
+#: activity.py:154
+msgid "Read StopWatch data"
+msgstr "Lire les données de StopWatch"
+
+#: activity.py:160
+msgid "Read Measure data"
+msgstr "Lire les données de Mesure"
+
+#: activity.py:179
+msgid "Add a value"
+msgstr "Ajouter une valeur"
+
+#: activity.py:185
+msgid "Remove the selected value"
+msgstr "Supprimer la valeur sélectionnée"
+
+#: activity.py:196
+msgid "Vertical Bar Chart"
+msgstr "Histogramme vertical"
+
+#: activity.py:204
+msgid "Horizontal Bar Chart"
+msgstr "Histogramme horizontal\n"
+
+#: activity.py:211
+msgid "Line Chart"
+msgstr "Graphique linéaire"
+
+#: activity.py:218
+msgid "Pie Chart"
+msgstr "Fromage"
+
+#: activity.py:239
+msgid "Chart Color"
+msgstr "Graphique en couleurs"
+
+#: activity.py:245
+msgid "Line Color"
+msgstr "Couleur de la ligne"
+
+#: activity.py:260
+msgid "Horizontal label..."
+msgstr "Légende horizontale..."
+
+#: activity.py:274
+msgid "Vertical label..."
+msgstr "Légende verticale..."
+
+#: activity.py:289
+msgid "Fullscreen"
+msgstr "Plein écran"
+
+#: activity.py:510
+msgid "Invalid object"
+msgstr "Objet non valable"
+
+#: activity.py:512
+#, python-format
+msgid "The selected object must be a %s file"
+msgstr "L'objet sélectionné doit être un fichier %s"
+
+#: activity.py:515 activity.py:745
+msgid "Ok"
+msgstr "D'accord"
+
+#: activity.py:547 readers.py:62
+msgid "StopWatch"
+msgstr "StopWatch"
+
+#: activity.py:559
+msgid "Measure"
+msgstr "Mesure"
+
+#: activity.py:664
+msgid "Label"
+msgstr "Légende"
+
+#: activity.py:675
+msgid "Value"
+msgstr "Valeur"
+
+#: activity.py:740
+msgid "Invalid Value"
+msgstr "Valeur incorrecte"
+
+#: activity.py:742
+msgid "The value must be a number (integer or decimal)"
+msgstr "La valeur doit être un nombre (entier ou décimal)"
+
+#: charthelp.py:12
+msgid "Basic usage"
+msgstr "Usage basique"
+
+#: charthelp.py:13
+msgid "First you need add data to create the graph"
+msgstr "Vous devez d'abord ajouter des données pour créer le graphique"
+
+#: charthelp.py:14
+msgid "You can add data with this button"
+msgstr "Vous pouvez ajouter des données avec ce bouton"
+
+#: charthelp.py:16
+msgid "...or remove data with this button"
+msgstr "... ou supprimer des données avec ce bouton"
+
+#: charthelp.py:18
+msgid "To change the graph title, just change the activity title"
+msgstr ""
+"Pour changer le titre du graphique, changez simplement le titre de "
+"l'activité"
+
+#: charthelp.py:20
+msgid "Next you can change the type of graph"
+msgstr "Ensuite vous pouvez changer le type de graphique"
+
+#: charthelp.py:21
+msgid "Vertical bars"
+msgstr "Barres verticales"
+
+#: charthelp.py:22
+msgid "Horizontal bars"
+msgstr "Barres horizontales"
+
+#: charthelp.py:23
+msgid "Lines"
+msgstr "Lignes"
+
+#: charthelp.py:24
+msgid "Pie"
+msgstr "Fromage"
+
+#: charthelp.py:26
+msgid "Configs"
+msgstr "Configurations"
+
+#: charthelp.py:27
+msgid ""
+"You can change the colors or the horizontal and vertical labels in the "
+"configs toolbar"
+msgstr ""
+"Vous pouvez changer les couleurs ou les légendes horizontales et verticales "
+"dans la \n"
+"barre d'outils de configurations"
+
+#: charthelp.py:30
+msgid "Saving as an image"
+msgstr "Sauvegarder comme image"
+
+#: charthelp.py:31
+msgid "In the activity toolbar you have button to save the graph as an image"
+msgstr ""
+"Dans la barre d'outils de l'activité vous avez un bouton pour sauvegarder le "
+"graphique comme image"
+
+#: charthelp.py:34
+msgid "Reading data from other activities"
+msgstr "Lecture de données d'autres activités"
+
+#: charthelp.py:35
+msgid ""
+"In the activity toolbar you have buttons to read data from other activities"
+msgstr ""
+"Dans la barre d'outils de l'activité vous avez des boutons pour lire des "
+"données d'autres activités"
+
+#: charthelp.py:36
+msgid "You can use times measured in the StopWatch activity"
+msgstr "Vous pouvez utiliser des durées mesurées par l'activité StopWatch"
+
+#: charthelp.py:37
+msgid "...or data from the Measure activity"
+msgstr "... ou des données de l'activité Mesure"
+
+#: charthelp.py:39
+msgid "Reading data from the clipboard"
+msgstr "Lecture des données depuis le presse-papiers."
+
+#: charthelp.py:40
+msgid ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+msgstr ""
+"Certaines activités (comme VisualMatch) peuvent copier des données dans le \n"
+"presse-papiers."
+
+#: charthelp.py:41
+msgid "Drop the clipboard data into the chart area and it will be charted"
+msgstr ""
+"Envoyez les données du presse-papiers dans l'espace graphique et il sera "
+"affiché comme tel"
+
+#: helpbutton.py:36
+msgid "Help"
+msgstr "Aide"
+
+#: readers.py:41
+msgid "Time"
+msgstr "Durée"
+
+#: readers.py:51
+msgid "Mark"
+msgstr "Marque"
+
+#: readers.py:126
+msgid "Values"
+msgstr "Valeurs"
+
+#: readers.py:127
+msgid "Samples"
+msgstr "Exemples"
