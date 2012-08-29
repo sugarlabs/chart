@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-06-30 00:32-0400\n"
-"PO-Revision-Date: 2012-08-06 17:45+0200\n"
+"PO-Revision-Date: 2012-08-29 20:44+0200\n"
 "Last-Translator: anush.mkrtchyan <anush.mkrtchyan@ca1492.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hy\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: activity/activity.info:2
 msgid "Chart"
-msgstr ""
+msgstr "Գրաֆիկ"
 
 #: activity.py:147
 msgid "Save as image"
@@ -27,7 +27,7 @@ msgstr "Պահել որպես պատկեր"
 
 #: activity.py:154
 msgid "Read StopWatch data"
-msgstr ""
+msgstr "ընթերցել ԴադարԴիտել տվյալները"
 
 #: activity.py:160
 msgid "Read Measure data"
@@ -43,35 +43,35 @@ msgstr "Հեռացնել ընտրված արժեքը"
 
 #: activity.py:196
 msgid "Vertical Bar Chart"
-msgstr ""
+msgstr "Ուղղահայաց սյուներով գրաֆիկ"
 
 #: activity.py:204
 msgid "Horizontal Bar Chart"
-msgstr ""
+msgstr "Հորիզոնական սյուներով գրաֆիկ"
 
 #: activity.py:211
 msgid "Line Chart"
-msgstr ""
+msgstr "Գծային գրաֆիկ"
 
 #: activity.py:218
 msgid "Pie Chart"
-msgstr ""
+msgstr "Շրջանաձև գրաֆիկ"
 
 #: activity.py:239
 msgid "Chart Color"
-msgstr ""
+msgstr "Գրաֆիկի գույնը"
 
 #: activity.py:245
 msgid "Line Color"
-msgstr ""
+msgstr "Գծի գույնը"
 
 #: activity.py:260
 msgid "Horizontal label..."
-msgstr ""
+msgstr "Հորիզոնական պիտակ..."
 
 #: activity.py:274
 msgid "Vertical label..."
-msgstr ""
+msgstr "Ուղղահայաց պիտակ"
 
 #: activity.py:289
 msgid "Fullscreen"
@@ -92,7 +92,7 @@ msgstr "OK"
 
 #: activity.py:547 readers.py:62
 msgid "StopWatch"
-msgstr ""
+msgstr "ԴադարելՆայել"
 
 #: activity.py:559
 msgid "Measure"
@@ -120,7 +120,7 @@ msgstr "Հիմնական օգտագործում"
 
 #: charthelp.py:13
 msgid "First you need add data to create the graph"
-msgstr ""
+msgstr "Գրաֆիկ կազմելու համար առաջին հերթին պետք է ավելացնես տվյալներ"
 
 #: charthelp.py:14
 msgid "You can add data with this button"
@@ -132,96 +132,101 @@ msgstr "...կամ հեռացնել տվյալները այդ կոճակի օգն
 
 #: charthelp.py:18
 msgid "To change the graph title, just change the activity title"
-msgstr ""
+msgstr "Գրաֆիկի վերնագիրը փոխելու համար պարզապես փոխիր ծրագրի վերնագիրը"
 
 #: charthelp.py:20
 msgid "Next you can change the type of graph"
-msgstr ""
+msgstr "Այնուհետեվ կարող ես փոխել գրաֆիկի տեսակը"
 
 #: charthelp.py:21
 msgid "Vertical bars"
-msgstr ""
+msgstr "Ուղղահայաց սյուներ"
 
 #: charthelp.py:22
 msgid "Horizontal bars"
-msgstr ""
+msgstr "Հորիզոնական սյուներ"
 
 #: charthelp.py:23
 msgid "Lines"
-msgstr ""
+msgstr "Գծեր"
 
 #: charthelp.py:24
 msgid "Pie"
-msgstr ""
+msgstr "Շրջանաձև"
 
 #: charthelp.py:26
 msgid "Configs"
-msgstr ""
+msgstr "Կազմաձևումներ"
 
 #: charthelp.py:27
 msgid ""
 "You can change the colors or the horizontal and vertical labels in the "
 "configs toolbar"
 msgstr ""
+"Կարող ես փոխել գուները կամ հորիզոնական և ուղղահայաց պիտակները գործիքաշարի "
+"կազմաձևման մեջ"
 
 #: charthelp.py:30
 msgid "Saving as an image"
-msgstr ""
+msgstr "Պահպանել որպես պատկեր"
 
 #: charthelp.py:31
 msgid "In the activity toolbar you have button to save the graph as an image"
 msgstr ""
+"Ծրագրի գործիքաշարում կա կոճակ, որը թույլ է տալիս պահպանել գրաֆիկը որպես "
+"պատկեր"
 
 #: charthelp.py:34
 msgid "Reading data from other activities"
-msgstr ""
+msgstr "Ընթերցել տվյալները այլ ծրագրերից"
 
 #: charthelp.py:35
 msgid ""
 "In the activity toolbar you have buttons to read data from other activities"
 msgstr ""
+"Ծրագրի գործիքաշարում կա կոճակ, որը թույլ է տալիս ընթերցել տվյալները այլ "
+"ծրագրերից"
 
 #: charthelp.py:36
 msgid "You can use times measured in the StopWatch activity"
-msgstr ""
+msgstr "Կարող ես օգտագործել ժամանկը` չափված ԴադարելԴիտել ծրագրում"
 
 #: charthelp.py:37
 msgid "...or data from the Measure activity"
-msgstr ""
+msgstr "...կամ տվյալներ Չափում ծրագրից"
 
 #: charthelp.py:39
 msgid "Reading data from the clipboard"
-msgstr ""
+msgstr "Ընթերցել տվյալները սեցմատախտակից"
 
 #: charthelp.py:40
 msgid ""
 "Some activities (such as VisualMatch) has the ability to copy data to the "
 "clipboard"
 msgstr ""
+"Որոշ ծրագրեր (ինչպիսին է Տեսողական համատիպություն) տվյալները սեղմատախտակին "
+"պատճենելու հնարավորություն ունեն "
 
 #: charthelp.py:41
 msgid "Drop the clipboard data into the chart area and it will be charted"
-msgstr ""
+msgstr "Սեղմատախտակի տվյալները գցել գրաֆիկի տարածության մեջ և այն կարձանագրվի "
 
 #: helpbutton.py:36
-#, fuzzy
 msgid "Help"
 msgstr "օգնություն"
 
 #: readers.py:41
-#, fuzzy
 msgid "Time"
 msgstr "Ժամանակ"
 
 #: readers.py:51
 msgid "Mark"
-msgstr ""
+msgstr "Նշան"
 
 #: readers.py:126
-#, fuzzy
 msgid "Values"
-msgstr "արժեքը"
+msgstr "Արժեք"
 
 #: readers.py:127
 msgid "Samples"
-msgstr ""
+msgstr "Օրինակներ"
