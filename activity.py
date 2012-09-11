@@ -78,7 +78,7 @@ class ChartArea(Gtk.DrawingArea):
         """A class for Draw the chart"""
         super(ChartArea, self).__init__()
         self._parent = parent
-        self.add_events(Gdk.EventMask.EXPOSURE_MASK | 
+        self.add_events(Gdk.EventMask.EXPOSURE_MASK |
                         Gdk.EventMask.VISIBILITY_NOTIFY_MASK)
         self.connect("draw", self._draw_cb)
 
@@ -371,8 +371,8 @@ class ChartActivity(activity.Activity):
             self._update_chart_data()
 
     def _remove_value(self, widget):
-        path = self.labels_and_values.remove_selected_value()
-        del self.chart_data[path]
+        value = self.labels_and_values.remove_selected_value()
+        self.chart_data.remove(value)
         self._update_chart_data()
 
     def _add_chart_cb(self, widget, type="vbar"):
@@ -689,7 +689,7 @@ class ChartData(Gtk.TreeView):
             path = 0
 
         elif selected:
-            path = self.model.get_path(selected)[0] + 1
+            path = self.model.get_path(self.model.iter_next(selected))
 
         _iter = self.model.insert(path, [label, value])
 
@@ -703,12 +703,12 @@ class ChartData(Gtk.TreeView):
 
     def remove_selected_value(self):
         path, column = self.get_cursor()
-        path = path[0]
+        value = self.model.get_value(path, 0)
 
         model, iter = self.get_selection().get_selected()
         self.model.remove(iter)
 
-        return path
+        return value
 
     def _label_changed(self, cell, path, new_text, model):
         _logger.info("Change '%s' to '%s'" % (model[path][0], new_text))
