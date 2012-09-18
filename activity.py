@@ -605,7 +605,8 @@ class ChartActivity(activity.Activity):
 
         # Update the controls in the config subtoolbar
         self.chart_color_btn.set_color(Color(self.chart_color).get_gdk_color())
-        self.line_color_btn.set_color(Color(self.chart_line_color).get_gdk_color())
+        self.line_color_btn.set_color(Color(self.chart_line_color).\
+                                                                get_gdk_color())
 
         # If the saved label is not '', set the text entry with the saved label
         if self.x_label != '':
@@ -647,8 +648,9 @@ class ChartActivity(activity.Activity):
 class ChartData(Gtk.TreeView):
 
     __gsignals__ = {
-             'label-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str], ),
-             'value-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str], ), }
+             'label-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str]),
+             'value-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str]),
+                               }
 
     def __init__(self, activity):
 
