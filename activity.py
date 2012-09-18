@@ -54,16 +54,16 @@ from readers import ClipboardReader
 import charthelp
 
 # Mime types
-_STOPWATCH_MIME_TYPE = "application/x-stopwatch-activity"
-_CSV_MIME_TYPE = "text/csv"
+_STOPWATCH_MIME_TYPE = 'application/x-stopwatch-activity'
+_CSV_MIME_TYPE = 'text/csv'
 
 # GUI Colors
 _COLOR1 = utils.get_user_fill_color()
 _COLOR2 = utils.get_user_stroke_color()
-_WHITE = Gdk.color_parse("white")
+_WHITE = Gdk.color_parse('white')
 
 # Paths
-_ACTIVITY_DIR = os.path.join(activity.get_activity_root(), "data/")
+_ACTIVITY_DIR = os.path.join(activity.get_activity_root(), 'data/')
 _CHART_FILE = utils.get_chart_file(_ACTIVITY_DIR)
 
 # Logging
@@ -75,14 +75,14 @@ logging.basicConfig()
 class ChartArea(Gtk.DrawingArea):
 
     def __init__(self, parent):
-        """A class for Draw the chart"""
+        '''A class for Draw the chart'''
         super(ChartArea, self).__init__()
         self._parent = parent
         self.add_events(Gdk.EventMask.EXPOSURE_MASK |
                         Gdk.EventMask.VISIBILITY_NOTIFY_MASK)
-        self.connect("draw", self._draw_cb)
+        self.connect('draw', self._draw_cb)
 
-        #target = Gtk.TargetEntry.new("text/plain", 0, 0)
+        #target = Gtk.TargetEntry.new('text/plain', 0, 0)
         #self.drag_dest_set(Gtk.DestDefaults.ALL, target,
         #        (Gdk.DragAction.COPY | Gdk.DragAction.MOVE))
         self.connect('drag_data_received', self._drag_data_received)
@@ -127,8 +127,8 @@ class ChartActivity(activity.Activity):
 
         # CHART_OPTIONS
 
-        self.x_label = ""
-        self.y_label = ""
+        self.x_label = ''
+        self.y_label = ''
         self.chart_color = utils.get_user_fill_color('str')
         self.chart_line_color = utils.get_user_stroke_color('str')
         self.current_chart = None
@@ -143,28 +143,28 @@ class ChartActivity(activity.Activity):
 
         activity_btn_toolbar.title.connect('changed', self._set_chart_title)
 
-        save_as_image = ToolButton("save-as-image")
-        save_as_image.connect("clicked", self._save_as_image)
-        save_as_image.set_tooltip(_("Save as image"))
+        save_as_image = ToolButton('save-as-image')
+        save_as_image.connect('clicked', self._save_as_image)
+        save_as_image.set_tooltip(_('Save as image'))
         activity_btn_toolbar.insert(save_as_image, -1)
 
         save_as_image.show()
 
-        import_stopwatch = ToolButton("import-stopwatch")
-        import_stopwatch.connect("clicked", self.__import_stopwatch_cb)
-        import_stopwatch.set_tooltip(_("Read StopWatch data"))
+        import_stopwatch = ToolButton('import-stopwatch')
+        import_stopwatch.connect('clicked', self.__import_stopwatch_cb)
+        import_stopwatch.set_tooltip(_('Read StopWatch data'))
         activity_btn_toolbar.insert(import_stopwatch, -1)
 
         import_stopwatch.show()
 
-        import_measure = ToolButton("import-measure")
-        import_measure.set_tooltip(_("Read Measure data"))
+        import_measure = ToolButton('import-measure')
+        import_measure.set_tooltip(_('Read Measure data'))
 
         if utils.get_channels() == 1:
-            import_measure.connect("clicked", self.__import_measure_cb, 1)
+            import_measure.connect('clicked', self.__import_measure_cb, 1)
 
         else:
-            import_measure.connect("clicked", self._measure_btn_clicked)
+            import_measure.connect('clicked', self._measure_btn_clicked)
             self._create_measure_palette(import_measure)
 
         activity_btn_toolbar.insert(import_measure, -1)
@@ -172,15 +172,15 @@ class ChartActivity(activity.Activity):
 
         toolbarbox.toolbar.insert(activity_button, 0)
 
-        add_v = ToolButton("gtk-add")
-        add_v.connect("clicked", self._add_value)
-        add_v.set_tooltip(_("Add a value"))
+        add_v = ToolButton('gtk-add')
+        add_v.connect('clicked', self._add_value)
+        add_v.set_tooltip(_('Add a value'))
 
         toolbarbox.toolbar.insert(add_v, -1)
 
-        remove_v = ToolButton("gtk-remove")
-        remove_v.connect("clicked", self._remove_value)
-        remove_v.set_tooltip(_("Remove the selected value"))
+        remove_v = ToolButton('gtk-remove')
+        remove_v.connect('clicked', self._remove_value)
+        remove_v.set_tooltip(_('Remove the selected value'))
 
         toolbarbox.toolbar.insert(remove_v, -1)
 
@@ -190,31 +190,31 @@ class ChartActivity(activity.Activity):
         toolbarbox.toolbar.insert(separator, -1)
 
         add_vbar_chart = RadioToolButton()
-        add_vbar_chart.connect("clicked", self._add_chart_cb, "vbar")
-        add_vbar_chart.set_tooltip(_("Vertical Bar Chart"))
-        add_vbar_chart.props.icon_name = "vbar"
+        add_vbar_chart.connect('clicked', self._add_chart_cb, 'vbar')
+        add_vbar_chart.set_tooltip(_('Vertical Bar Chart'))
+        add_vbar_chart.props.icon_name = 'vbar'
         charts_group = add_vbar_chart
 
         toolbarbox.toolbar.insert(add_vbar_chart, -1)
 
         add_hbar_chart = RadioToolButton()
-        add_hbar_chart.connect("clicked", self._add_chart_cb, "hbar")
-        add_hbar_chart.set_tooltip(_("Horizontal Bar Chart"))
-        add_hbar_chart.props.icon_name = "hbar"
+        add_hbar_chart.connect('clicked', self._add_chart_cb, 'hbar')
+        add_hbar_chart.set_tooltip(_('Horizontal Bar Chart'))
+        add_hbar_chart.props.icon_name = 'hbar'
         add_hbar_chart.props.group = charts_group
         toolbarbox.toolbar.insert(add_hbar_chart, -1)
 
         add_line_chart = RadioToolButton()
-        add_line_chart.connect("clicked", self._add_chart_cb, "line")
-        add_line_chart.set_tooltip(_("Line Chart"))
-        add_line_chart.props.icon_name = "line"
+        add_line_chart.connect('clicked', self._add_chart_cb, 'line')
+        add_line_chart.set_tooltip(_('Line Chart'))
+        add_line_chart.props.icon_name = 'line'
         add_line_chart.props.group = charts_group
         toolbarbox.toolbar.insert(add_line_chart, -1)
 
         add_pie_chart = RadioToolButton()
-        add_pie_chart.connect("clicked", self._add_chart_cb, "pie")
-        add_pie_chart.set_tooltip(_("Pie Chart"))
-        add_pie_chart.props.icon_name = "pie"
+        add_pie_chart.connect('clicked', self._add_chart_cb, 'pie')
+        add_pie_chart.set_tooltip(_('Pie Chart'))
+        add_pie_chart.props.icon_name = 'pie'
         add_pie_chart.props.group = charts_group
         add_pie_chart.set_active(True)
         toolbarbox.toolbar.insert(add_pie_chart, -1)
@@ -234,13 +234,13 @@ class ChartActivity(activity.Activity):
 
         self.chart_color_btn = ColorToolButton()
         self.chart_color_btn.set_color(_COLOR1)
-        self.chart_color_btn.set_title(_("Chart Color"))
+        self.chart_color_btn.set_title(_('Chart Color'))
         self.chart_color_btn.connect('notify::color', self._set_chart_color)
         options_toolbar.insert(self.chart_color_btn, -1)
 
         self.line_color_btn = ColorToolButton()
         self.line_color_btn.set_color(_COLOR2)
-        self.line_color_btn.set_title(_("Line Color"))
+        self.line_color_btn.set_title(_('Line Color'))
         self.line_color_btn.connect('notify::color',
                 self._set_chart_line_color)
         options_toolbar.insert(self.line_color_btn, -1)
@@ -250,13 +250,13 @@ class ChartActivity(activity.Activity):
         separator.set_expand(False)
         options_toolbar.insert(separator, -1)
 
-        h_label_icon = Icon(icon_name="hlabel")
+        h_label_icon = Icon(icon_name='hlabel')
         h_label_tool_item = Gtk.ToolItem()
         h_label_tool_item.add(h_label_icon)
         options_toolbar.insert(h_label_tool_item, -1)
 
-        self.h_label = Entry(_("Horizontal label..."))
-        self.h_label.entry.connect("changed", self._set_h_label)
+        self.h_label = Entry(_('Horizontal label...'))
+        self.h_label.entry.connect('changed', self._set_h_label)
         options_toolbar.insert(self.h_label, -1)
 
         separator = Gtk.SeparatorToolItem()
@@ -264,13 +264,13 @@ class ChartActivity(activity.Activity):
         separator.set_expand(False)
         options_toolbar.insert(separator, -1)
 
-        v_label_icon = Icon(icon_name="vlabel")
+        v_label_icon = Icon(icon_name='vlabel')
         v_label_tool_item = Gtk.ToolItem()
         v_label_tool_item.add(v_label_icon)
         options_toolbar.insert(v_label_tool_item, -1)
 
-        self.v_label = Entry(_("Vertical label..."))
-        self.v_label.entry.connect("changed", self._set_v_label)
+        self.v_label = Entry(_('Vertical label...'))
+        self.v_label.entry.connect('changed', self._set_v_label)
         options_toolbar.insert(self.v_label, -1)
 
         options_button.props.page = options_toolbar
@@ -285,7 +285,7 @@ class ChartActivity(activity.Activity):
 
         fullscreen_btn = ToolButton('view-fullscreen')
         fullscreen_btn.set_tooltip(_('Fullscreen'))
-        fullscreen_btn.connect("clicked", self.__fullscreen_cb)
+        fullscreen_btn.connect('clicked', self.__fullscreen_cb)
 
         toolbarbox.toolbar.insert(fullscreen_btn, -1)
 
@@ -320,8 +320,8 @@ class ChartActivity(activity.Activity):
         self.labels_and_values = ChartData(self)
         scroll.add(self.labels_and_values)
 
-        self.labels_and_values.connect("label-changed", self._label_changed)
-        self.labels_and_values.connect("value-changed", self._value_changed)
+        self.labels_and_values.connect('label-changed', self._label_changed)
+        self.labels_and_values.connect('value-changed', self._value_changed)
 
         box.pack_start(scroll, True, True, 0)
 
@@ -346,11 +346,11 @@ class ChartActivity(activity.Activity):
         palette = button.get_palette()
         hbox = Gtk.HBox()
 
-        channel1 = ToolButton("measure-channel-1")
-        channel1.connect("clicked", self.__import_measure_cb, 1)
+        channel1 = ToolButton('measure-channel-1')
+        channel1.connect('clicked', self.__import_measure_cb, 1)
 
-        channel2 = ToolButton("measure-channel-2")
-        channel2.connect("clicked", self.__import_measure_cb, 2)
+        channel2 = ToolButton('measure-channel-2')
+        channel2.connect('clicked', self.__import_measure_cb, 2)
 
         hbox.pack_start(channel1, False, True, 0)
         hbox.pack_end(channel2, False, True, 0)
@@ -363,7 +363,7 @@ class ChartActivity(activity.Activity):
         palette = button.get_palette()
         palette.popup()
 
-    def _add_value(self, widget, label="", value="0.0"):
+    def _add_value(self, widget, label='', value='0.0'):
         data = (label, float(value))
         if not data in self.chart_data:
             pos = self.labels_and_values.add_value(label, value)
@@ -375,7 +375,7 @@ class ChartActivity(activity.Activity):
         self.chart_data.remove(value)
         self._update_chart_data()
 
-    def _add_chart_cb(self, widget, type="vbar"):
+    def _add_chart_cb(self, widget, type='vbar'):
         self.current_chart = Chart(type)
 
         self.update_chart()
@@ -417,7 +417,7 @@ class ChartActivity(activity.Activity):
             self.current_chart.set_color_scheme(color=self.chart_color)
             self.current_chart.set_line_color(self.chart_line_color)
 
-            if self.current_chart.type == "pie":
+            if self.current_chart.type == 'pie':
                 self.current_chart.render(self)
             else:
                 self.current_chart.render()
@@ -437,12 +437,12 @@ class ChartActivity(activity.Activity):
     def _set_chart_title(self, widget):
         self._update_chart_labels(title=widget.get_text())
 
-    def _update_chart_labels(self, title=""):
+    def _update_chart_labels(self, title=''):
         if self.current_chart is None:
             return
 
-        if not title and self.metadata["title"]:
-            title = self.metadata["title"]
+        if not title and self.metadata['title']:
+            title = self.metadata['title']
 
         self.current_chart.set_title(title)
         self.current_chart.set_x_label(self.x_label)
@@ -452,7 +452,7 @@ class ChartActivity(activity.Activity):
     def update_chart(self):
         if self.current_chart:
             self.current_chart.data_set(self.chart_data)
-            self.current_chart.set_title(self.metadata["title"])
+            self.current_chart.set_title(self.metadata['title'])
             self.current_chart.set_x_label(self.x_label)
             self.current_chart.set_y_label(self.y_label)
             self._render_chart()
@@ -567,8 +567,8 @@ class ChartActivity(activity.Activity):
         if self.current_chart:
             jobject = datastore.create()
 
-            jobject.metadata['title'] = self.metadata["title"]
-            jobject.metadata['mime_type'] = "image/png"
+            jobject.metadata['title'] = self.metadata['title']
+            jobject.metadata['mime_type'] = 'image/png'
 
             self.current_chart.as_png(_CHART_FILE)
             jobject.set_file_path(_CHART_FILE)
@@ -581,7 +581,7 @@ class ChartActivity(activity.Activity):
         finally:
             f.close()
 
-        self.metadata["title"] = data['title']
+        self.metadata['title'] = data['title']
         self.x_label = data['x_label']
         self.y_label = data['y_label']
         self.chart_color = data['chart_color']
@@ -590,17 +590,17 @@ class ChartActivity(activity.Activity):
         chart_data = data['chart_data']
 
         # Update charts buttons
-        _type = data["current_chart.type"]
-        if _type == "vbar":
+        _type = data['current_chart.type']
+        if _type == 'vbar':
             self.chart_type_buttons[0].set_active(True)
 
-        elif _type == "hbar":
+        elif _type == 'hbar':
             self.chart_type_buttons[1].set_active(True)
 
-        elif _type == "line":
+        elif _type == 'line':
             self.chart_type_buttons[2].set_active(True)
 
-        elif _type == "pie":
+        elif _type == 'pie':
             self.chart_type_buttons[3].set_active(True)
 
         # Update the controls in the config subtoolbar
@@ -622,11 +622,11 @@ class ChartActivity(activity.Activity):
         self.update_chart()
 
     def write_file(self, file_path):
-        self.metadata['mime_type'] = "application/x-chart-activity"
+        self.metadata['mime_type'] = 'application/x-chart-activity'
         if self.current_chart:
 
             data = {}
-            data['title'] = self.metadata["title"]
+            data['title'] = self.metadata['title']
             data['x_label'] = self.x_label
             data['y_label'] = self.y_label
             data['chart_color'] = self.chart_color
@@ -661,10 +661,10 @@ class ChartData(Gtk.TreeView):
 
         # Label column
 
-        column = Gtk.TreeViewColumn(_("Label"))
+        column = Gtk.TreeViewColumn(_('Label'))
         label = Gtk.CellRendererText()
         label.set_property('editable', True)
-        label.connect("edited", self._label_changed, self.model)
+        label.connect('edited', self._label_changed, self.model)
 
         column.pack_start(label, True)
         column.add_attribute(label, 'text', 0)
@@ -672,10 +672,10 @@ class ChartData(Gtk.TreeView):
 
         # Value column
 
-        column = Gtk.TreeViewColumn(_("Value"))
+        column = Gtk.TreeViewColumn(_('Value'))
         value = Gtk.CellRendererText()
         value.set_property('editable', True)
-        value.connect("edited", self._value_changed, self.model, activity)
+        value.connect('edited', self._value_changed, self.model, activity)
 
         column.pack_start(value, True)
         column.add_attribute(value, 'text', 1)
@@ -699,7 +699,7 @@ class ChartData(Gtk.TreeView):
                         self.get_column(1),
                         True)
 
-        _logger.info("Added: %s, Value: %s" % (label, value))
+        _logger.info('Added: %s, Value: %s' % (label, value))
 
         return path
 
@@ -713,15 +713,15 @@ class ChartData(Gtk.TreeView):
         return value
 
     def _label_changed(self, cell, path, new_text, model):
-        _logger.info("Change '%s' to '%s'" % (model[path][0], new_text))
+        _logger.info('Change "%s" to "%s"' % (model[path][0], new_text))
         model[path][0] = new_text
 
-        self.emit("label-changed", str(path), new_text)
+        self.emit('label-changed', str(path), new_text)
 
     def _value_changed(self, cell, path, new_text, model, activity):
-        _logger.info("Change '%s' to '%s'" % (model[path][1], new_text))
+        _logger.info('Change "%s" to "%s"' % (model[path][1], new_text))
         is_number = True
-        number = new_text.replace(",", ".")
+        number = new_text.replace(',', '.')
         try:
             float(number)
         except ValueError:
@@ -732,7 +732,7 @@ class ChartData(Gtk.TreeView):
             new_text = locale.format('%.' + decimals + 'f', float(number))
             model[path][1] = str(new_text)
 
-            self.emit("value-changed", str(path), number)
+            self.emit('value-changed', str(path), number)
 
         elif not is_number:
             alert = Alert()
@@ -759,9 +759,9 @@ class Entry(Gtk.ToolItem):
 
         self.entry = Gtk.Entry()
         self.entry.set_text(text)
-        self.entry.connect("focus-in-event", self._focus_in)
-        self.entry.connect("focus-out-event", self._focus_out)
-        self.entry.modify_font(Pango.FontDescription("italic"))
+        self.entry.connect('focus-in-event', self._focus_in)
+        self.entry.connect('focus-out-event', self._focus_out)
+        self.entry.modify_font(Pango.FontDescription('italic'))
 
         self._text = text
 
@@ -771,10 +771,10 @@ class Entry(Gtk.ToolItem):
 
     def _focus_in(self, widget, event):
         if widget.get_text() == self._text:
-            widget.set_text("")
-            widget.modify_font(Pango.FontDescription(""))
+            widget.set_text('')
+            widget.modify_font(Pango.FontDescription(''))
 
     def _focus_out(self, widget, event):
-        if widget.get_text() == "":
+        if widget.get_text() == '':
             widget.set_text(self.text)
-            widget.modify_font(Pango.FontDescription("italic"))
+            widget.modify_font(Pango.FontDescription('italic'))

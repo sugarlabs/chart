@@ -44,7 +44,7 @@ class Chart(GObject.GObject):
         """Set chart data (dataSet)"""
 
         self.dataSet = (
-            ('Puntos', [(i, l[1]) for i, l in enumerate(data)]),
+            ('Dots', [(i, l[1]) for i, l in enumerate(data)]),
             )
 
         self.options = {
