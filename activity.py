@@ -82,9 +82,8 @@ class ChartArea(Gtk.DrawingArea):
                         Gdk.EventMask.VISIBILITY_NOTIFY_MASK)
         self.connect('draw', self._draw_cb)
 
-        #target = Gtk.TargetEntry.new('text/plain', 0, 0)
-        #self.drag_dest_set(Gtk.DestDefaults.ALL, target,
-        #        (Gdk.DragAction.COPY | Gdk.DragAction.MOVE))
+        self.drag_dest_set_target_list(None)
+        self.drag_dest_add_text_targets()
         self.connect('drag_data_received', self._drag_data_received)
 
     def _draw_cb(self, widget, context):
