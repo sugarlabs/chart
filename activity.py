@@ -657,6 +657,10 @@ class ChartData(Gtk.TreeView):
 
         self.model = Gtk.ListStore(str, str)
         self.set_model(self.model)
+        
+        # TreeSelection
+        self._selection = self.get_selection()
+        self._selection.set_mode(Gtk.SelectionMode.SINGLE)
 
         # Label column
 
@@ -685,14 +689,17 @@ class ChartData(Gtk.TreeView):
         self.show_all()
 
     def add_value(self, label, value):
-        selected = self.get_selection().get_selected()[1]
+        treestore, selected = self._selection.get_selected()
         if not selected:
             path = 0
 
         elif selected:
-            path = self.model.get_path(self.model.iter_next(selected))
+            path = int(str(self.model.get_path(selected))) + 1
 
-        _iter = self.model.insert(path, [label, value])
+        try:
+            _iter = self.model.insert(path, [label, value])
+        except ValueError:
+            _iter = self.model.append([label, str(value)])
 
         self.set_cursor(self.model.get_path(_iter),
                         self.get_column(1),
@@ -703,10 +710,9 @@ class ChartData(Gtk.TreeView):
         return path
 
     def remove_selected_value(self):
-        path, column = self.get_cursor()
-        value = self.model.get_value(path, 0)
-
-        model, iter = self.get_selection().get_selected()
+        model, iter = self._selection.get_selected()
+        value = (self.model.get(iter, 0)[0], float(self.model.get(iter, 1)[0]))
+        _logger.info('VALUE: ' + str(value))
         self.model.remove(iter)
 
         return value
