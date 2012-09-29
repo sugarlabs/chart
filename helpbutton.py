@@ -34,7 +34,7 @@ class HelpButton(Gtk.ToolItem):
     def __init__(self, **kwargs):
         GObject.GObject.__init__(self)
 
-        help_button = ToolButton('help-icon')
+        help_button = ToolButton('toolbar-help')
         help_button.set_tooltip(_('Help'))
         self.add(help_button)
 
@@ -50,10 +50,7 @@ class HelpButton(Gtk.ToolItem):
         self._vbox.set_orientation(Gtk.Orientation.VERTICAL)
         self._vbox.set_homogeneous(False)
 
-        hbox = Gtk.Box()
-        hbox.pack_start(self._vbox, False, True, 0)
-
-        sw.add_with_viewport(hbox)
+        sw.add_with_viewport(self._vbox)
 
         self._palette.set_content(sw)
         sw.show_all()
@@ -63,13 +60,17 @@ class HelpButton(Gtk.ToolItem):
     def __help_button_clicked_cb(self, button):
         self._palette.popup(immediate=True, state=1)
 
-    def add_section(self, section_text):
+    def add_section(self, section_text, icon=None):
         hbox = Gtk.Box()
         label = Gtk.Label()
+        label.set_justify(Gtk.Justification.LEFT)
         label.set_use_markup(True)
         label.set_markup('<b>%s</b>' % section_text)
         label.set_line_wrap(True)
         hbox.pack_start(label, False, False, 0)
+        if icon is not None:
+            _icon = Icon(icon_name=icon)
+            hbox.pack_end(_icon, False, False, 10)
         hbox.show_all()
         self._vbox.pack_start(hbox, False, False, padding=5)
 
@@ -78,9 +79,11 @@ class HelpButton(Gtk.ToolItem):
         label = Gtk.Label(label=text)
         label.set_justify(Gtk.Justification.LEFT)
         label.set_line_wrap(True)
+        label.props.max_width_chars = 35
         hbox.pack_start(label, False, False, 0)
         if icon is not None:
             _icon = Icon(icon_name=icon)
-            hbox.add(_icon)
+            hbox.pack_end(_icon, False, False, 10)
         hbox.show_all()
         self._vbox.pack_start(hbox, False, False, padding=5)
+        
