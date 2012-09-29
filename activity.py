@@ -748,10 +748,11 @@ class ChartData(Gtk.TreeView):
 
     def move_up(self):
         selected_iter = self._selection.get_selected()[1]
-        position = self.model.get_iter(int(str(self.model.get_path(selected_iter))) - 1)
+        position = self.model.get_iter(int(str(self.model.get_path(
+                                                           selected_iter))) - 1)
         self.model.move_before(selected_iter, position)
 
-        selected_path =  int(str(self.model.get_path(selected_iter)))
+        selected_path = int(str(self.model.get_path(selected_iter)))
         new_position_path = int(str(self.model.get_path(position)))
         return (selected_path, new_position_path)
 
@@ -760,7 +761,7 @@ class ChartData(Gtk.TreeView):
         position = self.model.iter_next(selected_iter)
         self.model.move_after(selected_iter, position)
 
-        selected_path =  int(str(self.model.get_path(selected_iter)))
+        selected_path = int(str(self.model.get_path(selected_iter)))
         new_position_path = int(str(self.model.get_path(position)))
         return (selected_path, new_position_path)
 
