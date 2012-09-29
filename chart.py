@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# charts.py by:
-#    Agustin Zubiaga <aguzubiaga97@gmail.com>
+# chart.py by:
+#    Agustin Zubiaga <aguz@sugarlabs.org>
 #    Gonzalo Odiard <godiard@gmail.com>
 #    Manuel Quiñones <manuq@laptop.org>
 
@@ -27,9 +27,15 @@ import sugarpycha.pie
 import cairo
 from gi.repository import GObject
 
+# Chart types
+VERTICAL_BAR = 1
+HORIZONTAL_BAR = 2
+LINE = 3
+PIE = 4
+
 
 class Chart(GObject.GObject):
-    def __init__(self, type="vertical", width=600, height=460):
+    def __init__(self, type=VERTICAL_BAR, width=600, height=460):
         GObject.GObject.__init__(self)
 
         self.dataSet = None
@@ -41,7 +47,7 @@ class Chart(GObject.GObject):
         self.height = height
 
     def data_set(self, data):
-        """Set chart data (dataSet)"""
+        '''Set chart data (dataSet)'''
 
         self.dataSet = (
             ('Dots', [(i, l[1]) for i, l in enumerate(data)]),
@@ -80,48 +86,48 @@ class Chart(GObject.GObject):
         }
 
     def set_color_scheme(self, color='blue'):
-        """Set the chart color scheme"""
-        self.options["colorScheme"]["args"] = {'initialColor': color}
+        '''Set the chart color scheme'''
+        self.options['colorScheme']['args'] = {'initialColor': color}
 
     def set_line_color(self, color='#000000'):
-        """Set the chart line color"""
-        self.options["stroke"]["color"] = color
+        '''Set the chart line color'''
+        self.options['stroke']['color'] = color
 
-    def set_x_label(self, text="X"):
-        """Set the X Label"""
-        self.options["axis"]["x"]["label"] = str(text)
+    def set_x_label(self, text='X'):
+        '''Set the X Label'''
+        self.options['axis']['x']['label'] = str(text)
 
-    def set_y_label(self, text="Y"):
-        """Set the Y Label"""
-        self.options["axis"]["y"]["label"] = str(text)
+    def set_y_label(self, text='Y'):
+        '''Set the Y Label'''
+        self.options['axis']['y']['label'] = str(text)
 
-    def set_type(self, type="vertical"):
-        """Set chart type (vertical, horizontal, line, pie)"""
+    def set_type(self, type=VERTICAL_BAR):
+        '''Set chart type (VERTICAL_BAR, HORIZONTAL_BAR, LINE, PIE)'''
         self.type = type
 
-    def set_title(self, title="Chart"):
-        """Set the chart title"""
-        self.options["title"] = title
+    def set_title(self, title='Chart'):
+        '''Set the chart title'''
+        self.options['title'] = title
 
     def render(self, sg=None):
-        """Draw the chart
-           Use the self.surface variable for show the chart"""
+        '''Draw the chart
+           Use the self.surface variable for show the chart'''
         self.surface = cairo.ImageSurface(cairo.FORMAT_ARGB32,
                                             self.width,
                                             self.height)
 
-        if self.type == "vbar":
+        if self.type == VERTICAL_BAR:
             chart = sugarpycha.bar.VerticalBarChart(self.surface, self.options)
 
-        elif self.type == "hbar":
+        elif self.type == HORIZONTAL_BAR:
             chart = sugarpycha.bar.HorizontalBarChart(self.surface,
                                                       self.options)
 
-        elif self.type == "line":
+        elif self.type == LINE:
             chart = sugarpycha.line.LineChart(self.surface, self.options)
 
-        elif self.type == "pie":
-            self.options["legend"] = {"hide": "False"}
+        elif self.type == PIE:
+            self.options['legend'] = {'hide': 'False'}
             chart = sugarpycha.pie.PieChart(self.surface, self.options)
             self.dataSet = [(data[0],
                             [[0, data[1]]]) for data in sg.chart_data]
@@ -130,5 +136,5 @@ class Chart(GObject.GObject):
         chart.render()
 
     def as_png(self, file):
-        """Save the chart as png image"""
+        '''Save the chart as png image'''
         self.surface.write_to_png(file)
