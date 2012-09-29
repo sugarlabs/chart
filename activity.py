@@ -324,6 +324,21 @@ class ChartActivity(activity.Activity):
 
         box.pack_start(scroll, True, True, 0)
 
+        liststore_toolbar = Gtk.Toolbar()
+
+        move_up = ToolButton('go-up')
+        move_up.set_tooltip(_('Move up'))
+        move_up.connect('clicked', self._move_up)
+
+        move_down = ToolButton('go-down')
+        move_down.set_tooltip(_('Move down'))
+        move_down.connect('clicked', self._move_down)
+
+        liststore_toolbar.insert(move_up, 0)
+        liststore_toolbar.insert(move_down, 1)
+
+        box.pack_end(liststore_toolbar, False, False, 0)
+
         paned.add1(box)
 
         # CHARTS AREA
@@ -464,6 +479,20 @@ class ChartActivity(activity.Activity):
     def _value_changed(self, treeview, path, new_value):
         path = int(path)
         self.chart_data[path] = (self.chart_data[path][0], float(new_value))
+        self._update_chart_data()
+
+    def _move_up(self, widget):
+        old, new = self.labels_and_values.move_up()
+        _object = self.chart_data[old]
+        self.chart_data.remove(_object)
+        self.chart_data.insert(new, _object)
+        self._update_chart_data()
+
+    def _move_down(self, widget):
+        old, new = self.labels_and_values.move_down()
+        _object = self.chart_data[old]
+        self.chart_data.remove(_object)
+        self.chart_data.insert(new, _object)
         self._update_chart_data()
 
     def _set_h_label(self, widget):
@@ -657,7 +686,7 @@ class ChartData(Gtk.TreeView):
 
         self.model = Gtk.ListStore(str, str)
         self.set_model(self.model)
-        
+
         # TreeSelection
         self._selection = self.get_selection()
         self._selection.set_mode(Gtk.SelectionMode.SINGLE)
@@ -716,6 +745,24 @@ class ChartData(Gtk.TreeView):
         self.model.remove(iter)
 
         return value
+
+    def move_up(self):
+        selected_iter = self._selection.get_selected()[1]
+        position = self.model.get_iter(int(str(self.model.get_path(selected_iter))) - 1)
+        self.model.move_before(selected_iter, position)
+
+        selected_path =  int(str(self.model.get_path(selected_iter)))
+        new_position_path = int(str(self.model.get_path(position)))
+        return (selected_path, new_position_path)
+
+    def move_down(self):
+        selected_iter = self._selection.get_selected()[1]
+        position = self.model.iter_next(selected_iter)
+        self.model.move_after(selected_iter, position)
+
+        selected_path =  int(str(self.model.get_path(selected_iter)))
+        new_position_path = int(str(self.model.get_path(position)))
+        return (selected_path, new_position_path)
 
     def _label_changed(self, cell, path, new_text, model):
         _logger.info('Change "%s" to "%s"' % (model[path][0], new_text))
