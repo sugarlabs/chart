@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-30 00:33-0400\n"
-"PO-Revision-Date: 2012-05-28 15:27+0200\n"
-"Last-Translator: Marcin <ulinski.marcin@gmail.com>\n"
+"PO-Revision-Date: 2012-10-13 17:32+0200\n"
+"Last-Translator: Karolina <karo.zaklika@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -78,11 +78,11 @@ msgstr "Etykieta pionowa..."
 
 #: activity.py:334
 msgid "Move up"
-msgstr ""
+msgstr "Do góry"
 
 #: activity.py:338
 msgid "Move down"
-msgstr ""
+msgstr "Do dołu"
 
 #: activity.py:425
 msgid "Zoom out"
@@ -94,7 +94,7 @@ msgstr ""
 
 #: activity.py:439
 msgid "Fit to window"
-msgstr ""
+msgstr "Dopasuj do okna"
 
 #: activity.py:445
 msgid "Fullscreen"
@@ -217,7 +217,7 @@ msgstr "...albo danych z aktywności Pomiar"
 
 #: charthelp.py:39
 msgid "Reading data from the clipboard"
-msgstr ""
+msgstr "Odczytywanie danych ze schowka"
 
 #: charthelp.py:40
 msgid ""
