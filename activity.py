@@ -156,7 +156,7 @@ class ChartActivity(activity.Activity):
         import_stopwatch.set_tooltip(_('Read StopWatch data'))
         activity_btn_toolbar.insert(import_stopwatch, -1)
 
-        imjmport_stopwatch.show()
+        import_stopwatch.show()
 
         import_measure = ToolButton('import-measure')
         import_measure.set_tooltip(_('Read Measure data'))
@@ -192,7 +192,7 @@ class ChartActivity(activity.Activity):
 
         add_vbar_chart = RadioToolButton()
         add_vbar_chart.connect('clicked', self._add_chart_cb,
-                               chart.VERTICAL_BAR)
+                               charts.VERTICAL_BAR)
         add_vbar_chart.set_tooltip(_('Vertical Bar Chart'))
         add_vbar_chart.props.icon_name = 'vbar'
         charts_group = add_vbar_chart
@@ -201,21 +201,21 @@ class ChartActivity(activity.Activity):
 
         add_hbar_chart = RadioToolButton()
         add_hbar_chart.connect('clicked', self._add_chart_cb,
-                               chart.HORIZONTAL_BAR)
+                               charts.HORIZONTAL_BAR)
         add_hbar_chart.set_tooltip(_('Horizontal Bar Chart'))
         add_hbar_chart.props.icon_name = 'hbar'
         add_hbar_chart.props.group = charts_group
         toolbarbox.toolbar.insert(add_hbar_chart, -1)
 
         add_line_chart = RadioToolButton()
-        add_line_chart.connect('clicked', self._add_chart_cb, chart.LINE)
+        add_line_chart.connect('clicked', self._add_chart_cb, charts.LINE)
         add_line_chart.set_tooltip(_('Line Chart'))
         add_line_chart.props.icon_name = 'line'
         add_line_chart.props.group = charts_group
         toolbarbox.toolbar.insert(add_line_chart, -1)
 
         add_pie_chart = RadioToolButton()
-        add_pie_chart.connect('clicked', self._add_chart_cb, chart.PIE)
+        add_pie_chart.connect('clicked', self._add_chart_cb, charts.PIE)
         add_pie_chart.set_tooltip(_('Pie Chart'))
         add_pie_chart.props.icon_name = 'pie'
         add_pie_chart.props.group = charts_group
@@ -397,7 +397,7 @@ class ChartActivity(activity.Activity):
 
     def _measure_btn_clicked(self, button):
         palette = button.get_palette()
-        palette.popup()
+        palette.popup(immediate=True, state=1)
 
     def _add_value(self, widget, label='', value='0.0'):
         data = (label, float(value))
@@ -411,8 +411,8 @@ class ChartActivity(activity.Activity):
         self.chart_data.remove(value)
         self._update_chart_data()
 
-    def _add_chart_cb(self, widget, type=chart.VERTICAL_BAR):
-        self.current_chart = chart.Chart(type)
+    def _add_chart_cb(self, widget, type=charts.VERTICAL_BAR):
+        self.current_chart = charts.Chart(type)
 
         self.update_chart()
 
@@ -678,16 +678,16 @@ class ChartActivity(activity.Activity):
 
         # Update charts buttons
         _type = data['current_chart.type']
-        if _type == chart.VERTICAL_BAR:
+        if _type == charts.VERTICAL_BAR:
             self.chart_type_buttons[0].set_active(True)
 
-        elif _type == chart.HORIZONTAL_BAR:
+        elif _type == charts.HORIZONTAL_BAR:
             self.chart_type_buttons[1].set_active(True)
 
-        elif _type == chart.LINE:
+        elif _type == charts.LINE:
             self.chart_type_buttons[2].set_active(True)
 
-        elif _type == chart.PIE:
+        elif _type == charts.PIE:
             self.chart_type_buttons[3].set_active(True)
 
         # Update the controls in the config subtoolbar
