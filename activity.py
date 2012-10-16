@@ -51,7 +51,7 @@ from readers import StopWatchReader
 from readers import MeasureReader
 from readers import ClipboardReader
 import charthelp
-import chart
+import chart as charts
 
 # Mime types
 _STOPWATCH_MIME_TYPE = 'application/x-stopwatch-activity'
@@ -156,7 +156,7 @@ class ChartActivity(activity.Activity):
         import_stopwatch.set_tooltip(_('Read StopWatch data'))
         activity_btn_toolbar.insert(import_stopwatch, -1)
 
-        import_stopwatch.show()
+        imjmport_stopwatch.show()
 
         import_measure = ToolButton('import-measure')
         import_measure.set_tooltip(_('Read Measure data'))
@@ -349,7 +349,8 @@ class ChartActivity(activity.Activity):
         vadj = Gtk.Adjustment()
         hadj = Gtk.Adjustment()
         self._scroll = Gtk.ScrolledWindow(hadj, vadj)
-        self._scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        self._scroll.set_policy(Gtk.PolicyType.AUTOMATIC,
+                                Gtk.PolicyType.AUTOMATIC)
         self._scroll.connect('size_allocate', self._chart_size_allocate)
         #eventbox = Gtk.EventBox()
         self.charts_area = ChartArea(self)
@@ -389,7 +390,7 @@ class ChartActivity(activity.Activity):
         if self._zoom > 0.30:
             self._zoom -= 0.10
         self._render_chart()
-        
+
     def _zoom_tofit(self, widget):
         self._zoom = 1
         self._render_chart()
@@ -434,7 +435,7 @@ class ChartActivity(activity.Activity):
         zoom_in_button.connect('clicked', self._zoom_in)
         view_toolbar.insert(zoom_in_button, -1)
         zoom_in_button.show()
-        
+
         zoom_tofit_button = ToolButton('zoom-best-fit')
         zoom_tofit_button.set_tooltip(_('Fit to window'))
         zoom_tofit_button.connect('clicked', self._zoom_tofit)
@@ -465,30 +466,31 @@ class ChartActivity(activity.Activity):
 
         try:
             # Resize the chart for all the screen sizes
-            
+
             if fullscreen:
                 alloc = self.get_allocation()
                 self.current_chart.width = alloc.width
                 self.current_chart.height = alloc.height
                 if self._zoom != 1.0:
-                    self.charts_area.set_size_request(alloc.width, alloc.height)
+                    self.charts_area.set_size_request(alloc.width,
+                                                      alloc.height)
 
             if not fullscreen:
                 alloc = self._scroll.get_allocation()
 
                 new_width = int(alloc.width * self._zoom)
-                new_height = int(alloc.height * self._zoom) 
-            
+                new_height = int(alloc.height * self._zoom)
+
                 self.current_chart.width = new_width - 40
                 self.current_chart.height = new_height - 40
-            
+
                 self.charts_area.set_size_request(new_width, new_height)
-            
+
             # Set options
             self.current_chart.set_color_scheme(color=self.chart_color)
             self.current_chart.set_line_color(self.chart_line_color)
 
-            if self.current_chart.type == chart.PIE:
+            if self.current_chart.type == charts.PIE:
                 self.current_chart.render(self)
             else:
                 self.current_chart.render()
@@ -618,7 +620,7 @@ class ChartActivity(activity.Activity):
         self.h_label.entry.set_text(vertical)
 
         # Load the data
-        for row  in chart_data:
+        for row in chart_data:
             self._add_value(None,
                             label=row[0], value=float(row[1]))
 
@@ -690,8 +692,8 @@ class ChartActivity(activity.Activity):
 
         # Update the controls in the config subtoolbar
         self.chart_color_btn.set_color(Color(self.chart_color).get_gdk_color())
-        self.line_color_btn.set_color(Color(self.chart_line_color).\
-                                                                get_gdk_color())
+        self.line_color_btn.set_color(Color(self.chart_line_color).
+                                                               get_gdk_color())
 
         # If the saved label is not '', set the text entry with the saved label
         if self.x_label != '':
@@ -701,7 +703,7 @@ class ChartActivity(activity.Activity):
             self.v_label.entry.set_text(self.y_label)
 
         #load the data
-        for row  in chart_data:
+        for row in chart_data:
             self._add_value(None, label=row[0], value=float(row[1]))
 
         self.update_chart()
@@ -733,8 +735,8 @@ class ChartActivity(activity.Activity):
 class ChartData(Gtk.TreeView):
 
     __gsignals__ = {
-             'label-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str]),
-             'value-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str]),
+            'label-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str]),
+            'value-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str]),
                                }
 
     def __init__(self, activity):
@@ -806,7 +808,7 @@ class ChartData(Gtk.TreeView):
     def move_up(self):
         selected_iter = self._selection.get_selected()[1]
         position = self.model.get_iter(int(str(self.model.get_path(
-                                                           selected_iter))) - 1)
+                                                          selected_iter))) - 1)
         self.model.move_before(selected_iter, position)
 
         selected_path = int(str(self.model.get_path(selected_iter)))
