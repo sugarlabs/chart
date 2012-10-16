@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-30 00:32-0400\n"
+"POT-Creation-Date: 2012-09-30 00:33-0400\n"
 "PO-Revision-Date: 2012-03-14 03:04+0200\n"
 "Last-Translator: Meechai <malaku38@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,27 +17,29 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.0.5\n"
 
-#: activity/activity.info:2
+#. TRANS: "name" option from activity.info file
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
 msgid "Chart"
 msgstr ""
 
-#: activity.py:147
+#: activity.py:149
 msgid "Save as image"
 msgstr "บันทึกเป็นรูปภาพ"
 
-#: activity.py:154
+#: activity.py:156
 msgid "Read StopWatch data"
 msgstr "อ่านข้อมูลนาฬิกาจับเวลา"
 
-#: activity.py:160
+#: activity.py:162
 msgid "Read Measure data"
 msgstr "อ่านข้อมูลการวัด"
 
-#: activity.py:179
+#: activity.py:178
 msgid "Add a value"
 msgstr "ใส่ค่า"
 
-#: activity.py:185
+#: activity.py:184
 msgid "Remove the selected value"
 msgstr "ลบค่าที่เลือก"
 
@@ -45,72 +47,92 @@ msgstr "ลบค่าที่เลือก"
 msgid "Vertical Bar Chart"
 msgstr "แผนภูมิแท่งในแนวตั้ง"
 
-#: activity.py:204
+#: activity.py:205
 msgid "Horizontal Bar Chart"
 msgstr "แผนภูมิแท่งในแนวนอน"
 
-#: activity.py:211
+#: activity.py:212
 msgid "Line Chart"
 msgstr "แผนภูมิแบบเส้น"
 
-#: activity.py:218
+#: activity.py:219
 msgid "Pie Chart"
 msgstr "แผนภูมิวงกลม"
 
-#: activity.py:239
+#: activity.py:240
 msgid "Chart Color"
 msgstr "สีแผนภูมิ"
 
-#: activity.py:245
+#: activity.py:246
 msgid "Line Color"
 msgstr "สีเส้น"
 
-#: activity.py:260
+#: activity.py:261
 msgid "Horizontal label..."
 msgstr "ป้ายในแนวนอน..."
 
-#: activity.py:274
+#: activity.py:275
 msgid "Vertical label..."
 msgstr "ป้ายในแนวตั้ง..."
 
-#: activity.py:289
+#: activity.py:334
+msgid "Move up"
+msgstr ""
+
+#: activity.py:338
+msgid "Move down"
+msgstr ""
+
+#: activity.py:425
+msgid "Zoom out"
+msgstr ""
+
+#: activity.py:432
+msgid "Zoom in"
+msgstr ""
+
+#: activity.py:439
+msgid "Fit to window"
+msgstr ""
+
+#: activity.py:445
 msgid "Fullscreen"
 msgstr "เต็มจอ"
 
-#: activity.py:510
+#: activity.py:593
 msgid "Invalid object"
 msgstr "วัตถุที่ไม่ถูกต้อง"
 
-#: activity.py:512
+#: activity.py:595
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "วัตถุที่ถูกเลือกต้องเป็นไฟล์ %s"
 
-#: activity.py:515 activity.py:745
+#: activity.py:598 activity.py:855
 msgid "Ok"
 msgstr "ตกลง"
 
-#: activity.py:547 readers.py:62
+#: activity.py:630 readers.py:62
 msgid "StopWatch"
 msgstr "นาฬิกาจับเวลา"
 
-#: activity.py:559
+#: activity.py:642
 msgid "Measure"
 msgstr "วัดค่า"
 
-#: activity.py:664
+#: activity.py:753
 msgid "Label"
 msgstr "ป้าย"
 
-#: activity.py:675
+#: activity.py:764
 msgid "Value"
 msgstr "ค่า"
 
-#: activity.py:740
+#: activity.py:850
 msgid "Invalid Value"
 msgstr "ค่าไม่ถูกต้อง"
 
-#: activity.py:742
+#: activity.py:852
 msgid "The value must be a number (integer or decimal)"
 msgstr "ค่าที่ใส่ต้องเป็นตัวเลข (จำนวนเต็มหรือทศนิยม)"
 
@@ -203,7 +225,7 @@ msgstr ""
 msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr ""
 
-#: helpbutton.py:36
+#: helpbutton.py:38
 msgid "Help"
 msgstr "ช่วยเหลือ"
 
