@@ -79,8 +79,7 @@ class ChartArea(Gtk.DrawingArea):
         super(ChartArea, self).__init__()
         self._parent = parent
         self.add_events(Gdk.EventMask.EXPOSURE_MASK |
-                        Gdk.EventMask.VISIBILITY_NOTIFY_MASK |
-                        Gdk.EventMask.SCROLL_MASK)
+                        Gdk.EventMask.VISIBILITY_NOTIFY_MASK)
         self.connect('draw', self._draw_cb)
 
         self.drag_dest_set_target_list(None)
@@ -133,7 +132,6 @@ class ChartActivity(activity.Activity):
         self.chart_line_color = utils.get_user_stroke_color('str')
         self.current_chart = None
         self.charts_area = None
-        self._zoom = 1.0
         self.chart_data = []
 
         # TOOLBARS
@@ -281,16 +279,16 @@ class ChartActivity(activity.Activity):
 
         toolbarbox.toolbar.insert(options_button, -1)
 
-        view_toolbar = self._create_view_toolbar()
-        view_toolbar_button = ToolbarButton(page=view_toolbar,
-                                            icon_name='toolbar-view')
-        view_toolbar.show()
-        toolbarbox.toolbar.insert(view_toolbar_button, -1)
-
         separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         separator.set_expand(False)
         toolbarbox.toolbar.insert(separator, -1)
+
+        fullscreen_button = ToolButton('view-fullscreen')
+        fullscreen_button.set_tooltip(_("Fullscreen"))
+        fullscreen_button.props.accelerator = '<Alt>Return'
+        fullscreen_button.connect('clicked', self.__fullscreen_cb)
+        toolbarbox.toolbar.insert(fullscreen_button, -1)
 
         charthelp.create_help(toolbarbox.toolbar)
 
@@ -346,20 +344,14 @@ class ChartActivity(activity.Activity):
         paned.add1(box)
 
         # CHARTS AREA
-        vadj = Gtk.Adjustment()
-        hadj = Gtk.Adjustment()
-        self._scroll = Gtk.ScrolledWindow(hadj, vadj)
-        self._scroll.set_policy(Gtk.PolicyType.AUTOMATIC,
-                                Gtk.PolicyType.AUTOMATIC)
-        self._scroll.connect('size_allocate', self._chart_size_allocate)
-        #eventbox = Gtk.EventBox()
+        eventbox = Gtk.EventBox()
         self.charts_area = ChartArea(self)
+        self.charts_area.connect('size_allocate', self._chart_size_allocate)
 
-        #eventbox.modify_bg(Gtk.StateType.NORMAL, _WHITE)
+        eventbox.modify_bg(Gtk.StateType.NORMAL, _WHITE)
 
-        #eventbox.add(self.charts_area)
-        self._scroll.add_with_viewport(self.charts_area)
-        paned.add2(self._scroll)
+        eventbox.add(self.charts_area)
+        paned.add2(eventbox)
 
         self.set_canvas(paned)
 
@@ -381,19 +373,6 @@ class ChartActivity(activity.Activity):
         hbox.show_all()
 
         palette.set_content(hbox)
-
-    def _zoom_in(self, widget):
-        self._zoom += 0.10
-        self._render_chart()
-
-    def _zoom_out(self, widget):
-        if self._zoom > 0.30:
-            self._zoom -= 0.10
-        self._render_chart()
-
-    def _zoom_tofit(self, widget):
-        self._zoom = 1
-        self._render_chart()
 
     def _measure_btn_clicked(self, button):
         palette = button.get_palette()
@@ -419,37 +398,6 @@ class ChartActivity(activity.Activity):
     def _chart_size_allocate(self, widget, allocation):
         self._render_chart()
 
-    def _create_view_toolbar(self):
-        view_toolbar = Gtk.Toolbar()
-
-        zoom_out_button = ToolButton('zoom-out')
-        zoom_out_button.set_tooltip(_('Zoom out'))
-        zoom_out_button.props.accelerator = '<Ctrl>minus'
-        zoom_out_button.connect('clicked', self._zoom_out)
-        view_toolbar.insert(zoom_out_button, -1)
-        zoom_out_button.show()
-
-        zoom_in_button = ToolButton('zoom-in')
-        zoom_in_button.set_tooltip(_('Zoom in'))
-        zoom_in_button.props.accelerator = '<Ctrl>plus'
-        zoom_in_button.connect('clicked', self._zoom_in)
-        view_toolbar.insert(zoom_in_button, -1)
-        zoom_in_button.show()
-
-        zoom_tofit_button = ToolButton('zoom-best-fit')
-        zoom_tofit_button.set_tooltip(_('Fit to window'))
-        zoom_tofit_button.connect('clicked', self._zoom_tofit)
-        view_toolbar.insert(zoom_tofit_button, -1)
-        zoom_tofit_button.show()
-
-        fullscreen_button = ToolButton('view-fullscreen')
-        fullscreen_button.set_tooltip(_("Fullscreen"))
-        fullscreen_button.props.accelerator = '<Alt>Return'
-        fullscreen_button.connect('clicked', self.__fullscreen_cb)
-        view_toolbar.insert(fullscreen_button, -1)
-        fullscreen_button.show()
-        return view_toolbar
-
     def unfullscreen(self):
         self.box.show()
         activity.Activity.unfullscreen(self)
@@ -466,25 +414,20 @@ class ChartActivity(activity.Activity):
 
         try:
             # Resize the chart for all the screen sizes
+            alloc = self.get_allocation()
 
             if fullscreen:
-                alloc = self.get_allocation()
+                new_width = alloc.width
+                new_height = alloc.height
                 self.current_chart.width = alloc.width
                 self.current_chart.height = alloc.height
-                if self._zoom != 1.0:
-                    self.charts_area.set_size_request(alloc.width,
-                                                      alloc.height)
 
             if not fullscreen:
-                alloc = self._scroll.get_allocation()
-
-                new_width = int(alloc.width * self._zoom)
-                new_height = int(alloc.height * self._zoom)
-
-                self.current_chart.width = new_width - 40
-                self.current_chart.height = new_height - 40
-
-                self.charts_area.set_size_request(new_width, new_height)
+                alloc = self.charts_area.get_allocation()
+                new_width = alloc.width - 40
+                new_height = alloc.height - 40
+            self.current_chart.width = new_width
+            self.current_chart.height = new_height
 
             # Set options
             self.current_chart.set_color_scheme(color=self.chart_color)
@@ -551,6 +494,8 @@ class ChartActivity(activity.Activity):
         old, new = self.labels_and_values.move_down()
         _object = self.chart_data[old]
         self.chart_data.remove(_object)
+        if new == len(self.chart_data):
+            new = 0
         self.chart_data.insert(new, _object)
         self._update_chart_data()
 
