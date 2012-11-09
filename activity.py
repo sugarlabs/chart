@@ -46,6 +46,7 @@ from sugar3.graphics.style import Color
 from sugar3.graphics.icon import Icon
 from sugar3.graphics.alert import Alert
 from sugar3.datastore import datastore
+from sugar3.graphics import style
 
 from readers import StopWatchReader
 from readers import MeasureReader
@@ -346,16 +347,64 @@ class ChartActivity(activity.Activity):
         # CHARTS AREA
         eventbox = Gtk.EventBox()
         self.charts_area = ChartArea(self)
-        self.charts_area.connect('size_allocate', self._chart_size_allocate)
 
         eventbox.modify_bg(Gtk.StateType.NORMAL, _WHITE)
-
         eventbox.add(self.charts_area)
-        paned.add2(eventbox)
+
+        self._notebook = Gtk.Notebook()
+        self._notebook.set_property('show-tabs', False)
+        self._notebook.append_page(eventbox, Gtk.Label())
+
+        # EMPTY WIDGETS
+        empty_widgets = Gtk.EventBox()
+        empty_widgets.modify_bg(Gtk.StateType.NORMAL,
+                                style.COLOR_WHITE.get_gdk_color())
+
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        mvbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        vbox.pack_start(mvbox, True, False, 0)
+
+        image_icon = Icon(pixel_size=style.LARGE_ICON_SIZE,
+                          icon_name='chart',
+                          stroke_color=style.COLOR_BUTTON_GREY.get_svg(),
+                          fill_color=style.COLOR_TRANSPARENT.get_svg())
+        mvbox.pack_start(image_icon, False, False, style.DEFAULT_PADDING)
+
+        label = Gtk.Label('<span foreground="%s"><b>%s</b></span>' %
+                          (style.COLOR_BUTTON_GREY.get_html(),
+                          _('No data')))
+        label.set_use_markup(True)
+        mvbox.pack_start(label, False, False, style.DEFAULT_PADDING)
+
+        hbox = Gtk.Box()
+        open_image_btn = Gtk.Button()
+        open_image_btn.connect('clicked', self._add_value)
+        add_image = Gtk.Image.new_from_stock(Gtk.STOCK_ADD,
+                                             Gtk.IconSize.BUTTON)
+        buttonbox = Gtk.Box()
+        buttonbox.pack_start(add_image, False, True, 0)
+        buttonbox.pack_end(Gtk.Label(_('Add a value')), True, True, 5)
+        open_image_btn.add(buttonbox)
+        hbox.pack_start(open_image_btn, True, False, 0)
+        mvbox.pack_start(hbox, False, False, style.DEFAULT_PADDING)
+
+        empty_widgets.add(vbox)
+        empty_widgets.show_all()
+        self._notebook.append_page(empty_widgets, Gtk.Label())
+
+        paned.add2(self._notebook)
 
         self.set_canvas(paned)
+        self.charts_area.connect('size_allocate', self._chart_size_allocate)
 
         self.show_all()
+
+    def _show_empty_widgets(self):
+        self._notebook.set_current_page(1)
+
+    def _show_chart_area(self):
+        if self._notebook.get_current_page() == 1:
+            self._notebook.set_current_page(0)
 
     def _create_measure_palette(self, button):
         palette = button.get_palette()
@@ -409,6 +458,10 @@ class ChartActivity(activity.Activity):
         activity.Activity.fullscreen(self)
 
     def _render_chart(self, fullscreen=False):
+        if not self.chart_data:
+            self._show_empty_widgets()
+            return
+
         if self.current_chart is None or self.charts_area is None:
             return
 
@@ -442,6 +495,7 @@ class ChartActivity(activity.Activity):
         except (ZeroDivisionError, ValueError):
             pass
 
+        self._show_chart_area()
         return False
 
     def _update_chart_data(self):
