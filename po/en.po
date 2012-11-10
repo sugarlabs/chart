@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-30 00:33-0400\n"
-"PO-Revision-Date: 2012-10-01 21:34+0200\n"
+"POT-Creation-Date: 2012-11-10 00:32-0500\n"
+"PO-Revision-Date: 2012-11-10 15:41+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -23,81 +23,73 @@ msgstr ""
 msgid "Chart"
 msgstr "Chart"
 
-#: activity.py:149
+#: activity.py:148
 msgid "Save as image"
 msgstr "Save as image"
 
-#: activity.py:156
+#: activity.py:155
 msgid "Read StopWatch data"
 msgstr "Read StopWatch data"
 
-#: activity.py:162
+#: activity.py:161
 msgid "Read Measure data"
 msgstr "Read Measure data"
 
-#: activity.py:178
+#: activity.py:177 activity.py:386
 msgid "Add a value"
 msgstr "Add a value"
 
-#: activity.py:184
+#: activity.py:183
 msgid "Remove the selected value"
 msgstr "Remove the selected value"
 
-#: activity.py:196
+#: activity.py:195
 msgid "Vertical Bar Chart"
 msgstr "Vertical Bar Chart"
 
-#: activity.py:205
+#: activity.py:204
 msgid "Horizontal Bar Chart"
 msgstr "Horizontal Bar Chart"
 
-#: activity.py:212
+#: activity.py:211
 msgid "Line Chart"
 msgstr "Line Chart"
 
-#: activity.py:219
+#: activity.py:218
 msgid "Pie Chart"
 msgstr "Pie Chart"
 
-#: activity.py:240
+#: activity.py:239
 msgid "Chart Color"
 msgstr "Chart Color"
 
-#: activity.py:246
+#: activity.py:245
 msgid "Line Color"
 msgstr "Line Color"
 
-#: activity.py:261
+#: activity.py:260
 msgid "Horizontal label..."
 msgstr "Horizontal label..."
 
-#: activity.py:275
+#: activity.py:274
 msgid "Vertical label..."
 msgstr "Vertical label..."
 
-#: activity.py:334
+#: activity.py:289
+msgid "Fullscreen"
+msgstr "Fullscreen"
+
+#: activity.py:333
 msgid "Move up"
 msgstr "Move up"
 
-#: activity.py:338
+#: activity.py:337
 msgid "Move down"
 msgstr "Move down"
 
-#: activity.py:425
-msgid "Zoom out"
-msgstr "Zoom out"
-
-#: activity.py:432
-msgid "Zoom in"
-msgstr "Zoom in"
-
-#: activity.py:439
-msgid "Fit to window"
-msgstr "Fit to window"
-
-#: activity.py:445
-msgid "Fullscreen"
-msgstr "Fullscreen"
+#: activity.py:375
+msgid "No data"
+msgstr "No data"
 
 #: activity.py:593
 msgid "Invalid object"
@@ -108,7 +100,7 @@ msgstr "Invalid object"
 msgid "The selected object must be a %s file"
 msgstr "The selected object must be a %s file"
 
-#: activity.py:598 activity.py:855
+#: activity.py:598 activity.py:869
 msgid "Ok"
 msgstr "Ok"
 
@@ -128,11 +120,11 @@ msgstr "Label"
 msgid "Value"
 msgstr "Value"
 
-#: activity.py:850
+#: activity.py:864
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
-#: activity.py:852
+#: activity.py:866
 msgid "The value must be a number (integer or decimal)"
 msgstr "The value must be a number (integer or decimal)"
 
@@ -249,6 +241,15 @@ msgstr "Values"
 #: readers.py:127
 msgid "Samples"
 msgstr "Samples"
+
+#~ msgid "Zoom out"
+#~ msgstr "Zoom out"
+
+#~ msgid "Zoom in"
+#~ msgstr "Zoom in"
+
+#~ msgid "Fit to window"
+#~ msgstr "Fit to window"
 
 #~ msgid "SimpleGraph"
 #~ msgstr "SimpleGraph"
