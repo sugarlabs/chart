@@ -492,12 +492,11 @@ class ChartActivity(activity.Activity):
 
     def _move_down(self, widget):
         old, new = self.labels_and_values.move_down()
-        _object = self.chart_data[old]
-        self.chart_data.remove(_object)
-        if new == len(self.chart_data):
-            new = 0
-        self.chart_data.insert(new, _object)
-        self._update_chart_data()
+        if not old is None:
+            _object = self.chart_data[old]
+            self.chart_data.remove(_object)
+            self.chart_data.insert(new, _object)
+            self._update_chart_data()
 
     def _set_h_label(self, widget):
         new_text = widget.get_text()
@@ -719,6 +718,9 @@ class ChartData(Gtk.TreeView):
         self.append_column(column)
         self.set_enable_search(False)
 
+        # Items count
+        self._items_count = 0
+
         self.show_all()
 
     def add_value(self, label, value):
@@ -738,6 +740,8 @@ class ChartData(Gtk.TreeView):
                         self.get_column(1),
                         True)
 
+        self._items_count += 1
+
         _logger.info('Added: %s, Value: %s' % (label, value))
 
         return path
@@ -748,6 +752,8 @@ class ChartData(Gtk.TreeView):
                  float(self.model.get(iter, 1)[0].replace(',', '.')))
         _logger.info('VALUE: ' + str(value))
         self.model.remove(iter)
+
+        self._items_count -= 1
 
         return value
 
@@ -764,11 +770,17 @@ class ChartData(Gtk.TreeView):
     def move_down(self):
         selected_iter = self._selection.get_selected()[1]
         position = self.model.iter_next(selected_iter)
-        self.model.move_after(selected_iter, position)
+        position_path = int(str(self.model.get_path(selected_iter)))
 
-        selected_path = int(str(self.model.get_path(selected_iter)))
-        new_position_path = int(str(self.model.get_path(position)))
-        return (selected_path, new_position_path)
+        if not position_path == self._items_count - 1:
+            self.model.move_after(selected_iter, position)
+
+            selected_path = int(str(self.model.get_path(selected_iter)))
+            new_position_path = int(str(self.model.get_path(position)))
+            return (selected_path, new_position_path)
+
+        else:
+            return (None, None)
 
     def _label_changed(self, cell, path, new_text, model):
         _logger.info('Change "%s" to "%s"' % (model[path][0], new_text))
