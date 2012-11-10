@@ -1,3 +1,27 @@
+8
+
+* Add move up/down buttons
+* Code fixes
+* Immediate measure palette popup
+* Fix comma separator bug SL #4180
+
+7
+
+* Activity ported to gtk3
+
+6
+
+* Bigger font sizes.
+* Clipboard read help.
+* A lot of code fixes.
+* sugar-pycha library created: git.sugarlabs.org/sugar-pycha
+* More beautiful charts :)
+* Help button before fill spacer SL #3759 
+
+5
+
+* Translation fixes
+
 4
 
 * Chart from clipboard
