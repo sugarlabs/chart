@@ -744,7 +744,8 @@ class ChartData(Gtk.TreeView):
 
     def remove_selected_value(self):
         model, iter = self._selection.get_selected()
-        value = (self.model.get(iter, 0)[0], float(self.model.get(iter, 1)[0]))
+        value = (self.model.get(iter, 0)[0],
+                 float(self.model.get(iter, 1)[0].replace(',', '.')))
         _logger.info('VALUE: ' + str(value))
         self.model.remove(iter)
 
