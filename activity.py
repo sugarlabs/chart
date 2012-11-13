@@ -233,7 +233,7 @@ class ChartActivity(activity.Activity):
         separator.set_expand(False)
         toolbarbox.toolbar.insert(separator, -1)
 
-        options_button = ToolbarButton(icon_name='preferences-system')
+        self._options_button = ToolbarButton(icon_name='preferences-system')
         options_toolbar = Gtk.Toolbar()
 
         self.chart_color_btn = ColorToolButton()
@@ -277,21 +277,21 @@ class ChartActivity(activity.Activity):
         self.v_label.entry.connect('changed', self._set_v_label)
         options_toolbar.insert(self.v_label, -1)
 
-        options_button.props.page = options_toolbar
+        self._options_button.props.page = options_toolbar
         options_toolbar.show_all()
 
-        toolbarbox.toolbar.insert(options_button, -1)
+        toolbarbox.toolbar.insert(self._options_button, -1)
 
         separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         separator.set_expand(False)
         toolbarbox.toolbar.insert(separator, -1)
 
-        fullscreen_button = ToolButton('view-fullscreen')
-        fullscreen_button.set_tooltip(_("Fullscreen"))
-        fullscreen_button.props.accelerator = '<Alt>Return'
-        fullscreen_button.connect('clicked', self.__fullscreen_cb)
-        toolbarbox.toolbar.insert(fullscreen_button, -1)
+        self._fullscreen_button = ToolButton('view-fullscreen')
+        self._fullscreen_button.set_tooltip(_("Fullscreen"))
+        self._fullscreen_button.props.accelerator = '<Alt>Return'
+        self._fullscreen_button.connect('clicked', self.__fullscreen_cb)
+        toolbarbox.toolbar.insert(self._fullscreen_button, -1)
 
         charthelp.create_help(toolbarbox.toolbar)
 
@@ -409,6 +409,9 @@ class ChartActivity(activity.Activity):
             for btn in self.chart_type_buttons:
                 btn.set_sensitive(False)
 
+            self._options_button.set_sensitive(False)
+            self._fullscreen_button.set_sensitive(False)
+
     def _show_chart_area(self):
         if self._notebook.get_current_page() == 1:
             self._notebook.set_current_page(0)
@@ -416,6 +419,9 @@ class ChartActivity(activity.Activity):
 
             for btn in self.chart_type_buttons:
                 btn.set_sensitive(True)
+
+            self._options_button.set_sensitive(True)
+            self._fullscreen_button.set_sensitive(True)
 
     def _create_measure_palette(self, button):
         palette = button.get_palette()
@@ -439,6 +445,9 @@ class ChartActivity(activity.Activity):
         palette.popup(immediate=True, state=1)
 
     def _add_value(self, widget, label='', value='0.0'):
+        if label == '':
+            label = str(len(self.chart_data) + 1)
+
         data = (label, float(value))
         if not data in self.chart_data:
             pos = self.labels_and_values.add_value(label, value)
