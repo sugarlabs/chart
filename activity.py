@@ -184,6 +184,8 @@ class ChartActivity(activity.Activity):
 
         toolbarbox.toolbar.insert(remove_v, -1)
 
+        self._remove_v = remove_v
+
         separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         separator.set_expand(False)
@@ -400,11 +402,20 @@ class ChartActivity(activity.Activity):
         self.show_all()
 
     def _show_empty_widgets(self):
-        self._notebook.set_current_page(1)
+        if hasattr(self, '_notebook'):
+            self._notebook.set_current_page(1)
+            self._remove_v.set_sensitive(False)
+
+            for btn in self.chart_type_buttons:
+                btn.set_sensitive(False)
 
     def _show_chart_area(self):
         if self._notebook.get_current_page() == 1:
             self._notebook.set_current_page(0)
+            self._remove_v.set_sensitive(True)
+
+            for btn in self.chart_type_buttons:
+                btn.set_sensitive(True)
 
     def _create_measure_palette(self, button):
         palette = button.get_palette()
