@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-10 00:32-0500\n"
-"PO-Revision-Date: 2012-11-10 17:45+0200\n"
+"POT-Creation-Date: 2012-11-15 00:33-0500\n"
+"PO-Revision-Date: 2012-11-17 19:03+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_US\n"
@@ -18,10 +18,17 @@ msgstr ""
 "X-Generator: Pootle 2.0.5\n"
 
 #. TRANS: "name" option from activity.info file
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
 msgid "Chart"
 msgstr "Chart"
+
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Create your charts and organize your information! Try the best chart for "
+"your case."
+msgstr ""
+"Create your charts and organize your information! Try the best chart for "
+"your case."
 
 #: activity.py:148
 msgid "Save as image"
@@ -35,7 +42,7 @@ msgstr "Read StopWatch data"
 msgid "Read Measure data"
 msgstr "Read Measure data"
 
-#: activity.py:177 activity.py:386
+#: activity.py:177 activity.py:388
 msgid "Add a value"
 msgstr "Add a value"
 
@@ -43,88 +50,88 @@ msgstr "Add a value"
 msgid "Remove the selected value"
 msgstr "Remove the selected value"
 
-#: activity.py:195
+#: activity.py:197
 msgid "Vertical Bar Chart"
 msgstr "Vertical Bar Chart"
 
-#: activity.py:204
+#: activity.py:206
 msgid "Horizontal Bar Chart"
 msgstr "Horizontal Bar Chart"
 
-#: activity.py:211
+#: activity.py:213
 msgid "Line Chart"
 msgstr "Line Chart"
 
-#: activity.py:218
+#: activity.py:220
 msgid "Pie Chart"
 msgstr "Pie Chart"
 
-#: activity.py:239
+#: activity.py:241
 msgid "Chart Color"
 msgstr "Chart Color"
 
-#: activity.py:245
+#: activity.py:247
 msgid "Line Color"
 msgstr "Line Color"
 
-#: activity.py:260
+#: activity.py:262
 msgid "Horizontal label..."
 msgstr "Horizontal label..."
 
-#: activity.py:274
+#: activity.py:276
 msgid "Vertical label..."
 msgstr "Vertical label..."
 
-#: activity.py:289
+#: activity.py:291
 msgid "Fullscreen"
 msgstr "Fullscreen"
 
-#: activity.py:333
+#: activity.py:335
 msgid "Move up"
 msgstr "Move up"
 
-#: activity.py:337
+#: activity.py:339
 msgid "Move down"
 msgstr "Move down"
 
-#: activity.py:375
+#: activity.py:377
 msgid "No data"
 msgstr "No data"
 
-#: activity.py:593
+#: activity.py:613
 msgid "Invalid object"
 msgstr "Invalid object"
 
-#: activity.py:595
+#: activity.py:615
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "The selected object must be a %s file"
 
-#: activity.py:598 activity.py:869
+#: activity.py:618 activity.py:889
 msgid "Ok"
 msgstr "Ok"
 
-#: activity.py:630 readers.py:62
+#: activity.py:650 readers.py:62
 msgid "StopWatch"
 msgstr "StopWatch"
 
-#: activity.py:642
+#: activity.py:662
 msgid "Measure"
 msgstr "Measure"
 
-#: activity.py:753
+#: activity.py:773
 msgid "Label"
 msgstr "Label"
 
-#: activity.py:764
+#: activity.py:784
 msgid "Value"
 msgstr "Value"
 
-#: activity.py:864
+#: activity.py:884
 msgid "Invalid Value"
 msgstr "Invalid Value"
 
-#: activity.py:866
+#: activity.py:886
 msgid "The value must be a number (integer or decimal)"
 msgstr "The value must be a number (integer or decimal)"
 
