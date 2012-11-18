@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-10 00:32-0500\n"
-"PO-Revision-Date: 2012-11-13 01:33+0200\n"
+"POT-Creation-Date: 2012-11-15 00:33-0500\n"
+"PO-Revision-Date: 2012-11-18 19:56+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -18,10 +18,17 @@ msgstr ""
 "X-Generator: Pootle 2.0.5\n"
 
 #. TRANS: "name" option from activity.info file
-#. TRANS: "summary" option from activity.info file
-#. TRANS: "description" option from activity.info file
 msgid "Chart"
 msgstr "Diagram"
+
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Create your charts and organize your information! Try the best chart for "
+"your case."
+msgstr ""
+"Opret dine diagrammer og organisér dine informationer! Prøv det bedste "
+"diagram til din opgave."
 
 #: activity.py:148
 msgid "Save as image"
@@ -35,7 +42,7 @@ msgstr "Læs data fra StopUr"
 msgid "Read Measure data"
 msgstr "Aflæs måledata"
 
-#: activity.py:177 activity.py:386
+#: activity.py:177 activity.py:388
 msgid "Add a value"
 msgstr "Tilføj en værdi"
 
@@ -43,88 +50,88 @@ msgstr "Tilføj en værdi"
 msgid "Remove the selected value"
 msgstr "Fjern den valgte værdi"
 
-#: activity.py:195
+#: activity.py:197
 msgid "Vertical Bar Chart"
 msgstr "Lodret søjleoversigt"
 
-#: activity.py:204
+#: activity.py:206
 msgid "Horizontal Bar Chart"
 msgstr "Vandret søjleoversigt"
 
-#: activity.py:211
+#: activity.py:213
 msgid "Line Chart"
 msgstr "Linjeoversigt"
 
-#: activity.py:218
+#: activity.py:220
 msgid "Pie Chart"
 msgstr "Cirkeldiagram"
 
-#: activity.py:239
+#: activity.py:241
 msgid "Chart Color"
 msgstr "Farve på oversigt"
 
-#: activity.py:245
+#: activity.py:247
 msgid "Line Color"
 msgstr "Farve på linje"
 
-#: activity.py:260
+#: activity.py:262
 msgid "Horizontal label..."
 msgstr "Vandret etikette..."
 
-#: activity.py:274
+#: activity.py:276
 msgid "Vertical label..."
 msgstr "Lodret etikette..."
 
-#: activity.py:289
+#: activity.py:291
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
-#: activity.py:333
+#: activity.py:335
 msgid "Move up"
 msgstr "Flyt op"
 
-#: activity.py:337
+#: activity.py:339
 msgid "Move down"
 msgstr "Flyt ned"
 
-#: activity.py:375
+#: activity.py:377
 msgid "No data"
 msgstr "Ingen data"
 
-#: activity.py:593
+#: activity.py:613
 msgid "Invalid object"
 msgstr "Ugyldigt objekt"
 
-#: activity.py:595
+#: activity.py:615
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "Det valgte objekt skal være en %s-fil"
 
-#: activity.py:598 activity.py:869
+#: activity.py:618 activity.py:889
 msgid "Ok"
 msgstr "Ok"
 
-#: activity.py:630 readers.py:62
+#: activity.py:650 readers.py:62
 msgid "StopWatch"
 msgstr "Stopur"
 
-#: activity.py:642
+#: activity.py:662
 msgid "Measure"
 msgstr "Mål"
 
-#: activity.py:753
+#: activity.py:773
 msgid "Label"
 msgstr "Etikette"
 
-#: activity.py:764
+#: activity.py:784
 msgid "Value"
 msgstr "Værdi"
 
-#: activity.py:864
+#: activity.py:884
 msgid "Invalid Value"
 msgstr "Ugyldig værdi"
 
-#: activity.py:866
+#: activity.py:886
 msgid "The value must be a number (integer or decimal)"
 msgstr "Værdien skal angives som et tal (heltal eller decimaltal)"
 
