@@ -23,7 +23,6 @@
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GObject
-from gi.repository import Pango
 import os
 import simplejson
 import locale
@@ -573,18 +572,12 @@ class ChartActivity(activity.Activity):
             self._update_chart_data()
 
     def _set_h_label(self, widget):
-        new_text = widget.get_text()
-
-        if new_text != self.h_label._text:
-            self.x_label = new_text
-            self._update_chart_labels()
+        self.x_label = widget.get_text()
+        self._update_chart_labels()
 
     def _set_v_label(self, widget):
-        new_text = widget.get_text()
-
-        if new_text != self.v_label._text:
-            self.y_label = new_text
-            self._update_chart_labels()
+        self.y_label = widget.get_text()
+        self._update_chart_labels()
 
     def _set_chart_color(self, widget, pspec):
         self.chart_color = utils.rgb2html(widget.get_color())
@@ -902,23 +895,7 @@ class Entry(Gtk.ToolItem):
         GObject.GObject.__init__(self)
 
         self.entry = Gtk.Entry()
-        self.entry.set_text(text)
-        self.entry.connect('focus-in-event', self._focus_in)
-        self.entry.connect('focus-out-event', self._focus_out)
-        self.entry.modify_font(Pango.FontDescription('italic'))
-
-        self._text = text
-
+        self.entry.set_placeholder_text(text)
         self.add(self.entry)
 
         self.show_all()
-
-    def _focus_in(self, widget, event):
-        if widget.get_text() == self._text:
-            widget.set_text('')
-            widget.modify_font(Pango.FontDescription(''))
-
-    def _focus_out(self, widget, event):
-        if widget.get_text() == '':
-            widget.set_text(self.text)
-            widget.modify_font(Pango.FontDescription('italic'))
