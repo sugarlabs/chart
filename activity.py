@@ -238,15 +238,20 @@ class ChartActivity(activity.Activity):
         self.chart_color_btn = ColorToolButton()
         self.chart_color_btn.set_color(_COLOR1)
         self.chart_color_btn.set_title(_('Chart Color'))
-        self.chart_color_btn.connect('notify::color', self._set_chart_color)
         options_toolbar.insert(self.chart_color_btn, -1)
+        GObject.timeout_add(1000,
+                            self._connect_color_btn,
+                            self.chart_color_btn,
+                            self._set_chart_color)
 
         self.line_color_btn = ColorToolButton()
         self.line_color_btn.set_color(_COLOR2)
         self.line_color_btn.set_title(_('Line Color'))
-        self.line_color_btn.connect('notify::color',
-                self._set_chart_line_color)
         options_toolbar.insert(self.line_color_btn, -1)
+        GObject.timeout_add(1000,
+                            self._connect_color_btn,
+                            self.line_color_btn,
+                            self._set_chart_line_color)
 
         separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
@@ -579,13 +584,25 @@ class ChartActivity(activity.Activity):
         self.y_label = widget.get_text()
         self._update_chart_labels()
 
-    def _set_chart_color(self, widget, pspec):
-        self.chart_color = utils.rgb2html(widget.get_color())
+    def _set_chart_color(self, *args):
+        self.chart_color = utils.rgb2html(args[-1].get_color())
         self._render_chart()
 
-    def _set_chart_line_color(self, widget, pspec):
-        self.chart_line_color = utils.rgb2html(widget.get_color())
+    def _set_chart_line_color(self, *args):
+        self.chart_line_color = utils.rgb2html(args[-1].get_color())
         self._render_chart()
+
+    def _connect_color_btn(self, colorbtn, function):
+        if colorbtn._palette is None:
+            return True
+
+        for scale in colorbtn._palette._scales:
+            scale.connect('button-release-event', function, colorbtn)
+
+        for button in colorbtn._palette._swatch_tray.get_children():
+            button.connect('clicked', function, colorbtn)
+
+        return False
 
     def _object_chooser(self, mime_type, type_name):
         chooser = ObjectChooser()
