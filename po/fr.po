@@ -56,7 +56,7 @@ msgstr "Histogramme vertical"
 
 #: activity.py:206
 msgid "Horizontal Bar Chart"
-msgstr "Histogramme horizontal\n"
+msgstr "Histogramme horizontal"
 
 #: activity.py:213
 msgid "Line Chart"
