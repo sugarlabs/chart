@@ -843,6 +843,7 @@ class ChartData(Gtk.TreeView):
         # Label column
 
         column = Gtk.TreeViewColumn(_('Label'))
+        column.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         label = Gtk.CellRendererText()
         label.set_property('editable', True)
         label.connect('edited', self._label_changed, self.model)
@@ -854,6 +855,7 @@ class ChartData(Gtk.TreeView):
         # Value column
 
         column = Gtk.TreeViewColumn(_('Value'))
+        column.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         value = Gtk.CellRendererText()
         value.set_property('editable', True)
         value.connect('edited', self._value_changed, self.model, activity)
