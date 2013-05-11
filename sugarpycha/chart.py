@@ -461,7 +461,7 @@ class Chart(object):
 
     def _renderYAxisLabel(self, cx, label_text):
         label = safe_unicode(label_text, self.options.encoding)
-        x = self.layout.y_label.x
+        x = self.layout.y_label.x - 10  # tweak to prevent collisions
         y = self.layout.y_label.y + self.layout.y_label.h / 2.0
         self._renderAxisLabel(cx, label, x, y, True)
 
@@ -477,7 +477,7 @@ class Chart(object):
     def _renderXAxisLabel(self, cx, label_text):
         label = safe_unicode(label_text, self.options.encoding)
         x = self.layout.x_label.x + self.layout.x_label.w / 2.0
-        y = self.layout.x_label.y
+        y = self.layout.x_label.y + 5  # tweak to prevent collisions
         self._renderAxisLabel(cx, label, x, y, False)
 
     def _renderXAxis(self, cx):

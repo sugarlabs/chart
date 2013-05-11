@@ -72,6 +72,22 @@ _logger.setLevel(logging.DEBUG)
 logging.basicConfig()
 
 
+
+def _invalid_number_alert(activity):
+    alert = Alert()
+
+    alert.props.title = _('Invalid Value')
+    alert.props.msg = _('The value must be a number (integer or decimal)')
+
+    ok_icon = Icon(icon_name='dialog-ok')
+    alert.add_button(Gtk.ResponseType.OK, _('Ok'), ok_icon)
+    ok_icon.show()
+
+    alert.connect('response', lambda a, r: activity.remove_alert(a))
+    activity.add_alert(alert)
+    alert.show()
+
+
 class ChartArea(Gtk.DrawingArea):
 
     def __init__(self, parent):
@@ -82,7 +98,7 @@ class ChartArea(Gtk.DrawingArea):
                         Gdk.EventMask.VISIBILITY_NOTIFY_MASK)
         self.connect('draw', self._draw_cb)
 
-        self.drag_dest_set_target_list(None)
+        self.drag_dest_set_target_list([])
         self.drag_dest_add_text_targets()
         self.connect('drag_data_received', self._drag_data_received)
 
@@ -133,6 +149,7 @@ class ChartActivity(activity.Activity):
         self.current_chart = None
         self.charts_area = None
         self.chart_data = []
+        self.chart_type_buttons = []
 
         # TOOLBARS
         toolbarbox = ToolbarBox()
@@ -190,42 +207,17 @@ class ChartActivity(activity.Activity):
         separator.set_expand(False)
         toolbarbox.toolbar.insert(separator, -1)
 
-        add_vbar_chart = RadioToolButton()
-        add_vbar_chart.connect('clicked', self._add_chart_cb,
-                               charts.VERTICAL_BAR)
-        add_vbar_chart.set_tooltip(_('Vertical Bar Chart'))
-        add_vbar_chart.props.icon_name = 'vbar'
-        charts_group = add_vbar_chart
+        # We create two sets: one for the main toolbar and one for the
+        # chart toolbar. We choose which set to use based on the
+        # screen width.
+        self._create_chart_buttons(toolbarbox.toolbar)
 
-        toolbarbox.toolbar.insert(add_vbar_chart, -1)
-
-        add_hbar_chart = RadioToolButton()
-        add_hbar_chart.connect('clicked', self._add_chart_cb,
-                               charts.HORIZONTAL_BAR)
-        add_hbar_chart.set_tooltip(_('Horizontal Bar Chart'))
-        add_hbar_chart.props.icon_name = 'hbar'
-        add_hbar_chart.props.group = charts_group
-        toolbarbox.toolbar.insert(add_hbar_chart, -1)
-
-        add_line_chart = RadioToolButton()
-        add_line_chart.connect('clicked', self._add_chart_cb, charts.LINE)
-        add_line_chart.set_tooltip(_('Line Chart'))
-        add_line_chart.props.icon_name = 'line'
-        add_line_chart.props.group = charts_group
-        toolbarbox.toolbar.insert(add_line_chart, -1)
-
-        add_pie_chart = RadioToolButton()
-        add_pie_chart.connect('clicked', self._add_chart_cb, charts.PIE)
-        add_pie_chart.set_tooltip(_('Pie Chart'))
-        add_pie_chart.props.icon_name = 'pie'
-        add_pie_chart.props.group = charts_group
-        add_pie_chart.set_active(True)
-        toolbarbox.toolbar.insert(add_pie_chart, -1)
-
-        self.chart_type_buttons = [add_vbar_chart,
-                                   add_hbar_chart,
-                                   add_line_chart,
-                                   add_pie_chart]
+        self._chart_button = ToolbarButton(icon_name='vbar')
+        chart_toolbar = Gtk.Toolbar()
+        self._create_chart_buttons(chart_toolbar)
+        self._chart_button.props.page = chart_toolbar
+        chart_toolbar.show_all()
+        toolbarbox.toolbar.insert(self._chart_button, -1)
 
         separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
@@ -405,6 +397,47 @@ class ChartActivity(activity.Activity):
 
         self.show_all()
 
+        Gdk.Screen.get_default().connect('size-changed', self._configure_cb)
+        self._configure_cb()
+
+    def _create_chart_buttons(self, toolbar):
+        add_vbar_chart = RadioToolButton()
+        add_vbar_chart.connect('clicked', self._add_chart_cb,
+                               charts.VERTICAL_BAR)
+        add_vbar_chart.set_tooltip(_('Vertical Bar Chart'))
+        add_vbar_chart.props.icon_name = 'vbar'
+        charts_group = add_vbar_chart
+
+        toolbar.insert(add_vbar_chart, -1)
+
+        add_hbar_chart = RadioToolButton()
+        add_hbar_chart.connect('clicked', self._add_chart_cb,
+                               charts.HORIZONTAL_BAR)
+        add_hbar_chart.set_tooltip(_('Horizontal Bar Chart'))
+        add_hbar_chart.props.icon_name = 'hbar'
+        add_hbar_chart.props.group = charts_group
+        toolbar.insert(add_hbar_chart, -1)
+
+        add_line_chart = RadioToolButton()
+        add_line_chart.connect('clicked', self._add_chart_cb, charts.LINE)
+        add_line_chart.set_tooltip(_('Line Chart'))
+        add_line_chart.props.icon_name = 'line'
+        add_line_chart.props.group = charts_group
+        toolbar.insert(add_line_chart, -1)
+
+        add_pie_chart = RadioToolButton()
+        add_pie_chart.connect('clicked', self._add_chart_cb, charts.PIE)
+        add_pie_chart.set_tooltip(_('Pie Chart'))
+        add_pie_chart.props.icon_name = 'pie'
+        add_pie_chart.props.group = charts_group
+        add_pie_chart.set_active(True)
+        toolbar.insert(add_pie_chart, -1)
+
+        self.chart_type_buttons.append(add_vbar_chart)
+        self.chart_type_buttons.append(add_hbar_chart)
+        self.chart_type_buttons.append(add_line_chart)
+        self.chart_type_buttons.append(add_pie_chart)
+
     def _show_empty_widgets(self):
         if hasattr(self, '_notebook'):
             self._notebook.set_current_page(1)
@@ -452,11 +485,22 @@ class ChartActivity(activity.Activity):
         if label == '':
             label = str(len(self.chart_data) + 1)
 
-        data = (label, float(value))
-        if not data in self.chart_data:
-            pos = self.labels_and_values.add_value(label, value)
-            self.chart_data.insert(pos, data)
-            self._update_chart_data()
+        is_number = True
+        try:
+            float(value)
+        except ValueError:
+            _logger.debug('data (%s) not a number' % (str(value)))
+            is_number = False
+
+        if is_number:
+            data = (label, float(value))
+            if not data in self.chart_data:
+                pos = self.labels_and_values.add_value(label, value)
+                self.chart_data.insert(pos, data)
+                self._update_chart_data()
+
+        elif not is_number:
+            _invalid_number_alert(activity)
 
     def _remove_value(self, widget):
         value = self.labels_and_values.remove_selected_value()
@@ -468,8 +512,23 @@ class ChartActivity(activity.Activity):
 
         self.update_chart()
 
+    def _configure_cb(self, event=None):
+        # If we have room, put buttons on the main toolbar
+        if Gdk.Screen.width() / 14 > style.GRID_CELL_SIZE:
+            self._chart_button.set_expanded(False)
+            self._chart_button.hide()
+            for i in range(4):
+                self.chart_type_buttons[i].show()
+                self.chart_type_buttons[i+4].hide()
+        else:
+            self._chart_button.show()
+            self._chart_button.set_expanded(True)
+            for i in range(4):
+                self.chart_type_buttons[i].hide()
+                self.chart_type_buttons[i+4].show()
+
     def _chart_size_allocate(self, widget, allocation):
-        self._render_chart()
+            self._render_chart()
 
     def unfullscreen(self):
         self.box.show()
@@ -498,7 +557,6 @@ class ChartActivity(activity.Activity):
                 new_height = alloc.height
                 self.current_chart.width = alloc.width
                 self.current_chart.height = alloc.height
-
             if not fullscreen:
                 alloc = self.charts_area.get_allocation()
                 new_width = alloc.width - 40
@@ -708,15 +766,19 @@ class ChartActivity(activity.Activity):
         _type = data['current_chart.type']
         if _type == charts.VERTICAL_BAR:
             self.chart_type_buttons[0].set_active(True)
+            self.chart_type_buttons[4].set_active(True)
 
         elif _type == charts.HORIZONTAL_BAR:
             self.chart_type_buttons[1].set_active(True)
+            self.chart_type_buttons[5].set_active(True)
 
         elif _type == charts.LINE:
             self.chart_type_buttons[2].set_active(True)
+            self.chart_type_buttons[6].set_active(True)
 
         elif _type == charts.PIE:
             self.chart_type_buttons[3].set_active(True)
+            self.chart_type_buttons[7].set_active(True)
 
         # Update the controls in the config subtoolbar
         self.chart_color_btn.set_color(Color(self.chart_color).get_gdk_color())
@@ -889,21 +951,7 @@ class ChartData(Gtk.TreeView):
             self.emit('value-changed', str(path), number)
 
         elif not is_number:
-            alert = Alert()
-
-            alert.props.title = _('Invalid Value')
-            alert.props.msg = \
-                           _('The value must be a number (integer or decimal)')
-
-            ok_icon = Icon(icon_name='dialog-ok')
-            alert.add_button(Gtk.ResponseType.OK, _('Ok'), ok_icon)
-            ok_icon.show()
-
-            alert.connect('response', lambda a, r: activity.remove_alert(a))
-
-            activity.add_alert(alert)
-
-            alert.show()
+            _invalid_number_alert(activity)
 
 
 class Entry(Gtk.ToolItem):

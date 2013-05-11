@@ -1,3 +1,9 @@
+9.3
+
+* Reconfure toolbars in portrait mode
+* Tweek axes label positions to prevent overlap
+* More robust testing of entry values
+
 9
 
 * No data message
