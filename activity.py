@@ -98,7 +98,7 @@ class ChartArea(Gtk.DrawingArea):
                         Gdk.EventMask.VISIBILITY_NOTIFY_MASK)
         self.connect('draw', self._draw_cb)
 
-        self.drag_dest_set_target_list([])
+        self.drag_dest_set_target_list(Gtk.TargetList.new([]))
         self.drag_dest_add_text_targets()
         self.connect('drag_data_received', self._drag_data_received)
 
