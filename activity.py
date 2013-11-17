@@ -755,7 +755,7 @@ class ChartActivity(activity.Activity):
 
     def load_from_file(self, f):
         try:
-            data = simplejson.load(f)
+            data = json.load(f)
         finally:
             f.close()
 
@@ -818,7 +818,7 @@ class ChartActivity(activity.Activity):
 
             f = open(file_path, 'w')
             try:
-                simplejson.dump(data, f)
+                json.dump(data, f)
             finally:
                 f.close()
 
