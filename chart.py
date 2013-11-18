@@ -55,10 +55,16 @@ class Chart(GObject.GObject):
 
         self.options = {
             'legend': {'hide': True},
-            'titleFontSize': 16,
+            'titleColor': '#000000',
+            'titleFont': 'Tahoma',
+            'titleFontSize': 12,
             'axis': {
+                'tickColor': '#F3F3F3',
+                'tickFont': 'Sans',
                 'tickFontSize': 12,
                 'labelFontSize': 14,
+                'labelColor': '#666666',
+                'labelFont': 'Sans',
                 'lineColor': '#b3b3b3',
                 'x': {
                     'ticks': [dict(v=i, label=l[0]) for i,
@@ -70,6 +76,7 @@ class Chart(GObject.GObject):
                     'label': 'Y',
                 }
             },
+            'yvals': {'fontColor': '#000000'},
             'stroke': {
                 'width': 3
             },
@@ -84,6 +91,22 @@ class Chart(GObject.GObject):
                 },
             },
         }
+
+    def set_font_options(self, op):
+        self.options['titleFont'] = op['titleFont']
+        self.options['titleFontSize'] = op['titleFontSize']
+        self.options['titleColor'] = op['titleColor']
+        self.options['axis']['labelFont'] = op['axis']['labelFont']
+        self.options['axis']['labelFontSize'] = op['axis']['labelFontSize']
+        self.options['axis']['labelColor'] = op['axis']['labelColor']
+        self.options['axis']['tickFont'] = op['axis']['tickFont']
+        self.options['axis']['tickFontSize'] = op['axis']['tickFontSize']
+        self.options['yvals']['fontColor'] = op['yvals']['fontColor']
+
+        if self.type == PIE:
+            self.options['axis']['labelFont'] = op['axis']['tickFont']
+            self.options['axis']['labelFontSize'] = op['axis']['tickFontSize']
+            self.options['axis']['labelColor'] = op['axis']['tickColor']
 
     def set_color_scheme(self, color='blue'):
         '''Set the chart color scheme'''

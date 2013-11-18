@@ -43,6 +43,7 @@ from sugar3.activity.widgets import StopButton
 from sugar3.activity.widgets import ToolbarButton
 from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.graphics.toolbutton import ToolButton
+from sugar3.graphics.toolcombobox import ToolComboBox
 from sugar3.graphics.radiotoolbutton import RadioToolButton
 from sugar3.graphics.colorbutton import ColorToolButton
 from sugar3.graphics.objectchooser import ObjectChooser
@@ -51,6 +52,9 @@ from sugar3.graphics.icon import Icon
 from sugar3.graphics.alert import Alert
 from sugar3.datastore import datastore
 from sugar3.graphics import style
+
+from fontcombobox import FontComboBox
+from fontcombobox import FontSize
 
 from readers import StopWatchReader
 from readers import MeasureReader
@@ -67,6 +71,12 @@ _COLOR1 = utils.get_user_fill_color()
 _COLOR2 = utils.get_user_stroke_color()
 _WHITE = Gdk.color_parse('white')
 
+# Font options
+TITLE_FONT = 'title'
+LABELS_FONT = 'labels'
+TICK_FONT = 'ticks'
+
+
 # Paths
 _ACTIVITY_DIR = os.path.join(activity.get_activity_root(), 'data/')
 _CHART_FILE = utils.get_chart_file(_ACTIVITY_DIR)
@@ -75,7 +85,6 @@ _CHART_FILE = utils.get_chart_file(_ACTIVITY_DIR)
 _logger = logging.getLogger('chart-activity')
 _logger.setLevel(logging.DEBUG)
 logging.basicConfig()
-
 
 
 def _invalid_number_alert(activity):
@@ -155,8 +164,23 @@ class ChartActivity(activity.Activity):
         self.charts_area = None
         self.chart_data = []
         self.chart_type_buttons = []
+        self._font_options = {
+            'titleColor': '#000000',
+            'titleFont': 'Sans',
+            'titleFontSize': 12,
+            'yvals': {'fontColor': '#000000'},
+            'axis': {
+                'tickFont': 'Sans',
+                'tickFontSize': 12,
+                'labelFontSize': 14,
+                'labelColor': '#666666',
+                'labelFont': 'Sans',
+                'lineColor': '#b3b3b3'}}
 
         # TOOLBARS
+        self._labels_font = RadioToolButton()
+        self._title_font = RadioToolButton()
+
         toolbarbox = ToolbarBox()
 
         activity_button = ActivityToolbarButton(self)
@@ -283,6 +307,63 @@ class ChartActivity(activity.Activity):
 
         toolbarbox.toolbar.insert(self._options_button, -1)
 
+        text_toolbar_btn = ToolbarButton()
+        text_toolbar_btn.props.icon_name = 'format-text'
+        text_toolbar_btn.props.label = _('Text')
+        toolbarbox.toolbar.insert(text_toolbar_btn, -1)
+        self._text_options_btn = text_toolbar_btn
+
+        texttoolbar = Gtk.Toolbar()
+
+        self.font_name_combo = FontComboBox()
+        self.font_name_combo.set_font_name('Sans')
+        self.font_name_combo.connect("changed", lambda w:
+                 self._set_chart_font_options(font=w.get_font_name()))
+        texttoolbar.insert(ToolComboBox(self.font_name_combo), -1)
+
+        self.font_size = FontSize()
+        self.font_size.connect("changed", lambda w:
+                         self._set_chart_font_options(size=w.get_font_size()))
+        texttoolbar.insert(self.font_size, -1)
+
+        self.text_color_btn = ColorToolButton()
+        self.text_color_btn.set_color(style.COLOR_BLACK.get_gdk_color())
+        self.text_color_btn.set_title(_('Font Color'))
+        texttoolbar.insert(self.text_color_btn, -1)
+        GObject.timeout_add(1000, self._connect_color_btn,
+                         self.text_color_btn,
+                         self._set_text_color)
+
+        # self._title_font created in the top of the file
+        self._title_font.connect('clicked', self._set_font_option,
+                               TITLE_FONT)
+        self._title_font.set_tooltip(_('Title font'))
+        self._title_font.props.icon_name = 'title-font'
+        op_group = self._title_font
+
+        texttoolbar.insert(self._title_font, 0)
+
+        # self._labels_font created in the top of the file
+        self._labels_font.connect('clicked', self._set_font_option,
+                               LABELS_FONT)
+        self._labels_font.set_tooltip(_('Labels font'))
+        self._labels_font.props.icon_name = 'labels-font'
+        self._labels_font.props.group = op_group
+        texttoolbar.insert(self._labels_font, 1)
+
+        tick_font = RadioToolButton()
+        tick_font.connect('clicked', self._set_font_option, TICK_FONT)
+        tick_font.set_tooltip(_('Tick font'))
+        tick_font.props.icon_name = 'tick-font'
+        tick_font.props.group = op_group
+        texttoolbar.insert(tick_font, 2)
+
+        separator = Gtk.SeparatorToolItem()
+        texttoolbar.insert(separator, 3)
+
+        text_toolbar_btn.props.page = texttoolbar
+        texttoolbar.show_all()
+
         separator = Gtk.SeparatorToolItem()
         separator.set_draw(True)
         separator.set_expand(False)
@@ -402,15 +483,70 @@ class ChartActivity(activity.Activity):
 
         self.show_all()
 
+        self._set_font_option(TITLE_FONT)
+
         Gdk.Screen.get_default().connect('size-changed', self._configure_cb)
         self._configure_cb()
 
+    def _set_text_color(self, *args):
+        self._set_chart_font_options(color=utils.rgb2html(args[-1].get_color()))
+
+    def _set_chart_font_options(self, font=None, size=None, color=None):
+        op = self._font_options
+        if self._font_option == TITLE_FONT:
+            op['titleFont'] = font or op['titleFont']
+            op['titleFontSize'] = size or op['titleFontSize']
+            op['titleColor'] = color or op['titleColor']
+
+        elif self._font_option == LABELS_FONT:
+            op['axis']['labelFont'] = font or op['axis']['labelFont']
+            op['axis']['labelFontSize'] = size or op['axis']['labelFontSize']
+            op['axis']['labelColor'] = color or op['axis']['labelColor']
+
+        elif self._font_option == TICK_FONT:
+            op['axis']['tickFont'] = font or op['axis']['tickFont']
+            op['axis']['tickFontSize'] = size or op['axis']['tickFontSize']
+            op['yvals']['fontColor'] = color or op['yvals']['fontColor']
+
+        self._font_options = op
+        self._render_chart()
+
+    def _get_chart_font_options(self, option):
+        chart_options = self._font_options
+        if option == TITLE_FONT:
+            font = chart_options['titleFont']
+            size = chart_options['titleFontSize']
+            color = chart_options['titleColor']
+
+        elif option == LABELS_FONT:
+            font = chart_options['axis']['labelFont']
+            size = chart_options['axis']['labelFontSize']
+            color = chart_options['axis']['labelColor']
+
+        elif option == TICK_FONT:
+            font = chart_options['axis']['tickFont']
+            size = chart_options['axis']['tickFontSize']
+            color = chart_options['yvals']['fontColor']
+
+        else:
+            return None, None, None
+        return font, size, color
+
+    def _set_font_option(self, *args):
+        self._font_option = args[-1]
+
+        font, size, color = self._get_chart_font_options(self._font_option)
+
+        self.font_name_combo.set_font_name(font)
+        self.font_size.set_font_size(size)
+        self.text_color_btn.set_color(Color(color).get_gdk_color())
+
     def _create_chart_buttons(self, toolbar):
         add_vbar_chart = RadioToolButton()
+        add_vbar_chart.set_active(True)
         add_vbar_chart.connect('clicked', self._add_chart_cb,
                                charts.VERTICAL_BAR)
         add_vbar_chart.set_tooltip(_('Vertical Bar Chart'))
-        add_vbar_chart.set_active(True)
         add_vbar_chart.props.icon_name = 'vbar'
         charts_group = add_vbar_chart
 
@@ -452,6 +588,7 @@ class ChartActivity(activity.Activity):
                 btn.set_sensitive(False)
 
             self._options_button.set_sensitive(False)
+            self._text_options_btn.set_sensitive(False)
             self._fullscreen_button.set_sensitive(False)
 
     def _show_chart_area(self):
@@ -463,6 +600,7 @@ class ChartActivity(activity.Activity):
                 btn.set_sensitive(True)
 
             self._options_button.set_sensitive(True)
+            self._text_options_btn.set_sensitive(True)
             self._fullscreen_button.set_sensitive(True)
 
     def _create_measure_palette(self, button):
@@ -513,6 +651,14 @@ class ChartActivity(activity.Activity):
         self._update_chart_data()
 
     def _add_chart_cb(self, widget, type=charts.VERTICAL_BAR):
+        if type == charts.PIE:
+            if self._font_option == LABELS_FONT:
+                self._title_font.set_active(True)
+                self._set_font_option(TITLE_FONT)
+            self._labels_font.set_sensitive(False)
+        else:
+            self._labels_font.set_sensitive(True)
+
         self.current_chart = charts.Chart(type)
 
         self.update_chart()
@@ -572,6 +718,7 @@ class ChartActivity(activity.Activity):
             # Set options
             self.current_chart.set_color_scheme(color=self.chart_color)
             self.current_chart.set_line_color(self.chart_line_color)
+            self.current_chart.set_font_options(self._font_options)
 
             if self.current_chart.type == charts.PIE:
                 self.current_chart.render(self)
@@ -612,6 +759,7 @@ class ChartActivity(activity.Activity):
             self.current_chart.set_title(self.metadata['title'])
             self.current_chart.set_x_label(self.x_label)
             self.current_chart.set_y_label(self.y_label)
+            self._set_font_option(self._font_option)
             self._render_chart()
 
     def _label_changed(self, treeview, path, new_label):
@@ -765,6 +913,11 @@ class ChartActivity(activity.Activity):
         self.chart_color = data['chart_color']
         self.chart_line_color = data['chart_line_color']
         self.current_chart.type = data['current_chart.type']
+
+        # Make it compatible with old Chart instances
+        if 'font_options' in data:
+            self._font_options = data['font_options']
+
         chart_data = data['chart_data']
 
         # Update charts buttons
@@ -784,6 +937,7 @@ class ChartActivity(activity.Activity):
         elif _type == charts.PIE:
             self.chart_type_buttons[3].set_active(True)
             self.chart_type_buttons[7].set_active(True)
+            self._labels_font.set_sensitive(False)
 
         # Update the controls in the config subtoolbar
         self.chart_color_btn.set_color(Color(self.chart_color).get_gdk_color())
@@ -815,6 +969,7 @@ class ChartActivity(activity.Activity):
             data['chart_line_color'] = self.chart_line_color
             data['current_chart.type'] = self.current_chart.type
             data['chart_data'] = self.chart_data
+            data['font_options'] = self._font_options
 
             f = open(file_path, 'w')
             try:
