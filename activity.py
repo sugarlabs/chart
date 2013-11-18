@@ -26,9 +26,9 @@ from gi.repository import GObject
 import os
 
 try:
-	import json
+    import json
 except ImportError:
-	import simplejson as json
+    import simplejson as json
 
 import locale
 import logging
@@ -410,6 +410,7 @@ class ChartActivity(activity.Activity):
         add_vbar_chart.connect('clicked', self._add_chart_cb,
                                charts.VERTICAL_BAR)
         add_vbar_chart.set_tooltip(_('Vertical Bar Chart'))
+        add_vbar_chart.set_active(True)
         add_vbar_chart.props.icon_name = 'vbar'
         charts_group = add_vbar_chart
 
@@ -435,7 +436,6 @@ class ChartActivity(activity.Activity):
         add_pie_chart.set_tooltip(_('Pie Chart'))
         add_pie_chart.props.icon_name = 'pie'
         add_pie_chart.props.group = charts_group
-        add_pie_chart.set_active(True)
         toolbar.insert(add_pie_chart, -1)
 
         self.chart_type_buttons.append(add_vbar_chart)

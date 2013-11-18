@@ -3,3 +3,5 @@
 *.pyc
 *.xo
 *~
+locale/
+dist/
