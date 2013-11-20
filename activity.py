@@ -24,6 +24,7 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GObject
 import os
+import re # for extracting values from invalid inputs.
 
 try:
     import json
@@ -100,6 +101,16 @@ def _invalid_number_alert(activity):
     alert.connect('response', lambda a, r: activity.remove_alert(a))
     activity.add_alert(alert)
     alert.show()
+
+def _extract_value(value):
+    decimals_found = re.findall("\d+\.\d+", str(value))
+    integers_found = re.findall("\d+", str(value))
+
+    if decimals_found != []:
+        return decimals_found[0]
+    elif integers_found != []:
+        return integers_found[0]
+    return None
 
 
 class ChartArea(Gtk.DrawingArea):
@@ -1112,8 +1123,17 @@ class ChartData(Gtk.TreeView):
 
             self.emit('value-changed', str(path), number)
 
-        elif not is_number:
-            _invalid_number_alert(activity)
+        else:
+            if _extract_value(number) is not None:
+                number = str(_extract_value(number))
+
+                decimals = utils.get_decimals(str(float(number)))
+                new_text = locale.format('%.' + decimals + 'f', float(number))
+                model[path][1] = str(new_text)
+
+                self.emit('value-changed', str(path), number)
+            else:
+                _invalid_number_alert(activity)
 
 
 class Entry(Gtk.ToolItem):
