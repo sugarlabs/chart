@@ -24,7 +24,7 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GObject
 import os
-import re # for extracting values from invalid inputs.
+import re
 
 try:
     import json
@@ -77,7 +77,6 @@ TITLE_FONT = 'title'
 LABELS_FONT = 'labels'
 TICK_FONT = 'ticks'
 
-
 # Paths
 _ACTIVITY_DIR = os.path.join(activity.get_activity_root(), 'data/')
 _CHART_FILE = utils.get_chart_file(_ACTIVITY_DIR)
@@ -101,6 +100,7 @@ def _invalid_number_alert(activity):
     alert.connect('response', lambda a, r: activity.remove_alert(a))
     activity.add_alert(alert)
     alert.show()
+
 
 def _extract_value(value):
     decimals_found = re.findall("\d+\.\d+", str(value))
@@ -681,13 +681,13 @@ class ChartActivity(activity.Activity):
             self._chart_button.hide()
             for i in range(4):
                 self.chart_type_buttons[i].show()
-                self.chart_type_buttons[i+4].hide()
+                self.chart_type_buttons[i + 4].hide()
         else:
             self._chart_button.show()
             self._chart_button.set_expanded(True)
             for i in range(4):
                 self.chart_type_buttons[i].hide()
-                self.chart_type_buttons[i+4].show()
+                self.chart_type_buttons[i + 4].show()
 
     def _chart_size_allocate(self, widget, allocation):
             self._render_chart()
