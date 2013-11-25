@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-15 00:33-0500\n"
-"PO-Revision-Date: 2012-11-18 19:56+0200\n"
+"POT-Creation-Date: 2013-11-19 00:32-0500\n"
+"PO-Revision-Date: 2013-11-25 22:36+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: da\n"
@@ -30,110 +30,130 @@ msgstr ""
 "Opret dine diagrammer og organisér dine informationer! Prøv det bedste "
 "diagram til din opgave."
 
-#: activity.py:148
+#: activity.py:93
+msgid "Invalid Value"
+msgstr "Ugyldig værdi"
+
+#: activity.py:94
+msgid "The value must be a number (integer or decimal)"
+msgstr "Værdien skal angives som et tal (heltal eller decimaltal)"
+
+#: activity.py:97 activity.py:839
+msgid "Ok"
+msgstr "Ok"
+
+#: activity.py:193
 msgid "Save as image"
 msgstr "Gem som billede"
 
-#: activity.py:155
+#: activity.py:200
 msgid "Read StopWatch data"
 msgstr "Læs data fra StopUr"
 
-#: activity.py:161
+#: activity.py:206
 msgid "Read Measure data"
 msgstr "Aflæs måledata"
 
-#: activity.py:177 activity.py:388
+#: activity.py:222 activity.py:470
 msgid "Add a value"
 msgstr "Tilføj en værdi"
 
-#: activity.py:183
+#: activity.py:228
 msgid "Remove the selected value"
 msgstr "Fjern den valgte værdi"
 
-#: activity.py:197
-msgid "Vertical Bar Chart"
-msgstr "Lodret søjleoversigt"
-
-#: activity.py:206
-msgid "Horizontal Bar Chart"
-msgstr "Vandret søjleoversigt"
-
-#: activity.py:213
-msgid "Line Chart"
-msgstr "Linjeoversigt"
-
-#: activity.py:220
-msgid "Pie Chart"
-msgstr "Cirkeldiagram"
-
-#: activity.py:241
+#: activity.py:261
 msgid "Chart Color"
 msgstr "Farve på oversigt"
 
-#: activity.py:247
+#: activity.py:270
 msgid "Line Color"
 msgstr "Farve på linje"
 
-#: activity.py:262
+#: activity.py:287
 msgid "Horizontal label..."
 msgstr "Vandret etikette..."
 
-#: activity.py:276
+#: activity.py:301
 msgid "Vertical label..."
 msgstr "Lodret etikette..."
 
-#: activity.py:291
+#: activity.py:312
+msgid "Text"
+msgstr "Tekst"
+
+#: activity.py:331
+msgid "Font Color"
+msgstr "Skriftfarve"
+
+#: activity.py:340
+msgid "Title font"
+msgstr "Skrifttype i overskrifter"
+
+#: activity.py:349
+msgid "Labels font"
+msgstr "Skrifttype for etiketter"
+
+#: activity.py:356
+msgid "Tick font"
+msgstr "Skrifttype for afkrydsning"
+
+#: activity.py:373
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
-#: activity.py:335
+#: activity.py:417
 msgid "Move up"
 msgstr "Flyt op"
 
-#: activity.py:339
+#: activity.py:421
 msgid "Move down"
 msgstr "Flyt ned"
 
-#: activity.py:377
+#: activity.py:459
 msgid "No data"
 msgstr "Ingen data"
 
-#: activity.py:613
+#: activity.py:549
+msgid "Vertical Bar Chart"
+msgstr "Lodret søjleoversigt"
+
+#: activity.py:558
+msgid "Horizontal Bar Chart"
+msgstr "Vandret søjleoversigt"
+
+#: activity.py:565
+msgid "Line Chart"
+msgstr "Linjeoversigt"
+
+#: activity.py:572
+msgid "Pie Chart"
+msgstr "Cirkeldiagram"
+
+#: activity.py:834
 msgid "Invalid object"
 msgstr "Ugyldigt objekt"
 
-#: activity.py:615
+#: activity.py:836
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "Det valgte objekt skal være en %s-fil"
 
-#: activity.py:618 activity.py:889
-msgid "Ok"
-msgstr "Ok"
-
-#: activity.py:650 readers.py:62
+#: activity.py:871 readers.py:62
 msgid "StopWatch"
 msgstr "Stopur"
 
-#: activity.py:662
+#: activity.py:883
 msgid "Measure"
 msgstr "Mål"
 
-#: activity.py:773
+#: activity.py:1005
 msgid "Label"
 msgstr "Etikette"
 
-#: activity.py:784
+#: activity.py:1017
 msgid "Value"
 msgstr "Værdi"
-
-#: activity.py:884
-msgid "Invalid Value"
-msgstr "Ugyldig værdi"
-
-#: activity.py:886
-msgid "The value must be a number (integer or decimal)"
-msgstr "Værdien skal angives som et tal (heltal eller decimaltal)"
 
 #: charthelp.py:12
 msgid "Basic usage"
@@ -232,6 +252,10 @@ msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr ""
 "Læg data fra udklipsholderen i diagram-området, og det vil blive gjort til "
 "et diagram"
+
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Vælg skrifttype"
 
 #: helpbutton.py:38
 msgid "Help"
