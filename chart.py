@@ -59,7 +59,7 @@ class Chart(GObject.GObject):
             'titleFont': 'Tahoma',
             'titleFontSize': 12,
             'axis': {
-                'tickColor': '#F3F3F3',
+                'tickColor': '#000000',
                 'tickFont': 'Sans',
                 'tickFontSize': 12,
                 'labelFontSize': 14,
@@ -101,7 +101,7 @@ class Chart(GObject.GObject):
         self.options['axis']['labelColor'] = op['axis']['labelColor']
         self.options['axis']['tickFont'] = op['axis']['tickFont']
         self.options['axis']['tickFontSize'] = op['axis']['tickFontSize']
-        self.options['yvals']['fontColor'] = op['yvals']['fontColor']
+        self.options['axis']['tickColor'] = op['axis']['tickColor']
 
         if self.type == PIE:
             self.options['axis']['labelFont'] = op['axis']['tickFont']

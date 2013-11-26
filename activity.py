@@ -167,6 +167,7 @@ class ChartActivity(activity.Activity):
 
         # CHART_OPTIONS
 
+        self._font_option = TITLE_FONT
         self.x_label = ''
         self.y_label = ''
         self.chart_color = utils.get_user_fill_color('str')
@@ -179,10 +180,10 @@ class ChartActivity(activity.Activity):
             'titleColor': '#000000',
             'titleFont': 'Sans',
             'titleFontSize': 12,
-            'yvals': {'fontColor': '#000000'},
             'axis': {
                 'tickFont': 'Sans',
                 'tickFontSize': 12,
+                'tickColor': '#000000',
                 'labelFontSize': 14,
                 'labelColor': '#666666',
                 'labelFont': 'Sans',
@@ -494,8 +495,6 @@ class ChartActivity(activity.Activity):
 
         self.show_all()
 
-        self._set_font_option(TITLE_FONT)
-
         Gdk.Screen.get_default().connect('size-changed', self._configure_cb)
         self._configure_cb()
 
@@ -517,7 +516,7 @@ class ChartActivity(activity.Activity):
         elif self._font_option == TICK_FONT:
             op['axis']['tickFont'] = font or op['axis']['tickFont']
             op['axis']['tickFontSize'] = size or op['axis']['tickFontSize']
-            op['yvals']['fontColor'] = color or op['yvals']['fontColor']
+            op['axis']['tickColor'] = color or op['axis']['tickColor']
 
         self._font_options = op
         self._render_chart()
@@ -537,13 +536,16 @@ class ChartActivity(activity.Activity):
         elif option == TICK_FONT:
             font = chart_options['axis']['tickFont']
             size = chart_options['axis']['tickFontSize']
-            color = chart_options['yvals']['fontColor']
+            color = chart_options['axis']['tickColor']
 
         else:
             return None, None, None
         return font, size, color
 
     def _set_font_option(self, *args):
+        if not hasattr(self, 'font_name_combo'):
+            return
+
         self._font_option = args[-1]
 
         font, size, color = self._get_chart_font_options(self._font_option)
@@ -554,7 +556,6 @@ class ChartActivity(activity.Activity):
 
     def _create_chart_buttons(self, toolbar):
         add_vbar_chart = RadioToolButton()
-        add_vbar_chart.set_active(True)
         add_vbar_chart.connect('clicked', self._add_chart_cb,
                                charts.VERTICAL_BAR)
         add_vbar_chart.set_tooltip(_('Vertical Bar Chart'))
@@ -579,6 +580,7 @@ class ChartActivity(activity.Activity):
         toolbar.insert(add_line_chart, -1)
 
         add_pie_chart = RadioToolButton()
+        add_pie_chart.set_active(True)
         add_pie_chart.connect('clicked', self._add_chart_cb, charts.PIE)
         add_pie_chart.set_tooltip(_('Pie Chart'))
         add_pie_chart.props.icon_name = 'pie'
@@ -662,15 +664,16 @@ class ChartActivity(activity.Activity):
         self._update_chart_data()
 
     def _add_chart_cb(self, widget, type=charts.VERTICAL_BAR):
-        if type == charts.PIE:
-            if self._font_option == LABELS_FONT:
-                self._title_font.set_active(True)
-                self._set_font_option(TITLE_FONT)
-            self._labels_font.set_sensitive(False)
-        else:
-            self._labels_font.set_sensitive(True)
-
         self.current_chart = charts.Chart(type)
+
+        def update_btn():
+            if (type == charts.PIE and
+                not self.chart_type_buttons[3].get_active() and
+                not self.chart_type_buttons[7].get_active()):
+                self.chart_type_buttons[3].set_active(True)
+                self.chart_type_buttons[7].set_active(True)
+
+        GObject.idle_add(update_btn)
 
         self.update_chart()
 
@@ -742,6 +745,29 @@ class ChartActivity(activity.Activity):
 
         self._show_chart_area()
         return False
+
+    def _update_chart_active_button(self, type=None):
+        if self.current_chart is None and type is None:
+            return
+
+        _type = type or self.current_chart.type
+
+        if _type == charts.VERTICAL_BAR:
+            self.chart_type_buttons[0].set_active(True)
+            self.chart_type_buttons[4].set_active(True)
+
+        elif _type == charts.HORIZONTAL_BAR:
+            self.chart_type_buttons[1].set_active(True)
+            self.chart_type_buttons[5].set_active(True)
+
+        elif _type == charts.LINE:
+            self.chart_type_buttons[2].set_active(True)
+            self.chart_type_buttons[6].set_active(True)
+
+        elif _type == charts.PIE:
+            self.chart_type_buttons[3].set_active(True)
+            self.chart_type_buttons[7].set_active(True)
+            self._labels_font.set_sensitive(False)
 
     def _update_chart_data(self):
         if self.current_chart is None:
@@ -932,23 +958,7 @@ class ChartActivity(activity.Activity):
         chart_data = data['chart_data']
 
         # Update charts buttons
-        _type = data['current_chart.type']
-        if _type == charts.VERTICAL_BAR:
-            self.chart_type_buttons[0].set_active(True)
-            self.chart_type_buttons[4].set_active(True)
-
-        elif _type == charts.HORIZONTAL_BAR:
-            self.chart_type_buttons[1].set_active(True)
-            self.chart_type_buttons[5].set_active(True)
-
-        elif _type == charts.LINE:
-            self.chart_type_buttons[2].set_active(True)
-            self.chart_type_buttons[6].set_active(True)
-
-        elif _type == charts.PIE:
-            self.chart_type_buttons[3].set_active(True)
-            self.chart_type_buttons[7].set_active(True)
-            self._labels_font.set_sensitive(False)
+        self._update_chart_active_button()
 
         # Update the controls in the config subtoolbar
         self.chart_color_btn.set_color(Color(self.chart_color).get_gdk_color())
@@ -990,7 +1000,7 @@ class ChartActivity(activity.Activity):
 
     def read_file(self, file_path):
         f = open(file_path, 'r')
-        self.load_from_file(f)
+        GObject.idle_add(self.load_from_file, f)
 
 
 class ChartData(Gtk.TreeView):
