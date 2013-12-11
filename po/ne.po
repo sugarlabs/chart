@@ -1,0 +1,271 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-19 00:32-0500\n"
+"PO-Revision-Date: 2013-12-11 04:15+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ne\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.5\n"
+
+#. TRANS: "name" option from activity.info file
+msgid "Chart"
+msgstr "चार्ट"
+
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Create your charts and organize your information! Try the best chart for "
+"your case."
+msgstr "चार्ट बनाएर सुचना ब्यबस्थित गर्। आफ्नो लागि सर्वोत्तम चार्ट छान्।"
+
+#: activity.py:93
+msgid "Invalid Value"
+msgstr "अमान्य मान"
+
+#: activity.py:94
+msgid "The value must be a number (integer or decimal)"
+msgstr "मान एउटा नम्बर हुनु पर्छ ( पुर्ण संख्या वा दशमलब संख्या)"
+
+#: activity.py:97 activity.py:839
+msgid "Ok"
+msgstr ""
+
+#: activity.py:193
+msgid "Save as image"
+msgstr ""
+
+#: activity.py:200
+msgid "Read StopWatch data"
+msgstr ""
+
+#: activity.py:206
+msgid "Read Measure data"
+msgstr ""
+
+#: activity.py:222 activity.py:470
+msgid "Add a value"
+msgstr ""
+
+#: activity.py:228
+msgid "Remove the selected value"
+msgstr ""
+
+#: activity.py:261
+msgid "Chart Color"
+msgstr ""
+
+#: activity.py:270
+msgid "Line Color"
+msgstr ""
+
+#: activity.py:287
+msgid "Horizontal label..."
+msgstr ""
+
+#: activity.py:301
+msgid "Vertical label..."
+msgstr ""
+
+#: activity.py:312
+msgid "Text"
+msgstr "पाठ"
+
+#: activity.py:331
+msgid "Font Color"
+msgstr "फण्टको रङ"
+
+#: activity.py:340
+msgid "Title font"
+msgstr "शिर्षकको फण्ट"
+
+#: activity.py:349
+msgid "Labels font"
+msgstr "लेबलहरूको फण्ट"
+
+#: activity.py:356
+msgid "Tick font"
+msgstr "निशानाको फण्ट"
+
+#: activity.py:373
+msgid "Fullscreen"
+msgstr "पुरै पर्दा"
+
+#: activity.py:417
+msgid "Move up"
+msgstr "माथि लैजाऊ"
+
+#: activity.py:421
+msgid "Move down"
+msgstr "तल लैजाऊ"
+
+#: activity.py:459
+msgid "No data"
+msgstr "डाटा छैन"
+
+#: activity.py:549
+msgid "Vertical Bar Chart"
+msgstr "भर्टिकल बार चार्ट"
+
+#: activity.py:558
+msgid "Horizontal Bar Chart"
+msgstr "होरिजेन्टल बार चार्ट"
+
+#: activity.py:565
+msgid "Line Chart"
+msgstr "लाइन चार्ट"
+
+#: activity.py:572
+msgid "Pie Chart"
+msgstr "पाइ चार्ट"
+
+#: activity.py:834
+msgid "Invalid object"
+msgstr "अमान्य बस्तु"
+
+#: activity.py:836
+#, python-format
+msgid "The selected object must be a %s file"
+msgstr "छानिएको वस्तु %s फाइल हुनु पर्छ"
+
+#: activity.py:871 readers.py:62
+msgid "StopWatch"
+msgstr "स्टपवाच"
+
+#: activity.py:883
+msgid "Measure"
+msgstr "नाप"
+
+#: activity.py:1005
+msgid "Label"
+msgstr "लेबल"
+
+#: activity.py:1017
+msgid "Value"
+msgstr "मान"
+
+#: charthelp.py:12
+msgid "Basic usage"
+msgstr "आधारभूत प्रयोग"
+
+#: charthelp.py:13
+msgid "First you need add data to create the graph"
+msgstr ""
+
+#: charthelp.py:14
+msgid "You can add data with this button"
+msgstr ""
+
+#: charthelp.py:16
+msgid "...or remove data with this button"
+msgstr ""
+
+#: charthelp.py:18
+msgid "To change the graph title, just change the activity title"
+msgstr ""
+
+#: charthelp.py:20
+msgid "Next you can change the type of graph"
+msgstr ""
+
+#: charthelp.py:21
+msgid "Vertical bars"
+msgstr "Vertical bars"
+
+#: charthelp.py:22
+msgid "Horizontal bars"
+msgstr "Horizontal bars"
+
+#: charthelp.py:23
+msgid "Lines"
+msgstr "रेखाहरू"
+
+#: charthelp.py:24
+msgid "Pie"
+msgstr "पाइ"
+
+#: charthelp.py:26
+msgid "Configs"
+msgstr "Configs"
+
+#: charthelp.py:27
+msgid ""
+"You can change the colors or the horizontal and vertical labels in the "
+"configs toolbar"
+msgstr ""
+
+#: charthelp.py:30
+msgid "Saving as an image"
+msgstr "तस्बिरको रूपमा बचत गर्दै"
+
+#: charthelp.py:31
+msgid "In the activity toolbar you have button to save the graph as an image"
+msgstr "क्रियाकलापको टुलबारमा ग्राफलाई तस्बिरको रूपमा बचत गर्ने बटन छ"
+
+#: charthelp.py:34
+msgid "Reading data from other activities"
+msgstr "अन्य क्रियाकलापहरूबाट डाटा पढ्दै"
+
+#: charthelp.py:35
+msgid ""
+"In the activity toolbar you have buttons to read data from other activities"
+msgstr "क्रियाकलापको टुलबारमा अन्य क्रियाकलापहरूबाट डाटा पढ्ने बटन छ"
+
+#: charthelp.py:36
+msgid "You can use times measured in the StopWatch activity"
+msgstr "तपाईँले StopWatch क्रियाकलापमा समय मापनको प्रयोग गर्न सक्नु हुन्छ"
+
+#: charthelp.py:37
+#, fuzzy
+msgid "...or data from the Measure activity"
+msgstr "...or data from the Measure activity"
+
+#: charthelp.py:39
+msgid "Reading data from the clipboard"
+msgstr "क्लिपबोर्डबाट डाटा पढ्दै"
+
+#: charthelp.py:40
+msgid ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+msgstr ""
+"केहि क्रियाकलापहरू (जस्तै VisualMatch) मा क्लिपबोर्डबाट डाटा प्रतिलिपि गर्ने "
+"क्षमता छ"
+
+#: charthelp.py:41
+msgid "Drop the clipboard data into the chart area and it will be charted"
+msgstr ""
+
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "फण्ट चयन गर"
+
+#: helpbutton.py:38
+msgid "Help"
+msgstr "सहयोग"
+
+#: readers.py:41
+msgid "Time"
+msgstr "समय"
+
+#: readers.py:51
+#, fuzzy
+msgid "Mark"
+msgstr "चिन्ह"
+
+#: readers.py:126
+msgid "Values"
+msgstr "मानहरू"
+
+#: readers.py:127
+msgid "Samples"
+msgstr "नमुनाहरू"
