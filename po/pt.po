@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 00:32-0500\n"
-"PO-Revision-Date: 2012-04-13 07:05+0200\n"
+"PO-Revision-Date: 2013-12-14 17:54+0200\n"
 "Last-Translator: Eduardo H. <hoboprimate@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #. TRANS: "name" option from activity.info file
 msgid "Chart"
-msgstr ""
+msgstr "Traçar Gráfico"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -27,6 +27,8 @@ msgid ""
 "Create your charts and organize your information! Try the best chart for "
 "your case."
 msgstr ""
+"Cria os teus gráficos e organiza a tua informação! Experimenta o melhor "
+"gráfico para o teu caso."
 
 #: activity.py:93
 msgid "Invalid Value"
@@ -78,19 +80,19 @@ msgstr "Legenda vertical..."
 
 #: activity.py:312
 msgid "Text"
-msgstr ""
+msgstr "Texto"
 
 #: activity.py:331
 msgid "Font Color"
-msgstr ""
+msgstr "Cor de Tipo de Letra"
 
 #: activity.py:340
 msgid "Title font"
-msgstr ""
+msgstr "Tipo de Letra de Título"
 
 #: activity.py:349
 msgid "Labels font"
-msgstr ""
+msgstr "Tipo de Letra de Etiquetas"
 
 #: activity.py:356
 msgid "Tick font"
@@ -102,15 +104,15 @@ msgstr "Ecrã Inteiro"
 
 #: activity.py:417
 msgid "Move up"
-msgstr ""
+msgstr "Mover para cima"
 
 #: activity.py:421
 msgid "Move down"
-msgstr ""
+msgstr "Mover para baixo"
 
 #: activity.py:459
 msgid "No data"
-msgstr ""
+msgstr "Sem dados"
 
 #: activity.py:549
 msgid "Vertical Bar Chart"
@@ -236,21 +238,25 @@ msgstr "...ou dados da atividade Medir"
 
 #: charthelp.py:39
 msgid "Reading data from the clipboard"
-msgstr ""
+msgstr "A ler dados da área de transferência"
 
 #: charthelp.py:40
 msgid ""
 "Some activities (such as VisualMatch) has the ability to copy data to the "
 "clipboard"
 msgstr ""
+"Algumas atividades (como Combinar Visualmente) têm a habilidade de copiar "
+"dados para a área de transferência"
 
 #: charthelp.py:41
 msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr ""
+"Arrasta os dados da área de transferência para a área do gráfico e serão "
+"traçados"
 
 #: fontcombobox.py:90
 msgid "Select font"
-msgstr ""
+msgstr "Escolher tipo de letra"
 
 #: helpbutton.py:38
 msgid "Help"
