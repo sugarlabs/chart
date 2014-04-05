@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-15 00:33-0500\n"
-"PO-Revision-Date: 2012-11-24 22:17+0200\n"
-"Last-Translator: Lionel Laské <llaske@c2s.fr>\n"
+"POT-Creation-Date: 2013-11-19 00:32-0500\n"
+"PO-Revision-Date: 2014-04-05 07:56+0200\n"
+"Last-Translator: samy boutayeb <s.boutayeb@free.fr>\n"
 "Language-Team: OLPC France <contact@olpc-france.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -27,113 +27,133 @@ msgid ""
 "Create your charts and organize your information! Try the best chart for "
 "your case."
 msgstr ""
-"Crée tes graphiques et organises tes informations ! Essayes le meilleur "
-"graphique pour ton cas."
+"Créez vos graphiques et organisez vos informations ! Essayez le meilleur "
+"graphique pour votre cas."
 
-#: activity.py:148
+#: activity.py:93
+msgid "Invalid Value"
+msgstr "Valeur incorrecte"
+
+#: activity.py:94
+msgid "The value must be a number (integer or decimal)"
+msgstr "La valeur doit être un nombre (entier ou décimal)"
+
+#: activity.py:97 activity.py:839
+msgid "Ok"
+msgstr "D'accord"
+
+#: activity.py:193
 msgid "Save as image"
 msgstr "Enregistrer comme image"
 
-#: activity.py:155
+#: activity.py:200
 msgid "Read StopWatch data"
 msgstr "Lire les données de StopWatch"
 
-#: activity.py:161
+#: activity.py:206
 msgid "Read Measure data"
 msgstr "Lire les données de Mesure"
 
-#: activity.py:177 activity.py:388
+#: activity.py:222 activity.py:470
 msgid "Add a value"
 msgstr "Ajouter une valeur"
 
-#: activity.py:183
+#: activity.py:228
 msgid "Remove the selected value"
 msgstr "Supprimer la valeur sélectionnée"
 
-#: activity.py:197
-msgid "Vertical Bar Chart"
-msgstr "Histogramme vertical"
-
-#: activity.py:206
-msgid "Horizontal Bar Chart"
-msgstr "Histogramme horizontal"
-
-#: activity.py:213
-msgid "Line Chart"
-msgstr "Graphique linéaire"
-
-#: activity.py:220
-msgid "Pie Chart"
-msgstr "Fromage"
-
-#: activity.py:241
+#: activity.py:261
 msgid "Chart Color"
 msgstr "Graphique en couleurs"
 
-#: activity.py:247
+#: activity.py:270
 msgid "Line Color"
 msgstr "Couleur de la ligne"
 
-#: activity.py:262
+#: activity.py:287
 msgid "Horizontal label..."
 msgstr "Légende horizontale..."
 
-#: activity.py:276
+#: activity.py:301
 msgid "Vertical label..."
 msgstr "Légende verticale..."
 
-#: activity.py:291
+#: activity.py:312
+msgid "Text"
+msgstr "Texte"
+
+#: activity.py:331
+msgid "Font Color"
+msgstr "Couleur de la police"
+
+#: activity.py:340
+msgid "Title font"
+msgstr "Police du titre"
+
+#: activity.py:349
+msgid "Labels font"
+msgstr "Police des légendes"
+
+#: activity.py:356
+msgid "Tick font"
+msgstr "Activer la police"
+
+#: activity.py:373
 msgid "Fullscreen"
 msgstr "Plein écran"
 
-#: activity.py:335
+#: activity.py:417
 msgid "Move up"
 msgstr "Vers le haut"
 
-#: activity.py:339
+#: activity.py:421
 msgid "Move down"
 msgstr "Vers le bas"
 
-#: activity.py:377
+#: activity.py:459
 msgid "No data"
 msgstr "Pas de donnée"
 
-#: activity.py:613
+#: activity.py:549
+msgid "Vertical Bar Chart"
+msgstr "Histogramme vertical"
+
+#: activity.py:558
+msgid "Horizontal Bar Chart"
+msgstr "Histogramme horizontal"
+
+#: activity.py:565
+msgid "Line Chart"
+msgstr "Graphique linéaire"
+
+#: activity.py:572
+msgid "Pie Chart"
+msgstr "Fromage"
+
+#: activity.py:834
 msgid "Invalid object"
 msgstr "Objet non valable"
 
-#: activity.py:615
+#: activity.py:836
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "L'objet sélectionné doit être un fichier %s"
 
-#: activity.py:618 activity.py:889
-msgid "Ok"
-msgstr "D'accord"
-
-#: activity.py:650 readers.py:62
+#: activity.py:871 readers.py:62
 msgid "StopWatch"
 msgstr "StopWatch"
 
-#: activity.py:662
+#: activity.py:883
 msgid "Measure"
 msgstr "Mesure"
 
-#: activity.py:773
+#: activity.py:1005
 msgid "Label"
 msgstr "Légende"
 
-#: activity.py:784
+#: activity.py:1017
 msgid "Value"
 msgstr "Valeur"
-
-#: activity.py:884
-msgid "Invalid Value"
-msgstr "Valeur incorrecte"
-
-#: activity.py:886
-msgid "The value must be a number (integer or decimal)"
-msgstr "La valeur doit être un nombre (entier ou décimal)"
 
 #: charthelp.py:12
 msgid "Basic usage"
@@ -228,7 +248,7 @@ msgid ""
 "Some activities (such as VisualMatch) has the ability to copy data to the "
 "clipboard"
 msgstr ""
-"Certaines activités (comme VisualMatch) peuvent copier des données dans le \n"
+"Certaines activités (comme VisualMatch) peuvent copier des données dans le "
 "presse-papiers."
 
 #: charthelp.py:41
@@ -236,6 +256,10 @@ msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr ""
 "Envoyez les données du presse-papiers dans l'espace graphique et il sera "
 "affiché comme tel"
+
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Sélectionner la police"
 
 #: helpbutton.py:38
 msgid "Help"
