@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-15 00:33-0500\n"
-"PO-Revision-Date: 2012-11-18 05:44+0200\n"
+"POT-Creation-Date: 2013-11-19 00:32-0500\n"
+"PO-Revision-Date: 2013-11-24 14:32+0200\n"
 "Last-Translator: lite <litekok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -28,110 +28,130 @@ msgid ""
 "your case."
 msgstr "创建您的图表和组织您的信息！试试为你的案例配最佳的图表。"
 
-#: activity.py:148
+#: activity.py:93
+msgid "Invalid Value"
+msgstr "无效数值"
+
+#: activity.py:94
+msgid "The value must be a number (integer or decimal)"
+msgstr "该值必须是一个数字（整数或小数）"
+
+#: activity.py:97 activity.py:839
+msgid "Ok"
+msgstr "确定"
+
+#: activity.py:193
 msgid "Save as image"
 msgstr "另存为图像"
 
-#: activity.py:155
+#: activity.py:200
 msgid "Read StopWatch data"
 msgstr "读取秒表数据"
 
-#: activity.py:161
+#: activity.py:206
 msgid "Read Measure data"
 msgstr "读取测量数据"
 
-#: activity.py:177 activity.py:388
+#: activity.py:222 activity.py:470
 msgid "Add a value"
 msgstr "添加数值"
 
-#: activity.py:183
+#: activity.py:228
 msgid "Remove the selected value"
 msgstr "删除选中的数值"
 
-#: activity.py:197
-msgid "Vertical Bar Chart"
-msgstr "垂直柱图"
-
-#: activity.py:206
-msgid "Horizontal Bar Chart"
-msgstr "水平柱图"
-
-#: activity.py:213
-msgid "Line Chart"
-msgstr "线图"
-
-#: activity.py:220
-msgid "Pie Chart"
-msgstr "饼图"
-
-#: activity.py:241
+#: activity.py:261
 msgid "Chart Color"
 msgstr "图表颜色"
 
-#: activity.py:247
+#: activity.py:270
 msgid "Line Color"
 msgstr "线条颜色"
 
-#: activity.py:262
+#: activity.py:287
 msgid "Horizontal label..."
 msgstr "水平标签..."
 
-#: activity.py:276
+#: activity.py:301
 msgid "Vertical label..."
 msgstr "垂直标签..."
 
-#: activity.py:291
+#: activity.py:312
+msgid "Text"
+msgstr "文本"
+
+#: activity.py:331
+msgid "Font Color"
+msgstr "字体颜色"
+
+#: activity.py:340
+msgid "Title font"
+msgstr "标题字体"
+
+#: activity.py:349
+msgid "Labels font"
+msgstr "标签字体"
+
+#: activity.py:356
+msgid "Tick font"
+msgstr "勾选字体"
+
+#: activity.py:373
 msgid "Fullscreen"
 msgstr "全屏显示"
 
-#: activity.py:335
+#: activity.py:417
 msgid "Move up"
 msgstr "向上移动"
 
-#: activity.py:339
+#: activity.py:421
 msgid "Move down"
 msgstr "向下移动"
 
-#: activity.py:377
+#: activity.py:459
 msgid "No data"
 msgstr "没有任何数据"
 
-#: activity.py:613
+#: activity.py:549
+msgid "Vertical Bar Chart"
+msgstr "垂直柱图"
+
+#: activity.py:558
+msgid "Horizontal Bar Chart"
+msgstr "水平柱图"
+
+#: activity.py:565
+msgid "Line Chart"
+msgstr "线图"
+
+#: activity.py:572
+msgid "Pie Chart"
+msgstr "饼图"
+
+#: activity.py:834
 msgid "Invalid object"
 msgstr "无效的对象"
 
-#: activity.py:615
+#: activity.py:836
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "选定的对象必须是一个%s文件"
 
-#: activity.py:618 activity.py:889
-msgid "Ok"
-msgstr "确定"
-
-#: activity.py:650 readers.py:62
+#: activity.py:871 readers.py:62
 msgid "StopWatch"
 msgstr "秒表"
 
-#: activity.py:662
+#: activity.py:883
 msgid "Measure"
 msgstr "测量"
 
-#: activity.py:773
+#: activity.py:1005
 msgid "Label"
 msgstr "标签"
 
-#: activity.py:784
+#: activity.py:1017
 msgid "Value"
 msgstr "数值"
-
-#: activity.py:884
-msgid "Invalid Value"
-msgstr "无效数值"
-
-#: activity.py:886
-msgid "The value must be a number (integer or decimal)"
-msgstr "该值必须是一个数字（整数或小数）"
 
 #: charthelp.py:12
 msgid "Basic usage"
@@ -221,6 +241,10 @@ msgstr "部分活动（例如VisualMatch）可以从剪贴板直接复制数据"
 #: charthelp.py:41
 msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr "将剪贴板里的数据拖到画图区，即可自动生成图像。"
+
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "选择字体"
 
 #: helpbutton.py:38
 msgid "Help"
