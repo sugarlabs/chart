@@ -5,5 +5,5 @@ activity_version = 11
 bundle_id = org.sugarlabs.SimpleGraph
 exec = sugar-activity activity.ChartActivity -s
 icon = chart-activity
-license = GPLv3+
+license = GPLv3+ and GPLv2+
 mime_types = application/x-chart-activity;
