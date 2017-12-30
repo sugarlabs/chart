@@ -12,10 +12,11 @@ def create_help(toolbar):
     helpitem.add_section(_('Basic usage'))
     helpitem.add_paragraph(_('First you need add data to create the graph'))
     helpitem.add_paragraph(_('You can add data with this button'),
-            'gtk-add')
+                           'gtk-add')
     helpitem.add_paragraph(_('...or remove data with this button'),
-            'gtk-remove')
-    helpitem.add_paragraph(_('To change the graph title, just change the activity title'))
+                           'gtk-remove')
+    helpitem.add_paragraph(_('To change the graph title, '
+                             'just change the activity title'))
 
     helpitem.add_paragraph(_('Next you can change the type of graph'))
     helpitem.add_paragraph(_('Vertical bars'), 'vbar')
@@ -24,18 +25,25 @@ def create_help(toolbar):
     helpitem.add_paragraph(_('Pie'), 'pie')
 
     helpitem.add_section(_('Configs'))
-    helpitem.add_paragraph(_('You can change the colors or the horizontal and vertical labels in the configs toolbar'),
-            'preferences-system')
+    helpitem.add_paragraph(_('You can change the colors or the horizontal '
+                             'and vertical labels in the configs toolbar'),
+                           'preferences-system')
 
     helpitem.add_section(_('Saving as an image'))
-    helpitem.add_paragraph(_('In the activity toolbar you have button to save the graph as an image'),
-            'save-as-image')
+    helpitem.add_paragraph(_('In the activity toolbar you have button to '
+                             'save the graph as an image'),
+                           'save-as-image')
 
     helpitem.add_section(_('Reading data from other activities'))
-    helpitem.add_paragraph(_('In the activity toolbar you have buttons to read data from other activities'))
-    helpitem.add_paragraph(_('You can use times measured in the StopWatch activity'), 'import-stopwatch')
-    helpitem.add_paragraph(_('...or data from the Measure activity'), 'import-measure')
+    helpitem.add_paragraph(_('In the activity toolbar you have buttons to '
+                             'read data from other activities'))
+    helpitem.add_paragraph(_('You can use times measured in the StopWatch '
+                             'activity'), 'import-stopwatch')
+    helpitem.add_paragraph(_('...or data from the Measure activity'),
+                           'import-measure')
 
     helpitem.add_section(_('Reading data from the clipboard'))
-    helpitem.add_paragraph(_('Some activities (such as VisualMatch) has the ability to copy data to the clipboard'))
-    helpitem.add_paragraph(_('Drop the clipboard data into the chart area and it will be charted'))
+    helpitem.add_paragraph(_('Some activities (such as VisualMatch) can '
+                             'copy data to the clipboard'))
+    helpitem.add_paragraph(_('Drop the clipboard data into the chart area '
+                             'and it will be charted'))

@@ -28,10 +28,7 @@ from gi.repository import GObject
 import os
 import re
 
-try:
-    import json
-except ImportError:
-    import simplejson as json
+import json
 
 import locale
 import logging
@@ -331,13 +328,19 @@ class ChartActivity(activity.Activity):
 
         self.font_name_combo = FontComboBox()
         self.font_name_combo.set_font_name('Sans')
-        self.font_name_combo.connect("changed", lambda w:
-                 self._set_chart_font_options(font=w.get_font_name()))
+
+        def set_font_name(w):
+            self._set_chart_font_options(font=w.get_font_name())
+
+        self.font_name_combo.connect("changed", set_font_name)
         texttoolbar.insert(ToolComboBox(self.font_name_combo), -1)
 
         self.font_size = FontSize()
-        self.font_size.connect("changed", lambda w:
-                         self._set_chart_font_options(size=w.get_font_size()))
+
+        def set_font_size(w):
+            self._set_chart_font_options(size=w.get_font_size())
+
+        self.font_size.connect("changed", set_font_size)
         texttoolbar.insert(self.font_size, -1)
 
         self.text_color_btn = ColorToolButton()
@@ -345,12 +348,12 @@ class ChartActivity(activity.Activity):
         self.text_color_btn.set_title(_('Font Color'))
         texttoolbar.insert(self.text_color_btn, -1)
         GObject.timeout_add(1000, self._connect_color_btn,
-                         self.text_color_btn,
-                         self._set_text_color)
+                            self.text_color_btn,
+                            self._set_text_color)
 
         # self._title_font created in the top of the file
         self._title_font.connect('clicked', self._set_font_option,
-                               TITLE_FONT)
+                                 TITLE_FONT)
         self._title_font.set_tooltip(_('Title font'))
         self._title_font.props.icon_name = 'title-font'
         op_group = self._title_font
@@ -359,7 +362,7 @@ class ChartActivity(activity.Activity):
 
         # self._labels_font created in the top of the file
         self._labels_font.connect('clicked', self._set_font_option,
-                               LABELS_FONT)
+                                  LABELS_FONT)
         self._labels_font.set_tooltip(_('Labels font'))
         self._labels_font.props.icon_name = 'labels-font'
         self._labels_font.props.group = op_group
@@ -413,7 +416,7 @@ class ChartActivity(activity.Activity):
             box.set_size_request(box_width, -1)
 
         self._setup_handle = paned.connect('size_allocate',
-                    size_allocate_cb)
+                                           size_allocate_cb)
 
         scroll = Gtk.ScrolledWindow()
         scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
@@ -470,7 +473,7 @@ class ChartActivity(activity.Activity):
 
         label = Gtk.Label('<span foreground="%s"><b>%s</b></span>' %
                           (style.COLOR_BUTTON_GREY.get_html(),
-                          _('No data')))
+                           _('No data')))
         label.set_use_markup(True)
         mvbox.pack_start(label, False, False, style.DEFAULT_PADDING)
 
@@ -501,7 +504,8 @@ class ChartActivity(activity.Activity):
         self._configure_cb()
 
     def _set_text_color(self, *args):
-        self._set_chart_font_options(color=utils.rgb2html(args[-1].get_color()))
+        color = utils.rgb2html(args[-1].get_color())
+        self._set_chart_font_options(color=color)
 
     def _set_chart_font_options(self, font=None, size=None, color=None):
         op = self._font_options
@@ -652,7 +656,7 @@ class ChartActivity(activity.Activity):
 
         if is_number:
             data = (label, float(value))
-            if not data in self.chart_data:
+            if data not in self.chart_data:
                 pos = self.labels_and_values.add_value(label, value)
                 self.chart_data.insert(pos, data)
                 self._update_chart_data()
@@ -670,8 +674,8 @@ class ChartActivity(activity.Activity):
 
         def update_btn():
             if (type == charts.PIE and
-                not self.chart_type_buttons[3].get_active() and
-                not self.chart_type_buttons[7].get_active()):
+                    not self.chart_type_buttons[3].get_active() and
+                    not self.chart_type_buttons[7].get_active()):
                 self.chart_type_buttons[3].set_active(True)
                 self.chart_type_buttons[7].set_active(True)
 
@@ -820,7 +824,7 @@ class ChartActivity(activity.Activity):
 
     def _move_down(self, widget):
         old, new = self.labels_and_values.move_down()
-        if not old is None:
+        if old is not None:
             _object = self.chart_data[old]
             self.chart_data.remove(_object)
             self.chart_data.insert(new, _object)
@@ -872,7 +876,7 @@ class ChartActivity(activity.Activity):
 
                 alert.props.title = _('Invalid object')
                 alert.props.msg = \
-                       _('The selected object must be a %s file' % (type_name))
+                    _('The selected object must be a %s file' % (type_name))
 
                 ok_icon = Icon(icon_name='dialog-ok')
                 alert.add_button(Gtk.ResponseType.OK, _('Ok'), ok_icon)
@@ -905,9 +909,8 @@ class ChartActivity(activity.Activity):
             self.update_chart()
 
     def __import_stopwatch_cb(self, widget):
-        matches_mime_type, file_path, title = self._object_chooser(
-                                                      _STOPWATCH_MIME_TYPE,
-                                                      _('StopWatch'))
+        matches_mime_type, file_path, title = \
+            self._object_chooser(_STOPWATCH_MIME_TYPE, _('StopWatch'))
 
         if matches_mime_type:
             f = open(file_path)
@@ -917,9 +920,8 @@ class ChartActivity(activity.Activity):
             f.close()
 
     def __import_measure_cb(self, widget, channel=1):
-        matches_mime_type, file_path, title = self._object_chooser(
-                                                         _CSV_MIME_TYPE,
-                                                         _('Measure'))
+        matches_mime_type, file_path, title = \
+            self._object_chooser(_CSV_MIME_TYPE, _('Measure'))
 
         if matches_mime_type:
             f = open(file_path)
@@ -965,7 +967,7 @@ class ChartActivity(activity.Activity):
         # Update the controls in the config subtoolbar
         self.chart_color_btn.set_color(Color(self.chart_color).get_gdk_color())
         self.line_color_btn.set_color(Color(self.chart_line_color).
-                                                               get_gdk_color())
+                                      get_gdk_color())
 
         # If the saved label is not '', set the text entry with the saved label
         if self.x_label != '':
@@ -974,7 +976,7 @@ class ChartActivity(activity.Activity):
         if self.y_label != '':
             self.v_label.entry.set_text(self.y_label)
 
-        #load the data
+        # load the data
         for row in chart_data:
             self._add_value(None, label=row[0], value=float(row[1]))
 
@@ -1008,9 +1010,9 @@ class ChartActivity(activity.Activity):
 class ChartData(Gtk.TreeView):
 
     __gsignals__ = {
-            'label-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str]),
-            'value-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str]),
-                               }
+        'label-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str]),
+        'value-changed': (GObject.SignalFlags.RUN_FIRST, None, [str, str]),
+    }
 
     def __init__(self, activity):
 
@@ -1090,8 +1092,8 @@ class ChartData(Gtk.TreeView):
 
     def move_up(self):
         selected_iter = self._selection.get_selected()[1]
-        position = self.model.get_iter(int(str(self.model.get_path(
-                                                          selected_iter))) - 1)
+        p = int(str(self.model.get_path(selected_iter)))
+        position = self.model.get_iter(p - 1)
         self.model.move_before(selected_iter, position)
 
         selected_path = int(str(self.model.get_path(selected_iter)))
