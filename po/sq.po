@@ -8,18 +8,20 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 00:32-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2018-02-10 16:08+0000\n"
+"Last-Translator: Besnik_b <besnik@programeshqip.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: vi\n"
+"Language: sq\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.11.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1518278933.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Chart"
-msgstr ""
+msgstr "Grafik"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -27,70 +29,72 @@ msgid ""
 "Create your charts and organize your information! Try the best chart for "
 "your case."
 msgstr ""
+"Krijoni grafikët tuaj dhe sistemoni informacionin tuaj! Provoni grafikun më "
+"të përshtatshëm për rastin tuaj."
 
 #: activity.py:93
 msgid "Invalid Value"
-msgstr ""
+msgstr "Vlerë e Pavlefshme"
 
 #: activity.py:94
 msgid "The value must be a number (integer or decimal)"
-msgstr ""
+msgstr "Vlera duhet të jetë një numër (i plotë ose dhjetor)"
 
 #: activity.py:97 activity.py:839
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: activity.py:193
 msgid "Save as image"
-msgstr ""
+msgstr "Ruaje si figurë"
 
 #: activity.py:200
 msgid "Read StopWatch data"
-msgstr ""
+msgstr "Lexo të dhëna nga Kronometri"
 
 #: activity.py:206
 msgid "Read Measure data"
-msgstr ""
+msgstr "Lexo të dhëna nga Mateni"
 
 #: activity.py:222 activity.py:470
 msgid "Add a value"
-msgstr ""
+msgstr "Shtoni një vlerë"
 
 #: activity.py:228
 msgid "Remove the selected value"
-msgstr ""
+msgstr "Hiqe vlerën e përzgjedhur"
 
 #: activity.py:261
 msgid "Chart Color"
-msgstr ""
+msgstr "Ngjyrë Grafiku"
 
 #: activity.py:270
 msgid "Line Color"
-msgstr ""
+msgstr "Ngjyrë Vije"
 
 #: activity.py:287
 msgid "Horizontal label..."
-msgstr ""
+msgstr "Etiketë horizontale…"
 
 #: activity.py:301
 msgid "Vertical label..."
-msgstr ""
+msgstr "Etiketë vertikale…"
 
 #: activity.py:312
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 #: activity.py:331
 msgid "Font Color"
-msgstr ""
+msgstr "Ngjyrë Shkronjash"
 
 #: activity.py:340
 msgid "Title font"
-msgstr ""
+msgstr "Shkronja titulli"
 
 #: activity.py:349
 msgid "Labels font"
-msgstr ""
+msgstr "Shkronja etiketash"
 
 #: activity.py:356
 msgid "Tick font"
@@ -98,161 +102,173 @@ msgstr ""
 
 #: activity.py:373
 msgid "Fullscreen"
-msgstr ""
+msgstr "Sa Krejt Ekrani"
 
 #: activity.py:417
 msgid "Move up"
-msgstr ""
+msgstr "Ngjite"
 
 #: activity.py:421
 msgid "Move down"
-msgstr ""
+msgstr "Zbrite"
 
 #: activity.py:459
 msgid "No data"
-msgstr ""
+msgstr "S’ka të dhëna"
 
 #: activity.py:549
 msgid "Vertical Bar Chart"
-msgstr ""
+msgstr "Grafik Me Shtylla Vertikale"
 
 #: activity.py:558
 msgid "Horizontal Bar Chart"
-msgstr ""
+msgstr "Grafik Me Shtylla Horizontale"
 
 #: activity.py:565
 msgid "Line Chart"
-msgstr ""
+msgstr "Grafik Me Vija"
 
 #: activity.py:572
 msgid "Pie Chart"
-msgstr ""
+msgstr "Grafik Qarkor"
 
 #: activity.py:834
 msgid "Invalid object"
-msgstr ""
+msgstr "Objekt i pavlefshëm"
 
 #: activity.py:836
 #, python-format
 msgid "The selected object must be a %s file"
-msgstr ""
+msgstr "Objekti i përzgjedhur duhet të jetë një kartelë %s"
 
 #: activity.py:871 readers.py:62
 msgid "StopWatch"
-msgstr ""
+msgstr "Kronometër"
 
 #: activity.py:883
 msgid "Measure"
-msgstr ""
+msgstr "Mateni"
 
 #: activity.py:1005
 msgid "Label"
-msgstr ""
+msgstr "Etiketë"
 
 #: activity.py:1017
 msgid "Value"
-msgstr ""
+msgstr "Vlerë"
 
 #: charthelp.py:12
 msgid "Basic usage"
-msgstr ""
+msgstr "Përdorimi i thjeshtë"
 
 #: charthelp.py:13
 msgid "First you need add data to create the graph"
-msgstr ""
+msgstr "Së pari lypset të shtoni të dhëna, pa të krijohet grafiku"
 
 #: charthelp.py:14
 msgid "You can add data with this button"
-msgstr ""
+msgstr "Përmes këtij butoni, mund të shtoni të dhëna"
 
 #: charthelp.py:16
 msgid "...or remove data with this button"
-msgstr ""
+msgstr "…ose të hiqni të dhëna"
 
 #: charthelp.py:18
 msgid "To change the graph title, just change the activity title"
 msgstr ""
+"Që të ndryshoni titullin e grafikut, thjesht ndryshoni titullin e "
+"veprimtarisë"
 
 #: charthelp.py:20
 msgid "Next you can change the type of graph"
-msgstr ""
+msgstr "Në vazhdim mund të ndryshoni llojin e grafikut"
 
 #: charthelp.py:21
 msgid "Vertical bars"
-msgstr ""
+msgstr "Shtylla vertikale"
 
 #: charthelp.py:22
 msgid "Horizontal bars"
-msgstr ""
+msgstr "Shtylla horizontale"
 
 #: charthelp.py:23
 msgid "Lines"
-msgstr ""
+msgstr "Vija"
 
 #: charthelp.py:24
 msgid "Pie"
-msgstr ""
+msgstr "Qark"
 
 #: charthelp.py:26
 msgid "Configs"
-msgstr ""
+msgstr "Formësime"
 
 #: charthelp.py:27
 msgid ""
 "You can change the colors or the horizontal and vertical labels in the "
 "configs toolbar"
 msgstr ""
+"Ngjyrat ose etiketën horizontale ose vertikale mund t’i ndryshoni që nga "
+"paneli i formësimeve"
 
 #: charthelp.py:30
 msgid "Saving as an image"
-msgstr ""
+msgstr "Po ruhet si figurë"
 
 #: charthelp.py:31
 msgid "In the activity toolbar you have button to save the graph as an image"
 msgstr ""
+"Te paneli i veprimtarive gjendet një buton për ta ruajtur grafikun si një "
+"figurë"
 
 #: charthelp.py:34
 msgid "Reading data from other activities"
-msgstr ""
+msgstr "Lexim të dhënash nga veprimtaritë e tjera"
 
 #: charthelp.py:35
 msgid ""
 "In the activity toolbar you have buttons to read data from other activities"
 msgstr ""
+"Te paneli i veprimtarive keni butona për të lexuar të dhëna nga veprimtari "
+"të tjera"
 
 #: charthelp.py:36
 msgid "You can use times measured in the StopWatch activity"
-msgstr ""
+msgstr "Mund të përdorni kohë të matura te veprimtaria Kronometër"
 
 #: charthelp.py:37
 msgid "...or data from the Measure activity"
-msgstr ""
+msgstr "…ose të dhëna nga veprimtaria Mateni"
 
 #: charthelp.py:39
 msgid "Reading data from the clipboard"
-msgstr ""
+msgstr "Lexim të dhënash nga e papastra"
 
 #: charthelp.py:40
 msgid ""
 "Some activities (such as VisualMatch) has the ability to copy data to the "
 "clipboard"
 msgstr ""
+"Disa veprimtari (VisualMatch, fjala vjen) kanë aftësinë të kopjojnë të dhëna "
+"në të papastër"
 
 #: charthelp.py:41
 msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr ""
+"Hidhini të dhënat nga e papastra te fusha e grafikut dhe grafiku do të "
+"krijohet"
 
 #: fontcombobox.py:90
 msgid "Select font"
-msgstr ""
+msgstr "Përzgjidhni shkronja"
 
 #: helpbutton.py:38
 msgid "Help"
-msgstr ""
+msgstr "Ndihmë"
 
 #: readers.py:41
 msgid "Time"
-msgstr ""
+msgstr "kohë"
 
 #: readers.py:51
 msgid "Mark"
@@ -260,8 +276,8 @@ msgstr ""
 
 #: readers.py:126
 msgid "Values"
-msgstr ""
+msgstr "Vlera"
 
 #: readers.py:127
 msgid "Samples"
-msgstr ""
+msgstr "Shembuj"

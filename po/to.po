@@ -2,20 +2,19 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 00:32-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2012-02-27 02:34+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: vi\n"
+"Language: to\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.11.0\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Chart"
@@ -97,8 +96,9 @@ msgid "Tick font"
 msgstr ""
 
 #: activity.py:373
+#, fuzzy
 msgid "Fullscreen"
-msgstr ""
+msgstr "Sikulini kakato"
 
 #: activity.py:417
 msgid "Move up"
@@ -251,8 +251,9 @@ msgid "Help"
 msgstr ""
 
 #: readers.py:41
+#, fuzzy
 msgid "Time"
-msgstr ""
+msgstr "Taimi"
 
 #: readers.py:51
 msgid "Mark"

@@ -2,24 +2,25 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 00:32-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2017-05-19 19:50+0000\n"
+"Last-Translator: chanchumgpa <chanchumgpa@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: vi\n"
+"Language: ach\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.11.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1495223434.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Chart"
-msgstr ""
+msgstr "Karatac"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -27,241 +28,248 @@ msgid ""
 "Create your charts and organize your information! Try the best chart for "
 "your case."
 msgstr ""
+"Yub karatac mamegi ci i ket ngec mamegi kakare! Tem karatac maber odoco pi "
+"jami tici."
 
 #: activity.py:93
 msgid "Invalid Value"
-msgstr ""
+msgstr "Adwogi Mape tio"
 
 #: activity.py:94
 msgid "The value must be a number (integer or decimal)"
-msgstr ""
+msgstr "Adwogi ne myero bed namba (intaga nyo decimal)"
 
 #: activity.py:97 activity.py:839
 msgid "Ok"
-msgstr ""
+msgstr "Eyo"
 
 #: activity.py:193
 msgid "Save as image"
-msgstr ""
+msgstr "Gwok calo cal"
 
 #: activity.py:200
 msgid "Read StopWatch data"
-msgstr ""
+msgstr "Kwan CungNeno tic"
 
 #: activity.py:206
 msgid "Read Measure data"
-msgstr ""
+msgstr "Kwan Pim tic"
 
 #: activity.py:222 activity.py:470
 msgid "Add a value"
-msgstr ""
+msgstr "Med adwogi maber"
 
 #: activity.py:228
 msgid "Remove the selected value"
-msgstr ""
+msgstr "Kwanyo woko adwogi ma kiyero"
 
 #: activity.py:261
 msgid "Chart Color"
-msgstr ""
+msgstr "Rangi me Karatac"
 
 #: activity.py:270
 msgid "Line Color"
-msgstr ""
+msgstr "Rangi me Layin"
 
 #: activity.py:287
 msgid "Horizontal label..."
-msgstr ""
+msgstr "Alama maobutu abuta..."
 
 #: activity.py:301
 msgid "Vertical label..."
-msgstr ""
+msgstr "Alama maotire atira..."
 
 #: activity.py:312
 msgid "Text"
-msgstr ""
+msgstr "Nyig lok"
 
 #: activity.py:331
 msgid "Font Color"
-msgstr ""
+msgstr "Rangi me kit"
 
 #: activity.py:340
 msgid "Title font"
-msgstr ""
+msgstr "Nying kit"
 
 #: activity.py:349
 msgid "Labels font"
-msgstr ""
+msgstr "Oketo alama i kite"
 
 #: activity.py:356
 msgid "Tick font"
-msgstr ""
+msgstr "Gwet kit"
 
 #: activity.py:373
 msgid "Fullscreen"
-msgstr ""
+msgstr "Wangkio lung"
 
 #: activity.py:417
 msgid "Move up"
-msgstr ""
+msgstr "Dir malo"
 
 #: activity.py:421
 msgid "Move down"
-msgstr ""
+msgstr "Dir piny"
 
 #: activity.py:459
 msgid "No data"
-msgstr ""
+msgstr "Tic pe"
 
 #: activity.py:549
 msgid "Vertical Bar Chart"
-msgstr ""
+msgstr "Bar Karatac Maocung atir"
 
 #: activity.py:558
 msgid "Horizontal Bar Chart"
-msgstr ""
+msgstr "Bar Karatac Maobutu abuta"
 
 #: activity.py:565
 msgid "Line Chart"
-msgstr ""
+msgstr "Layin Karatac"
 
 #: activity.py:572
 msgid "Pie Chart"
-msgstr ""
+msgstr "Karatac Pai"
 
 #: activity.py:834
 msgid "Invalid object"
-msgstr ""
+msgstr "Gin mape tio"
 
 #: activity.py:836
 #, python-format
 msgid "The selected object must be a %s file"
-msgstr ""
+msgstr "Gin makiyero myero obed %s pwail"
 
 #: activity.py:871 readers.py:62
 msgid "StopWatch"
-msgstr ""
+msgstr "StopWatch"
 
 #: activity.py:883
 msgid "Measure"
-msgstr ""
+msgstr "Pim"
 
 #: activity.py:1005
 msgid "Label"
-msgstr ""
+msgstr "Alama"
 
 #: activity.py:1017
 msgid "Value"
-msgstr ""
+msgstr "Ber"
 
 #: charthelp.py:12
 msgid "Basic usage"
-msgstr ""
+msgstr "En matwero tic"
 
 #: charthelp.py:13
 msgid "First you need add data to create the graph"
-msgstr ""
+msgstr "Me acel myero med tic pi yubu grap"
 
 #: charthelp.py:14
 msgid "You can add data with this button"
-msgstr ""
+msgstr "I twero medo tic kwede mapeca man"
 
 #: charthelp.py:16
 msgid "...or remove data with this button"
-msgstr ""
+msgstr "...nyo kwany tic kwede mapeca man"
 
 #: charthelp.py:18
 msgid "To change the graph title, just change the activity title"
-msgstr ""
+msgstr "Pi loko nying grap, lok ka nying tic"
 
 #: charthelp.py:20
 msgid "Next you can change the type of graph"
-msgstr ""
+msgstr "I twero loko kit grap malubo kore"
 
 #: charthelp.py:21
 msgid "Vertical bars"
-msgstr ""
+msgstr "Bar ma ocung atir"
 
 #: charthelp.py:22
 msgid "Horizontal bars"
-msgstr ""
+msgstr "Bar ma obutuabuta"
 
 #: charthelp.py:23
 msgid "Lines"
-msgstr ""
+msgstr "Layin mapol"
 
 #: charthelp.py:24
 msgid "Pie"
-msgstr ""
+msgstr "Pai"
 
 #: charthelp.py:26
 msgid "Configs"
-msgstr ""
+msgstr "Cano"
 
 #: charthelp.py:27
 msgid ""
 "You can change the colors or the horizontal and vertical labels in the "
 "configs toolbar"
 msgstr ""
+"I twero loko rangi mapol nyo labutubutu ki alama maocung atir ii cano "
+"barjami tic"
 
 #: charthelp.py:30
 msgid "Saving as an image"
-msgstr ""
+msgstr "Gwoko calo cal acel"
 
 #: charthelp.py:31
 msgid "In the activity toolbar you have button to save the graph as an image"
-msgstr ""
+msgstr "Ii barjami me tic itye ki mapeca me gwoko grap calo cal acel"
 
 #: charthelp.py:34
 msgid "Reading data from other activities"
-msgstr ""
+msgstr "Kwano tic ma aa ki i tic mapol mapat"
 
 #: charthelp.py:35
 msgid ""
 "In the activity toolbar you have buttons to read data from other activities"
 msgstr ""
+"Ii barjami me tic i tye ki mapeca me kwano tic ma aa ki i tic mapol mapat"
 
 #: charthelp.py:36
 msgid "You can use times measured in the StopWatch activity"
-msgstr ""
+msgstr "I twero tic ki caa ma kipimo ii tic pa StopWatch"
 
 #: charthelp.py:37
 msgid "...or data from the Measure activity"
-msgstr ""
+msgstr "...nyo tic ma aa ki Pimo tic"
 
 #: charthelp.py:39
 msgid "Reading data from the clipboard"
-msgstr ""
+msgstr "Kwano tic aa ki i bao me nyime"
 
 #: charthelp.py:40
 msgid ""
 "Some activities (such as VisualMatch) has the ability to copy data to the "
 "clipboard"
 msgstr ""
+"Tic mogo mapol ( macalo VisualMatch) tye ki gupu me loko tic dwoko i bao me "
+"nyime"
 
 #: charthelp.py:41
 msgid "Drop the clipboard data into the chart area and it will be charted"
-msgstr ""
+msgstr "Bol tic me bao nyime i dwok iyi adwol pa karatac ci bikete"
 
 #: fontcombobox.py:90
 msgid "Select font"
-msgstr ""
+msgstr "Yer rwom dite"
 
 #: helpbutton.py:38
 msgid "Help"
-msgstr ""
+msgstr "Kony"
 
 #: readers.py:41
 msgid "Time"
-msgstr ""
+msgstr "Caa"
 
 #: readers.py:51
 msgid "Mark"
-msgstr ""
+msgstr "Ket alama"
 
 #: readers.py:126
 msgid "Values"
-msgstr ""
+msgstr "Berere"
 
 #: readers.py:127
 msgid "Samples"
-msgstr ""
+msgstr "Lapore mapol"

@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-15 00:33-0500\n"
-"PO-Revision-Date: 2012-10-13 17:32+0200\n"
-"Last-Translator: Karolina <karo.zaklika@gmail.com>\n"
+"POT-Creation-Date: 2013-11-19 00:32-0500\n"
+"PO-Revision-Date: 2017-12-18 12:54+0000\n"
+"Last-Translator: jszu <jszu@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.0.5\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1513601677.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Chart"
@@ -28,111 +29,133 @@ msgid ""
 "Create your charts and organize your information! Try the best chart for "
 "your case."
 msgstr ""
+"Twórz wykresy i ogranizuj swoje informacje! Wypróbuj najlepszy wykres dla "
+"Twoich danych."
 
-#: activity.py:148
+#: activity.py:93
+msgid "Invalid Value"
+msgstr "Niepoprawna Wartość"
+
+#: activity.py:94
+msgid "The value must be a number (integer or decimal)"
+msgstr "Wartość musi być liczbą (całkowitą lub ułamkową)"
+
+#: activity.py:97 activity.py:839
+msgid "Ok"
+msgstr "Ok"
+
+#: activity.py:193
 msgid "Save as image"
 msgstr "Zapisz jako obraz"
 
-#: activity.py:155
+#: activity.py:200
 msgid "Read StopWatch data"
 msgstr "Wczytaj dane Stopera"
 
-#: activity.py:161
+#: activity.py:206
 msgid "Read Measure data"
 msgstr "Wczytaj dane Pomiaru"
 
-#: activity.py:177 activity.py:388
+#: activity.py:222 activity.py:470
 msgid "Add a value"
 msgstr "Dodaj wartość"
 
-#: activity.py:183
+#: activity.py:228
 msgid "Remove the selected value"
 msgstr "Usuń wybraną wartość"
 
-#: activity.py:197
-msgid "Vertical Bar Chart"
-msgstr "Wykres słupków pionowych"
-
-#: activity.py:206
-msgid "Horizontal Bar Chart"
-msgstr "Wykres słupków poziomych"
-
-#: activity.py:213
-msgid "Line Chart"
-msgstr "Wykres liniowy"
-
-#: activity.py:220
-msgid "Pie Chart"
-msgstr "Wykres kołowy"
-
-#: activity.py:241
+#: activity.py:261
 msgid "Chart Color"
 msgstr "Kolor wykresu"
 
-#: activity.py:247
+#: activity.py:270
 msgid "Line Color"
 msgstr "Kolor linii"
 
-#: activity.py:262
+#: activity.py:287
 msgid "Horizontal label..."
 msgstr "Etykieta Pozioma..."
 
-#: activity.py:276
+#: activity.py:301
 msgid "Vertical label..."
 msgstr "Etykieta pionowa..."
 
-#: activity.py:291
+#: activity.py:312
+msgid "Text"
+msgstr "Tekst"
+
+#: activity.py:331
+msgid "Font Color"
+msgstr "Kolor Czcionki"
+
+#: activity.py:340
+msgid "Title font"
+msgstr "Czcionka w Tytule"
+
+#: activity.py:349
+msgid "Labels font"
+msgstr "Czcionka etykiet"
+
+#: activity.py:356
+msgid "Tick font"
+msgstr "Czcionka podziałki"
+
+#: activity.py:373
 msgid "Fullscreen"
 msgstr "Pełen ekran"
 
-#: activity.py:335
+#: activity.py:417
 msgid "Move up"
 msgstr "Do góry"
 
-#: activity.py:339
+#: activity.py:421
 msgid "Move down"
 msgstr "Do dołu"
 
-#: activity.py:377
+#: activity.py:459
 msgid "No data"
-msgstr ""
+msgstr "Brak danych"
 
-#: activity.py:613
+#: activity.py:549
+msgid "Vertical Bar Chart"
+msgstr "Wykres słupków pionowych"
+
+#: activity.py:558
+msgid "Horizontal Bar Chart"
+msgstr "Wykres słupków poziomych"
+
+#: activity.py:565
+msgid "Line Chart"
+msgstr "Wykres liniowy"
+
+#: activity.py:572
+msgid "Pie Chart"
+msgstr "Wykres kołowy"
+
+#: activity.py:834
 msgid "Invalid object"
 msgstr "Niepoprawny obiekt"
 
-#: activity.py:615
+#: activity.py:836
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "Wybrany obiekt musi być plikiem %s"
 
-#: activity.py:618 activity.py:889
-msgid "Ok"
-msgstr "Ok"
-
-#: activity.py:650 readers.py:62
+#: activity.py:871 readers.py:62
 msgid "StopWatch"
 msgstr "Stoper"
 
-#: activity.py:662
+#: activity.py:883
 msgid "Measure"
 msgstr "Pomiar"
 
-#: activity.py:773
+#: activity.py:1005
 msgid "Label"
 msgstr "Etykieta"
 
-#: activity.py:784
+#: activity.py:1017
 msgid "Value"
 msgstr "Wartość"
-
-#: activity.py:884
-msgid "Invalid Value"
-msgstr "Niepoprawna Wartość"
-
-#: activity.py:886
-msgid "The value must be a number (integer or decimal)"
-msgstr "Wartość musi być liczbą (całkowitą lub ułamkową)"
 
 #: charthelp.py:12
 msgid "Basic usage"
@@ -221,10 +244,16 @@ msgid ""
 "Some activities (such as VisualMatch) has the ability to copy data to the "
 "clipboard"
 msgstr ""
+"Niektóre działania (na przykład VisualMatch) mają możliwość kopiowania "
+"danych do schowka"
 
 #: charthelp.py:41
 msgid "Drop the clipboard data into the chart area and it will be charted"
-msgstr ""
+msgstr "Upuść dane ze schowka na wykres a zostaną narysowane"
+
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Wybierz czcionkę"
 
 #: helpbutton.py:38
 msgid "Help"

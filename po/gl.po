@@ -8,18 +8,20 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 00:32-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-06-16 22:33+0000\n"
+"Last-Translator: saravpaz <saravilarelle@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: vi\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.11.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1466116380.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Chart"
-msgstr ""
+msgstr "Gráfica"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -27,30 +29,32 @@ msgid ""
 "Create your charts and organize your information! Try the best chart for "
 "your case."
 msgstr ""
+"Crea as túas gráficas e organiza a túa información! Proba a mellor gráfica "
+"para ti."
 
 #: activity.py:93
 msgid "Invalid Value"
-msgstr ""
+msgstr "Valor non válido"
 
 #: activity.py:94
 msgid "The value must be a number (integer or decimal)"
-msgstr ""
+msgstr "O valor debe ser un número (entero ou decimal)"
 
 #: activity.py:97 activity.py:839
 msgid "Ok"
-msgstr ""
+msgstr "Aceptar"
 
 #: activity.py:193
 msgid "Save as image"
-msgstr ""
+msgstr "Gardar coma imaxe"
 
 #: activity.py:200
 msgid "Read StopWatch data"
-msgstr ""
+msgstr "Ler datos de StopWatch"
 
 #: activity.py:206
 msgid "Read Measure data"
-msgstr ""
+msgstr "Ler datos de Medir"
 
 #: activity.py:222 activity.py:470
 msgid "Add a value"
@@ -86,39 +90,39 @@ msgstr ""
 
 #: activity.py:340
 msgid "Title font"
-msgstr ""
+msgstr "Fonte do título"
 
 #: activity.py:349
 msgid "Labels font"
-msgstr ""
+msgstr "Fonte das etiquetas"
 
 #: activity.py:356
 msgid "Tick font"
-msgstr ""
+msgstr "Fonte do tick"
 
 #: activity.py:373
 msgid "Fullscreen"
-msgstr ""
+msgstr "Pantalla completa"
 
 #: activity.py:417
 msgid "Move up"
-msgstr ""
+msgstr "Subir"
 
 #: activity.py:421
 msgid "Move down"
-msgstr ""
+msgstr "Baixar"
 
 #: activity.py:459
 msgid "No data"
-msgstr ""
+msgstr "Non hai datos"
 
 #: activity.py:549
 msgid "Vertical Bar Chart"
-msgstr ""
+msgstr "Gráfica de barras verticais"
 
 #: activity.py:558
 msgid "Horizontal Bar Chart"
-msgstr ""
+msgstr "Gráfica de barras horizontais"
 
 #: activity.py:565
 msgid "Line Chart"
@@ -163,39 +167,40 @@ msgstr ""
 
 #: charthelp.py:14
 msgid "You can add data with this button"
-msgstr ""
+msgstr "Podes engadir datos con este botón"
 
 #: charthelp.py:16
 msgid "...or remove data with this button"
-msgstr ""
+msgstr "... ou borrar datos con este botón"
 
 #: charthelp.py:18
 msgid "To change the graph title, just change the activity title"
 msgstr ""
+"Para cambiar o título da gráfica, só tes que cambiar o título da actividade"
 
 #: charthelp.py:20
 msgid "Next you can change the type of graph"
-msgstr ""
+msgstr "A continuación podes cambiar o tipo de gráfica"
 
 #: charthelp.py:21
 msgid "Vertical bars"
-msgstr ""
+msgstr "Barras verticais"
 
 #: charthelp.py:22
 msgid "Horizontal bars"
-msgstr ""
+msgstr "Barras horizontais"
 
 #: charthelp.py:23
 msgid "Lines"
-msgstr ""
+msgstr "Liñas"
 
 #: charthelp.py:24
 msgid "Pie"
-msgstr ""
+msgstr "Sectores"
 
 #: charthelp.py:26
 msgid "Configs"
-msgstr ""
+msgstr "Configuracións"
 
 #: charthelp.py:27
 msgid ""
@@ -241,27 +246,29 @@ msgstr ""
 #: charthelp.py:41
 msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr ""
+"Arrastra os datos do portapapeis á área da gráfica e se engadirán "
+"automáticamente"
 
 #: fontcombobox.py:90
 msgid "Select font"
-msgstr ""
+msgstr "Seleccionar fonte"
 
 #: helpbutton.py:38
 msgid "Help"
-msgstr ""
+msgstr "Axuda"
 
 #: readers.py:41
 msgid "Time"
-msgstr ""
+msgstr "Tempo"
 
 #: readers.py:51
 msgid "Mark"
-msgstr ""
+msgstr "Marca"
 
 #: readers.py:126
 msgid "Values"
-msgstr ""
+msgstr "Valores"
 
 #: readers.py:127
 msgid "Samples"
-msgstr ""
+msgstr "Mostras"

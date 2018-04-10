@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 00:32-0500\n"
-"PO-Revision-Date: 2013-12-11 04:15+0200\n"
-"Last-Translator: Chris <cjl@laptop.org>\n"
+"PO-Revision-Date: 2013-12-23 10:10+0200\n"
+"Last-Translator: Ganesh <ganesh.ghimire@olenepal.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
@@ -38,43 +38,43 @@ msgstr "मान एउटा नम्बर हुनु पर्छ ( प�
 
 #: activity.py:97 activity.py:839
 msgid "Ok"
-msgstr ""
+msgstr "ठीक"
 
 #: activity.py:193
 msgid "Save as image"
-msgstr ""
+msgstr "तस्बिरको रूपमा बचत गर"
 
 #: activity.py:200
 msgid "Read StopWatch data"
-msgstr ""
+msgstr "Read StopWatch data"
 
 #: activity.py:206
 msgid "Read Measure data"
-msgstr ""
+msgstr "Read Measure data"
 
 #: activity.py:222 activity.py:470
 msgid "Add a value"
-msgstr ""
+msgstr "मान थप"
 
 #: activity.py:228
 msgid "Remove the selected value"
-msgstr ""
+msgstr "छानिएको मान हाटाउ"
 
 #: activity.py:261
 msgid "Chart Color"
-msgstr ""
+msgstr "Chart Color"
 
 #: activity.py:270
 msgid "Line Color"
-msgstr ""
+msgstr "Line Color"
 
 #: activity.py:287
 msgid "Horizontal label..."
-msgstr ""
+msgstr "Horizontal label..."
 
 #: activity.py:301
 msgid "Vertical label..."
-msgstr ""
+msgstr "Vertical label..."
 
 #: activity.py:312
 msgid "Text"
@@ -159,23 +159,23 @@ msgstr "आधारभूत प्रयोग"
 
 #: charthelp.py:13
 msgid "First you need add data to create the graph"
-msgstr ""
+msgstr "तपाईँले ग्राफ बनाउनु भन्दा पहिले डाटा थप्नु पर्दछ।"
 
 #: charthelp.py:14
 msgid "You can add data with this button"
-msgstr ""
+msgstr "You can add data with this button"
 
 #: charthelp.py:16
 msgid "...or remove data with this button"
-msgstr ""
+msgstr "...or remove data with this button"
 
 #: charthelp.py:18
 msgid "To change the graph title, just change the activity title"
-msgstr ""
+msgstr "To change the graph title, just change the activity title"
 
 #: charthelp.py:20
 msgid "Next you can change the type of graph"
-msgstr ""
+msgstr "यसपछि तपाईँले ग्राफको किसिम परिवर्तन गर्न सक्नु हुनेछ।"
 
 #: charthelp.py:21
 msgid "Vertical bars"
@@ -202,6 +202,8 @@ msgid ""
 "You can change the colors or the horizontal and vertical labels in the "
 "configs toolbar"
 msgstr ""
+"You can change the colors or the horizontal and vertical labels in the "
+"configs toolbar"
 
 #: charthelp.py:30
 msgid "Saving as an image"
@@ -225,7 +227,6 @@ msgid "You can use times measured in the StopWatch activity"
 msgstr "तपाईँले StopWatch क्रियाकलापमा समय मापनको प्रयोग गर्न सक्नु हुन्छ"
 
 #: charthelp.py:37
-#, fuzzy
 msgid "...or data from the Measure activity"
 msgstr "...or data from the Measure activity"
 
@@ -243,7 +244,7 @@ msgstr ""
 
 #: charthelp.py:41
 msgid "Drop the clipboard data into the chart area and it will be charted"
-msgstr ""
+msgstr "Drop the clipboard data into the chart area and it will be charted"
 
 #: fontcombobox.py:90
 msgid "Select font"
@@ -258,7 +259,6 @@ msgid "Time"
 msgstr "समय"
 
 #: readers.py:51
-#, fuzzy
 msgid "Mark"
 msgstr "चिन्ह"
 

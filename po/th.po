@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-15 00:33-0500\n"
+"POT-Creation-Date: 2013-11-19 00:32-0500\n"
 "PO-Revision-Date: 2012-03-14 03:04+0200\n"
 "Last-Translator: Meechai <malaku38@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,110 +28,130 @@ msgid ""
 "your case."
 msgstr ""
 
-#: activity.py:148
+#: activity.py:93
+msgid "Invalid Value"
+msgstr "ค่าไม่ถูกต้อง"
+
+#: activity.py:94
+msgid "The value must be a number (integer or decimal)"
+msgstr "ค่าที่ใส่ต้องเป็นตัวเลข (จำนวนเต็มหรือทศนิยม)"
+
+#: activity.py:97 activity.py:839
+msgid "Ok"
+msgstr "ตกลง"
+
+#: activity.py:193
 msgid "Save as image"
 msgstr "บันทึกเป็นรูปภาพ"
 
-#: activity.py:155
+#: activity.py:200
 msgid "Read StopWatch data"
 msgstr "อ่านข้อมูลนาฬิกาจับเวลา"
 
-#: activity.py:161
+#: activity.py:206
 msgid "Read Measure data"
 msgstr "อ่านข้อมูลการวัด"
 
-#: activity.py:177 activity.py:388
+#: activity.py:222 activity.py:470
 msgid "Add a value"
 msgstr "ใส่ค่า"
 
-#: activity.py:183
+#: activity.py:228
 msgid "Remove the selected value"
 msgstr "ลบค่าที่เลือก"
 
-#: activity.py:197
-msgid "Vertical Bar Chart"
-msgstr "แผนภูมิแท่งในแนวตั้ง"
-
-#: activity.py:206
-msgid "Horizontal Bar Chart"
-msgstr "แผนภูมิแท่งในแนวนอน"
-
-#: activity.py:213
-msgid "Line Chart"
-msgstr "แผนภูมิแบบเส้น"
-
-#: activity.py:220
-msgid "Pie Chart"
-msgstr "แผนภูมิวงกลม"
-
-#: activity.py:241
+#: activity.py:261
 msgid "Chart Color"
 msgstr "สีแผนภูมิ"
 
-#: activity.py:247
+#: activity.py:270
 msgid "Line Color"
 msgstr "สีเส้น"
 
-#: activity.py:262
+#: activity.py:287
 msgid "Horizontal label..."
 msgstr "ป้ายในแนวนอน..."
 
-#: activity.py:276
+#: activity.py:301
 msgid "Vertical label..."
 msgstr "ป้ายในแนวตั้ง..."
 
-#: activity.py:291
+#: activity.py:312
+msgid "Text"
+msgstr ""
+
+#: activity.py:331
+msgid "Font Color"
+msgstr ""
+
+#: activity.py:340
+msgid "Title font"
+msgstr ""
+
+#: activity.py:349
+msgid "Labels font"
+msgstr ""
+
+#: activity.py:356
+msgid "Tick font"
+msgstr ""
+
+#: activity.py:373
 msgid "Fullscreen"
 msgstr "เต็มจอ"
 
-#: activity.py:335
+#: activity.py:417
 msgid "Move up"
 msgstr ""
 
-#: activity.py:339
+#: activity.py:421
 msgid "Move down"
 msgstr ""
 
-#: activity.py:377
+#: activity.py:459
 msgid "No data"
 msgstr ""
 
-#: activity.py:613
+#: activity.py:549
+msgid "Vertical Bar Chart"
+msgstr "แผนภูมิแท่งในแนวตั้ง"
+
+#: activity.py:558
+msgid "Horizontal Bar Chart"
+msgstr "แผนภูมิแท่งในแนวนอน"
+
+#: activity.py:565
+msgid "Line Chart"
+msgstr "แผนภูมิแบบเส้น"
+
+#: activity.py:572
+msgid "Pie Chart"
+msgstr "แผนภูมิวงกลม"
+
+#: activity.py:834
 msgid "Invalid object"
 msgstr "วัตถุที่ไม่ถูกต้อง"
 
-#: activity.py:615
+#: activity.py:836
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "วัตถุที่ถูกเลือกต้องเป็นไฟล์ %s"
 
-#: activity.py:618 activity.py:889
-msgid "Ok"
-msgstr "ตกลง"
-
-#: activity.py:650 readers.py:62
+#: activity.py:871 readers.py:62
 msgid "StopWatch"
 msgstr "นาฬิกาจับเวลา"
 
-#: activity.py:662
+#: activity.py:883
 msgid "Measure"
 msgstr "วัดค่า"
 
-#: activity.py:773
+#: activity.py:1005
 msgid "Label"
 msgstr "ป้าย"
 
-#: activity.py:784
+#: activity.py:1017
 msgid "Value"
 msgstr "ค่า"
-
-#: activity.py:884
-msgid "Invalid Value"
-msgstr "ค่าไม่ถูกต้อง"
-
-#: activity.py:886
-msgid "The value must be a number (integer or decimal)"
-msgstr "ค่าที่ใส่ต้องเป็นตัวเลข (จำนวนเต็มหรือทศนิยม)"
 
 #: charthelp.py:12
 msgid "Basic usage"
@@ -220,6 +240,10 @@ msgstr ""
 
 #: charthelp.py:41
 msgid "Drop the clipboard data into the chart area and it will be charted"
+msgstr ""
+
+#: fontcombobox.py:90
+msgid "Select font"
 msgstr ""
 
 #: helpbutton.py:38

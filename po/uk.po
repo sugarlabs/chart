@@ -1,0 +1,281 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-19 00:32-0500\n"
+"PO-Revision-Date: 2017-04-17 14:48+0000\n"
+"Last-Translator: yurchor <yurchor@ukr.net>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1492440525.000000\n"
+
+#. TRANS: "name" option from activity.info file
+msgid "Chart"
+msgstr "Діаграма"
+
+#. TRANS: "summary" option from activity.info file
+#. TRANS: "description" option from activity.info file
+msgid ""
+"Create your charts and organize your information! Try the best chart for "
+"your case."
+msgstr ""
+"Створюйте власні діаграми і упорядковуйте ваші дані! Спробуйте найкращу "
+"діаграму для вашої мети."
+
+#: activity.py:93
+msgid "Invalid Value"
+msgstr "Некоректне значення"
+
+#: activity.py:94
+msgid "The value must be a number (integer or decimal)"
+msgstr "Значення має бути числовим (цілим або дробовим)"
+
+#: activity.py:97 activity.py:839
+msgid "Ok"
+msgstr "Гаразд"
+
+#: activity.py:193
+msgid "Save as image"
+msgstr "Зберегти як зображення"
+
+#: activity.py:200
+msgid "Read StopWatch data"
+msgstr "Читати дані «Секундоміра»"
+
+#: activity.py:206
+msgid "Read Measure data"
+msgstr "Читати дані «Вимірювання»"
+
+#: activity.py:222 activity.py:470
+msgid "Add a value"
+msgstr "Додати значення"
+
+#: activity.py:228
+msgid "Remove the selected value"
+msgstr "Вилучити позначене значення"
+
+#: activity.py:261
+msgid "Chart Color"
+msgstr "Колір діаграми"
+
+#: activity.py:270
+msgid "Line Color"
+msgstr "Колір ліній"
+
+#: activity.py:287
+msgid "Horizontal label..."
+msgstr "Мітка горизонталі…"
+
+#: activity.py:301
+msgid "Vertical label..."
+msgstr "Мітка вертикалі…"
+
+#: activity.py:312
+msgid "Text"
+msgstr "Текст"
+
+#: activity.py:331
+msgid "Font Color"
+msgstr "Колір шрифту"
+
+#: activity.py:340
+msgid "Title font"
+msgstr "Шрифт заголовка"
+
+#: activity.py:349
+msgid "Labels font"
+msgstr "Шрифт міток"
+
+#: activity.py:356
+msgid "Tick font"
+msgstr "Шрифт позначок"
+
+#: activity.py:373
+msgid "Fullscreen"
+msgstr "На весь екран"
+
+#: activity.py:417
+msgid "Move up"
+msgstr "Пересунути вище"
+
+#: activity.py:421
+msgid "Move down"
+msgstr "Пересунути нижче"
+
+#: activity.py:459
+msgid "No data"
+msgstr "Немає даних"
+
+#: activity.py:549
+msgid "Vertical Bar Chart"
+msgstr "Діаграма з вертикальними стовпцями"
+
+#: activity.py:558
+msgid "Horizontal Bar Chart"
+msgstr "Діаграма з горизонтальними смужками"
+
+#: activity.py:565
+msgid "Line Chart"
+msgstr "Лінійна діаграма"
+
+#: activity.py:572
+msgid "Pie Chart"
+msgstr "Секторна діаграма"
+
+#: activity.py:834
+msgid "Invalid object"
+msgstr "Некоректний об’єкт"
+
+#: activity.py:836
+#, python-format
+msgid "The selected object must be a %s file"
+msgstr "Позначений об’єкт має бути файлом %s"
+
+#: activity.py:871 readers.py:62
+msgid "StopWatch"
+msgstr "Секундомір"
+
+#: activity.py:883
+msgid "Measure"
+msgstr "Вимірювання"
+
+#: activity.py:1005
+msgid "Label"
+msgstr "Мітка"
+
+#: activity.py:1017
+msgid "Value"
+msgstr "Значення"
+
+#: charthelp.py:12
+msgid "Basic usage"
+msgstr "Основи користування."
+
+#: charthelp.py:13
+msgid "First you need add data to create the graph"
+msgstr "Спочатку вам слід додати дані для створення графіка"
+
+#: charthelp.py:14
+msgid "You can add data with this button"
+msgstr "Ви можете додати дані за допомогою цієї кнопки"
+
+#: charthelp.py:16
+msgid "...or remove data with this button"
+msgstr "…або вилучити дані за допомогою цієї кнопки"
+
+#: charthelp.py:18
+msgid "To change the graph title, just change the activity title"
+msgstr "Щоб змінити заголовок графіка, просто змініть назву простору дій"
+
+#: charthelp.py:20
+msgid "Next you can change the type of graph"
+msgstr "Далі, ви можете змінити тип графіка"
+
+#: charthelp.py:21
+msgid "Vertical bars"
+msgstr "Вертикальні смуги"
+
+#: charthelp.py:22
+msgid "Horizontal bars"
+msgstr "Горизонтальні смужки"
+
+#: charthelp.py:23
+msgid "Lines"
+msgstr "Лінійчаста"
+
+#: charthelp.py:24
+msgid "Pie"
+msgstr "Кругова"
+
+#: charthelp.py:26
+msgid "Configs"
+msgstr "Налаштування"
+
+#: charthelp.py:27
+msgid ""
+"You can change the colors or the horizontal and vertical labels in the "
+"configs toolbar"
+msgstr ""
+"Змінити кольори міток горизонталі і вертикалі можна за допомогою панелі "
+"«Налаштування»"
+
+#: charthelp.py:30
+msgid "Saving as an image"
+msgstr "Збереження у форматі зображення"
+
+#: charthelp.py:31
+msgid "In the activity toolbar you have button to save the graph as an image"
+msgstr ""
+"На панелі інструментів простору дій розміщено кнопку для збереження графіка "
+"у форматі зображення"
+
+#: charthelp.py:34
+msgid "Reading data from other activities"
+msgstr "Читання даних з інших просторів дій"
+
+#: charthelp.py:35
+msgid ""
+"In the activity toolbar you have buttons to read data from other activities"
+msgstr ""
+"На панелі інструментів простору дій розміщено кнопки для читання даних з "
+"інших просторів дій"
+
+#: charthelp.py:36
+msgid "You can use times measured in the StopWatch activity"
+msgstr ""
+"Ви можете скористатися вимірами часу, які виконано за допомогою «Секундоміра»"
+
+#: charthelp.py:37
+msgid "...or data from the Measure activity"
+msgstr "…або даними з простору дій «Вимірювання»"
+
+#: charthelp.py:39
+msgid "Reading data from the clipboard"
+msgstr "Читання даних з буфера обміну даними"
+
+#: charthelp.py:40
+msgid ""
+"Some activities (such as VisualMatch) has the ability to copy data to the "
+"clipboard"
+msgstr ""
+"У деяких просторах дій (наприклад у «Візуальній відповідності») передбачено "
+"можливість копіювання даних до буфера обміну даними"
+
+#: charthelp.py:41
+msgid "Drop the clipboard data into the chart area and it will be charted"
+msgstr ""
+"Скиньте дані з буфера обміну до поля діаграми, і програма намалює діаграму"
+
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Виберіть шрифт"
+
+#: helpbutton.py:38
+msgid "Help"
+msgstr "Довідка"
+
+#: readers.py:41
+msgid "Time"
+msgstr "Час"
+
+#: readers.py:51
+msgid "Mark"
+msgstr "Позначка"
+
+#: readers.py:126
+msgid "Values"
+msgstr "Значення"
+
+#: readers.py:127
+msgid "Samples"
+msgstr "Вибірки"

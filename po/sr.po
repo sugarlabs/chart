@@ -2,20 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 00:32-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2012-02-16 07:43+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: vi\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.11.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.0.5\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Chart"
@@ -30,19 +31,19 @@ msgstr ""
 
 #: activity.py:93
 msgid "Invalid Value"
-msgstr ""
+msgstr "Неважећа Вредност"
 
 #: activity.py:94
 msgid "The value must be a number (integer or decimal)"
-msgstr ""
+msgstr "Вредност мора бити број (цео или децимални)"
 
 #: activity.py:97 activity.py:839
 msgid "Ok"
-msgstr ""
+msgstr "Ок"
 
 #: activity.py:193
 msgid "Save as image"
-msgstr ""
+msgstr "Сачувај као слику"
 
 #: activity.py:200
 msgid "Read StopWatch data"
@@ -54,27 +55,27 @@ msgstr ""
 
 #: activity.py:222 activity.py:470
 msgid "Add a value"
-msgstr ""
+msgstr "Додај вредност"
 
 #: activity.py:228
 msgid "Remove the selected value"
-msgstr ""
+msgstr "Уклони изабрану вредност"
 
 #: activity.py:261
 msgid "Chart Color"
-msgstr ""
+msgstr "Боја Графа"
 
 #: activity.py:270
 msgid "Line Color"
-msgstr ""
+msgstr "Боја Линије"
 
 #: activity.py:287
 msgid "Horizontal label..."
-msgstr ""
+msgstr "Хоризонтална ознака..."
 
 #: activity.py:301
 msgid "Vertical label..."
-msgstr ""
+msgstr "Вертикална ознака..."
 
 #: activity.py:312
 msgid "Text"
@@ -98,7 +99,7 @@ msgstr ""
 
 #: activity.py:373
 msgid "Fullscreen"
-msgstr ""
+msgstr "Цео екран"
 
 #: activity.py:417
 msgid "Move up"
@@ -114,19 +115,19 @@ msgstr ""
 
 #: activity.py:549
 msgid "Vertical Bar Chart"
-msgstr ""
+msgstr "Вертикални Тракасти Граф"
 
 #: activity.py:558
 msgid "Horizontal Bar Chart"
-msgstr ""
+msgstr "Хоризонтални Тракасти Граф"
 
 #: activity.py:565
 msgid "Line Chart"
-msgstr ""
+msgstr "Линиски Граф"
 
 #: activity.py:572
 msgid "Pie Chart"
-msgstr ""
+msgstr "Кружни Граф"
 
 #: activity.py:834
 msgid "Invalid object"
@@ -147,11 +148,11 @@ msgstr ""
 
 #: activity.py:1005
 msgid "Label"
-msgstr ""
+msgstr "Озанка"
 
 #: activity.py:1017
 msgid "Value"
-msgstr ""
+msgstr "Вредност"
 
 #: charthelp.py:12
 msgid "Basic usage"
@@ -259,9 +260,13 @@ msgid "Mark"
 msgstr ""
 
 #: readers.py:126
+#, fuzzy
 msgid "Values"
-msgstr ""
+msgstr "Вредност"
 
 #: readers.py:127
 msgid "Samples"
 msgstr ""
+
+#~ msgid "SimpleGraph"
+#~ msgstr "ЈедноставанГраф"

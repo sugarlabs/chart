@@ -8,18 +8,20 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 00:32-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2016-04-26 08:43+0000\n"
+"Last-Translator: Robert <rbuj@fedoraproject.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: vi\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.11.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1461660184.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Chart"
-msgstr ""
+msgstr "Diagrama"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -27,241 +29,254 @@ msgid ""
 "Create your charts and organize your information! Try the best chart for "
 "your case."
 msgstr ""
+"Creeu els vostres diagrames i organitzeu la vostra informació! Proveu el "
+"millor diagrama per al vostre cas."
 
 #: activity.py:93
 msgid "Invalid Value"
-msgstr ""
+msgstr "Valor no vàlid"
 
 #: activity.py:94
 msgid "The value must be a number (integer or decimal)"
-msgstr ""
+msgstr "El valor ha de ser un número (enter o decimal)"
 
 #: activity.py:97 activity.py:839
 msgid "Ok"
-msgstr ""
+msgstr "D'acord"
 
 #: activity.py:193
 msgid "Save as image"
-msgstr ""
+msgstr "Desa com a imatge"
 
 #: activity.py:200
 msgid "Read StopWatch data"
-msgstr ""
+msgstr "Llegeix les dades del Cronòmetre"
 
 #: activity.py:206
 msgid "Read Measure data"
-msgstr ""
+msgstr "Llegeix les dades de l'Aparell de mesura"
 
 #: activity.py:222 activity.py:470
 msgid "Add a value"
-msgstr ""
+msgstr "Afegeix un valor"
 
 #: activity.py:228
 msgid "Remove the selected value"
-msgstr ""
+msgstr "Suprimeix el valor seleccionat"
 
 #: activity.py:261
 msgid "Chart Color"
-msgstr ""
+msgstr "Color del diagrama"
 
 #: activity.py:270
 msgid "Line Color"
-msgstr ""
+msgstr "Color de la línia"
 
 #: activity.py:287
 msgid "Horizontal label..."
-msgstr ""
+msgstr "Etiqueta horitzontal..."
 
 #: activity.py:301
 msgid "Vertical label..."
-msgstr ""
+msgstr "Etiqueta vertical..."
 
 #: activity.py:312
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: activity.py:331
 msgid "Font Color"
-msgstr ""
+msgstr "Color de la lletra"
 
 #: activity.py:340
 msgid "Title font"
-msgstr ""
+msgstr "Lletra del títol"
 
 #: activity.py:349
 msgid "Labels font"
-msgstr ""
+msgstr "Lletra de les etiquetes"
 
 #: activity.py:356
 msgid "Tick font"
-msgstr ""
+msgstr "Lletra del tic"
 
 #: activity.py:373
 msgid "Fullscreen"
-msgstr ""
+msgstr "Pantalla sencera"
 
 #: activity.py:417
 msgid "Move up"
-msgstr ""
+msgstr "Mou cap amunt"
 
 #: activity.py:421
 msgid "Move down"
-msgstr ""
+msgstr "Mou cap avall"
 
 #: activity.py:459
 msgid "No data"
-msgstr ""
+msgstr "Sense dades"
 
 #: activity.py:549
 msgid "Vertical Bar Chart"
-msgstr ""
+msgstr "Diagrama de barres verticals"
 
 #: activity.py:558
 msgid "Horizontal Bar Chart"
-msgstr ""
+msgstr "Diagrama de barres horitzontals"
 
 #: activity.py:565
 msgid "Line Chart"
-msgstr ""
+msgstr "Diagrama lineal"
 
 #: activity.py:572
 msgid "Pie Chart"
-msgstr ""
+msgstr "Diagrama de sectors"
 
 #: activity.py:834
 msgid "Invalid object"
-msgstr ""
+msgstr "Objecte no vàlid"
 
 #: activity.py:836
 #, python-format
 msgid "The selected object must be a %s file"
-msgstr ""
+msgstr "L'objecte seleccionat ha de ser un fitxer %s"
 
 #: activity.py:871 readers.py:62
 msgid "StopWatch"
-msgstr ""
+msgstr "Cronòmetre"
 
 #: activity.py:883
 msgid "Measure"
-msgstr ""
+msgstr "Aparell de mesura"
 
 #: activity.py:1005
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #: activity.py:1017
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: charthelp.py:12
 msgid "Basic usage"
-msgstr ""
+msgstr "Ús bàsic"
 
 #: charthelp.py:13
 msgid "First you need add data to create the graph"
-msgstr ""
+msgstr "El primer que heu de fer és afegir dades per crear el diagrama"
 
 #: charthelp.py:14
 msgid "You can add data with this button"
-msgstr ""
+msgstr "Podeu afegir dades amb aquest botó"
 
 #: charthelp.py:16
 msgid "...or remove data with this button"
-msgstr ""
+msgstr "... o bé eliminar-les amb aquest botó"
 
 #: charthelp.py:18
 msgid "To change the graph title, just change the activity title"
 msgstr ""
+"Per canviar el títol del diagrama, tan sols canvieu el títol de l'activitat"
 
 #: charthelp.py:20
 msgid "Next you can change the type of graph"
-msgstr ""
+msgstr "A continuació, podeu canviar el tipus de diagrama"
 
 #: charthelp.py:21
 msgid "Vertical bars"
-msgstr ""
+msgstr "Barres verticals"
 
 #: charthelp.py:22
 msgid "Horizontal bars"
-msgstr ""
+msgstr "Barres horitzontals"
 
 #: charthelp.py:23
 msgid "Lines"
-msgstr ""
+msgstr "Línies"
 
 #: charthelp.py:24
 msgid "Pie"
-msgstr ""
+msgstr "Sectors"
 
 #: charthelp.py:26
 msgid "Configs"
-msgstr ""
+msgstr "Configuracions"
 
 #: charthelp.py:27
 msgid ""
 "You can change the colors or the horizontal and vertical labels in the "
 "configs toolbar"
 msgstr ""
+"Podeu canviar els colors o les etiquetes horitzontals i verticals a la barra "
+"d'eines de configuracions"
 
 #: charthelp.py:30
 msgid "Saving as an image"
-msgstr ""
+msgstr "Desament com a una imatge"
 
 #: charthelp.py:31
 msgid "In the activity toolbar you have button to save the graph as an image"
 msgstr ""
+"A la barra d'eines de l'activitat teniu el botó per desar el diagrama com a "
+"una imatge"
 
 #: charthelp.py:34
 msgid "Reading data from other activities"
-msgstr ""
+msgstr "Lectura de dades d'altres activitats"
 
 #: charthelp.py:35
 msgid ""
 "In the activity toolbar you have buttons to read data from other activities"
 msgstr ""
+"A la barra d'eines de l'activitat teniu botons per a llegir dades d'altres "
+"activitats"
 
 #: charthelp.py:36
 msgid "You can use times measured in the StopWatch activity"
-msgstr ""
+msgstr "Podeu utilitzar els temps mesurats en l'activitat Cronòmetre"
 
 #: charthelp.py:37
 msgid "...or data from the Measure activity"
-msgstr ""
+msgstr "... o bé les dades de l'activitat Aparell de mesura"
 
 #: charthelp.py:39
 msgid "Reading data from the clipboard"
-msgstr ""
+msgstr "Lectura de dades del porta-retalls"
 
 #: charthelp.py:40
 msgid ""
 "Some activities (such as VisualMatch) has the ability to copy data to the "
 "clipboard"
 msgstr ""
+"Algunes activitats (com ara VisualMatch) tenen la possibilitat de copiar les "
+"dades al porta-retalls"
 
 #: charthelp.py:41
 msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr ""
+"Arrossegueu les dades del porta-retalls a l'àrea del diagrama i aquestes es "
+"traçaran"
 
 #: fontcombobox.py:90
 msgid "Select font"
-msgstr ""
+msgstr "Selecciona la lletra"
 
 #: helpbutton.py:38
 msgid "Help"
-msgstr ""
+msgstr "Ajuda"
 
 #: readers.py:41
 msgid "Time"
-msgstr ""
+msgstr "Temps"
 
 #: readers.py:51
 msgid "Mark"
-msgstr ""
+msgstr "Marca"
 
 #: readers.py:126
 msgid "Values"
-msgstr ""
+msgstr "Valors"
 
 #: readers.py:127
 msgid "Samples"
-msgstr ""
+msgstr "Mostres"

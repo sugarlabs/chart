@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-15 00:33-0500\n"
-"PO-Revision-Date: 2012-11-28 21:00+0200\n"
+"POT-Creation-Date: 2013-11-19 00:32-0500\n"
+"PO-Revision-Date: 2013-11-25 11:18+0200\n"
 "Last-Translator: whe <heppew@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nl\n"
@@ -30,110 +30,130 @@ msgstr ""
 "Maak je grafieken en organiseer je informatie! Beproef de beste grafiek voor "
 "jouw situatie."
 
-#: activity.py:148
+#: activity.py:93
+msgid "Invalid Value"
+msgstr "Ongeldige waarde"
+
+#: activity.py:94
+msgid "The value must be a number (integer or decimal)"
+msgstr "De waarde moet zijn een nummer (geheel getal of decimaal)"
+
+#: activity.py:97 activity.py:839
+msgid "Ok"
+msgstr "Ok"
+
+#: activity.py:193
 msgid "Save as image"
 msgstr "Bewaar als afbeelding"
 
-#: activity.py:155
+#: activity.py:200
 msgid "Read StopWatch data"
 msgstr "Lees StopWatch data"
 
-#: activity.py:161
+#: activity.py:206
 msgid "Read Measure data"
 msgstr "Lees Meetdata"
 
-#: activity.py:177 activity.py:388
+#: activity.py:222 activity.py:470
 msgid "Add a value"
 msgstr "Voeg een waarde toe"
 
-#: activity.py:183
+#: activity.py:228
 msgid "Remove the selected value"
 msgstr "Verwijder de geselecteerde waarde"
 
-#: activity.py:197
-msgid "Vertical Bar Chart"
-msgstr "Verticale Balk Grafiek"
-
-#: activity.py:206
-msgid "Horizontal Bar Chart"
-msgstr "Horizontale Balk Grafiek"
-
-#: activity.py:213
-msgid "Line Chart"
-msgstr "Lijn Grafiek"
-
-#: activity.py:220
-msgid "Pie Chart"
-msgstr "Taart Grafiek"
-
-#: activity.py:241
+#: activity.py:261
 msgid "Chart Color"
 msgstr "Grafiek Kleur"
 
-#: activity.py:247
+#: activity.py:270
 msgid "Line Color"
 msgstr "Lijn Kleur"
 
-#: activity.py:262
+#: activity.py:287
 msgid "Horizontal label..."
 msgstr "Horizontaal label..."
 
-#: activity.py:276
+#: activity.py:301
 msgid "Vertical label..."
 msgstr "Verticaal label..."
 
-#: activity.py:291
+#: activity.py:312
+msgid "Text"
+msgstr "Tekst"
+
+#: activity.py:331
+msgid "Font Color"
+msgstr "Font Kleur"
+
+#: activity.py:340
+msgid "Title font"
+msgstr "Titel font"
+
+#: activity.py:349
+msgid "Labels font"
+msgstr "Label font"
+
+#: activity.py:356
+msgid "Tick font"
+msgstr "Vtje font"
+
+#: activity.py:373
 msgid "Fullscreen"
 msgstr "Volledig scherm"
 
-#: activity.py:335
+#: activity.py:417
 msgid "Move up"
 msgstr "Beweeg omhoog"
 
-#: activity.py:339
+#: activity.py:421
 msgid "Move down"
 msgstr "Beweeg omlaag"
 
-#: activity.py:377
+#: activity.py:459
 msgid "No data"
 msgstr "Geen gegevens"
 
-#: activity.py:613
+#: activity.py:549
+msgid "Vertical Bar Chart"
+msgstr "Verticale Balk Grafiek"
+
+#: activity.py:558
+msgid "Horizontal Bar Chart"
+msgstr "Horizontale Balk Grafiek"
+
+#: activity.py:565
+msgid "Line Chart"
+msgstr "Lijn Grafiek"
+
+#: activity.py:572
+msgid "Pie Chart"
+msgstr "Taart Grafiek"
+
+#: activity.py:834
 msgid "Invalid object"
 msgstr "Ongeldig voorwerp"
 
-#: activity.py:615
+#: activity.py:836
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr "Het geselecteerde voorwerp moet een %s bestand zijn"
 
-#: activity.py:618 activity.py:889
-msgid "Ok"
-msgstr "Ok"
-
-#: activity.py:650 readers.py:62
+#: activity.py:871 readers.py:62
 msgid "StopWatch"
 msgstr "StopWatch"
 
-#: activity.py:662
+#: activity.py:883
 msgid "Measure"
 msgstr "Meten"
 
-#: activity.py:773
+#: activity.py:1005
 msgid "Label"
 msgstr "Label"
 
-#: activity.py:784
+#: activity.py:1017
 msgid "Value"
 msgstr "Waarde"
-
-#: activity.py:884
-msgid "Invalid Value"
-msgstr "Ongeldige waarde"
-
-#: activity.py:886
-msgid "The value must be a number (integer or decimal)"
-msgstr "De waarde moet zijn een nummer (geheel getal of decimaal)"
 
 #: charthelp.py:12
 msgid "Basic usage"
@@ -230,6 +250,10 @@ msgstr ""
 #: charthelp.py:41
 msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr "Plaats klemborddata in de grafiek en het zal in kaart worden gebracht"
+
+#: fontcombobox.py:90
+msgid "Select font"
+msgstr "Selecteer font"
 
 #: helpbutton.py:38
 msgid "Help"

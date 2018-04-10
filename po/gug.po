@@ -8,18 +8,20 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 00:32-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2017-09-24 22:17+0000\n"
+"Last-Translator: Chris <cjl@sugarlabs.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: vi\n"
+"Language: gug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.11.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Pootle 2.5.1.1\n"
+"X-POOTLE-MTIME: 1506291434.000000\n"
 
 #. TRANS: "name" option from activity.info file
 msgid "Chart"
-msgstr ""
+msgstr "Graficar"
 
 #. TRANS: "summary" option from activity.info file
 #. TRANS: "description" option from activity.info file
@@ -27,241 +29,254 @@ msgid ""
 "Create your charts and organize your information! Try the best chart for "
 "your case."
 msgstr ""
+"﻿Ojapo nde gráfica kuera ha ombohysýi nde kuaa ! prueba pe porãve gráfica "
+"opyta nde amomenda."
 
 #: activity.py:93
 msgid "Invalid Value"
-msgstr ""
+msgstr "Py'aguasu invalido"
 
 #: activity.py:94
 msgid "The value must be a number (integer or decimal)"
-msgstr ""
+msgstr "﻿Pe py'aguasu ova'erã teko peteĩ ambopapa (entero o decimal)"
 
 #: activity.py:97 activity.py:839
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: activity.py:193
 msgid "Save as image"
-msgstr ""
+msgstr "ñongatu akaru ta'anga"
 
 #: activity.py:200
 msgid "Read StopWatch data"
-msgstr ""
+msgstr "Moñe'ẽ amoarange kuera stopwatch"
 
 #: activity.py:206
 msgid "Read Measure data"
-msgstr ""
+msgstr "Moñe'ẽ amoarange kuera ha'ã"
 
 #: activity.py:222 activity.py:470
 msgid "Add a value"
-msgstr ""
+msgstr "Mbojo'a peteĩ py'aguasu"
 
 #: activity.py:228
 msgid "Remove the selected value"
-msgstr ""
+msgstr "Eliminar pe py'aguasu seleccionado"
 
 #: activity.py:261
 msgid "Chart Color"
-msgstr ""
+msgstr "Sa'y graficogua"
 
 #: activity.py:270
 msgid "Line Color"
-msgstr ""
+msgstr "Sa'y mba'e linea kuera"
 
 #: activity.py:287
 msgid "Horizontal label..."
-msgstr ""
+msgstr "Etiqueta horizontal..."
 
 #: activity.py:301
 msgid "Vertical label..."
-msgstr ""
+msgstr "Etiqueta oñembo'ýva . . ."
 
 #: activity.py:312
 msgid "Text"
-msgstr ""
+msgstr "Texto"
 
 #: activity.py:331
 msgid "Font Color"
-msgstr ""
+msgstr "Sa'y fuente mba'e"
 
 #: activity.py:340
 msgid "Title font"
-msgstr ""
+msgstr "﻿Téra fuente mba'e"
 
 #: activity.py:349
 msgid "Labels font"
-msgstr ""
+msgstr "﻿Fuente etiqueta kuera mba'e"
 
 #: activity.py:356
 msgid "Tick font"
-msgstr ""
+msgstr "﻿Fuente tickgua"
 
 #: activity.py:373
 msgid "Fullscreen"
-msgstr ""
+msgstr "Tenda jepyso ohechaukáva ta'anga ojapopa"
 
 #: activity.py:417
 msgid "Move up"
-msgstr ""
+msgstr "﻿Mongu'e yvate"
 
 #: activity.py:421
 msgid "Move down"
-msgstr ""
+msgstr "Mongu'e yvýpe"
 
 #: activity.py:459
 msgid "No data"
-msgstr ""
+msgstr "Amoarange kueraỹre"
 
 #: activity.py:549
 msgid "Vertical Bar Chart"
-msgstr ""
+msgstr "Grafico barra kuera mba'e verticale kuera"
 
 #: activity.py:558
 msgid "Horizontal Bar Chart"
-msgstr ""
+msgstr "﻿Grafico barra kuera mba'e horizontale kuera"
 
 #: activity.py:565
 msgid "Line Chart"
-msgstr ""
+msgstr "Grafico linea kuera mba'e"
 
 #: activity.py:572
 msgid "Pie Chart"
-msgstr ""
+msgstr "Grafico torta"
 
 #: activity.py:834
 msgid "Invalid object"
-msgstr ""
+msgstr "﻿Mba'e inválido"
 
 #: activity.py:836
 #, python-format
 msgid "The selected object must be a %s file"
-msgstr ""
+msgstr "﻿Pe mba'e seleccionado ova'erã teko peteĩ ñongatuha %s kuera"
 
 #: activity.py:871 readers.py:62
 msgid "StopWatch"
-msgstr ""
+msgstr "Cronometro"
 
 #: activity.py:883
 msgid "Measure"
-msgstr ""
+msgstr "﻿Ha'ã"
 
 #: activity.py:1005
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #: activity.py:1017
 msgid "Value"
-msgstr ""
+msgstr "Py'aguasu"
 
 #: charthelp.py:12
 msgid "Basic usage"
-msgstr ""
+msgstr "Jeporu básico"
 
 #: charthelp.py:13
 msgid "First you need add data to create the graph"
-msgstr ""
+msgstr "﻿Peteĩha tien kuera hina mbojo'a amoarange kuera opyta japo pe gráfico"
 
 #: charthelp.py:14
 msgid "You can add data with this button"
-msgstr ""
+msgstr "﻿Oikatu kuera mbojo'a amoarange kuera ko ndive votõ"
 
 #: charthelp.py:16
 msgid "...or remove data with this button"
-msgstr ""
+msgstr "﻿ . . . o eliminar amoarange kuera ko ndive votõ"
 
 #: charthelp.py:18
 msgid "To change the graph title, just change the activity title"
-msgstr ""
+msgstr "﻿Opyta moambue pe título gráficogua , año omoambue pe título actividad"
 
 #: charthelp.py:20
 msgid "Next you can change the type of graph"
-msgstr ""
+msgstr "﻿Continuaciónpe oikatu kuera moambue pe tipo gráfico mba'e"
 
 #: charthelp.py:21
 msgid "Vertical bars"
-msgstr ""
+msgstr "﻿Barra kuera verticale kuera"
 
 #: charthelp.py:22
 msgid "Horizontal bars"
-msgstr ""
+msgstr "﻿Barra kuera horizontale kuera"
 
 #: charthelp.py:23
 msgid "Lines"
-msgstr ""
+msgstr "﻿Linea kuera"
 
 #: charthelp.py:24
 msgid "Pie"
-msgstr ""
+msgstr "Apu'a"
 
 #: charthelp.py:26
 msgid "Configs"
-msgstr ""
+msgstr "Configuracion kuera"
 
 #: charthelp.py:27
 msgid ""
 "You can change the colors or the horizontal and vertical labels in the "
 "configs toolbar"
 msgstr ""
+"Oikatu kuera moambue sa'y kuera mba'e etiqueta kuera horizontale kuera ha "
+"verticale kuera pe barra configuracion kuera me/pe"
 
 #: charthelp.py:30
 msgid "Saving as an image"
-msgstr ""
+msgstr "﻿Guardando akaru peteĩ ta'anga"
 
 #: charthelp.py:31
 msgid "In the activity toolbar you have button to save the graph as an image"
 msgstr ""
+"﻿Pe barra actividad tien kuera peteĩ votõ opyta ñongatu pe gráfico akaru "
+"peteĩ ta'anga me/pe"
 
 #: charthelp.py:34
 msgid "Reading data from other activities"
-msgstr ""
+msgstr "﻿Leyendo amoarange kuera otra kuera mba'e actividade kuera"
 
 #: charthelp.py:35
 msgid ""
 "In the activity toolbar you have buttons to read data from other activities"
 msgstr ""
+"Pe barra actividad tien kuera botones opyta moñe'ẽ amoarange kuera otra "
+"kuera mba'e actividade kuera me/pe"
 
 #: charthelp.py:36
 msgid "You can use times measured in the StopWatch activity"
 msgstr ""
+"Oikatu kuera puru ára kuera ha'ãva/papyre kuera pe ndive actividad stopwatch"
 
 #: charthelp.py:37
 msgid "...or data from the Measure activity"
-msgstr ""
+msgstr "﻿ . . . o amoarange kuera actividad ha'ã"
 
 #: charthelp.py:39
 msgid "Reading data from the clipboard"
-msgstr ""
+msgstr "Leyendo amoarange kuera guive pe portapapele kuera"
 
 #: charthelp.py:40
 msgid ""
 "Some activities (such as VisualMatch) has the ability to copy data to the "
 "clipboard"
 msgstr ""
+"Ojoavy kuera actividade kuera (akaru dimension kuera) oreo pe katupyry kopia "
+"mba'e amoarange kuera pe portapapele kuera"
 
 #: charthelp.py:41
 msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr ""
+"Ombotyryry amoarange kuera guive pe portapapele kuera pe área gráficogua ha "
+"ojegraficarán"
 
 #: fontcombobox.py:90
 msgid "Select font"
-msgstr ""
+msgstr "Seleccionar fuente"
 
 #: helpbutton.py:38
 msgid "Help"
-msgstr ""
+msgstr "Oipytyvõ"
 
 #: readers.py:41
 msgid "Time"
-msgstr ""
+msgstr "ára"
 
 #: readers.py:51
 msgid "Mark"
-msgstr ""
+msgstr "Pore"
 
 #: readers.py:126
 msgid "Values"
-msgstr ""
+msgstr "﻿Py'aguasu kuera"
 
 #: readers.py:127
 msgid "Samples"
-msgstr ""
+msgstr "﻿Techarã kuera"
