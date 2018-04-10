@@ -1,7 +1,7 @@
 [Activity]
 name = Chart
 summary = Create your charts and organize your information! Try the best chart for your case.
-activity_version = 11
+activity_version = 12
 bundle_id = org.sugarlabs.SimpleGraph
 exec = sugar-activity activity.ChartActivity -s
 icon = chart-activity
