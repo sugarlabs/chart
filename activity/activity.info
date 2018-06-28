@@ -1,9 +1,12 @@
 [Activity]
 name = Chart
-summary = Create your charts and organize your information! Try the best chart for your case.
 activity_version = 12
+license = GPLv3+;GPLv2+
 bundle_id = org.sugarlabs.SimpleGraph
 exec = sugar-activity activity.ChartActivity -s
 icon = chart-activity
-license = GPLv3+ and GPLv2+
 mime_types = application/x-chart-activity;
+summary = Create your charts and organize your information! Try the best chart for your case.
+tags = Maths;Science
+url = https://help.sugarlabs.org/en/chart.html
+repository = https://github.com/sugarlabs/chart
