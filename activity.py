@@ -35,7 +35,7 @@ import locale
 import logging
 import utils
 
-from StringIO import StringIO
+from io import StringIO
 from gettext import gettext as _
 
 from sugar3.activity import activity

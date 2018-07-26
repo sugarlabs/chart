@@ -23,6 +23,7 @@ from sugarpycha.chart import Chart
 from sugarpycha.line import Point
 from sugarpycha.color import hex2rgb
 from sugarpycha.utils import safe_unicode
+import collections
 
 
 class RadialChart(Chart):
@@ -115,7 +116,7 @@ class RadialChart(Chart):
 
         count = len(self.yticks)
 
-        if callable(tick):
+        if isinstance(tick, collections.Callable):
             return
 
         x = center[0]
@@ -217,7 +218,7 @@ class RadialChart(Chart):
 
     def _renderXTick(self, cx, i, fontAscent, center):
         tick = self.xticks[i]
-        if callable(tick):
+        if isinstance(tick, collections.Callable):
             return
 
         count = len(self.xticks)
