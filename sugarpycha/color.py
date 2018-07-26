@@ -111,10 +111,11 @@ basicColors = dict(
     grey='#444444',
     black='#000000',
     darkcyan='#305755',
-    )
+)
 
 
 class ColorSchemeMetaclass(type):
+
     """This metaclass is used to autoregister all ColorScheme classes"""
 
     def __new__(mcs, name, bases, dict):
@@ -124,6 +125,7 @@ class ColorSchemeMetaclass(type):
 
 
 class ColorScheme(dict, metaclass=ColorSchemeMetaclass):
+
     """A color scheme is a dictionary where the keys match the keys
     constructor argument and the values are colors"""
     __registry__ = {}
@@ -143,6 +145,7 @@ class ColorScheme(dict, metaclass=ColorSchemeMetaclass):
 
 
 class GradientColorScheme(ColorScheme):
+
     """In this color scheme each color is a lighter version of initialColor.
 
     This difference is computed based on the number of keys.
@@ -163,6 +166,7 @@ class GradientColorScheme(ColorScheme):
 
 
 class FixedColorScheme(ColorScheme):
+
     """In this color scheme fixed colors are used.
 
     These colors are provided as a list argument in the constructor.
@@ -180,6 +184,7 @@ class FixedColorScheme(ColorScheme):
 
 
 class RainbowColorScheme(ColorScheme):
+
     """In this color scheme the rainbow is divided in N pieces
     where N is the number of datasets.
 

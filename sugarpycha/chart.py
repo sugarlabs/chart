@@ -141,7 +141,8 @@ class Chart(object):
         # Remove invalid args before calling the constructor
         kwargs = dict(self.options.colorScheme.args)
         validArgs = inspect.getargspec(colorSchemeClass.__init__)[0]
-        kwargs = dict([(k, v) for k, v in list(kwargs.items()) if k in validArgs])
+        kwargs = dict([(k, v)
+                      for k, v in list(kwargs.items()) if k in validArgs])
         self.colorScheme = colorSchemeClass(keys, **kwargs)
 
     def _initSurface(self, surface):
@@ -619,6 +620,7 @@ def uniqueIndices(arr):
 
 
 class Area(object):
+
     """Simple rectangle to hold an area coordinates and dimensions"""
 
     def __init__(self, x=0.0, y=0.0, w=0.0, h=0.0):
@@ -626,7 +628,7 @@ class Area(object):
 
     def __str__(self):
         msg = "<pycha.chart.Area@(%.2f, %.2f) %.2f x %.2f>"
-        return  msg % (self.x, self.y, self.w, self.h)
+        return msg % (self.x, self.y, self.w, self.h)
 
 
 def get_text_extents(cx, text, font, font_size, encoding):
@@ -643,6 +645,7 @@ def get_text_extents(cx, text, font, font_size, encoding):
 
 
 class Layout(object):
+
     """Set of chart areas"""
 
     def __init__(self):
@@ -664,7 +667,7 @@ class Layout(object):
             (self.y_ticks, (229 / 255.0, 241 / 255.0, 18 / 255.0)),  # yellow
             (self.x_ticks, (229 / 255.0, 241 / 255.0, 18 / 255.0)),  # yellow
             (self.chart, (75 / 255.0, 75 / 255.0, 1.0)),  # blue
-            )
+        )
 
     def update(self, cx, options, width, height, xticks, yticks):
         self.title.x = options.padding.left
@@ -762,9 +765,9 @@ class Layout(object):
         max_width = max_height = 0.0
         if not axis.hide:
             extents = [cx.text_extents(safe_unicode(
-                        tick[1], options.encoding,
-                        ))[2:4]  # get width and height as a tuple
-                       for tick in ticks]
+                tick[1], options.encoding,
+            ))[2:4]  # get width and height as a tuple
+                for tick in ticks]
             if extents:
                 widths, heights = list(zip(*extents))
                 max_width, max_height = max(widths), max(heights)
@@ -775,12 +778,13 @@ class Layout(object):
                     max_width, max_height = (
                         max_width * cos + max_height * sin,
                         max_width * sin + max_height * cos,
-                        )
+                    )
         cx.restore()
         return max_width, max_height
 
 
 class Option(dict):
+
     """Useful dict that allow attribute-like access to its keys"""
 
     def __getattr__(self, name):
@@ -878,7 +882,7 @@ DEFAULT_OPTIONS = Option(
         args=Option(
             initialColor=DEFAULT_COLOR,
             colors=None,
-            ),
+        ),
     ),
     title=None,
     titleColor='#000000',
