@@ -1095,6 +1095,9 @@ class ChartData(Gtk.TreeView):
     def move_up(self):
         selected_iter = self._selection.get_selected()[1]
         p = int(str(self.model.get_path(selected_iter)))
+        if p == 0:
+            return (0,0)
+
         position = self.model.get_iter(p - 1)
         self.model.move_before(selected_iter, position)
 
