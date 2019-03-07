@@ -21,9 +21,10 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 import gi
+gi.require_version('Gdk', '3.0')
 gi.require_version('Gtk', '3.0')
-from gi.repository import Gtk
 from gi.repository import Gdk
+from gi.repository import Gtk
 from gi.repository import GObject
 import os
 import re
@@ -419,6 +420,7 @@ class ChartActivity(activity.Activity):
                                            size_allocate_cb)
 
         scroll = Gtk.ScrolledWindow()
+        scroll.set_min_content_width(450)
         scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.labels_and_values = ChartData(self)
         scroll.add(self.labels_and_values)
