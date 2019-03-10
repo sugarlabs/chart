@@ -419,6 +419,7 @@ class ChartActivity(activity.Activity):
                                            size_allocate_cb)
 
         scroll = Gtk.ScrolledWindow()
+        scroll.set_min_content_width(450)
         scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.labels_and_values = ChartData(self)
         scroll.add(self.labels_and_values)
