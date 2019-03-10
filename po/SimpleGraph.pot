@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-30 13:49+1100\n"
+"POT-Creation-Date: 2019-03-11 09:59+1100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,128 +27,128 @@ msgid ""
 "your case."
 msgstr ""
 
-#: activity.py:95
+#: activity.py:93
 msgid "Invalid Value"
 msgstr ""
 
-#: activity.py:96
+#: activity.py:94
 msgid "The value must be a number (integer or decimal)"
 msgstr ""
 
-#: activity.py:99 activity.py:878
+#: activity.py:97 activity.py:884
 msgid "Ok"
 msgstr ""
 
-#: activity.py:207
+#: activity.py:205
 msgid "Save as image"
 msgstr ""
 
-#: activity.py:214
+#: activity.py:212
 msgid "Read StopWatch data"
 msgstr ""
 
-#: activity.py:220
+#: activity.py:218
 msgid "Read Measure data"
 msgstr ""
 
-#: activity.py:236 activity.py:484
+#: activity.py:234 activity.py:489
 msgid "Add a value"
 msgstr ""
 
-#: activity.py:242
+#: activity.py:240
 msgid "Remove the selected value"
 msgstr ""
 
-#: activity.py:275
+#: activity.py:273
 msgid "Chart Color"
 msgstr ""
 
-#: activity.py:284
+#: activity.py:282
 msgid "Line Color"
 msgstr ""
 
-#: activity.py:301
+#: activity.py:299
 msgid "Horizontal label..."
 msgstr ""
 
-#: activity.py:315
+#: activity.py:313
 msgid "Vertical label..."
 msgstr ""
 
-#: activity.py:326
+#: activity.py:324
 msgid "Text"
 msgstr ""
 
-#: activity.py:345
+#: activity.py:349
 msgid "Font Color"
 msgstr ""
 
-#: activity.py:354
+#: activity.py:358
 msgid "Title font"
 msgstr ""
 
-#: activity.py:363
+#: activity.py:367
 msgid "Labels font"
 msgstr ""
 
-#: activity.py:370
+#: activity.py:374
 msgid "Tick font"
 msgstr ""
 
-#: activity.py:387
+#: activity.py:391
 msgid "Fullscreen"
 msgstr ""
 
-#: activity.py:431
+#: activity.py:436
 msgid "Move up"
 msgstr ""
 
-#: activity.py:435
+#: activity.py:440
 msgid "Move down"
 msgstr ""
 
-#: activity.py:473
+#: activity.py:478
 msgid "No data"
 msgstr ""
 
-#: activity.py:563
+#: activity.py:569
 msgid "Vertical Bar Chart"
 msgstr ""
 
-#: activity.py:572
+#: activity.py:578
 msgid "Horizontal Bar Chart"
 msgstr ""
 
-#: activity.py:579
+#: activity.py:585
 msgid "Line Chart"
 msgstr ""
 
-#: activity.py:587
+#: activity.py:593
 msgid "Pie Chart"
 msgstr ""
 
-#: activity.py:873
+#: activity.py:879
 msgid "Invalid object"
 msgstr ""
 
-#: activity.py:875
+#: activity.py:881
 #, python-format
 msgid "The selected object must be a %s file"
 msgstr ""
 
-#: activity.py:910 readers.py:62
+#: activity.py:915 readers.py:62
 msgid "StopWatch"
 msgstr ""
 
-#: activity.py:922
+#: activity.py:926
 msgid "Measure"
 msgstr ""
 
-#: activity.py:1028
+#: activity.py:1032
 msgid "Label"
 msgstr ""
 
-#: activity.py:1040
+#: activity.py:1044
 msgid "Value"
 msgstr ""
 
@@ -172,72 +172,70 @@ msgstr ""
 msgid "To change the graph title, just change the activity title"
 msgstr ""
 
-#: charthelp.py:20
+#: charthelp.py:21
 msgid "Next you can change the type of graph"
 msgstr ""
 
-#: charthelp.py:21
+#: charthelp.py:22
 msgid "Vertical bars"
 msgstr ""
 
-#: charthelp.py:22
+#: charthelp.py:23
 msgid "Horizontal bars"
 msgstr ""
 
-#: charthelp.py:23
+#: charthelp.py:24
 msgid "Lines"
 msgstr ""
 
-#: charthelp.py:24
+#: charthelp.py:25
 msgid "Pie"
 msgstr ""
 
-#: charthelp.py:26
+#: charthelp.py:27
 msgid "Configs"
 msgstr ""
 
-#: charthelp.py:27
+#: charthelp.py:28
 msgid ""
 "You can change the colors or the horizontal and vertical labels in the "
 "configs toolbar"
 msgstr ""
 
-#: charthelp.py:30
+#: charthelp.py:32
 msgid "Saving as an image"
 msgstr ""
 
-#: charthelp.py:31
+#: charthelp.py:33
 msgid "In the activity toolbar you have button to save the graph as an image"
 msgstr ""
 
-#: charthelp.py:34
+#: charthelp.py:37
 msgid "Reading data from other activities"
 msgstr ""
 
-#: charthelp.py:35
+#: charthelp.py:38
 msgid ""
 "In the activity toolbar you have buttons to read data from other activities"
 msgstr ""
 
-#: charthelp.py:36
+#: charthelp.py:40
 msgid "You can use times measured in the StopWatch activity"
 msgstr ""
 
-#: charthelp.py:37
+#: charthelp.py:42
 msgid "...or data from the Measure activity"
 msgstr ""
 
-#: charthelp.py:39
+#: charthelp.py:45
 msgid "Reading data from the clipboard"
 msgstr ""
 
-#: charthelp.py:40
-msgid ""
-"Some activities (such as VisualMatch) has the ability to copy data to the "
-"clipboard"
+#: charthelp.py:46
+msgid "Some activities (such as VisualMatch) can copy data to the clipboard"
 msgstr ""
 
-#: charthelp.py:41
+#: charthelp.py:48
 msgid "Drop the clipboard data into the chart area and it will be charted"
 msgstr ""
 
