@@ -410,17 +410,16 @@ class ChartActivity(activity.Activity):
         box = Gtk.VBox()
         self.box = box
 
-        # Set the info box width to 1/3 of the screen:
         def size_allocate_cb(widget, allocation):
             paned.disconnect(self._setup_handle)
-            box_width = allocation.width / 3
-            box.set_size_request(box_width, -1)
+            box_width = allocation.width / 6
+            box.set_size_request(min(170, box_width), -1)
 
         self._setup_handle = paned.connect('size_allocate',
                                            size_allocate_cb)
 
         scroll = Gtk.ScrolledWindow()
-        scroll.set_min_content_width(450)
+        scroll.set_min_content_width(min(170, Gdk.Screen.width() / 6))
         scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.labels_and_values = ChartData(self)
         scroll.add(self.labels_and_values)
