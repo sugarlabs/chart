@@ -701,7 +701,7 @@ class ChartActivity(activity.Activity):
                 self.chart_type_buttons[i + 4].show()
 
     def _chart_size_allocate(self, widget, allocation):
-            self._render_chart()
+        self._render_chart()
 
     def unfullscreen(self):
         self.box.show()
