@@ -135,6 +135,9 @@ class ChartArea(Gtk.DrawingArea):
         context.set_source_rgb(255, 255, 255)
         context.fill()
 
+        if self._parent.current_chart is None:
+            return
+
         # Paint the chart:
         chart_width = self._parent.current_chart.width
         chart_height = self._parent.current_chart.height
@@ -563,8 +566,6 @@ class ChartActivity(activity.Activity):
 
     def _create_chart_buttons(self, toolbar):
         add_vbar_chart = RadioToolButton()
-        add_vbar_chart.connect('clicked', self._add_chart_cb,
-                               charts.VERTICAL_BAR)
         add_vbar_chart.set_tooltip(_('Vertical Bar Chart'))
         add_vbar_chart.props.icon_name = 'vbar'
         charts_group = add_vbar_chart
@@ -572,15 +573,12 @@ class ChartActivity(activity.Activity):
         toolbar.insert(add_vbar_chart, -1)
 
         add_hbar_chart = RadioToolButton()
-        add_hbar_chart.connect('clicked', self._add_chart_cb,
-                               charts.HORIZONTAL_BAR)
         add_hbar_chart.set_tooltip(_('Horizontal Bar Chart'))
         add_hbar_chart.props.icon_name = 'hbar'
         add_hbar_chart.props.group = charts_group
         toolbar.insert(add_hbar_chart, -1)
 
         add_line_chart = RadioToolButton()
-        add_line_chart.connect('clicked', self._add_chart_cb, charts.LINE)
         add_line_chart.set_tooltip(_('Line Chart'))
         add_line_chart.props.icon_name = 'line'
         add_line_chart.props.group = charts_group
@@ -588,19 +586,28 @@ class ChartActivity(activity.Activity):
 
         add_pie_chart = RadioToolButton()
         add_pie_chart.set_active(True)
-        add_pie_chart.connect('clicked', self._add_chart_cb, charts.PIE)
         add_pie_chart.set_tooltip(_('Pie Chart'))
         add_pie_chart.props.icon_name = 'pie'
         add_pie_chart.props.group = charts_group
         toolbar.insert(add_pie_chart, -1)
+
+        add_vbar_chart.connect('toggled', self._add_chart_cb,
+                               charts.VERTICAL_BAR)
+        add_hbar_chart.connect('toggled', self._add_chart_cb,
+                               charts.HORIZONTAL_BAR)
+        add_line_chart.connect('toggled', self._add_chart_cb, charts.LINE)
+        add_pie_chart.connect('toggled', self._add_chart_cb, charts.PIE)
 
         self.chart_type_buttons.append(add_vbar_chart)
         self.chart_type_buttons.append(add_hbar_chart)
         self.chart_type_buttons.append(add_line_chart)
         self.chart_type_buttons.append(add_pie_chart)
 
+        self._add_chart_cb(add_vbar_chart, charts.VERTICAL_BAR)
+
     def _show_empty_widgets(self):
-        if hasattr(self, '_notebook'):
+        if hasattr(self, '_notebook') and \
+           self._notebook.get_current_page() == 0:
             self._notebook.set_current_page(1)
             self._remove_v.set_sensitive(False)
 
@@ -645,8 +652,10 @@ class ChartActivity(activity.Activity):
         palette.popup(immediate=True)
 
     def _add_value(self, widget, label='', value='0.0'):
+        before = len(self.chart_data)
+
         if label == '':
-            label = str(len(self.chart_data) + 1)
+            label = str(before + 1)
 
         is_number = True
         try:
@@ -660,6 +669,7 @@ class ChartActivity(activity.Activity):
             if data not in self.chart_data:
                 pos = self.labels_and_values.add_value(label, value)
                 self.chart_data.insert(pos, data)
+                self._show_chart_area()
                 self._update_chart_data()
 
         elif not is_number:
@@ -671,6 +681,9 @@ class ChartActivity(activity.Activity):
         self._update_chart_data()
 
     def _add_chart_cb(self, widget, type=charts.VERTICAL_BAR):
+        if not widget.get_active():
+            return
+
         self.current_chart = charts.Chart(type)
 
         def update_btn():
@@ -814,6 +827,7 @@ class ChartActivity(activity.Activity):
     def _value_changed(self, treeview, path, new_value):
         path = int(path)
         self.chart_data[path] = (self.chart_data[path][0], float(new_value))
+        self._show_chart_area()
         self._update_chart_data()
 
     def _move_up(self, widget):
