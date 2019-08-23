@@ -949,7 +949,7 @@ class ChartActivity(activity.Activity):
         if self.current_chart:
             jobject = datastore.create()
 
-            jobject.metadata['title'] = self.metadata['title']
+            jobject.metadata['title'] = self.metadata['title'] + " Image"
             jobject.metadata['mime_type'] = 'image/png'
 
             self.current_chart.as_png(_CHART_FILE)
