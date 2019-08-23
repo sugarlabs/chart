@@ -921,7 +921,7 @@ class ChartActivity(activity.Activity):
             self._add_value(None,
                             label=row[0], value=float(row[1]))
 
-            self.update_chart()
+        self.update_chart()
 
     def __import_stopwatch_cb(self, widget):
         matches_mime_type, file_path, title = \
