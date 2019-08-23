@@ -963,7 +963,6 @@ class ChartActivity(activity.Activity):
         finally:
             f.close()
 
-        self.metadata['title'] = data['title']
         self.x_label = data['x_label']
         self.y_label = data['y_label']
         self.chart_color = data['chart_color']
@@ -1002,7 +1001,6 @@ class ChartActivity(activity.Activity):
         if self.current_chart:
 
             data = {}
-            data['title'] = str(self.metadata['title'])
             data['x_label'] = self.x_label
             data['y_label'] = self.y_label
             data['chart_color'] = self.chart_color
