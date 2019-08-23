@@ -651,7 +651,7 @@ class ChartActivity(activity.Activity):
         palette = button.get_palette()
         palette.popup(immediate=True)
 
-    def _add_value(self, widget, label='', value='0.0'):
+    def _add_value(self, widget, label='', value='0.0', bulk=False):
         before = len(self.chart_data)
 
         if label == '':
@@ -667,7 +667,8 @@ class ChartActivity(activity.Activity):
         if is_number:
             data = (label, float(value))
             if data not in self.chart_data:
-                pos = self.labels_and_values.add_value(label, value)
+                pos = self.labels_and_values.add_value(
+                    label, value, bulk=bulk)
                 self.chart_data.insert(pos, data)
                 self._show_chart_area()
                 self._update_chart_data()
@@ -918,8 +919,8 @@ class ChartActivity(activity.Activity):
 
         # Load the data
         for row in chart_data:
-            self._add_value(None,
-                            label=row[0], value=float(row[1]))
+            self._add_value(
+                None, label=row[0], value=str(row[1]), bulk=True)
 
         self.update_chart()
 
@@ -992,7 +993,8 @@ class ChartActivity(activity.Activity):
 
         # load the data
         for row in chart_data:
-            self._add_value(None, label=row[0], value=float(row[1]))
+            self._add_value(
+                None, label=row[0], value=str(row[1]), bulk=True)
 
         self.update_chart()
 
@@ -1069,7 +1071,7 @@ class ChartData(Gtk.TreeView):
 
         self.show_all()
 
-    def add_value(self, label, value):
+    def add_value(self, label, value, bulk=False):
         treestore, selected = self._selection.get_selected()
         if not selected:
             path = 0
@@ -1077,14 +1079,14 @@ class ChartData(Gtk.TreeView):
         elif selected:
             path = int(str(self.model.get_path(selected))) + 1
 
-        try:
+        if bulk:
+            _iter = self.model.append([label, value])
+        else:
             _iter = self.model.insert(path, [label, value])
-        except ValueError:
-            _iter = self.model.append([label, str(value)])
 
         self.set_cursor(self.model.get_path(_iter),
                         self.get_column(1),
-                        True)
+                        not bulk)
 
         self._items_count += 1
 
