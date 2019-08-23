@@ -1134,13 +1134,13 @@ class ChartData(Gtk.TreeView):
             return (None, None)
 
     def _label_changed(self, cell, path, new_text, model):
-        _logger.info('Change "%s" to "%s"' % (model[path][0], new_text))
+        _logger.info('Label change "%s" to "%s"' % (model[path][0], new_text))
         model[path][0] = new_text
 
         self.emit('label-changed', str(path), new_text)
 
     def _value_changed(self, cell, path, new_text, model, activity):
-        _logger.info('Change "%s" to "%s"' % (model[path][1], new_text))
+        _logger.info('Value change "%s" to "%s"' % (model[path][1], new_text))
         is_number = True
         number = new_text.replace(',', '.')
         try:
