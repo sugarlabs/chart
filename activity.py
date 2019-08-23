@@ -1002,7 +1002,7 @@ class ChartActivity(activity.Activity):
         if self.current_chart:
 
             data = {}
-            data['title'] = self.metadata['title']
+            data['title'] = str(self.metadata['title'])
             data['x_label'] = self.x_label
             data['y_label'] = self.y_label
             data['chart_color'] = self.chart_color
