@@ -194,6 +194,7 @@ class Slice(object):
 
 
 class PieLayout(Layout):
+
     """Set of chart areas for pie charts"""
 
     def __init__(self, slices):
@@ -208,7 +209,7 @@ class PieLayout(Layout):
         self._areas = (
             (self.title, (1, 126 / 255.0, 0)),  # orange
             (self.chart, (75 / 255.0, 75 / 255.0, 1.0)),  # blue
-            )
+        )
 
         self._lines = []
 

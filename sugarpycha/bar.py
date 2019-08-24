@@ -18,6 +18,7 @@
 from sugarpycha.chart import Chart, uniqueIndices
 from sugarpycha.color import hex2rgb
 from sugarpycha.utils import safe_unicode
+import collections
 
 
 class BarChart(Chart):
@@ -99,7 +100,7 @@ class BarChart(Chart):
                 cx.set_font_size(self.options.yvals.fontSize)
                 cx.set_source_rgb(*hex2rgb(self.options.yvals.fontColor))
 
-                if callable(self.options.yvals.renderer):
+                if isinstance(self.options.yvals.renderer, collections.Callable):
                     label = safe_unicode(self.options.yvals.renderer(bar),
                                          self.options.encoding)
                 else:
@@ -134,7 +135,7 @@ class VerticalBarChart(BarChart):
                     xval, yval = item
 
                 x = (((xval - self.minxval) * self.xscale)
-                    + self.barMargin + (i * self.barWidthForSet))
+                     + self.barMargin + (i * self.barWidthForSet))
                 w = self.barWidthForSet
                 h = abs(yval) * self.yscale
                 if yval > 0:

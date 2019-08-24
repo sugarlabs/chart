@@ -18,7 +18,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-import cPickle
+import pickle
 import csv
 
 from gettext import gettext as _
@@ -36,7 +36,7 @@ class StopWatchReader():
     def __init__(self, data):
         """Import chart data from file."""
 
-        self._data = cPickle.load(data)
+        self._data = pickle.load(data)
 
         self._v_label = _('Time')
         self._h_label = ''

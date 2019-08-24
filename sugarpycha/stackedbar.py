@@ -17,6 +17,7 @@
 
 from sugarpycha.bar import BarChart, VerticalBarChart, HorizontalBarChart, Rect
 from sugarpycha.chart import uniqueIndices
+from functools import reduce
 
 
 class StackedBarChart(BarChart):
@@ -37,9 +38,9 @@ class StackedBarChart(BarChart):
             n_stores = len(stores)
             flat_y = [pair[1] for pair in reduce(lambda a, b: a + b, stores)]
             store_size = len(flat_y) / n_stores
-            accum = [sum(flat_y[j]for j in xrange(i,
-                                                  i + store_size * n_stores,
-                                                  store_size))
+            accum = [sum(flat_y[j]for j in range(i,
+                                                 i + store_size * n_stores,
+                                                 store_size))
                      for i in range(len(flat_y) / n_stores)]
             self.yrange = float(max(accum))
             if self.yrange == 0:
