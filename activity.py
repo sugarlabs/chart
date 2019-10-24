@@ -135,6 +135,9 @@ class ChartArea(Gtk.DrawingArea):
         context.set_source_rgb(255, 255, 255)
         context.fill()
 
+        if self._parent.current_chart is None:
+            return
+
         # Paint the chart:
         chart_width = self._parent.current_chart.width
         chart_height = self._parent.current_chart.height
@@ -410,17 +413,16 @@ class ChartActivity(activity.Activity):
         box = Gtk.VBox()
         self.box = box
 
-        # Set the info box width to 1/3 of the screen:
         def size_allocate_cb(widget, allocation):
             paned.disconnect(self._setup_handle)
-            box_width = allocation.width / 3
-            box.set_size_request(box_width, -1)
+            box_width = allocation.width / 6
+            box.set_size_request(min(170, box_width), -1)
 
         self._setup_handle = paned.connect('size_allocate',
                                            size_allocate_cb)
 
         scroll = Gtk.ScrolledWindow()
-        scroll.set_min_content_width(450)
+        scroll.set_min_content_width(min(170, Gdk.Screen.width() / 6))
         scroll.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.labels_and_values = ChartData(self)
         scroll.add(self.labels_and_values)
@@ -564,8 +566,6 @@ class ChartActivity(activity.Activity):
 
     def _create_chart_buttons(self, toolbar):
         add_vbar_chart = RadioToolButton()
-        add_vbar_chart.connect('clicked', self._add_chart_cb,
-                               charts.VERTICAL_BAR)
         add_vbar_chart.set_tooltip(_('Vertical Bar Chart'))
         add_vbar_chart.props.icon_name = 'vbar'
         charts_group = add_vbar_chart
@@ -573,15 +573,12 @@ class ChartActivity(activity.Activity):
         toolbar.insert(add_vbar_chart, -1)
 
         add_hbar_chart = RadioToolButton()
-        add_hbar_chart.connect('clicked', self._add_chart_cb,
-                               charts.HORIZONTAL_BAR)
         add_hbar_chart.set_tooltip(_('Horizontal Bar Chart'))
         add_hbar_chart.props.icon_name = 'hbar'
         add_hbar_chart.props.group = charts_group
         toolbar.insert(add_hbar_chart, -1)
 
         add_line_chart = RadioToolButton()
-        add_line_chart.connect('clicked', self._add_chart_cb, charts.LINE)
         add_line_chart.set_tooltip(_('Line Chart'))
         add_line_chart.props.icon_name = 'line'
         add_line_chart.props.group = charts_group
@@ -589,19 +586,28 @@ class ChartActivity(activity.Activity):
 
         add_pie_chart = RadioToolButton()
         add_pie_chart.set_active(True)
-        add_pie_chart.connect('clicked', self._add_chart_cb, charts.PIE)
         add_pie_chart.set_tooltip(_('Pie Chart'))
         add_pie_chart.props.icon_name = 'pie'
         add_pie_chart.props.group = charts_group
         toolbar.insert(add_pie_chart, -1)
+
+        add_vbar_chart.connect('toggled', self._add_chart_cb,
+                               charts.VERTICAL_BAR)
+        add_hbar_chart.connect('toggled', self._add_chart_cb,
+                               charts.HORIZONTAL_BAR)
+        add_line_chart.connect('toggled', self._add_chart_cb, charts.LINE)
+        add_pie_chart.connect('toggled', self._add_chart_cb, charts.PIE)
 
         self.chart_type_buttons.append(add_vbar_chart)
         self.chart_type_buttons.append(add_hbar_chart)
         self.chart_type_buttons.append(add_line_chart)
         self.chart_type_buttons.append(add_pie_chart)
 
+        self._add_chart_cb(add_vbar_chart, charts.VERTICAL_BAR)
+
     def _show_empty_widgets(self):
-        if hasattr(self, '_notebook'):
+        if hasattr(self, '_notebook') and \
+           self._notebook.get_current_page() == 0:
             self._notebook.set_current_page(1)
             self._remove_v.set_sensitive(False)
 
@@ -643,11 +649,13 @@ class ChartActivity(activity.Activity):
 
     def _measure_btn_clicked(self, button):
         palette = button.get_palette()
-        palette.popup(immediate=True, state=1)
+        palette.popup(immediate=True)
 
-    def _add_value(self, widget, label='', value='0.0'):
+    def _add_value(self, widget, label='', value='0.0', bulk=False):
+        before = len(self.chart_data)
+
         if label == '':
-            label = str(len(self.chart_data) + 1)
+            label = str(before + 1)
 
         is_number = True
         try:
@@ -659,8 +667,10 @@ class ChartActivity(activity.Activity):
         if is_number:
             data = (label, float(value))
             if data not in self.chart_data:
-                pos = self.labels_and_values.add_value(label, value)
+                pos = self.labels_and_values.add_value(
+                    label, value, bulk=bulk)
                 self.chart_data.insert(pos, data)
+                self._show_chart_area()
                 self._update_chart_data()
 
         elif not is_number:
@@ -672,6 +682,9 @@ class ChartActivity(activity.Activity):
         self._update_chart_data()
 
     def _add_chart_cb(self, widget, type=charts.VERTICAL_BAR):
+        if not widget.get_active():
+            return
+
         self.current_chart = charts.Chart(type)
 
         def update_btn():
@@ -701,7 +714,7 @@ class ChartActivity(activity.Activity):
                 self.chart_type_buttons[i + 4].show()
 
     def _chart_size_allocate(self, widget, allocation):
-            self._render_chart()
+        self._render_chart()
 
     def unfullscreen(self):
         self.box.show()
@@ -815,6 +828,7 @@ class ChartActivity(activity.Activity):
     def _value_changed(self, treeview, path, new_value):
         path = int(path)
         self.chart_data[path] = (self.chart_data[path][0], float(new_value))
+        self._show_chart_area()
         self._update_chart_data()
 
     def _move_up(self, widget):
@@ -905,10 +919,10 @@ class ChartActivity(activity.Activity):
 
         # Load the data
         for row in chart_data:
-            self._add_value(None,
-                            label=row[0], value=float(row[1]))
+            self._add_value(
+                None, label=row[0], value=str(row[1]), bulk=True)
 
-            self.update_chart()
+        self.update_chart()
 
     def __import_stopwatch_cb(self, widget):
         matches_mime_type, file_path, title = \
@@ -936,7 +950,7 @@ class ChartActivity(activity.Activity):
         if self.current_chart:
             jobject = datastore.create()
 
-            jobject.metadata['title'] = self.metadata['title']
+            jobject.metadata['title'] = self.metadata['title'] + " Image"
             jobject.metadata['mime_type'] = 'image/png'
 
             self.current_chart.as_png(_CHART_FILE)
@@ -950,7 +964,6 @@ class ChartActivity(activity.Activity):
         finally:
             f.close()
 
-        self.metadata['title'] = data['title']
         self.x_label = data['x_label']
         self.y_label = data['y_label']
         self.chart_color = data['chart_color']
@@ -980,7 +993,8 @@ class ChartActivity(activity.Activity):
 
         # load the data
         for row in chart_data:
-            self._add_value(None, label=row[0], value=float(row[1]))
+            self._add_value(
+                None, label=row[0], value=str(row[1]), bulk=True)
 
         self.update_chart()
 
@@ -989,7 +1003,6 @@ class ChartActivity(activity.Activity):
         if self.current_chart:
 
             data = {}
-            data['title'] = self.metadata['title']
             data['x_label'] = self.x_label
             data['y_label'] = self.y_label
             data['chart_color'] = self.chart_color
@@ -1058,7 +1071,7 @@ class ChartData(Gtk.TreeView):
 
         self.show_all()
 
-    def add_value(self, label, value):
+    def add_value(self, label, value, bulk=False):
         treestore, selected = self._selection.get_selected()
         if not selected:
             path = 0
@@ -1066,14 +1079,14 @@ class ChartData(Gtk.TreeView):
         elif selected:
             path = int(str(self.model.get_path(selected))) + 1
 
-        try:
+        if bulk:
+            _iter = self.model.append([label, value])
+        else:
             _iter = self.model.insert(path, [label, value])
-        except ValueError:
-            _iter = self.model.append([label, str(value)])
 
         self.set_cursor(self.model.get_path(_iter),
                         self.get_column(1),
-                        True)
+                        not bulk)
 
         self._items_count += 1
 
@@ -1095,6 +1108,9 @@ class ChartData(Gtk.TreeView):
     def move_up(self):
         selected_iter = self._selection.get_selected()[1]
         p = int(str(self.model.get_path(selected_iter)))
+        if p == 0:
+            return (0,0)
+
         position = self.model.get_iter(p - 1)
         self.model.move_before(selected_iter, position)
 
@@ -1118,13 +1134,13 @@ class ChartData(Gtk.TreeView):
             return (None, None)
 
     def _label_changed(self, cell, path, new_text, model):
-        _logger.info('Change "%s" to "%s"' % (model[path][0], new_text))
+        _logger.info('Label change "%s" to "%s"' % (model[path][0], new_text))
         model[path][0] = new_text
 
         self.emit('label-changed', str(path), new_text)
 
     def _value_changed(self, cell, path, new_text, model, activity):
-        _logger.info('Change "%s" to "%s"' % (model[path][1], new_text))
+        _logger.info('Value change "%s" to "%s"' % (model[path][1], new_text))
         is_number = True
         number = new_text.replace(',', '.')
         try:

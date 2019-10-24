@@ -327,7 +327,7 @@ class PolygonalChart(Chart):
                         continue
                     cx.line_to(x, y)
 
-            if not firstPointCoord is None:
+            if firstPointCoord is not None:
                 cx.line_to(firstPointCoord[0], firstPointCoord[1])
 
             if self.options.shouldFill:

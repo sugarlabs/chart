@@ -134,7 +134,7 @@ class VerticalBarChart(BarChart):
                     xval, yval = item
 
                 x = (((xval - self.minxval) * self.xscale)
-                    + self.barMargin + (i * self.barWidthForSet))
+                     + self.barMargin + (i * self.barWidthForSet))
                 w = self.barWidthForSet
                 h = abs(yval) * self.yscale
                 if yval > 0:

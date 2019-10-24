@@ -48,7 +48,7 @@ class LineChart(Chart):
             lastX = None
             if self.options.shouldFill:
                 # Go to the (0,0) coordinate to start drawing the area
-                #cx.move_to(self.layout.chart.x,
+                # cx.move_to(self.layout.chart.x,
                 #           self.layout.chart.y + self.layout.chart.h)
                 offset = (1.0 - self.origin) * self.layout.chart.h
                 cx.move_to(self.layout.chart.x, self.layout.chart.y + offset)

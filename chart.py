@@ -35,6 +35,7 @@ PIE = 4
 
 
 class Chart(GObject.GObject):
+
     def __init__(self, type=VERTICAL_BAR, width=600, height=460):
         GObject.GObject.__init__(self)
 
