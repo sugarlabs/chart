@@ -1,6 +1,6 @@
 [Activity]
 name = Chart
-activity_version = 12
+activity_version = 13
 license = GPLv3+;GPLv2+
 bundle_id = org.sugarlabs.SimpleGraph
 exec = sugar-activity3 activity.ChartActivity -s

@@ -1,3 +1,27 @@
+13
+
+* Add README (Rudra Sadhu),
+* Add screenshots (Vipul Gupta),
+* Update metadata in activity.info (Vipul Gupta),
+* Fix mask of file (James Cameron),
+* Fix size of scroll window (Aniket Mathur),
+* Fix PyGObject version warnings (Aniket Mathur),
+* Update POT file (Aniket Mathur),
+* Port to Python 3 (Rahul Bothra, James Cameron),
+* Fix help palette layout (James Cameron),
+
+12
+
+* Fixing a little bug (Agustin Zubiaga),
+* Font change implemented (Agustin Zubiaga),
+* Filter chart inputs (Sai Vineet),
+* Fixing code style errors (Agustin Zubiaga),
+* Fixing lots of bugs (Agustin Zubiaga),
+* Fix Python GI API version warnings (James Cameron),
+* Add COPYING as GPLv3, COPYING.GPLv2, and fix metadata (James Cameron),
+* Fix several flake8 errors and warnings (James Cameron),
+* translate.sugarlabs.org synchronisation (James Cameron),
+
 11
 
 * New translations
