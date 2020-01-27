@@ -103,6 +103,9 @@ def _invalid_number_alert(activity):
 
 
 def _extract_value(value):
+    if isinstance(value, str):
+        value = eval(value)
+
     decimals_found = re.findall("\d+\.\d+", str(value))
     integers_found = re.findall("\d+", str(value))
 
