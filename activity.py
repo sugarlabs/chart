@@ -34,6 +34,8 @@ import json
 import locale
 import logging
 import utils
+import ast, operator
+
 
 from io import StringIO
 from gettext import gettext as _
@@ -103,6 +105,31 @@ def _invalid_number_alert(activity):
 
 
 def _extract_value(value):
+    if isinstance(value, str):
+
+        binOps = {
+            ast.Add: operator.add,
+            ast.Sub: operator.sub,
+            ast.Mult: operator.mul,
+            ast.Div: operator.truediv,
+        }
+
+        node = ast.parse(value, mode='eval')
+        
+        def _eval(node):
+            if isinstance(node, ast.Expression):
+                return _eval(node.body)
+            elif isinstance(node, ast.BinOp):
+                return binOps[type(node.op)](_eval(node.left), _eval(node.right))
+            elif isinstance(node, ast.Num):
+                return node.n
+            else:
+                print(node, type(node))
+                raise Exception('Invalid expression.')
+            return _eval(node.body)
+
+        value = round(_eval(node), 2)
+        
     decimals_found = re.findall("\d+\.\d+", str(value))
     integers_found = re.findall("\d+", str(value))
 
